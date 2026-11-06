@@ -27,8 +27,8 @@ To install local hooks:
 
 ```text
 uv sync --group maintain
-uv run pre-commit install
-uv run pre-commit run --all-files
+uv run --group maintain pre-commit install
+uv run --group maintain pre-commit run --all-files
 ```
 
 ## Teaching standards

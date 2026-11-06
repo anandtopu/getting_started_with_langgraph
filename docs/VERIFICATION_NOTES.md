@@ -147,7 +147,7 @@ The installed API probes confirm explicit v2 GraphOutput values, v2 stream-part 
 
 All four live-provider constructors initialized with synthetic keys while an audit guard blocked connections. This checks adapter configuration, not service availability, model access, or generation. Hosted models receive no generic temperature override. The Ollama connectivity check is mocked only in this constructor probe; the ordinary --live diagnostic checks the configured service.
 
-The all-extras suite passed 60 tests before the final progress-display and DNS-guard additions. The final base-suite result and exact checkpoint commands are in [the acceptance report](ACCEPTANCE_REPORT.md). The default environment was restored afterward. No API keys, live generation, hosted traces, Docker services, or remote CI were used.
+The all-extras suite passed 60 tests before the final progress-display and DNS-guard additions. The final base suite passed 64 tests. Results and checkpoint commands are in [the acceptance report](ACCEPTANCE_REPORT.md). The default environment was restored afterward. No API keys, live generation, hosted traces, Docker services, or remote CI were used.
 
 For Windows async execution, the test harness permits only Python's internal socketpair construction; ordinary networking remains blocked. The gym additionally rejects DNS and connection audit events. Local checks needed normal Windows process/event-loop permissions in the authoring environment. This does not remove the test harness's network guards.
 
