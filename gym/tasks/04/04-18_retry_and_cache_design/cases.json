@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "policy_read": "retry_and_scoped_cache",
+        "payout_write": "idempotency_before_retry",
+        "ttl_test": "injected_clock"
+      }
+    }
+  }
+]

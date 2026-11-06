@@ -1,0 +1,3 @@
+{"input": {}, "expected": {"specialists": ["fraud_analyst", "communication_specialist"], "risk_flags": ["high_value"]}}
+{"input": {"amount_cents": 10000}, "expected": {"risk_flags": []}}
+{"input": {"claim_id": "CLM-0002"}, "expected": {"error": "ValueError"}}

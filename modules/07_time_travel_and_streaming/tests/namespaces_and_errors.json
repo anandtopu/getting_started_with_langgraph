@@ -1,0 +1,42 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "groups": {
+          "document_review": [
+            "check_document"
+          ],
+          "parent": [
+            "check_identity",
+            "document_review",
+            "summarize"
+          ]
+        },
+        "summary_last": true
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0101"
+    },
+    "expected": {
+      "value": {
+        "groups": {
+          "document_review": [
+            "check_document"
+          ],
+          "parent": [
+            "check_identity",
+            "document_review",
+            "summarize"
+          ]
+        },
+        "summary_last": true
+      }
+    }
+  }
+]

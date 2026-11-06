@@ -21,6 +21,11 @@ class CheckResult:
 
 
 def check_task(task: Task, candidate: Path, *, root: Path = ROOT) -> CheckResult:
+    from common.optional import missing_for
+
+    missing = missing_for(task.id)
+    if missing:
+        return CheckResult(False, 2, missing)
     if not candidate.is_file() or candidate.is_symlink():
         raise ValueError("No regular attempt file found. Start the task first.")
     with tempfile.TemporaryDirectory(prefix="larkspur-grade-") as temporary:

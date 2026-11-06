@@ -1,0 +1,22 @@
+{
+  "observations": [
+    {
+      "error": "ValueError"
+    },
+    {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "tools": [
+          "lookup_policy"
+        ],
+        "final": "A policy lookup is evidence, not payout authorization."
+      }
+    }
+  ],
+  "cause": "Reject unknown policy IDs, not the known fixture."
+}

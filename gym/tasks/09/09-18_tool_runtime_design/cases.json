@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "identity": "trusted_context",
+        "state": "Command_update",
+        "namespace": "customer_scoped"
+      }
+    }
+  }
+]

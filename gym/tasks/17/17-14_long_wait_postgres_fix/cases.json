@@ -1,0 +1,56 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "received_on": "2026-01-04",
+      "document_id": "DOC-001"
+    },
+    "expected": {
+      "value": {
+        "interrupts": 1,
+        "claim_id": "CLM-0001",
+        "requested_on": "2026-01-01",
+        "received_on": "2026-01-04",
+        "document_id": "DOC-001",
+        "waited_days": 3
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "received_on": "2026-01-01",
+      "document_id": "DOC-001"
+    },
+    "expected": {
+      "value": {
+        "interrupts": 1,
+        "claim_id": "CLM-0001",
+        "requested_on": "2026-01-01",
+        "received_on": "2026-01-01",
+        "document_id": "DOC-001",
+        "waited_days": 0
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "received_on": "2025-12-31",
+      "document_id": "DOC-001"
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "received_on": "2026-01-04",
+      "document_id": ""
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

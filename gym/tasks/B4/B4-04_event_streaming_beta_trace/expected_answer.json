@@ -1,0 +1,43 @@
+{
+  "observations": [
+    {
+      "value": {
+        "texts": [
+          "Synthetic claim review is complete."
+        ],
+        "final": "Update this claim.",
+        "tool_arguments": {
+          "policy_id": "POL-0001"
+        },
+        "tool_delta_count": 2,
+        "channels": [
+          "lifecycle",
+          "messages",
+          "values"
+        ],
+        "nested": true,
+        "beta": true
+      }
+    },
+    {
+      "value": {
+        "texts": [
+          "Estimate accepted for review."
+        ],
+        "final": "Update this claim.",
+        "tool_arguments": {
+          "policy_id": "POL-0001"
+        },
+        "tool_delta_count": 2,
+        "channels": [
+          "lifecycle",
+          "messages",
+          "values"
+        ],
+        "nested": true,
+        "beta": true
+      }
+    }
+  ],
+  "cause": "Read the final model message from the completed output projection."
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": " Water leak ",
+      "steps": []
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Water leak",
+        "status": "ready",
+        "acknowledged": true,
+        "steps": [
+          "normalize",
+          "validate",
+          "acknowledge",
+          "receipt"
+        ],
+        "receipt_number": "RCPT-CLM-0001"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": " ",
+      "steps": []
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "",
+        "status": "needs_information",
+        "acknowledged": true,
+        "steps": [
+          "normalize",
+          "validate",
+          "acknowledge",
+          "receipt"
+        ],
+        "receipt_number": "RCPT-CLM-0001"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0098",
+      "description": " theft ",
+      "steps": []
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0098",
+        "description": "theft",
+        "status": "ready",
+        "acknowledged": true,
+        "steps": [
+          "normalize",
+          "validate",
+          "acknowledge",
+          "receipt"
+        ],
+        "receipt_number": "RCPT-CLM-0098"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0088",
+      "description": " Water leak ",
+      "steps": []
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0088",
+        "description": "Water leak",
+        "status": "ready",
+        "acknowledged": true,
+        "steps": [
+          "normalize",
+          "validate",
+          "acknowledge",
+          "receipt"
+        ],
+        "receipt_number": "RCPT-CLM-0088"
+      }
+    }
+  }
+]

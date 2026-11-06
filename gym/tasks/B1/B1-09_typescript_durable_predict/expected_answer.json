@@ -1,0 +1,43 @@
+{
+  "observations": [
+    {
+      "value": {
+        "findings": [
+          "reviewed:estimate",
+          "reviewed:receipt"
+        ],
+        "approved": false,
+        "pending_before": [
+          "approve"
+        ],
+        "stream_parts": 3
+      }
+    },
+    {
+      "value": {
+        "findings": [],
+        "approved": true,
+        "pending_before": [
+          "approve"
+        ],
+        "stream_parts": 1
+      }
+    },
+    {
+      "value": {
+        "findings": [
+          "reviewed:police_report"
+        ],
+        "approved": false,
+        "pending_before": [
+          "approve"
+        ],
+        "stream_parts": 2
+      }
+    },
+    {
+      "error": "TypeScriptError"
+    }
+  ],
+  "cause": null
+}

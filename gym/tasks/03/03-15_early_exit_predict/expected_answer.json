@@ -1,0 +1,41 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "amount_cents": 0,
+        "duplicate_of": null,
+        "reason": "eligible",
+        "assigned": true
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "amount_cents": -1,
+        "duplicate_of": null,
+        "reason": "invalid",
+        "assigned": false
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "amount_cents": true,
+        "duplicate_of": null,
+        "reason": "invalid",
+        "assigned": false
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "amount_cents": 0,
+        "duplicate_of": "CLM-0021",
+        "reason": "duplicate",
+        "assigned": false
+      }
+    }
+  ],
+  "cause": null
+}

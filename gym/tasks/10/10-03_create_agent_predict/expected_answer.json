@@ -1,0 +1,22 @@
+{
+  "observations": [
+    {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "tools": [
+          "lookup_policy"
+        ],
+        "final": "A policy lookup is evidence, not payout authorization."
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

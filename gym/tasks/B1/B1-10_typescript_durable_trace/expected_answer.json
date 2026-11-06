@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "error": "TypeScriptError"
+    },
+    {
+      "error": "TypeScriptError"
+    }
+  ],
+  "cause": "Accept explicit boolean decisions and reject strings at the interrupt boundary."
+}

@@ -1,0 +1,38 @@
+{
+  "observations": [
+    {
+      "value": {
+        "sections": [
+          "coverage",
+          "deductible",
+          "exclusions"
+        ],
+        "report": "Water damage is a synthetic covered cause.\nThe synthetic deductible is 100000 cents.\nFlood needs the separate add-on.",
+        "model_calls": 4
+      }
+    },
+    {
+      "value": {
+        "sections": [],
+        "report": "",
+        "model_calls": 1
+      }
+    },
+    {
+      "value": {
+        "sections": [
+          "deductible"
+        ],
+        "report": "The synthetic deductible is 100000 cents.",
+        "model_calls": 2
+      }
+    },
+    {
+      "error": "ValidationError"
+    },
+    {
+      "error": "ValidationError"
+    }
+  ],
+  "cause": null
+}

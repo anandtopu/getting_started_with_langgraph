@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "error": "KeyError"
+    },
+    {
+      "error": "KeyError"
+    }
+  ],
+  "cause": "Read the documented node name from stream metadata."
+}

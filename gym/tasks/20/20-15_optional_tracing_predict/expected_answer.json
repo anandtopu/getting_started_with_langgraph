@@ -1,0 +1,38 @@
+{
+  "observations": [
+    {
+      "value": {
+        "original_route": "specialist",
+        "forked_route": "fast_track",
+        "fork_pending": [
+          "route"
+        ],
+        "history_retained": true,
+        "remote_tracing": false
+      }
+    },
+    {
+      "value": {
+        "original_route": "specialist",
+        "forked_route": "specialist",
+        "fork_pending": [
+          "route"
+        ],
+        "history_retained": true,
+        "remote_tracing": false
+      }
+    },
+    {
+      "value": {
+        "original_route": "specialist",
+        "forked_route": "standard",
+        "fork_pending": [
+          "route"
+        ],
+        "history_retained": true,
+        "remote_tracing": false
+      }
+    }
+  ],
+  "cause": null
+}

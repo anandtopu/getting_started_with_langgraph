@@ -1,0 +1,33 @@
+{
+  "observations": [
+    {
+      "value": {
+        "request": {
+          "claim_id": "CLM-0001",
+          "question": "Approve?"
+        },
+        "approved": false,
+        "other_pending": [
+          "review"
+        ],
+        "original_id": "CLM-0001",
+        "completed": true
+      }
+    },
+    {
+      "value": {
+        "request": {
+          "claim_id": "CLM-0001",
+          "question": "Approve?"
+        },
+        "approved": true,
+        "other_pending": [
+          "review"
+        ],
+        "original_id": "CLM-0001",
+        "completed": true
+      }
+    }
+  ],
+  "cause": "Validate the resumed decision before updating approval state."
+}

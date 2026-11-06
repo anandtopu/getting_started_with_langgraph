@@ -1,0 +1,42 @@
+"""Project SSE events into a dashboard and reject stale interrupt identities. No live model.
+
+Run: uv run python modules/18_streaming_user_interfaces/examples/03_adjuster_dashboard.py
+Expected: progress and text accumulate; a new snapshot replaces the previous approval request.
+"""
+
+from common.pretty import print_state
+from common.sse import update_dashboard
+
+DEFAULT_CASE = {"chunks": ["Estimate ", "received."], "submitted_id": "old-approval"}
+
+
+def run(case: dict | None = None) -> dict:
+    case = DEFAULT_CASE if case is None else case
+    state = {"progress": [], "pending": [{"id": "old-approval"}]}
+    state = update_dashboard(state, {"event": "progress", "data": {"node": "review_documents"}})
+    for chunk in case["chunks"]:
+        state = update_dashboard(state, {"event": "token", "data": {"text": chunk}})
+    state = update_dashboard(
+        state,
+        {
+            "event": "snapshot",
+            "data": {
+                "interrupts": [{"id": "current-approval", "request": {"amount_cents": 600000}}]
+            },
+        },
+    )
+    allowed = case["submitted_id"] in {item["id"] for item in state["pending"]}
+    return {
+        "progress": state["progress"],
+        "text": state.get("text", ""),
+        "current_ids": [item["id"] for item in state["pending"]],
+        "can_submit": allowed,
+    }
+
+
+def main() -> None:
+    print_state(run())
+
+
+if __name__ == "__main__":
+    main()

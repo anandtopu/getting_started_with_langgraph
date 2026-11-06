@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "draft": "async_with_documented_risk",
+        "approval": "sync",
+        "history": "parent_links_and_steps"
+      }
+    }
+  }
+]

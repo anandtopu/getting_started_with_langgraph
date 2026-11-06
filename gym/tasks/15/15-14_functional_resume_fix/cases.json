@@ -1,0 +1,68 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "approved": true
+    },
+    "expected": {
+      "value": {
+        "interrupts": 1,
+        "result": {
+          "claim_id": "CLM-0001",
+          "approved": true
+        },
+        "counts": {
+          "entrypoint": 2,
+          "task": 1
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "approved": false
+    },
+    "expected": {
+      "value": {
+        "interrupts": 1,
+        "result": {
+          "claim_id": "CLM-0001",
+          "approved": false
+        },
+        "counts": {
+          "entrypoint": 2,
+          "task": 1
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "approved": "yes"
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0077",
+      "approved": true
+    },
+    "expected": {
+      "value": {
+        "interrupts": 1,
+        "result": {
+          "claim_id": "CLM-0077",
+          "approved": true
+        },
+        "counts": {
+          "entrypoint": 2,
+          "task": 1
+        }
+      }
+    }
+  }
+]

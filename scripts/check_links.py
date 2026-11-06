@@ -62,7 +62,8 @@ def check_links(root: Path = ROOT, *, external: bool = False) -> tuple[int, list
         for match in re.finditer(r"(?<!!)\[[^\]]*\]\(([^)]+)\)", text):
             target = match.group(1).strip("<>")
             if target.startswith(("http://", "https://")):
-                urls.add(target)
+                if urllib.parse.urlparse(target).hostname not in {"localhost", "127.0.0.1", "::1"}:
+                    urls.add(target)
                 continue
             if re.match(r"^[a-z]+:", target):
                 continue

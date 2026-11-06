@@ -1,0 +1,36 @@
+[
+  {
+    "input": {
+      "first_id": "CLM-0001",
+      "second_id": "CLM-0002"
+    },
+    "expected": {
+      "value": {
+        "first_notes": [
+          "received",
+          "estimate attached"
+        ],
+        "second_notes": [
+          "other customer"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "first_id": "CLM-A",
+      "second_id": "CLM-B"
+    },
+    "expected": {
+      "value": {
+        "first_notes": [
+          "received",
+          "estimate attached"
+        ],
+        "second_notes": [
+          "other customer"
+        ]
+      }
+    }
+  }
+]

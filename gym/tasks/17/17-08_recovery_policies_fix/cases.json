@@ -1,0 +1,64 @@
+[
+  {
+    "input": {
+      "failures": 1,
+      "timeout": false,
+      "drain": true
+    },
+    "expected": {
+      "value": {
+        "status": "estimate_received",
+        "finished": true,
+        "attempts": 2,
+        "drained": true
+      }
+    }
+  },
+  {
+    "input": {
+      "failures": 3,
+      "timeout": false,
+      "drain": true
+    },
+    "expected": {
+      "value": {
+        "status": "manual_review",
+        "error_type": "ConnectionError",
+        "finished": true,
+        "attempts": 2,
+        "drained": false
+      }
+    }
+  },
+  {
+    "input": {
+      "failures": 1,
+      "timeout": true,
+      "drain": true
+    },
+    "expected": {
+      "value": {
+        "status": "manual_review",
+        "error_type": "NodeTimeoutError",
+        "finished": true,
+        "attempts": 1,
+        "drained": false
+      }
+    }
+  },
+  {
+    "input": {
+      "failures": 0,
+      "timeout": false,
+      "drain": false
+    },
+    "expected": {
+      "value": {
+        "status": "estimate_received",
+        "finished": true,
+        "attempts": 1,
+        "drained": false
+      }
+    }
+  }
+]

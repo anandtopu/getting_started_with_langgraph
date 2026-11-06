@@ -1,0 +1,25 @@
+{
+  "observations": [
+    {
+      "value": {
+        "kinds": [
+          "updates"
+        ],
+        "text": "",
+        "matches_invoke": false,
+        "cancelled_cleanly": true
+      }
+    },
+    {
+      "value": {
+        "kinds": [
+          "updates"
+        ],
+        "text": "",
+        "matches_invoke": false,
+        "cancelled_cleanly": false
+      }
+    }
+  ],
+  "cause": "Request the intended seven stream projections."
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "input": {
+      "loss_date": "2026-01-01",
+      "approved_cents": 125000
+    },
+    "expected": {
+      "value": {
+        "prompts": [
+          "approved_cents",
+          "loss_date"
+        ],
+        "result": {
+          "claim_id": "CLM-0001",
+          "loss_date": "2026-01-01",
+          "approved_cents": 125000
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "loss_date": "2026-01-01",
+      "approved_cents": 0
+    },
+    "expected": {
+      "value": {
+        "prompts": [
+          "approved_cents",
+          "loss_date"
+        ],
+        "result": {
+          "claim_id": "CLM-0001",
+          "loss_date": "2026-01-01",
+          "approved_cents": 0
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "loss_date": "2026-01-01",
+      "approved_cents": 500001
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "loss_date": "invalid",
+      "approved_cents": 125000
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "loss_date": "2026-01-01",
+      "approved_cents": true
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

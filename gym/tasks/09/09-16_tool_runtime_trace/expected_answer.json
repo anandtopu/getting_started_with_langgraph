@@ -1,0 +1,29 @@
+{
+  "observations": [
+    {
+      "value": {
+        "saved": {
+          "value": "email"
+        },
+        "state_preference": "phone",
+        "tool_call_id": "save-1",
+        "model_visible_fields": [
+          "preference"
+        ]
+      }
+    },
+    {
+      "value": {
+        "saved": {
+          "value": "sms"
+        },
+        "state_preference": "phone",
+        "tool_call_id": "save-1",
+        "model_visible_fields": [
+          "preference"
+        ]
+      }
+    }
+  ],
+  "cause": "Keep the graph state consistent with the Store write."
+}

@@ -1,0 +1,37 @@
+{
+  "observations": [
+    {
+      "value": {
+        "kinds": [
+          "checkpoints",
+          "custom",
+          "debug",
+          "messages",
+          "tasks",
+          "updates",
+          "values"
+        ],
+        "text": "Your estimate is ready.",
+        "matches_invoke": true,
+        "cancelled_cleanly": true
+      }
+    },
+    {
+      "value": {
+        "kinds": [
+          "checkpoints",
+          "custom",
+          "debug",
+          "messages",
+          "tasks",
+          "updates",
+          "values"
+        ],
+        "text": "Documents ready.",
+        "matches_invoke": true,
+        "cancelled_cleanly": false
+      }
+    }
+  ],
+  "cause": null
+}

@@ -1,0 +1,60 @@
+{
+  "observations": [
+    {
+      "value": {
+        "covered": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "lookup_calls": 4
+      }
+    },
+    {
+      "value": {
+        "covered": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "lookup_calls": 3
+      }
+    },
+    {
+      "value": {
+        "covered": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "lookup_calls": 4
+      }
+    },
+    {
+      "value": {
+        "covered": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "lookup_calls": 4
+      }
+    },
+    {
+      "value": {
+        "covered": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "lookup_calls": 4
+      }
+    }
+  ],
+  "cause": null
+}

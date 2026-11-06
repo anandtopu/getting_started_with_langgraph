@@ -1,0 +1,70 @@
+[
+  {
+    "input": {
+      "notes": [
+        "intake",
+        "policy",
+        "estimate"
+      ],
+      "snapshot_frequency": 2
+    },
+    "expected": {
+      "value": {
+        "notes": [
+          "intake",
+          "policy",
+          "estimate"
+        ],
+        "reconstructed": true,
+        "beta": true
+      }
+    }
+  },
+  {
+    "input": {
+      "notes": [
+        "intake",
+        "policy",
+        "estimate"
+      ],
+      "snapshot_frequency": 1
+    },
+    "expected": {
+      "value": {
+        "notes": [
+          "intake",
+          "policy",
+          "estimate"
+        ],
+        "reconstructed": true,
+        "beta": true
+      }
+    }
+  },
+  {
+    "input": {
+      "notes": [],
+      "snapshot_frequency": 2
+    },
+    "expected": {
+      "value": {
+        "notes": [],
+        "reconstructed": true,
+        "beta": true
+      }
+    }
+  },
+  {
+    "input": {
+      "notes": [
+        "intake",
+        "policy",
+        "estimate"
+      ],
+      "snapshot_frequency": 0
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

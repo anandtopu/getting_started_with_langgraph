@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "error": "InvalidUpdateError"
+    },
+    {
+      "error": "InvalidUpdateError"
+    }
+  ],
+  "cause": "A graph node must return a mapping of state updates."
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "input": {
+      "policy_id": "POL-0001",
+      "amount_cents": 125000
+    },
+    "expected": {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "25000"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "success",
+            "content": "limit=25000000; deductible=100000"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "policy_id": "MISSING",
+      "amount_cents": 125000
+    },
+    "expected": {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "25000"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "error",
+            "content": "Error: ValueError('Unknown synthetic policy')\n Please fix your mistakes."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "policy_id": "POL-0001",
+      "amount_cents": 0
+    },
+    "expected": {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "0"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "success",
+            "content": "limit=25000000; deductible=100000"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "policy_id": "POL-0001",
+      "amount_cents": 500000
+    },
+    "expected": {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "200000"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "success",
+            "content": "limit=25000000; deductible=100000"
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "observations": [
+    {
+      "value": {
+        "events": [
+          "before_model",
+          "wrap_enter",
+          "wrap_exit",
+          "after_model",
+          "tool",
+          "before_model",
+          "wrap_enter",
+          "wrap_exit",
+          "after_model"
+        ],
+        "model_calls": 2,
+        "tool_calls": 1,
+        "final": "Policy fact checked."
+      }
+    },
+    {
+      "value": {
+        "events": [
+          "before_model",
+          "wrap_enter",
+          "wrap_exit",
+          "after_model",
+          "tool",
+          "before_model"
+        ],
+        "model_calls": 1,
+        "tool_calls": 1,
+        "final": "Model call limits exceeded: run limit (1/1)"
+      }
+    }
+  ],
+  "cause": "Enforce the independent tool budget."
+}

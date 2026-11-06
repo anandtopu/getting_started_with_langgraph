@@ -1,8 +1,8 @@
 # Final repository tree
 
-This is the Phase 1 destination tree for `getting_started_with_langgraph`. It describes the completed course, including future deliverables. Phase 2 now provides the foundation; see [the acceptance report](ACCEPTANCE_REPORT.md) for the implemented scope. The workspace folder can retain its current name while the GitHub repository is named `getting_started_with_langgraph`.
+This is the course structure for `getting_started_with_langgraph`; see [the acceptance report](ACCEPTANCE_REPORT.md) for measured validation and integration limits. The workspace folder can retain its current name while the GitHub repository is named `getting_started_with_langgraph`.
 
-The [complete file manifest](planning/REPOSITORY_MANIFEST.txt) enumerates every planned leaf, including all 486 task folders and their exact files. The compact tree below uses counts only for repeated data and task contents; the manifest resolves them completely. `workspace/` is created by the gym at runtime and is never committed.
+The [complete file manifest](planning/REPOSITORY_MANIFEST.txt) enumerates every shipped leaf, including all 486 task folders and their exact files. The compact tree below retains the teaching structure; the manifest records exact current paths, including the root Compose application and authored source templates. `workspace/` is created by the gym at runtime and is never committed.
 
 ```text
 getting_started_with_langgraph/

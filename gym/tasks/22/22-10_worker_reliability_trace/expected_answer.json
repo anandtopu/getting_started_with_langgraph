@@ -1,0 +1,21 @@
+{
+  "observations": [
+    {
+      "value": {
+        "competing_worker_busy": false,
+        "first_created": true,
+        "replay_created": false,
+        "effects": 1
+      }
+    },
+    {
+      "value": {
+        "competing_worker_busy": false,
+        "first_created": true,
+        "replay_created": false,
+        "effects": 1
+      }
+    }
+  ],
+  "cause": "Report that a competing run was excluded."
+}

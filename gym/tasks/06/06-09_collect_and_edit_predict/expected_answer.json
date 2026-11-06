@@ -1,0 +1,40 @@
+{
+  "observations": [
+    {
+      "value": {
+        "prompts": [
+          "approved_cents",
+          "loss_date"
+        ],
+        "result": {
+          "claim_id": "CLM-0001",
+          "loss_date": "2026-01-01",
+          "approved_cents": 125000
+        }
+      }
+    },
+    {
+      "value": {
+        "prompts": [
+          "approved_cents",
+          "loss_date"
+        ],
+        "result": {
+          "claim_id": "CLM-0001",
+          "loss_date": "2026-01-01",
+          "approved_cents": 0
+        }
+      }
+    },
+    {
+      "error": "ValueError"
+    },
+    {
+      "error": "ValueError"
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

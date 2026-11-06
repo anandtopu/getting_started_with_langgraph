@@ -56,6 +56,36 @@ def check_coverage(*, release: bool = False) -> list[str]:
                     errors.append(f"{module['id']}: {leaf} missing.")
     if release and len(catalog.available()) != len(catalog.tasks):
         errors.append("The complete task catalog is not yet released.")
+    if release:
+        capstones = list((ROOT / "capstones").glob("[0-9][0-9]_*"))
+        if len(capstones) != 5:
+            errors.append("Release requires five capstones.")
+        for folder in capstones:
+            for leaf in (
+                "README.md",
+                "diagram.mmd",
+                "starter.py",
+                "solution.py",
+                "tests/test_solution.py",
+                "eval/cases.jsonl",
+                "rubric.md",
+                "extend_it.md",
+            ):
+                if not (folder / leaf).is_file():
+                    errors.append(f"{folder.name}: missing {leaf}")
+        for leaf in (
+            "MENTAL_MODEL.md",
+            "CHOOSING_THE_RIGHT_DESIGN.md",
+            "COMMON_BUGS.md",
+            "GLOSSARY.md",
+            "TROUBLESHOOTING.md",
+            "DEPLOYMENT.md",
+        ):
+            if not (ROOT / "docs" / leaf).is_file():
+                errors.append(f"Missing course guide: {leaf}")
+        for name in ("tier_1", "tier_2", "tier_3", "tier_4", "api_at_a_glance"):
+            if not (ROOT / "cheatsheets" / (name + ".pdf")).is_file():
+                errors.append(f"Missing printable: {name}")
     return errors
 
 

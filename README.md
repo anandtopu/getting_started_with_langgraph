@@ -2,13 +2,15 @@
 
 Build the fictional **Larkspur Claims Copilot** while learning to predict, test, and repair stateful workflows. You need basic Python, a terminal, and Git. No model, API key, or insurance background is needed for the quick start.
 
-**Current release: Phase 2 foundation.** The gym engine, shared helpers, synthetic data, and foundation exercises are available. The complete course plan contains 23 core modules, four bonuses, five capstones, and 486 tasks; later phases add the lessons and remaining tasks. `gym list` distinguishes available exercises from planned ones.
+The course includes **23 core modules, four bonus modules, 486 graded tasks, 27 notebooks, and five capstones**, culminating in a streaming claims application with durable approvals. Use the [acceptance report](docs/ACCEPTANCE_REPORT.md) for measured checks and remaining integration limits.
 
 ## Five-minute quick start
 
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and Python 3.12, then open this repository in a terminal. These commands work in Windows PowerShell, macOS, and Linux:
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and Git, then run these commands in Windows PowerShell, macOS, or Linux. uv supplies the requested Python environment:
 
 ```text
+git clone https://github.com/anandtopu/getting_started_with_langgraph.git
+cd getting_started_with_langgraph
 uv sync
 uv run python scripts/check_env.py
 uv run python scripts/first_graph.py
@@ -55,11 +57,11 @@ Code attempts live in `workspace/<ID>.py`; prediction and trace answers use `.an
 
 ## Choose your route
 
-For this foundation release, 00-01 through 00-06 form a pilot milestone that unlocks drills. The complete guided milestones in the learning path take over as their modules are released.
+The guided milestone in each module uses tasks ending in 01, 02, 09, 10, 17, and 18. Complete it to unlock that module's drills; work through all 18 tasks for broader practice.
 
 - Follow the [learning path](LEARNING_PATH.md) in order, including checkpoint projects.
 - Filter the [gym catalog](docs/GYM_TASK_CATALOG.md) to practice a weak concept.
-- Use the planned capstones and their prerequisite map in the [feature map](docs/FEATURE_MAP.md).
+- Start with the [Intake Engine](capstones/01_claims_intake_engine/README.md), [Policy Q&A](capstones/02_policy_qa_with_memory/README.md), [Fraud Team](capstones/03_fraud_investigation_team/README.md), [Claims Copilot](capstones/04_larkspur_claims_copilot/README.md), or [your own design](capstones/05_design_your_own/README.md).
 
 | Tier | Guided lessons | Additional practice |
 | --- | --- | --- |
@@ -71,6 +73,8 @@ For this foundation release, 00-01 through 00-06 form a pilot milestone that unl
 The guided route including practice and projects is estimated at 100–125 hours; all 486 tasks take longer. Four- and eight-week schedules are in the learning path.
 
 ## Optional live models
+
+Advanced local lessons use explicit [optional dependencies](docs/OPTIONAL_DEPENDENCIES.md). For the web application, see [deployment](docs/DEPLOYMENT.md). Printable [tier guides and API reference](cheatsheets/api_at_a_glance.pdf) accompany the [mental model](docs/MENTAL_MODEL.md), [30 common bugs](docs/COMMON_BUGS.md), and [glossary](docs/GLOSSARY.md).
 
 `uv sync --extra ollama` installs the local integration. Copy `.env.example` to `.env` using Python on any OS:
 
@@ -117,7 +121,7 @@ uv run python scripts/check_links.py
 uv run python scripts/check_legacy_apis.py
 ```
 
-During phased development the gym validator reports available versus planned tasks. Its `--release` mode requires all 486 tasks; it must fail until the course is complete. [Verification notes](docs/VERIFICATION_NOTES.md) and [acceptance report](docs/ACCEPTANCE_REPORT.md) distinguish measured results from future work.
+The default validator checks installed lesson groups and reports optional dependencies it skips. Its `--release` mode requires all 486 tasks and refuses missing dependencies. [Verification notes](docs/VERIFICATION_NOTES.md) and [acceptance report](docs/ACCEPTANCE_REPORT.md) distinguish measured results from future work.
 
 ## FAQ
 
@@ -129,7 +133,7 @@ During phased development the gym validator reports available versus planned tas
 
 **Why did my starter fail?** That is the exercise. Read the failure explanation, use a hint, and repair the behavior. Import errors and missing dependencies are setup errors, not successful grading.
 
-**Can I run planned tasks?** They appear in the catalog, but are unlocked only when their complete, validated files arrive in a later phase.
+**Are the bonuses required?** No. The core path is 00–22; TypeScript, deep agents, the mini runtime, and recent Beta APIs are optional extensions.
 
 **Can I use a cloud account?** Yes, optionally. Never put real customer information or keys in fixtures, state, logs, or commits.
 

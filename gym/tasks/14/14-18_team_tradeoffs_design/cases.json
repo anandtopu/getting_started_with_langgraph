@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "routing": "active_role",
+        "budget": "explicit_call_count",
+        "comparison": "single_agent_baseline"
+      }
+    }
+  }
+]

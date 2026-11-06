@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "lifetime": "explicit_session",
+        "adapter": "pinned_compatible",
+        "network": "local_stdio_only"
+      }
+    }
+  }
+]

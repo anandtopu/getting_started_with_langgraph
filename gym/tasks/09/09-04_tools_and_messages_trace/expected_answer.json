@@ -1,0 +1,24 @@
+{
+  "observations": [
+    {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "25000"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "success",
+            "content": "limit=25000000; deductible=100000"
+          }
+        ]
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": "Return a correlated tool error for an unknown policy."
+}

@@ -1,0 +1,31 @@
+{
+  "observations": [
+    {
+      "value": {
+        "found": [
+          {
+            "preference": "email"
+          }
+        ],
+        "deleted": false,
+        "other": {
+          "preference": "phone"
+        }
+      }
+    },
+    {
+      "value": {
+        "found": [
+          {
+            "preference": "sms"
+          }
+        ],
+        "deleted": false,
+        "other": {
+          "preference": "phone"
+        }
+      }
+    }
+  ],
+  "cause": "Delete the actual memory key."
+}

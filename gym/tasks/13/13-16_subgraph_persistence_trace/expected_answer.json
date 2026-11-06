@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "value": {
+        "child_pending": [
+          "review"
+        ],
+        "child_claim": "CLM-0001",
+        "nested_stream": true,
+        "approved": false,
+        "checks": 1
+      }
+    },
+    {
+      "value": {
+        "child_pending": [
+          "review"
+        ],
+        "child_claim": "CLM-0001",
+        "nested_stream": true,
+        "approved": true,
+        "checks": 1
+      }
+    }
+  ],
+  "cause": "Reject a string masquerading as a human decision."
+}

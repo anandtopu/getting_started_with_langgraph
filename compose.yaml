@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: larkspur
+      POSTGRES_DB: larkspur
+      POSTGRES_PASSWORD: ${LARKSPUR_DB_PASSWORD:?Set LARKSPUR_DB_PASSWORD}
+    volumes:
+      - claims_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U larkspur -d larkspur"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://larkspur:${LARKSPUR_DB_PASSWORD}@postgres:5432/larkspur
+      LARKSPUR_CUSTOMER_TOKEN: ${LARKSPUR_CUSTOMER_TOKEN:?Set customer token}
+      LARKSPUR_ADJUSTER_TOKEN: ${LARKSPUR_ADJUSTER_TOKEN:?Set adjuster token}
+      LARKSPUR_CUSTOMER_ID: CUS-0001
+      LANGSMITH_TRACING: "false"
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "/app/.venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    stop_grace_period: 30s
+  ui:
+    build: .
+    command: ["/app/.venv/bin/streamlit", "run", "apps/dashboard.py", "--server.address=0.0.0.0", "--server.port=8501", "--browser.gatherUsageStats=false"]
+    environment:
+      LARKSPUR_API_URL: http://api:8000
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+volumes:
+  claims_db:

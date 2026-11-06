@@ -1,0 +1,23 @@
+{
+  "observations": [
+    {
+      "value": {
+        "plaintext_visible": false,
+        "roundtrip": true,
+        "checkpoint_plaintext_visible": false,
+        "retained": true,
+        "key_logged": false
+      }
+    },
+    {
+      "value": {
+        "plaintext_visible": false,
+        "roundtrip": true,
+        "checkpoint_plaintext_visible": false,
+        "retained": true,
+        "key_logged": false
+      }
+    }
+  ],
+  "cause": "Apply the requested thread-retention deletion."
+}

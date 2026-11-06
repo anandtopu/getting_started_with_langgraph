@@ -1,0 +1,25 @@
+{
+  "observations": [
+    {
+      "value": {
+        "saved_messages": 3,
+        "model_context_sizes": [
+          1,
+          1
+        ],
+        "summary": "An estimate is now attached."
+      }
+    },
+    {
+      "value": {
+        "saved_messages": 3,
+        "model_context_sizes": [
+          1,
+          3
+        ],
+        "summary": "An estimate is now attached."
+      }
+    }
+  ],
+  "cause": "Use a new message ID for a new turn instead of overwriting the previous turn."
+}

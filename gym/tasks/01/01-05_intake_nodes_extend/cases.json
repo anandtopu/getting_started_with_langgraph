@@ -1,0 +1,89 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "  Pipe burst  ",
+      "amount_cents": "125000"
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "amount_cents": 125000,
+        "contact": "email"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0099",
+      "description": "  Pipe burst  ",
+      "amount_cents": "250"
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0099",
+        "description": "Pipe burst",
+        "amount_cents": 250,
+        "contact": "email"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": " ",
+      "amount_cents": "125000"
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "",
+        "amount_cents": 125000,
+        "contact": "email"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "  Pipe burst  ",
+      "amount_cents": true
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "  Pipe burst  ",
+      "amount_cents": "125000",
+      "contact": " SMS "
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "amount_cents": 125000,
+        "contact": "sms"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "  Pipe burst  ",
+      "amount_cents": "125000",
+      "contact": " Email "
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "amount_cents": 125000,
+        "contact": "email"
+      }
+    }
+  }
+]

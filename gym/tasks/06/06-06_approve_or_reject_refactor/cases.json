@@ -1,0 +1,73 @@
+[
+  {
+    "input": {
+      "amount_cents": 600000,
+      "decision": {
+        "approved": true
+      }
+    },
+    "expected": {
+      "value": {
+        "prompts": [
+          {
+            "kind": "payout_review",
+            "amount_cents": 600000
+          }
+        ],
+        "status": "approved",
+        "remaining": 0
+      }
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 600000,
+      "decision": {
+        "approved": false
+      }
+    },
+    "expected": {
+      "value": {
+        "prompts": [
+          {
+            "kind": "payout_review",
+            "amount_cents": 600000
+          }
+        ],
+        "status": "rejected",
+        "remaining": 0
+      }
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 600000,
+      "decision": {
+        "approved": "yes"
+      }
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 1000000,
+      "decision": {
+        "approved": true
+      }
+    },
+    "expected": {
+      "value": {
+        "prompts": [
+          {
+            "kind": "payout_review",
+            "amount_cents": 1000000
+          }
+        ],
+        "status": "approved",
+        "remaining": 0
+      }
+    }
+  }
+]

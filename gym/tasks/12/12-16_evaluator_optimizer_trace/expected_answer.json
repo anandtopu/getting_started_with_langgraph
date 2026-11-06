@@ -1,0 +1,39 @@
+{
+  "observations": [
+    {
+      "value": {
+        "accepted": true,
+        "attempts": 2,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": [
+              "respectful_tone"
+            ]
+          },
+          {
+            "attempt": 2,
+            "feedback": []
+          }
+        ],
+        "stop_reason": "accepted"
+      }
+    },
+    {
+      "value": {
+        "accepted": false,
+        "attempts": 1,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": [
+              "respectful_tone"
+            ]
+          }
+        ],
+        "stop_reason": "budget_exhausted"
+      }
+    }
+  ],
+  "cause": "Require the authoritative deductible fact."
+}

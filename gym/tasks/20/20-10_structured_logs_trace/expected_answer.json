@@ -1,0 +1,63 @@
+{
+  "observations": [
+    {
+      "value": {
+        "records": [
+          {
+            "event": "node_finished",
+            "node": "normalize",
+            "run_id": "review-1",
+            "status": "ok",
+            "thread_id": "claim-thread"
+          },
+          {
+            "event": "node_finished",
+            "node": "normalize",
+            "run_id": "review-1",
+            "status": "ok",
+            "thread_id": "claim-thread"
+          },
+          {
+            "event": "node_finished",
+            "node": "normalize",
+            "run_id": "review-1",
+            "status": "ok",
+            "thread_id": "claim-thread"
+          }
+        ],
+        "raw_text_logged": false,
+        "credential_logged": false
+      }
+    },
+    {
+      "value": {
+        "records": [
+          {
+            "event": "node_finished",
+            "node": "normalize",
+            "run_id": "review-2",
+            "status": "ok",
+            "thread_id": "second-claim"
+          },
+          {
+            "event": "node_finished",
+            "node": "normalize",
+            "run_id": "review-2",
+            "status": "ok",
+            "thread_id": "second-claim"
+          },
+          {
+            "event": "node_finished",
+            "node": "normalize",
+            "run_id": "review-2",
+            "status": "ok",
+            "thread_id": "second-claim"
+          }
+        ],
+        "raw_text_logged": false,
+        "credential_logged": false
+      }
+    }
+  ],
+  "cause": "Attach each log record to its actual node."
+}

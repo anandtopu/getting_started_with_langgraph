@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "siblings": "unordered_within_superstep",
+        "summary": "after_both_checks",
+        "history": "checkpoints_not_events"
+      }
+    }
+  }
+]

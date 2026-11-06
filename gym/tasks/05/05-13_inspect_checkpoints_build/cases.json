@@ -1,0 +1,91 @@
+[
+  {
+    "input": {
+      "amount_cents": 100000,
+      "corrected_amount": 200000,
+      "durability": "sync"
+    },
+    "expected": {
+      "value": {
+        "original": "fast_track",
+        "corrected": "standard",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 200000,
+      "corrected_amount": 50000,
+      "durability": "sync"
+    },
+    "expected": {
+      "value": {
+        "original": "standard",
+        "corrected": "fast_track",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 100000,
+      "corrected_amount": 200000,
+      "durability": "async"
+    },
+    "expected": {
+      "value": {
+        "original": "fast_track",
+        "corrected": "standard",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 100000,
+      "corrected_amount": 200000,
+      "durability": "exit"
+    },
+    "expected": {
+      "value": {
+        "original": "fast_track",
+        "corrected": "standard",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          2
+        ]
+      }
+    }
+  }
+]

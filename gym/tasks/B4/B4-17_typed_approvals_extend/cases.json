@@ -1,0 +1,54 @@
+[
+  {
+    "input": {
+      "decision": "approve",
+      "amount_cents": 50000
+    },
+    "expected": {
+      "value": {
+        "schema_present": true,
+        "effects": [
+          50000
+        ],
+        "interrupt_type": "tool_approval"
+      }
+    }
+  },
+  {
+    "input": {
+      "decision": "reject",
+      "amount_cents": 50000
+    },
+    "expected": {
+      "value": {
+        "schema_present": true,
+        "effects": [],
+        "interrupt_type": "tool_approval"
+      }
+    }
+  },
+  {
+    "input": {
+      "decision": "edit",
+      "amount_cents": 50000
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  },
+  {
+    "input": {
+      "decision": "approve",
+      "amount_cents": 0
+    },
+    "expected": {
+      "value": {
+        "schema_present": true,
+        "effects": [
+          0
+        ],
+        "interrupt_type": "tool_approval"
+      }
+    }
+  }
+]

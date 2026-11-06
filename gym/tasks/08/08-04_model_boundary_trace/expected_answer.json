@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "value": {
+        "facts": {
+          "claim_type": "water",
+          "amount_cents": 125000,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "route": "standard"
+      }
+    },
+    {
+      "value": {
+        "facts": {
+          "claim_type": "water",
+          "amount_cents": 100000,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "route": "standard"
+      }
+    }
+  ],
+  "cause": "Include exactly 100000 cents in fast-track routing."
+}

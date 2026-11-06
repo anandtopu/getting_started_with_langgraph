@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "negative": "invalid",
+        "duplicate": "end_before_assignment",
+        "zero": "eligible"
+      }
+    }
+  }
+]

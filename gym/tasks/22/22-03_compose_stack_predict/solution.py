@@ -1,0 +1,56 @@
+"""Predict compose stack across the declared cases. Run this file with Python. No live model or network."""
+
+import yaml
+
+from common.config import ROOT
+from common.pretty import print_state
+
+DEFAULT_CASE = {"public_bind": False, "remove_healthcheck": False}
+
+
+def scenario(case: dict | None = None) -> dict:
+    case = DEFAULT_CASE if case is None else case
+    stack = yaml.safe_load((ROOT / "compose.yaml").read_text("utf-8"))
+    services = stack["services"]
+    if case["public_bind"]:
+        services["api"]["ports"] = ["8000:8000"]
+    if case["remove_healthcheck"]:
+        services["postgres"].pop("healthcheck")
+    errors = []
+    if "healthcheck" not in services["postgres"]:
+        errors.append("postgres_readiness_missing")
+    if any(
+        not binding.startswith("127.0.0.1:")
+        for name in ("api", "ui")
+        for binding in services[name]["ports"]
+    ):
+        errors.append("unexpected_public_port")
+    return {
+        "services": sorted(services),
+        "valid": not errors,
+        "errors": errors,
+        "api_waits_for_database": services["api"]["depends_on"]["postgres"]["condition"]
+        == "service_healthy",
+    }
+
+
+def main() -> None:
+    print_state(run())
+
+
+def run() -> dict:
+    observations = []
+    for case in [
+        {"public_bind": False, "remove_healthcheck": False},
+        {"public_bind": True, "remove_healthcheck": False},
+        {"public_bind": False, "remove_healthcheck": True},
+    ]:
+        try:
+            observations.append({"value": scenario(case)})
+        except Exception as error:
+            observations.append({"error": type(error).__name__})
+    return {"observations": observations, "cause": None}
+
+
+if __name__ == "__main__":
+    main()

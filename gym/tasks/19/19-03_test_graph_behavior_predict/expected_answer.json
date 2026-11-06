@@ -1,0 +1,67 @@
+{
+  "observations": [
+    {
+      "value": {
+        "rows": [
+          {
+            "amount": 100000,
+            "expected": "fast_track",
+            "rule": "fast_track",
+            "graph": "fast_track"
+          },
+          {
+            "amount": 100001,
+            "expected": "standard",
+            "rule": "standard",
+            "graph": "standard"
+          },
+          {
+            "amount": 500001,
+            "expected": "specialist",
+            "rule": "specialist",
+            "graph": "specialist"
+          },
+          {
+            "amount": true,
+            "expected": "invalid",
+            "rule": "invalid",
+            "graph": "invalid"
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "value": {
+        "rows": [
+          {
+            "amount": 0,
+            "expected": "fast_track",
+            "rule": "fast_track",
+            "graph": "fast_track"
+          },
+          {
+            "amount": -1,
+            "expected": "invalid",
+            "rule": "invalid",
+            "graph": "invalid"
+          },
+          {
+            "amount": 500000,
+            "expected": "standard",
+            "rule": "standard",
+            "graph": "standard"
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "value": {
+        "rows": [],
+        "passed": true
+      }
+    }
+  ],
+  "cause": null
+}

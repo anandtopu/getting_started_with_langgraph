@@ -1,0 +1,32 @@
+{
+  "observations": [
+    {
+      "value": {
+        "paused": 1,
+        "tool_results": [
+          "The synthetic deductible is 100000 cents."
+        ],
+        "final": "The delegation request is complete."
+      }
+    },
+    {
+      "value": {
+        "paused": 1,
+        "tool_results": [
+          "User rejected the tool call for `task` with reason: Do not delegate this claim."
+        ],
+        "final": "The delegation request is complete."
+      }
+    },
+    {
+      "value": {
+        "paused": 1,
+        "tool_results": [
+          "We cannot invoke subagent missing_specialist because it does not exist, the only allowed types are `general-purpose`, `policy_expert`"
+        ],
+        "final": "The delegation request is complete."
+      }
+    }
+  ],
+  "cause": null
+}

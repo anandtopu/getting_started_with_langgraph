@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "error": "AttributeError"
+    },
+    {
+      "error": "AttributeError"
+    }
+  ],
+  "cause": "Correct an existing message without appending another customer message."
+}

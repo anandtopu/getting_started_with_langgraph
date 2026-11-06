@@ -1,0 +1,32 @@
+{
+  "observations": [
+    {
+      "value": {
+        "entries": 2,
+        "before_approval": 0,
+        "notifications": 1,
+        "approved": true
+      }
+    },
+    {
+      "value": {
+        "entries": 2,
+        "before_approval": 0,
+        "notifications": 0,
+        "approved": false
+      }
+    },
+    {
+      "value": {
+        "entries": 2,
+        "before_approval": 0,
+        "notifications": 1,
+        "approved": true
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

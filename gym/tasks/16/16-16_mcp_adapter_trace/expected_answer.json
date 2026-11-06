@@ -1,0 +1,53 @@
+{
+  "observations": [
+    {
+      "value": {
+        "tools": [
+          "list_capabilities",
+          "read_claim"
+        ],
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "tool_call_ids": [
+          "mcp-1"
+        ],
+        "claim": {
+          "claim_id": "CLM-0001",
+          "claim_type": "water",
+          "amount_cents": 2096759,
+          "route": "specialist"
+        },
+        "final": "Synthetic evidence read; no payment capability was exposed."
+      }
+    },
+    {
+      "value": {
+        "tools": [
+          "list_capabilities",
+          "read_claim"
+        ],
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "tool_call_ids": [
+          "mcp-1"
+        ],
+        "claim": {
+          "claim_id": "CLM-0001",
+          "claim_type": "water",
+          "amount_cents": 2096759,
+          "route": "specialist"
+        },
+        "final": "Synthetic evidence read; no payment capability was exposed."
+      }
+    }
+  ],
+  "cause": "Send the selected claim identifier to the MCP service."
+}

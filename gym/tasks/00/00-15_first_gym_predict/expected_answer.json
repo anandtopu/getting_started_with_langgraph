@@ -1,0 +1,35 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "water"
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "theft"
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "unknown"
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "storm"
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "unknown"
+      }
+    }
+  ],
+  "cause": null
+}

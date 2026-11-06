@@ -1,0 +1,26 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "suspicious": true,
+        "reason": "indicator",
+        "visited": [
+          "acknowledge",
+          "review"
+        ]
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "suspicious": false,
+        "reason": "routine",
+        "visited": [
+          "acknowledge"
+        ]
+      }
+    }
+  ],
+  "cause": "A competing static edge schedules an extra acknowledgment."
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "first_notes": [
+          "received"
+        ],
+        "second_notes": [
+          "received",
+          "estimate attached"
+        ],
+        "closed": true
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0199"
+    },
+    "expected": {
+      "value": {
+        "first_notes": [
+          "received"
+        ],
+        "second_notes": [
+          "received",
+          "estimate attached"
+        ],
+        "closed": true
+      }
+    }
+  }
+]

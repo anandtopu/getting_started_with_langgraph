@@ -1,0 +1,39 @@
+{
+  "observations": [
+    {
+      "value": {
+        "status": "estimate_received",
+        "finished": true,
+        "attempts": 2,
+        "drained": true
+      }
+    },
+    {
+      "value": {
+        "status": "manual_review",
+        "error_type": "ConnectionError",
+        "finished": true,
+        "attempts": 2,
+        "drained": false
+      }
+    },
+    {
+      "value": {
+        "status": "manual_review",
+        "error_type": "NodeTimeoutError",
+        "finished": true,
+        "attempts": 1,
+        "drained": false
+      }
+    },
+    {
+      "value": {
+        "status": "estimate_received",
+        "finished": true,
+        "attempts": 1,
+        "drained": false
+      }
+    }
+  ],
+  "cause": null
+}

@@ -1,0 +1,35 @@
+{
+  "observations": [
+    {
+      "value": {
+        "groups": {
+          "document_review": [
+            "check_document"
+          ],
+          "parent": [
+            "check_identity",
+            "document_review",
+            "summarize"
+          ]
+        },
+        "summary_last": true
+      }
+    },
+    {
+      "value": {
+        "groups": {
+          "document_review": [
+            "check_document"
+          ],
+          "parent": [
+            "check_identity",
+            "document_review",
+            "summarize"
+          ]
+        },
+        "summary_last": true
+      }
+    }
+  ],
+  "cause": null
+}

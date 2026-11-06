@@ -1,0 +1,62 @@
+[
+  {
+    "input": {
+      "chunks": [
+        "Estimate ",
+        "received."
+      ],
+      "submitted_id": "old-approval"
+    },
+    "expected": {
+      "value": {
+        "progress": [
+          "review_documents"
+        ],
+        "text": "Estimate received.",
+        "current_ids": [
+          "current-approval"
+        ],
+        "can_submit": false
+      }
+    }
+  },
+  {
+    "input": {
+      "chunks": [
+        "Estimate ",
+        "received."
+      ],
+      "submitted_id": "current-approval"
+    },
+    "expected": {
+      "value": {
+        "progress": [
+          "review_documents"
+        ],
+        "text": "Estimate received.",
+        "current_ids": [
+          "current-approval"
+        ],
+        "can_submit": true
+      }
+    }
+  },
+  {
+    "input": {
+      "chunks": [],
+      "submitted_id": "old-approval"
+    },
+    "expected": {
+      "value": {
+        "progress": [
+          "review_documents"
+        ],
+        "text": "",
+        "current_ids": [
+          "current-approval"
+        ],
+        "can_submit": false
+      }
+    }
+  }
+]

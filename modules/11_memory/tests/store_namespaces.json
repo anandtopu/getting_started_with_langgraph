@@ -1,0 +1,40 @@
+[
+  {
+    "input": {
+      "customer_id": "CUS-0001",
+      "preference": "email"
+    },
+    "expected": {
+      "value": {
+        "found": [
+          {
+            "preference": "email"
+          }
+        ],
+        "deleted": true,
+        "other": {
+          "preference": "phone"
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "customer_id": "CUS-0033",
+      "preference": "sms"
+    },
+    "expected": {
+      "value": {
+        "found": [
+          {
+            "preference": "sms"
+          }
+        ],
+        "deleted": true,
+        "other": {
+          "preference": "phone"
+        }
+      }
+    }
+  }
+]

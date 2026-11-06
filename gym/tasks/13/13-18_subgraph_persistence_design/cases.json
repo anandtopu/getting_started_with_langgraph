@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "persistence": "inherited",
+        "inspection": "nested_snapshot",
+        "resume": "checked_boolean"
+      }
+    }
+  }
+]

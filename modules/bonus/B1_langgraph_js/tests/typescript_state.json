@@ -1,0 +1,69 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "  Pipe burst  ",
+      "amount_cents": 125000
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "amount_cents": 125000,
+        "route": "standard",
+        "audit": [
+          "normalized",
+          "routed"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "  Pipe burst  ",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "amount_cents": 100000,
+        "route": "fast_track",
+        "audit": [
+          "normalized",
+          "routed"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": " ",
+      "amount_cents": 125000
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "",
+        "amount_cents": 125000,
+        "route": "needs_information",
+        "audit": [
+          "normalized",
+          "routed"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "  Pipe burst  ",
+      "amount_cents": true
+    },
+    "expected": {
+      "error": "TypeScriptError"
+    }
+  }
+]

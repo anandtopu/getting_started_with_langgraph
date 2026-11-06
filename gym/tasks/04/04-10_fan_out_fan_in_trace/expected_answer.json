@@ -1,0 +1,25 @@
+{
+  "observations": [
+    {
+      "value": {
+        "findings": [
+          "DOC-021"
+        ],
+        "summaries": [
+          [
+            "DOC-021"
+          ]
+        ]
+      }
+    },
+    {
+      "value": {
+        "findings": [],
+        "summaries": [
+          []
+        ]
+      }
+    }
+  ],
+  "cause": "Parallel writes to an overwrite channel conflict."
+}

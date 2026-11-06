@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "retries": "transient_only",
+        "timeout": "async_attempt",
+        "shutdown": "cooperative_drain"
+      }
+    }
+  }
+]

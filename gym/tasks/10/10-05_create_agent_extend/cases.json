@@ -1,0 +1,29 @@
+[
+  {
+    "input": {
+      "policy_id": "POL-0001"
+    },
+    "expected": {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "tools": [
+          "lookup_policy"
+        ],
+        "final": "A policy lookup is evidence, not payout authorization."
+      }
+    }
+  },
+  {
+    "input": {
+      "policy_id": "MISSING"
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

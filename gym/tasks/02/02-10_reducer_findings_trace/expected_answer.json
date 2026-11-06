@@ -1,0 +1,41 @@
+{
+  "observations": [
+    {
+      "value": {
+        "findings": [
+          {
+            "id": "receipt",
+            "severity": 3
+          }
+        ],
+        "log": [
+          "estimate",
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    },
+    {
+      "value": {
+        "findings": [
+          {
+            "id": "estimate",
+            "severity": 2
+          },
+          {
+            "id": "receipt",
+            "severity": 1
+          }
+        ],
+        "log": [
+          "estimate",
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    }
+  ],
+  "cause": "Return new evidence only; the reducer already has previous values."
+}

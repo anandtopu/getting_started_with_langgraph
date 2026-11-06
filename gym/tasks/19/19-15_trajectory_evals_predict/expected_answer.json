@@ -1,0 +1,29 @@
+{
+  "observations": [
+    {
+      "value": {
+        "score": true,
+        "key": "trajectory_strict_match"
+      }
+    },
+    {
+      "value": {
+        "score": false,
+        "key": "trajectory_strict_match"
+      }
+    },
+    {
+      "value": {
+        "score": true,
+        "key": "trajectory_unordered_match"
+      }
+    },
+    {
+      "value": {
+        "score": false,
+        "key": "trajectory_strict_match"
+      }
+    }
+  ],
+  "cause": null
+}

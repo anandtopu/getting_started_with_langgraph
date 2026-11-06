@@ -1,0 +1,35 @@
+{
+  "observations": [
+    {
+      "value": {
+        "plaintext_visible": false,
+        "roundtrip": true,
+        "checkpoint_plaintext_visible": false,
+        "retained": false,
+        "key_logged": false
+      }
+    },
+    {
+      "value": {
+        "plaintext_visible": false,
+        "roundtrip": true,
+        "checkpoint_plaintext_visible": false,
+        "retained": true,
+        "key_logged": false
+      }
+    },
+    {
+      "error": "ValueError"
+    },
+    {
+      "value": {
+        "plaintext_visible": false,
+        "roundtrip": true,
+        "checkpoint_plaintext_visible": false,
+        "retained": false,
+        "key_logged": false
+      }
+    }
+  ],
+  "cause": null
+}

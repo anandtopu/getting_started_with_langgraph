@@ -1,0 +1,96 @@
+[
+  {
+    "input": {
+      "approved": false,
+      "groups": [
+        [
+          "receipt"
+        ],
+        [
+          "estimate",
+          "receipt"
+        ],
+        [
+          "policy"
+        ]
+      ]
+    },
+    "expected": {
+      "value": {
+        "paused": true,
+        "pending_before": [
+          "approve_claim"
+        ],
+        "pending_after": [],
+        "approved": false,
+        "associative": true,
+        "merged": [
+          "estimate",
+          "policy",
+          "receipt"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "approved": true,
+      "groups": [
+        [
+          "receipt"
+        ],
+        [
+          "estimate",
+          "receipt"
+        ],
+        [
+          "policy"
+        ]
+      ]
+    },
+    "expected": {
+      "value": {
+        "paused": true,
+        "pending_before": [
+          "approve_claim"
+        ],
+        "pending_after": [],
+        "approved": true,
+        "associative": true,
+        "merged": [
+          "estimate",
+          "policy",
+          "receipt"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "approved": false,
+      "groups": [
+        [],
+        [
+          "receipt"
+        ],
+        [
+          "receipt"
+        ]
+      ]
+    },
+    "expected": {
+      "value": {
+        "paused": true,
+        "pending_before": [
+          "approve_claim"
+        ],
+        "pending_after": [],
+        "approved": false,
+        "associative": true,
+        "merged": [
+          "receipt"
+        ]
+      }
+    }
+  }
+]

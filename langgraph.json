@@ -1,0 +1,6 @@
+{
+  "dependencies": ["."],
+  "graphs": {"claims": "./apps/studio.py:graph"},
+  "env": ".env.example",
+  "python_version": "3.12"
+}

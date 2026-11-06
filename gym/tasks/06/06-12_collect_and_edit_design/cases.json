@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "response_address": "interrupt_id",
+        "amount": "bounded_integer_cents",
+        "date": "iso_date_validation"
+      }
+    }
+  }
+]

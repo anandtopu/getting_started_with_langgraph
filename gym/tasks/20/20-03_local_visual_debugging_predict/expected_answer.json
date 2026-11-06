@@ -1,0 +1,35 @@
+{
+  "observations": [
+    {
+      "value": {
+        "export_exists": true,
+        "symbol": "graph",
+        "diagram_has_approval": true,
+        "actual_route": "specialist",
+        "misrouted": true,
+        "paused": true
+      }
+    },
+    {
+      "value": {
+        "export_exists": true,
+        "symbol": "graph",
+        "diagram_has_approval": true,
+        "actual_route": "fast_track",
+        "misrouted": false,
+        "paused": false
+      }
+    },
+    {
+      "value": {
+        "export_exists": true,
+        "symbol": "graph",
+        "diagram_has_approval": true,
+        "actual_route": "specialist",
+        "misrouted": false,
+        "paused": true
+      }
+    }
+  ],
+  "cause": null
+}

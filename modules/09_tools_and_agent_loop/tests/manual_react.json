@@ -1,0 +1,51 @@
+[
+  {
+    "input": {
+      "policy_id": "POL-0001",
+      "recursion_limit": 12
+    },
+    "expected": {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "tool_results": [
+          "100000 cents"
+        ],
+        "final": "Use the tool result as evidence; this is not payment approval."
+      }
+    }
+  },
+  {
+    "input": {
+      "policy_id": "MISSING",
+      "recursion_limit": 12
+    },
+    "expected": {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "tool_results": [
+          "Error: ValueError('Unknown policy')\n Please fix your mistakes."
+        ],
+        "final": "Use the tool result as evidence; this is not payment approval."
+      }
+    }
+  },
+  {
+    "input": {
+      "policy_id": "POL-0001",
+      "recursion_limit": 1
+    },
+    "expected": {
+      "error": "GraphRecursionError"
+    }
+  }
+]

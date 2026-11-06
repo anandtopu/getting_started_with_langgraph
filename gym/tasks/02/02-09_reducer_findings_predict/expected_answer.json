@@ -1,0 +1,73 @@
+{
+  "observations": [
+    {
+      "value": {
+        "findings": [
+          {
+            "id": "receipt",
+            "severity": 3
+          }
+        ],
+        "log": [
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    },
+    {
+      "value": {
+        "findings": [
+          {
+            "id": "estimate",
+            "severity": 2
+          },
+          {
+            "id": "receipt",
+            "severity": 1
+          }
+        ],
+        "log": [
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    },
+    {
+      "value": {
+        "findings": [
+          {
+            "id": "receipt",
+            "severity": 4
+          }
+        ],
+        "log": [
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    },
+    {
+      "value": {
+        "findings": [
+          {
+            "id": "a",
+            "severity": 2
+          },
+          {
+            "id": "z",
+            "severity": 1
+          }
+        ],
+        "log": [
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    }
+  ],
+  "cause": null
+}

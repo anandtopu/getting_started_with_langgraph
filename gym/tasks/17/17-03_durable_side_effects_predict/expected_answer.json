@@ -1,0 +1,37 @@
+{
+  "observations": [
+    {
+      "value": {
+        "crash_exit": 42,
+        "effect_count": 1,
+        "claim_id": "CLM-0001",
+        "durability": "sync"
+      }
+    },
+    {
+      "value": {
+        "crash_exit": 42,
+        "effect_count": 1,
+        "claim_id": "CLM-0001",
+        "durability": "async"
+      }
+    },
+    {
+      "value": {
+        "crash_exit": 42,
+        "effect_count": 1,
+        "claim_id": "CLM-0001",
+        "durability": "exit"
+      }
+    },
+    {
+      "value": {
+        "crash_exit": 42,
+        "effect_count": 1,
+        "claim_id": "CLM-0050",
+        "durability": "sync"
+      }
+    }
+  ],
+  "cause": null
+}

@@ -1,0 +1,25 @@
+{
+  "observations": [
+    {
+      "value": {
+        "export_exists": true,
+        "symbol": "graph",
+        "diagram_has_approval": true,
+        "actual_route": "fast_track",
+        "misrouted": false,
+        "paused": false
+      }
+    },
+    {
+      "value": {
+        "export_exists": true,
+        "symbol": "graph",
+        "diagram_has_approval": true,
+        "actual_route": "fast_track",
+        "misrouted": false,
+        "paused": false
+      }
+    }
+  ],
+  "cause": "Debug the supplied claim amount rather than a substituted value."
+}

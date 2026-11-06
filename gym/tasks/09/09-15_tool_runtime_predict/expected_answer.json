@@ -1,0 +1,39 @@
+{
+  "observations": [
+    {
+      "value": {
+        "saved": {
+          "value": "email"
+        },
+        "state_preference": "email",
+        "tool_call_id": "save-1",
+        "model_visible_fields": [
+          "preference"
+        ]
+      }
+    },
+    {
+      "value": {
+        "saved": {
+          "value": "sms"
+        },
+        "state_preference": "sms",
+        "tool_call_id": "save-1",
+        "model_visible_fields": [
+          "preference"
+        ]
+      }
+    },
+    {
+      "value": {
+        "saved": null,
+        "state_preference": null,
+        "tool_call_id": "save-1",
+        "model_visible_fields": [
+          "preference"
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

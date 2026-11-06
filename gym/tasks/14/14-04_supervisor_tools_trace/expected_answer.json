@@ -1,0 +1,53 @@
+{
+  "observations": [
+    {
+      "value": {
+        "specialists": [
+          {
+            "role": "policy",
+            "input": "Deductible: 100000 cents"
+          },
+          {
+            "role": "policy",
+            "input": "Contractor estimate is missing"
+          }
+        ],
+        "tool_names": [
+          "fraud_analyst",
+          "policy_expert"
+        ],
+        "reports": [
+          "policy: evidence requires review",
+          "policy: evidence requires review"
+        ],
+        "final": "Request the missing estimate before final policy review.",
+        "private_note_leaked": false
+      }
+    },
+    {
+      "value": {
+        "specialists": [
+          {
+            "role": "policy",
+            "input": "Deductible: 100000 cents"
+          },
+          {
+            "role": "policy",
+            "input": "Contractor estimate is missing"
+          }
+        ],
+        "tool_names": [
+          "fraud_analyst",
+          "policy_expert"
+        ],
+        "reports": [
+          "policy: evidence requires review",
+          "policy: evidence requires review"
+        ],
+        "final": "Request the missing estimate before final policy review.",
+        "private_note_leaked": false
+      }
+    }
+  ],
+  "cause": "Keep specialist roles attached to the evidence they reviewed."
+}

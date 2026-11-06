@@ -1,0 +1,44 @@
+{
+  "observations": [
+    {
+      "value": {
+        "output_type": "ClaimModel",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated"
+        }
+      }
+    },
+    {
+      "value": {
+        "output_type": "dict",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated"
+        }
+      }
+    },
+    {
+      "value": {
+        "output_type": "ClaimData",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated"
+        }
+      }
+    },
+    {
+      "error": "ValidationError"
+    },
+    {
+      "error": "ValidationError"
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

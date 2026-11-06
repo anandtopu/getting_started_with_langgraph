@@ -1,0 +1,30 @@
+{
+  "observations": [
+    {
+      "value": {
+        "amount_cents": 600000,
+        "documents": [],
+        "flags": [
+          "intake_checked",
+          "missing_evidence"
+        ],
+        "workflow": "claim",
+        "destination": "claim_review"
+      }
+    },
+    {
+      "value": {
+        "amount_cents": 100000,
+        "documents": [
+          "estimate"
+        ],
+        "flags": [
+          "intake_checked"
+        ],
+        "workflow": "claim",
+        "destination": "claim_standard"
+      }
+    }
+  ],
+  "cause": "Apply the high-value risk boundary inside the reusable child."
+}

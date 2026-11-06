@@ -1,0 +1,111 @@
+[
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": 100000,
+      "missing": []
+    },
+    "expected": {
+      "value": {
+        "claim_type": "water",
+        "amount_cents": 100000,
+        "missing": [],
+        "route": "fast_track"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": 100001,
+      "missing": []
+    },
+    "expected": {
+      "value": {
+        "claim_type": "water",
+        "amount_cents": 100001,
+        "missing": [],
+        "route": "standard"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": 500001,
+      "missing": []
+    },
+    "expected": {
+      "value": {
+        "claim_type": "water",
+        "amount_cents": 500001,
+        "missing": [],
+        "route": "specialist"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": 100000,
+      "missing": [
+        "loss_date"
+      ]
+    },
+    "expected": {
+      "value": {
+        "claim_type": "water",
+        "amount_cents": 100000,
+        "missing": [
+          "loss_date"
+        ],
+        "route": "needs_information"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": "100",
+      "missing": []
+    },
+    "expected": {
+      "value": {
+        "claim_type": "water",
+        "amount_cents": "100",
+        "missing": [],
+        "route": "invalid"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "jewelry",
+      "amount_cents": 100000,
+      "missing": []
+    },
+    "expected": {
+      "value": {
+        "claim_type": "jewelry",
+        "amount_cents": 100000,
+        "missing": [],
+        "route": "jewelry_specialist"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "jewelry",
+      "amount_cents": 50000,
+      "missing": []
+    },
+    "expected": {
+      "value": {
+        "claim_type": "jewelry",
+        "amount_cents": 50000,
+        "missing": [],
+        "route": "jewelry_specialist"
+      }
+    }
+  }
+]

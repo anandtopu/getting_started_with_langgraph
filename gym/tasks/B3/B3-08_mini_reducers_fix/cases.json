@@ -1,0 +1,40 @@
+[
+  {
+    "input": {
+      "use_reducer": true
+    },
+    "expected": {
+      "value": {
+        "mini": {
+          "findings": [
+            "estimate",
+            "policy"
+          ]
+        },
+        "langgraph": {
+          "findings": [
+            "estimate",
+            "policy"
+          ]
+        },
+        "equal": true
+      }
+    }
+  },
+  {
+    "input": {
+      "use_reducer": false
+    },
+    "expected": {
+      "value": {
+        "mini": {
+          "conflict": true
+        },
+        "langgraph": {
+          "conflict": true
+        },
+        "equal": true
+      }
+    }
+  }
+]

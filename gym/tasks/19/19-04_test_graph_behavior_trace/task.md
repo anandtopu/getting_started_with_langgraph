@@ -1,0 +1,47 @@
+# 19-04 — Trace test graph behavior: Include boolean cents in invalid-input coverage.
+
+Type: trace. Difficulty: medium. No live model, key, or network is required.
+
+## The claim scenario
+
+A pytest test is a function whose assertions express requirements. Parametrized tests run it over many inputs. Compare pure node rules and whole graphs against independently specified boundary outcomes; comparing two copies of the same implementation can preserve the same bug. Fake models make orchestration tests repeatable, not model accuracy measurable.
+
+## Your task
+
+Include boolean cents in invalid-input coverage. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+
+## Inputs and acceptance
+
+```json
+[
+  {
+    "amounts": [
+      100000,
+      100001,
+      500001,
+      true
+    ]
+  },
+  {
+    "amounts": [
+      0,
+      -1,
+      500000
+    ]
+  }
+]
+```
+
+The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
+
+## Commands
+
+```text
+uv run gym start 19-04
+uv run gym check 19-04
+uv run gym hint 19-04
+```
+
+## Reading
+
+[Module lesson](../../../../modules/19_testing_and_evaluation/README.md) · [Official guide](https://docs.langchain.com/oss/python/langgraph/test)

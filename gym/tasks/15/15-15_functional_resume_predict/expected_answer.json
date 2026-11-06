@@ -1,0 +1,47 @@
+{
+  "observations": [
+    {
+      "value": {
+        "interrupts": 1,
+        "result": {
+          "claim_id": "CLM-0001",
+          "approved": true
+        },
+        "counts": {
+          "entrypoint": 2,
+          "task": 1
+        }
+      }
+    },
+    {
+      "value": {
+        "interrupts": 1,
+        "result": {
+          "claim_id": "CLM-0001",
+          "approved": false
+        },
+        "counts": {
+          "entrypoint": 2,
+          "task": 1
+        }
+      }
+    },
+    {
+      "error": "ValueError"
+    },
+    {
+      "value": {
+        "interrupts": 1,
+        "result": {
+          "claim_id": "CLM-0077",
+          "approved": true
+        },
+        "counts": {
+          "entrypoint": 2,
+          "task": 1
+        }
+      }
+    }
+  ],
+  "cause": null
+}

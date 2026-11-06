@@ -1,0 +1,44 @@
+{
+  "observations": [
+    {
+      "value": {
+        "created": 201,
+        "foreign_status": 404,
+        "customer_approval_status": 403,
+        "stale_status": 409,
+        "effects": 1,
+        "status": "recorded",
+        "progress_events": 2,
+        "framing_roundtrip": true,
+        "frame_count": 1
+      }
+    },
+    {
+      "value": {
+        "created": 201,
+        "foreign_status": 404,
+        "customer_approval_status": 403,
+        "stale_status": 409,
+        "effects": 0,
+        "status": "not_approved",
+        "progress_events": 2,
+        "framing_roundtrip": true,
+        "frame_count": 1
+      }
+    },
+    {
+      "value": {
+        "created": 201,
+        "foreign_status": 404,
+        "customer_approval_status": 403,
+        "stale_status": 409,
+        "effects": 1,
+        "status": "recorded",
+        "progress_events": 2,
+        "framing_roundtrip": true,
+        "frame_count": 1
+      }
+    }
+  ],
+  "cause": null
+}

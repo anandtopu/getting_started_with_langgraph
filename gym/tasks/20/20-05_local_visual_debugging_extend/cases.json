@@ -1,0 +1,50 @@
+[
+  {
+    "input": {
+      "amount_cents": 600000,
+      "reported_route": "fast_track"
+    },
+    "expected": {
+      "value": {
+        "export_exists": true,
+        "symbol": "graph",
+        "diagram_has_approval": true,
+        "actual_route": "specialist",
+        "misrouted": true,
+        "paused": true
+      }
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 100000,
+      "reported_route": "fast_track"
+    },
+    "expected": {
+      "value": {
+        "export_exists": true,
+        "symbol": "graph",
+        "diagram_has_approval": true,
+        "actual_route": "fast_track",
+        "misrouted": false,
+        "paused": false
+      }
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 600000,
+      "reported_route": "specialist"
+    },
+    "expected": {
+      "value": {
+        "export_exists": true,
+        "symbol": "graph",
+        "diagram_has_approval": true,
+        "actual_route": "specialist",
+        "misrouted": false,
+        "paused": true
+      }
+    }
+  }
+]

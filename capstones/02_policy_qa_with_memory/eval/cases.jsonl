@@ -1,0 +1,4 @@
+{"input": {}, "expected": {"citations": ["home.md"], "preference": "sms"}}
+{"input": {"customer_id": "CUS-0002"}, "expected": {"preference": "email"}}
+{"input": {"question": "quasarxyz"}, "expected": {"citations": []}}
+{"input": {"question": "renters deductible"}, "expected": {"citations": ["renters.md"]}}

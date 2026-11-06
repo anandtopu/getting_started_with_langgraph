@@ -1,0 +1,58 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "durability": "sync"
+    },
+    "expected": {
+      "value": {
+        "crash_exit": 42,
+        "effect_count": 1,
+        "claim_id": "CLM-0001",
+        "durability": "sync"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "durability": "async"
+    },
+    "expected": {
+      "value": {
+        "crash_exit": 42,
+        "effect_count": 1,
+        "claim_id": "CLM-0001",
+        "durability": "async"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "durability": "exit"
+    },
+    "expected": {
+      "value": {
+        "crash_exit": 42,
+        "effect_count": 1,
+        "claim_id": "CLM-0001",
+        "durability": "exit"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0050",
+      "durability": "sync"
+    },
+    "expected": {
+      "value": {
+        "crash_exit": 42,
+        "effect_count": 1,
+        "claim_id": "CLM-0050",
+        "durability": "sync"
+      }
+    }
+  }
+]

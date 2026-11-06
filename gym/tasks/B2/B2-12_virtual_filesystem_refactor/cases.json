@@ -1,0 +1,55 @@
+[
+  {
+    "input": {
+      "path": "/claims/review.txt",
+      "content": "Synthetic estimate requires review."
+    },
+    "expected": {
+      "value": {
+        "paths": [
+          "/claims/review.txt"
+        ],
+        "contents": {
+          "/claims/review.txt": "Synthetic estimate requires review."
+        },
+        "tool_statuses": [
+          "success"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "path": "/private/key.txt",
+      "content": "Synthetic estimate requires review."
+    },
+    "expected": {
+      "value": {
+        "paths": [],
+        "contents": {},
+        "tool_statuses": [
+          "error"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "path": "/claims/second.txt",
+      "content": "Another synthetic finding"
+    },
+    "expected": {
+      "value": {
+        "paths": [
+          "/claims/second.txt"
+        ],
+        "contents": {
+          "/claims/second.txt": "Another synthetic finding"
+        },
+        "tool_statuses": [
+          "success"
+        ]
+      }
+    }
+  }
+]

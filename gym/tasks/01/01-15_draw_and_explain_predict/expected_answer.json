@@ -1,0 +1,83 @@
+{
+  "observations": [
+    {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": false
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

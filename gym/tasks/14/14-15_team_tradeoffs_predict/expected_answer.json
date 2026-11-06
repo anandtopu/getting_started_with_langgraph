@@ -1,0 +1,55 @@
+{
+  "observations": [
+    {
+      "value": {
+        "team_calls": 4,
+        "team_complete": true,
+        "reports": [
+          "intake checked",
+          "policy checked",
+          "fraud checked",
+          "communication checked"
+        ],
+        "single_calls": 1,
+        "single_mentions_all_roles": true
+      }
+    },
+    {
+      "value": {
+        "team_calls": 2,
+        "team_complete": false,
+        "reports": [
+          "intake checked",
+          "policy checked"
+        ],
+        "single_calls": 1,
+        "single_mentions_all_roles": true
+      }
+    },
+    {
+      "value": {
+        "team_calls": 0,
+        "team_complete": false,
+        "reports": [],
+        "single_calls": 1,
+        "single_mentions_all_roles": true
+      }
+    },
+    {
+      "value": {
+        "team_calls": 2,
+        "team_complete": true,
+        "reports": [
+          "fraud checked",
+          "communication checked"
+        ],
+        "single_calls": 1,
+        "single_mentions_all_roles": true
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

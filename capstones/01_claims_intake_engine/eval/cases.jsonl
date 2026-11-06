@@ -1,0 +1,3 @@
+{"input": {}, "expected": {"approved": true, "waited": true, "replay_matches": true}}
+{"input": {"approved": false}, "expected": {"approved": false}}
+{"input": {"amount_cents": 10000}, "expected": {"approved": true, "waited": false}}

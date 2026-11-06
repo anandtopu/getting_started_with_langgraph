@@ -1,0 +1,9 @@
+# Why the solution works
+
+The messages stream emits a chunk and metadata inside each v2 part's data field. Assemble content in order and inspect langgraph_node to attribute it. A fake should agree between invoke and stream, including a structured JSON response; it tests orchestration, not model quality.
+
+Preserve emission order while collecting token chunks. The implementation preserves the claim identity and separates the tested concern from unrelated state. The cases include normal and boundary inputs, so replacing the result with a single constant is not a general repair.
+
+The deliberate fault changes 'chunks.append(chunk.content)' to 'chunks.insert(0, chunk.content)'. Follow the data affected by that operation before inspecting later nodes. For predictions, distinguish returned values from error types. For traces, the observed failure is evidence of the first broken contract, not proof that the framework is unreliable.
+
+Run the task tests against your selected workspace file. Viewing this reference is assisted study; a written Design rationale still requires the rubric.

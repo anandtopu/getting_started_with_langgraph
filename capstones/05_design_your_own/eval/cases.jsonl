@@ -1,0 +1,6 @@
+{"input": {}, "expected": {"approved": true, "effects": 1}}
+{"input": {"approved": false}, "expected": {"approved": false, "effects": 0}}
+{"input": {"role": "customer"}, "expected": {"error": "PermissionError"}}
+{"input": {"amount_cents": -1}, "expected": {"error": "ValueError"}}
+{"input": {"amount_cents": true}, "expected": {"error": "ValueError"}}
+{"input": {"approved": "yes"}, "expected": {"error": "ValueError"}}

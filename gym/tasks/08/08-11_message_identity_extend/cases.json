@@ -1,0 +1,81 @@
+[
+  {
+    "input": {
+      "text": "Corrected: pipe burst",
+      "remove_customer": true
+    },
+    "expected": {
+      "value": {
+        "messages": [
+          {
+            "role": "ai",
+            "id": "agent-1",
+            "text": ""
+          },
+          {
+            "role": "tool",
+            "id": "tool-1",
+            "text": "Synthetic policy found"
+          }
+        ],
+        "paired": true
+      }
+    }
+  },
+  {
+    "input": {
+      "text": "Corrected: pipe burst",
+      "remove_customer": false
+    },
+    "expected": {
+      "value": {
+        "messages": [
+          {
+            "role": "human",
+            "id": "customer-1",
+            "text": "Corrected: pipe burst"
+          },
+          {
+            "role": "ai",
+            "id": "agent-1",
+            "text": ""
+          },
+          {
+            "role": "tool",
+            "id": "tool-1",
+            "text": "Synthetic policy found"
+          }
+        ],
+        "paired": true
+      }
+    }
+  },
+  {
+    "input": {
+      "text": "Corrected: theft",
+      "remove_customer": false
+    },
+    "expected": {
+      "value": {
+        "messages": [
+          {
+            "role": "human",
+            "id": "customer-1",
+            "text": "Corrected: theft"
+          },
+          {
+            "role": "ai",
+            "id": "agent-1",
+            "text": ""
+          },
+          {
+            "role": "tool",
+            "id": "tool-1",
+            "text": "Synthetic policy found"
+          }
+        ],
+        "paired": true
+      }
+    }
+  }
+]

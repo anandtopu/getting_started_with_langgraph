@@ -1,0 +1,41 @@
+{
+  "observations": [
+    {
+      "value": {
+        "todos": [
+          {
+            "content": "Read the policy deductible",
+            "status": "completed"
+          },
+          {
+            "content": "Review the contractor estimate",
+            "status": "pending"
+          }
+        ],
+        "tool_statuses": [
+          "success"
+        ],
+        "final": "The policy and document investigation plan is recorded."
+      }
+    },
+    {
+      "value": {
+        "todos": [
+          {
+            "content": "Read the policy deductible",
+            "status": "completed"
+          },
+          {
+            "content": "Review the contractor estimate",
+            "status": "pending"
+          }
+        ],
+        "tool_statuses": [
+          "success"
+        ],
+        "final": "The policy and document investigation plan is recorded."
+      }
+    }
+  ],
+  "cause": "Keep task progress consistent with the supplied status."
+}

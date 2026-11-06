@@ -1,0 +1,22 @@
+{
+  "observations": [
+    {
+      "value": {
+        "status": "estimate_received",
+        "finished": true,
+        "attempts": 2,
+        "drained": true
+      }
+    },
+    {
+      "value": {
+        "status": "estimate_received",
+        "error_type": "ConnectionError",
+        "finished": true,
+        "attempts": 2,
+        "drained": false
+      }
+    }
+  ],
+  "cause": "Do not label an exhausted or timed-out request as successful."
+}

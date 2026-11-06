@@ -1,0 +1,40 @@
+{
+  "observations": [
+    {
+      "value": {
+        "paths": [
+          "/claims/review.txt"
+        ],
+        "contents": {
+          "/claims/review.txt": "Synthetic estimate requires review."
+        },
+        "tool_statuses": [
+          "success"
+        ]
+      }
+    },
+    {
+      "value": {
+        "paths": [],
+        "contents": {},
+        "tool_statuses": [
+          "error"
+        ]
+      }
+    },
+    {
+      "value": {
+        "paths": [
+          "/claims/second.txt"
+        ],
+        "contents": {
+          "/claims/second.txt": "Another synthetic finding"
+        },
+        "tool_statuses": [
+          "success"
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

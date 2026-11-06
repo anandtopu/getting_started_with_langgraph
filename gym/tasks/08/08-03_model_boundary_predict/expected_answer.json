@@ -1,0 +1,55 @@
+{
+  "observations": [
+    {
+      "value": {
+        "facts": {
+          "claim_type": "water",
+          "amount_cents": 125000,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "route": "standard"
+      }
+    },
+    {
+      "value": {
+        "facts": {
+          "claim_type": "water",
+          "amount_cents": 100000,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "route": "fast_track"
+      }
+    },
+    {
+      "value": {
+        "facts": {
+          "claim_type": "water",
+          "amount_cents": 125000,
+          "loss_date": null,
+          "confidence": 0.7
+        },
+        "route": "review"
+      }
+    },
+    {
+      "value": {
+        "facts": {
+          "claim_type": "unknown",
+          "amount_cents": 125000,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "route": "review"
+      }
+    },
+    {
+      "error": "ValidationError"
+    },
+    {
+      "error": "ValidationError"
+    }
+  ],
+  "cause": null
+}

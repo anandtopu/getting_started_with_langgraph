@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "value": {
+        "original_route": "specialist",
+        "forked_route": "fast_track",
+        "fork_pending": [
+          "normalize"
+        ],
+        "history_retained": true,
+        "remote_tracing": false
+      }
+    },
+    {
+      "value": {
+        "original_route": "specialist",
+        "forked_route": "specialist",
+        "fork_pending": [
+          "normalize"
+        ],
+        "history_retained": true,
+        "remote_tracing": false
+      }
+    }
+  ],
+  "cause": "Fork at the intended pre-routing boundary."
+}

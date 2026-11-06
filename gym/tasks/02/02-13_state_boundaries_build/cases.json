@@ -1,0 +1,66 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "text": "  Pipe burst  "
+    },
+    "expected": {
+      "value": {
+        "fields": [
+          "claim_id",
+          "messages"
+        ],
+        "claim_id": "CLM-0001",
+        "messages": [
+          {
+            "id": "customer-1",
+            "content": "Pipe burst"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0022",
+      "text": " theft "
+    },
+    "expected": {
+      "value": {
+        "fields": [
+          "claim_id",
+          "messages"
+        ],
+        "claim_id": "CLM-0022",
+        "messages": [
+          {
+            "id": "customer-1",
+            "content": "theft"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "text": " ",
+      "private_notes": "Untrusted supplied note"
+    },
+    "expected": {
+      "value": {
+        "fields": [
+          "claim_id",
+          "messages"
+        ],
+        "claim_id": "CLM-0001",
+        "messages": [
+          {
+            "id": "customer-1",
+            "content": ""
+          }
+        ]
+      }
+    }
+  }
+]

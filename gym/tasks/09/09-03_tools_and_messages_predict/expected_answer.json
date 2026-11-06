@@ -1,0 +1,69 @@
+{
+  "observations": [
+    {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "25000"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "success",
+            "content": "limit=25000000; deductible=100000"
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "25000"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "error",
+            "content": "Error: ValueError('Unknown synthetic policy')\n Please fix your mistakes."
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "0"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "success",
+            "content": "limit=25000000; deductible=100000"
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "results": [
+          {
+            "call_id": "payout-call",
+            "status": "success",
+            "content": "200000"
+          },
+          {
+            "call_id": "policy-call",
+            "status": "success",
+            "content": "limit=25000000; deductible=100000"
+          }
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

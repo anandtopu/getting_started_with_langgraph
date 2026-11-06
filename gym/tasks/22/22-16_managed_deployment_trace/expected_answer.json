@@ -1,0 +1,41 @@
+{
+  "observations": [
+    {
+      "value": {
+        "assistant": {
+          "graph_id": "claims"
+        },
+        "thread": {
+          "thread_id": "claim-thread"
+        },
+        "run": {
+          "assistant_id": "claims",
+          "input": {
+            "claim_id": "CLM-0001"
+          }
+        },
+        "mode": "background",
+        "schedule": "0 9 * * 1-5"
+      }
+    },
+    {
+      "value": {
+        "assistant": {
+          "graph_id": "claims"
+        },
+        "thread": {
+          "thread_id": "claim-thread"
+        },
+        "run": {
+          "assistant_id": "claims",
+          "input": {
+            "claim_id": "CLM-0001"
+          }
+        },
+        "mode": "background",
+        "schedule": "0 9 * * 1-5"
+      }
+    }
+  ],
+  "cause": "Keep interactive waiting distinct from background execution."
+}

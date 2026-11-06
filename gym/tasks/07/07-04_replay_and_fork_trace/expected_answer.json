@@ -1,0 +1,25 @@
+{
+  "observations": [
+    {
+      "value": {
+        "original_route": "fast_track",
+        "fork_route": "fast_track",
+        "replay_prompts": 1,
+        "fork_prompts": 1,
+        "original_unchanged": true,
+        "fork_parent_is_historical": true
+      }
+    },
+    {
+      "value": {
+        "original_route": "specialist",
+        "fork_route": "specialist",
+        "replay_prompts": 1,
+        "fork_prompts": 1,
+        "original_unchanged": true,
+        "fork_parent_is_historical": true
+      }
+    }
+  ],
+  "cause": "Replay the new fork configuration, not its uncorrected parent."
+}

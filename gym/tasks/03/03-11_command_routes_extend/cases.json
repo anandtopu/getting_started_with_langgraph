@@ -1,0 +1,50 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "suspicious": true
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "suspicious": true,
+        "reason": "indicator",
+        "visited": [
+          "review"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "suspicious": false
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "suspicious": false,
+        "reason": "routine",
+        "visited": [
+          "acknowledge"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0031",
+      "suspicious": true
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0031",
+        "suspicious": true,
+        "reason": "indicator",
+        "visited": [
+          "review"
+        ]
+      }
+    }
+  }
+]

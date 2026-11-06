@@ -1,0 +1,98 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "Pipe burst"
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": ""
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": false
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0042",
+      "description": " stolen watch "
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  }
+]

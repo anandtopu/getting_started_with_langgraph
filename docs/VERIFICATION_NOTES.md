@@ -154,3 +154,19 @@ For Windows async execution, the test harness permits only Python's internal soc
 Representative estimate, receipt, and police-summary PDFs were rendered and inspected. All are readable single-page synthetic documents. Data tests check hashes, foreign keys, read-only access, two-run repeatability, cross-build logical SQLite rows, and hand-calculated money/routing boundaries.
 
 CI uses [checkout v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1), [setup-uv v10.3.3](https://github.com/astral-sh/setup-uv), and uv 0.13.7. setup-uv's Python input sets UV_PYTHON, overriding the repository's 3.12 default so each matrix entry tests its declared interpreter. See the [official uv CI guidance](https://docs.astral.sh/uv/guides/integration/github/). Configuring these jobs is not evidence of a remote pass.
+
+## Complete-course API verification (2026-11-06)
+
+The [remaining-phase package check](verification/remaining_phases_package_check.json) rechecked 44 package releases. The installed library family is exercised by 27 lesson packages, the complete gym, and five capstones. Core Python examples consistently select v2 invocation and streaming; B4 alone explores Beta v3 projections and DeltaChannel.
+
+The v3 probe reads child messages through subgraph projections, consumes method/params protocol events, and reconstructs tool arguments from two actual deltas. Typed per-call approvals validate response schemas. These are separate from the stable core v2 teaching path. The [official event-streaming guide](https://docs.langchain.com/oss/python/langgraph/event-streaming) documents the projections; the pinned runtime still emits an explicit Beta warning, which the suite allows without relaxing deprecation errors.
+
+JavaScript uses its documented StateSchema, ReducedValue, and camelCase stream options. Its result shape is not Python's v2 GraphOutput. The TypeScript bonus uses the current SQLite saver export and closes its connection explicitly. The Python bridge executes the selected learner's actual TypeScript file in Node with networking blocked. Exact versions are in package.json and package-lock.json; Node 24 is the teaching target.
+
+Deep-agent examples install planning middleware explicitly and construct typed filesystem permission objects. The course pins the compatible MCP SDK 1.x family with the stable adapter rather than upgrading the SDK independently to an incompatible major version. Local stdio MCP calls are real protocol exchanges, while HTTP retry examples use a deterministic transport double.
+
+Functional execution, process-crash recovery, async cancellation, nested interrupts, typed approvals, encrypted checkpoints, and all seven v2 stream modes have executable boundary checks. NumPy-backed semantic search requires a nonzero embedding for unknown queries; the course's deterministic embedding reserves a fallback dimension.
+
+Notebook cells invoke canonical scripts in bounded child processes. This avoids nested notebook event loops and notebook stderr streams that lack the descriptor needed by stdio MCP. All notebook outputs remain cleared in source control.
+
+GitHub acceptance uses checkout v7.0.1, setup-uv v10.3.3, and [setup-node v7](https://github.com/actions/setup-node), with Python 3.11–3.14 on Windows/Linux and Python 3.12 on macOS. Actual run evidence, rather than configured coverage, is recorded in the acceptance report.

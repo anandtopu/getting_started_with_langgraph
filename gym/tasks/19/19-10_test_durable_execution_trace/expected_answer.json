@@ -1,0 +1,33 @@
+{
+  "observations": [
+    {
+      "value": {
+        "paused": true,
+        "pending_before": [],
+        "pending_after": [],
+        "approved": false,
+        "associative": true,
+        "merged": [
+          "estimate",
+          "policy",
+          "receipt"
+        ]
+      }
+    },
+    {
+      "value": {
+        "paused": true,
+        "pending_before": [],
+        "pending_after": [],
+        "approved": true,
+        "associative": true,
+        "merged": [
+          "estimate",
+          "policy",
+          "receipt"
+        ]
+      }
+    }
+  ],
+  "cause": "Capture the pre-resume pending state before it changes."
+}

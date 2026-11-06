@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "identities": "assistant_thread_run",
+        "hosting": "explicit_account_action",
+        "schedule": "validated_plan"
+      }
+    }
+  }
+]

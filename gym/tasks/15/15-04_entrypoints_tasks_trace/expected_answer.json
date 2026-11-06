@@ -1,0 +1,21 @@
+{
+  "observations": [
+    {
+      "value": {
+        "amount_cents": 125000,
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "route": "standard"
+      }
+    },
+    {
+      "value": {
+        "amount_cents": 100000,
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "route": "standard"
+      }
+    }
+  ],
+  "cause": "Match the Graph API fast-track boundary."
+}

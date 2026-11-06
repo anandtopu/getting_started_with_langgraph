@@ -1,0 +1,44 @@
+{
+  "observations": [
+    {
+      "value": {
+        "prompts": [
+          {
+            "kind": "payout_review",
+            "amount_cents": 600000
+          }
+        ],
+        "status": "approved",
+        "remaining": 0
+      }
+    },
+    {
+      "value": {
+        "prompts": [
+          {
+            "kind": "payout_review",
+            "amount_cents": 600000
+          }
+        ],
+        "status": "rejected",
+        "remaining": 0
+      }
+    },
+    {
+      "error": "ValueError"
+    },
+    {
+      "value": {
+        "prompts": [
+          {
+            "kind": "payout_review",
+            "amount_cents": 1000000
+          }
+        ],
+        "status": "approved",
+        "remaining": 0
+      }
+    }
+  ],
+  "cause": null
+}

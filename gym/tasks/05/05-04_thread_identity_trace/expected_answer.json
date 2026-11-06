@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "error": "ValueError"
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": "A persisted invocation needs an explicit thread identifier."
+}

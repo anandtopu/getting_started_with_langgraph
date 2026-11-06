@@ -1,0 +1,63 @@
+[
+  {
+    "input": {
+      "policy_id": "POL-0001",
+      "recursion_limit": 12
+    },
+    "expected": {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "prebuilt_roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "final": "Policy evidence checked; no payment authorized.",
+        "tool_ids": [
+          "lookup-1"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "policy_id": "POL-0001",
+      "recursion_limit": 1
+    },
+    "expected": {
+      "error": "TypeScriptError"
+    }
+  },
+  {
+    "input": {
+      "policy_id": "MISSING",
+      "recursion_limit": 12
+    },
+    "expected": {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "prebuilt_roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "final": "Policy evidence checked; no payment authorized.",
+        "tool_ids": [
+          "lookup-1"
+        ]
+      }
+    }
+  }
+]

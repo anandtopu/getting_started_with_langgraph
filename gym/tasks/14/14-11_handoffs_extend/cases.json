@@ -1,0 +1,42 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "question": "Explain the deductible."
+    },
+    "expected": {
+      "value": {
+        "active_agent": "policy",
+        "claim_id": "CLM-0001",
+        "paired": true,
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "answer": "The deductible is 100000 cents."
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0400",
+      "question": "What is the water deductible?"
+    },
+    "expected": {
+      "value": {
+        "active_agent": "policy",
+        "claim_id": "CLM-0400",
+        "paired": true,
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "answer": "The deductible is 100000 cents."
+      }
+    }
+  }
+]

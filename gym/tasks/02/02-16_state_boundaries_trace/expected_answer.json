@@ -1,0 +1,43 @@
+{
+  "observations": [
+    {
+      "value": {
+        "fields": [
+          "claim_id",
+          "messages"
+        ],
+        "claim_id": "CLM-0001",
+        "messages": [
+          {
+            "id": "customer-1",
+            "content": "  Pipe burst  "
+          },
+          {
+            "id": "customer-2",
+            "content": "Pipe burst"
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "fields": [
+          "claim_id",
+          "messages"
+        ],
+        "claim_id": "CLM-0022",
+        "messages": [
+          {
+            "id": "customer-1",
+            "content": " theft "
+          },
+          {
+            "id": "customer-2",
+            "content": "theft"
+          }
+        ]
+      }
+    }
+  ],
+  "cause": "Use the same message ID to replace the original message."
+}

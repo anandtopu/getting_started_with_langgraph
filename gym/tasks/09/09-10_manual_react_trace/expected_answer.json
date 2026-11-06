@@ -1,0 +1,22 @@
+{
+  "observations": [
+    {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "tool_results": [
+          "100000 cents"
+        ],
+        "final": "Use the tool result as evidence; this is not payment approval."
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": "Let the agent observe a policy lookup failure."
+}

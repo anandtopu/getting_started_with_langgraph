@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "context": "isolated_specialist",
+        "delegation": "approval_gated",
+        "budget": "bounded_parent_calls"
+      }
+    }
+  }
+]

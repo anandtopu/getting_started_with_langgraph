@@ -1,0 +1,38 @@
+"""Correlate graph progress without logging raw claim details. No account or model.
+
+Run: uv run python modules/20_observability_and_debugging/examples/02_structured_logs.py
+Expected: thread/run/node identifiers survive; credentials and customer text do not.
+"""
+
+import json
+
+from common.observability import log_record
+from common.pretty import print_state
+
+DEFAULT_CASE = {
+    "thread_id": "claim-thread",
+    "run_id": "review-1",
+    "description": "Synthetic contact: 555-0100",
+    "api_key": "synthetic-secret",
+}
+
+
+def run(case: dict | None = None) -> dict:
+    case = DEFAULT_CASE if case is None else case
+    records = []
+    for node in ["normalize", "route", "approve_claim"]:
+        record = log_record({**case, "event": "node_finished", "node": node, "status": "ok"})
+        records.append(json.loads(record))
+    return {
+        "records": records,
+        "raw_text_logged": any(case["description"] in json.dumps(row) for row in records),
+        "credential_logged": any(case["api_key"] in json.dumps(row) for row in records),
+    }
+
+
+def main() -> None:
+    print_state(run())
+
+
+if __name__ == "__main__":
+    main()

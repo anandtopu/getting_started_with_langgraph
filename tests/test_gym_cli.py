@@ -16,9 +16,11 @@ def run_cli(workspace, *arguments):
 def test_list_filters_and_planned_task_error(tmp_path, capsys):
     assert run_cli(tmp_path, "list", "--module", "03", "--type", "fix", "--level", "medium") == 0
     output = capsys.readouterr().out
-    assert "03-02" in output and "00-01" not in output and "planned" in output
-    assert run_cli(tmp_path, "start", "03-02") == 2
-    assert "later phase" in capsys.readouterr().err
+    assert "03-02" in output and "00-01" not in output
+    planned = next((task for task in Catalog().tasks.values() if not task.available), None)
+    if planned is not None:
+        assert run_cli(tmp_path, "start", planned.id) == 2
+        assert "later phase" in capsys.readouterr().err
     assert run_cli(tmp_path, "start", "../.env") == 2
 
 

@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "visibility": "previous_superstep",
+        "diagram": "generated_from_compiled_graph",
+        "termination": "acknowledge_to_end"
+      }
+    }
+  }
+]

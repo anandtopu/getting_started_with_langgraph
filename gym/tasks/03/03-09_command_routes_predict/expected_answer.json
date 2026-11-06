@@ -1,0 +1,35 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "suspicious": true,
+        "reason": "indicator",
+        "visited": [
+          "review"
+        ]
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "suspicious": false,
+        "reason": "routine",
+        "visited": [
+          "acknowledge"
+        ]
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0031",
+        "suspicious": true,
+        "reason": "indicator",
+        "visited": [
+          "review"
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

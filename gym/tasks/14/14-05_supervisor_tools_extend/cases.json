@@ -1,0 +1,62 @@
+[
+  {
+    "input": {
+      "question": "Review policy and fraud evidence.",
+      "private_note": "Synthetic phone: 555-0100"
+    },
+    "expected": {
+      "value": {
+        "specialists": [
+          {
+            "role": "fraud",
+            "input": "Contractor estimate is missing"
+          },
+          {
+            "role": "policy",
+            "input": "Deductible: 100000 cents"
+          }
+        ],
+        "tool_names": [
+          "fraud_analyst",
+          "policy_expert"
+        ],
+        "reports": [
+          "fraud: evidence requires review",
+          "policy: evidence requires review"
+        ],
+        "final": "Request the missing estimate before final policy review.",
+        "private_note_leaked": false
+      }
+    }
+  },
+  {
+    "input": {
+      "question": "Which document is missing?",
+      "private_note": "Synthetic address withheld"
+    },
+    "expected": {
+      "value": {
+        "specialists": [
+          {
+            "role": "fraud",
+            "input": "Contractor estimate is missing"
+          },
+          {
+            "role": "policy",
+            "input": "Deductible: 100000 cents"
+          }
+        ],
+        "tool_names": [
+          "fraud_analyst",
+          "policy_expert"
+        ],
+        "reports": [
+          "fraud: evidence requires review",
+          "policy: evidence requires review"
+        ],
+        "final": "Request the missing estimate before final policy review.",
+        "private_note_leaked": false
+      }
+    }
+  }
+]

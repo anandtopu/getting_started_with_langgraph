@@ -1,0 +1,49 @@
+{
+  "observations": [
+    {
+      "value": {
+        "ready": true,
+        "errors": [],
+        "mode": "offline"
+      }
+    },
+    {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Optional live provider is not configured"
+        ],
+        "mode": "live"
+      }
+    },
+    {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Missing data/claims.db; restore the committed fixtures"
+        ],
+        "mode": "offline"
+      }
+    },
+    {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Missing package: langgraph",
+          "Missing package: pytest"
+        ],
+        "mode": "offline"
+      }
+    },
+    {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Use Python 3.11–3.14"
+        ],
+        "mode": "offline"
+      }
+    }
+  ],
+  "cause": null
+}

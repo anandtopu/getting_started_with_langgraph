@@ -1,0 +1,76 @@
+[
+  {
+    "input": {
+      "assistant_id": "claims",
+      "thread_id": "claim-thread",
+      "schedule": "0 9 * * 1-5",
+      "background": true
+    },
+    "expected": {
+      "value": {
+        "assistant": {
+          "graph_id": "claims"
+        },
+        "thread": {
+          "thread_id": "claim-thread"
+        },
+        "run": {
+          "assistant_id": "claims",
+          "input": {
+            "claim_id": "CLM-0001"
+          }
+        },
+        "mode": "background",
+        "schedule": "0 9 * * 1-5"
+      }
+    }
+  },
+  {
+    "input": {
+      "assistant_id": "claims",
+      "thread_id": "claim-thread",
+      "schedule": "0 9 * * 1-5",
+      "background": false
+    },
+    "expected": {
+      "value": {
+        "assistant": {
+          "graph_id": "claims"
+        },
+        "thread": {
+          "thread_id": "claim-thread"
+        },
+        "run": {
+          "assistant_id": "claims",
+          "input": {
+            "claim_id": "CLM-0001"
+          }
+        },
+        "mode": "wait",
+        "schedule": "0 9 * * 1-5"
+      }
+    }
+  },
+  {
+    "input": {
+      "assistant_id": "",
+      "thread_id": "claim-thread",
+      "schedule": "0 9 * * 1-5",
+      "background": true
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "assistant_id": "claims",
+      "thread_id": "claim-thread",
+      "schedule": "invalid",
+      "background": true
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

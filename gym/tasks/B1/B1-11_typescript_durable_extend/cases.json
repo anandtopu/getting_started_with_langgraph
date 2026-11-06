@@ -1,0 +1,72 @@
+[
+  {
+    "input": {
+      "documents": [
+        "estimate",
+        "receipt"
+      ],
+      "approved": false
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          "reviewed:estimate",
+          "reviewed:receipt"
+        ],
+        "approved": false,
+        "pending_before": [
+          "approve"
+        ],
+        "stream_parts": 3
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": [],
+      "approved": true
+    },
+    "expected": {
+      "value": {
+        "findings": [],
+        "approved": true,
+        "pending_before": [
+          "approve"
+        ],
+        "stream_parts": 1
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": [
+        "police_report"
+      ],
+      "approved": false
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          "reviewed:police_report"
+        ],
+        "approved": false,
+        "pending_before": [
+          "approve"
+        ],
+        "stream_parts": 2
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": [
+        "estimate",
+        "receipt"
+      ],
+      "approved": "yes"
+    },
+    "expected": {
+      "error": "TypeScriptError"
+    }
+  }
+]

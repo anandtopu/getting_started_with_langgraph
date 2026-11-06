@@ -1,0 +1,31 @@
+{
+  "observations": [
+    {
+      "value": {
+        "paths": [
+          "/claims/review.txt"
+        ],
+        "contents": {
+          "/claims/review.txt": "Synthetic estimate requires review."
+        },
+        "tool_statuses": [
+          "success"
+        ]
+      }
+    },
+    {
+      "value": {
+        "paths": [
+          "/private/key.txt"
+        ],
+        "contents": {
+          "/private/key.txt": "Synthetic estimate requires review."
+        },
+        "tool_statuses": [
+          "success"
+        ]
+      }
+    }
+  ],
+  "cause": "Deny writes outside the permitted virtual directory."
+}

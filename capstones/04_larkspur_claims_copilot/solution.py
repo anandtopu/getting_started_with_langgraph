@@ -1,0 +1,23 @@
+"""Run the flagship through its actual authenticated streaming API.
+
+Run: uv run --extra apps python capstones/04_larkspur_claims_copilot/solution.py
+Expected: one synthetic effect, customer approval forbidden, stale approval rejected.
+LLM: local scripted fakes. Deploy the same v11 graph with compose.yaml.
+"""
+
+from common.app_demo import run_demo
+from common.copilot.v11 import build_graph as build_graph
+from common.pretty import print_state
+
+
+def run(case=None):
+    case = {"approved": True, **(case or {})}
+    return run_demo(approve=case["approved"], stale=True)
+
+
+def main():
+    print_state(run())
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,34 @@
+[
+  {
+    "input": {
+      "amount_cents": 100000,
+      "corrected_amount": 600000
+    },
+    "expected": {
+      "value": {
+        "original_route": "fast_track",
+        "fork_route": "specialist",
+        "replay_prompts": 1,
+        "fork_prompts": 1,
+        "original_unchanged": true,
+        "fork_parent_is_historical": true
+      }
+    }
+  },
+  {
+    "input": {
+      "amount_cents": 200000,
+      "corrected_amount": 50000
+    },
+    "expected": {
+      "value": {
+        "original_route": "specialist",
+        "fork_route": "fast_track",
+        "replay_prompts": 1,
+        "fork_prompts": 1,
+        "original_unchanged": true,
+        "fork_parent_is_historical": true
+      }
+    }
+  }
+]

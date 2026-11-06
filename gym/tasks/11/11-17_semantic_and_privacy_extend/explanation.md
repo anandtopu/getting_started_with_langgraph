@@ -1,0 +1,9 @@
+# Why the solution works
+
+An embedding maps text into numbers so the Store can rank similarity within a namespace. These transparent word vectors make the offline ranking reproducible. Store deletion does not delete old checkpoint contents: retention must handle both systems separately. Retrieval is evidence selection, never an authorization check.
+
+Delete the requested memory while preserving unrelated evidence. The implementation preserves the claim identity and separates the tested concern from unrelated state. The cases include normal and boundary inputs, so replacing the result with a single constant is not a general repair.
+
+The deliberate fault changes 'store.delete(namespace, "water")' to 'store.delete(namespace, "theft")'. Follow the data affected by that operation before inspecting later nodes. For predictions, distinguish returned values from error types. For traces, the observed failure is evidence of the first broken contract, not proof that the framework is unreliable.
+
+Run the task tests against your selected workspace file. Viewing this reference is assisted study; a written Design rationale still requires the rubric.

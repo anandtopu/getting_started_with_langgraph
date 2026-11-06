@@ -1,0 +1,62 @@
+[
+  {
+    "input": {
+      "claim_type": " Water ",
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "water"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "THEFT",
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "theft"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": null,
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "unknown"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "  storm  ",
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "storm"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "unlisted",
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "unknown"
+      }
+    }
+  }
+]

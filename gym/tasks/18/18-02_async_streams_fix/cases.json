@@ -1,0 +1,46 @@
+[
+  {
+    "input": {
+      "text": "Your estimate is ready.",
+      "cancel": true
+    },
+    "expected": {
+      "value": {
+        "kinds": [
+          "checkpoints",
+          "custom",
+          "debug",
+          "messages",
+          "tasks",
+          "updates",
+          "values"
+        ],
+        "text": "Your estimate is ready.",
+        "matches_invoke": true,
+        "cancelled_cleanly": true
+      }
+    }
+  },
+  {
+    "input": {
+      "text": "Documents ready.",
+      "cancel": false
+    },
+    "expected": {
+      "value": {
+        "kinds": [
+          "checkpoints",
+          "custom",
+          "debug",
+          "messages",
+          "tasks",
+          "updates",
+          "values"
+        ],
+        "text": "Documents ready.",
+        "matches_invoke": true,
+        "cancelled_cleanly": false
+      }
+    }
+  }
+]

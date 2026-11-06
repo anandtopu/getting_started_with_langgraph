@@ -1,0 +1,53 @@
+{
+  "observations": [
+    {
+      "value": {
+        "todos": [
+          {
+            "content": "Read the policy deductible",
+            "status": "in_progress"
+          },
+          {
+            "content": "Review the contractor estimate",
+            "status": "pending"
+          }
+        ],
+        "tool_statuses": [
+          "success"
+        ],
+        "final": "The policy and document investigation plan is recorded."
+      }
+    },
+    {
+      "value": {
+        "todos": [
+          {
+            "content": "Read the policy deductible",
+            "status": "completed"
+          },
+          {
+            "content": "Review the contractor estimate",
+            "status": "pending"
+          }
+        ],
+        "tool_statuses": [
+          "success"
+        ],
+        "final": "The policy and document investigation plan is recorded."
+      }
+    },
+    {
+      "error": "ValueError"
+    },
+    {
+      "value": {
+        "todos": [],
+        "tool_statuses": [
+          "error"
+        ],
+        "final": "The policy and document investigation plan is recorded."
+      }
+    }
+  ],
+  "cause": null
+}

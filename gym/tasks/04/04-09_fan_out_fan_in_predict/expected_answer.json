@@ -1,0 +1,55 @@
+{
+  "observations": [
+    {
+      "value": {
+        "findings": [
+          "DOC-001",
+          "DOC-021"
+        ],
+        "summaries": [
+          [
+            "DOC-001",
+            "DOC-021"
+          ]
+        ]
+      }
+    },
+    {
+      "value": {
+        "findings": [],
+        "summaries": [
+          []
+        ]
+      }
+    },
+    {
+      "value": {
+        "findings": [
+          "DOC-Z"
+        ],
+        "summaries": [
+          [
+            "DOC-Z"
+          ]
+        ]
+      }
+    },
+    {
+      "value": {
+        "findings": [
+          "DOC-A",
+          "DOC-B",
+          "DOC-Z"
+        ],
+        "summaries": [
+          [
+            "DOC-A",
+            "DOC-B",
+            "DOC-Z"
+          ]
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

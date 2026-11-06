@@ -1,0 +1,249 @@
+{
+  "observations": [
+    {
+      "value": {
+        "parts": [
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "input",
+            "interrupts": 0
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task"
+          },
+          {
+            "type": "custom",
+            "namespace": [],
+            "phase": "received"
+          },
+          {
+            "type": "updates",
+            "namespace": [],
+            "nodes": [
+              "receive"
+            ]
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task_result"
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "received",
+            "interrupts": 0
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task"
+          },
+          {
+            "type": "updates",
+            "namespace": [],
+            "nodes": [
+              "validate"
+            ]
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task_result"
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "validated",
+            "interrupts": 0
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "parts": [
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "input",
+            "interrupts": 0
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task"
+          },
+          {
+            "type": "custom",
+            "namespace": [],
+            "phase": "received"
+          },
+          {
+            "type": "updates",
+            "namespace": [],
+            "nodes": [
+              "receive"
+            ]
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task_result"
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "received",
+            "interrupts": 0
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task"
+          },
+          {
+            "type": "updates",
+            "namespace": [],
+            "nodes": [
+              "__interrupt__"
+            ]
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "received",
+            "interrupts": 1
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task_result"
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "parts": [
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "input",
+            "interrupts": 0
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task"
+          },
+          {
+            "type": "custom",
+            "namespace": [],
+            "phase": "received"
+          },
+          {
+            "type": "updates",
+            "namespace": [],
+            "nodes": [
+              "receive"
+            ]
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task_result"
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "received",
+            "interrupts": 0
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task"
+          },
+          {
+            "type": "updates",
+            "namespace": [],
+            "nodes": [
+              "validate"
+            ]
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "task_result"
+          },
+          {
+            "type": "values",
+            "namespace": [],
+            "status": "validated",
+            "interrupts": 0
+          },
+          {
+            "type": "debug",
+            "namespace": [],
+            "event": "checkpoint"
+          }
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

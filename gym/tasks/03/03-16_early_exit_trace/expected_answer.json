@@ -1,0 +1,23 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "amount_cents": 0,
+        "duplicate_of": null,
+        "reason": "invalid",
+        "assigned": false
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "amount_cents": -1,
+        "duplicate_of": null,
+        "reason": "invalid",
+        "assigned": false
+      }
+    }
+  ],
+  "cause": "Zero is a defined boundary, not an omitted case."
+}

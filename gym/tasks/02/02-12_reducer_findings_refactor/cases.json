@@ -1,0 +1,118 @@
+[
+  {
+    "input": {
+      "first": {
+        "id": "receipt",
+        "severity": 1
+      },
+      "second": {
+        "id": "receipt",
+        "severity": 3
+      }
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          {
+            "id": "receipt",
+            "severity": 3
+          }
+        ],
+        "log": [
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    }
+  },
+  {
+    "input": {
+      "first": {
+        "id": "receipt",
+        "severity": 1
+      },
+      "second": {
+        "id": "estimate",
+        "severity": 2
+      }
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          {
+            "id": "estimate",
+            "severity": 2
+          },
+          {
+            "id": "receipt",
+            "severity": 1
+          }
+        ],
+        "log": [
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    }
+  },
+  {
+    "input": {
+      "first": {
+        "id": "receipt",
+        "severity": 4
+      },
+      "second": {
+        "id": "receipt",
+        "severity": 3
+      }
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          {
+            "id": "receipt",
+            "severity": 4
+          }
+        ],
+        "log": [
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    }
+  },
+  {
+    "input": {
+      "first": {
+        "id": "z",
+        "severity": 1
+      },
+      "second": {
+        "id": "a",
+        "severity": 2
+      }
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          {
+            "id": "a",
+            "severity": 2
+          },
+          {
+            "id": "z",
+            "severity": 1
+          }
+        ],
+        "log": [
+          "estimate",
+          "receipt"
+        ],
+        "last": "receipt"
+      }
+    }
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "observations": [
+    {
+      "value": {
+        "services": [
+          "api",
+          "postgres",
+          "ui"
+        ],
+        "valid": true,
+        "errors": [],
+        "api_waits_for_database": true
+      }
+    },
+    {
+      "value": {
+        "services": [
+          "api",
+          "postgres",
+          "ui"
+        ],
+        "valid": true,
+        "errors": [],
+        "api_waits_for_database": true
+      }
+    }
+  ],
+  "cause": "Detect accidental public binding of the teaching service."
+}

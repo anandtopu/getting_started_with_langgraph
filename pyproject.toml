@@ -59,10 +59,10 @@ dev = [
 maintain = ["pre-commit>=4.7.0,<5", "nbstripout>=0.9.1,<0.10", "hypothesis>=6.170.14,<7"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["common", "gym", "scripts"]
+packages = ["common", "gym", "scripts", "apps"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "modules", "capstones"]
 addopts = "-ra --strict-markers --import-mode=importlib --disable-socket --allow-unix-socket"
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
@@ -75,6 +75,7 @@ filterwarnings = [
   "error::DeprecationWarning:langchain.*",
   "error::langgraph.warnings.LangGraphDeprecationWarning",
   "error::langchain_core._api.deprecation.LangChainDeprecationWarning",
+  "default::langchain_core._api.beta_decorator.LangChainBetaWarning",
 ]
 
 [tool.ruff]
@@ -84,7 +85,10 @@ extend-exclude = ["workspace", "tmp", "docs/verification", ".venv"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
-ignore = ["E501"]
+ignore = ["E501", "SIM105"] # Explicit cancellation handling is useful in teaching examples.
+
+[tool.ruff.lint.per-file-ignores]
+"gym/tasks/**/*.py" = ["F841", "B007"] # Deliberate faults can leave a result or loop variable unused.
 
 [tool.ruff.format]
 quote-style = "double"

@@ -1,0 +1,55 @@
+{
+  "observations": [
+    {
+      "value": {
+        "history": [
+          false,
+          false,
+          true
+        ],
+        "budget": 3,
+        "attempts": 3,
+        "status": "ready",
+        "trace": [
+          "missing",
+          "missing",
+          "received"
+        ]
+      }
+    },
+    {
+      "value": {
+        "history": [
+          true
+        ],
+        "budget": 3,
+        "attempts": 1,
+        "status": "ready",
+        "trace": [
+          "received"
+        ]
+      }
+    },
+    {
+      "value": {
+        "history": [
+          false
+        ],
+        "budget": 2,
+        "attempts": 2,
+        "status": "exhausted",
+        "trace": [
+          "missing",
+          "missing"
+        ]
+      }
+    },
+    {
+      "error": "ValueError"
+    },
+    {
+      "error": "GraphRecursionError"
+    }
+  ],
+  "cause": null
+}

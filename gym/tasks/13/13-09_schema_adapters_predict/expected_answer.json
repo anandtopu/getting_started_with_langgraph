@@ -1,0 +1,41 @@
+{
+  "observations": [
+    {
+      "value": {
+        "fields": [
+          "amount_cents",
+          "claim_id",
+          "risk"
+        ],
+        "claim_id": "CLM-0001",
+        "amount_cents": 600000,
+        "risk": "review"
+      }
+    },
+    {
+      "value": {
+        "fields": [
+          "amount_cents",
+          "claim_id",
+          "risk"
+        ],
+        "claim_id": "CLM-0001",
+        "amount_cents": 500000,
+        "risk": "routine"
+      }
+    },
+    {
+      "value": {
+        "fields": [
+          "amount_cents",
+          "claim_id",
+          "risk"
+        ],
+        "claim_id": "CLM-0200",
+        "amount_cents": 10000,
+        "risk": "routine"
+      }
+    }
+  ],
+  "cause": null
+}

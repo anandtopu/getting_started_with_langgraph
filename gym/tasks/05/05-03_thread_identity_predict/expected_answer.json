@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "value": {
+        "first_notes": [
+          "received",
+          "estimate attached"
+        ],
+        "second_notes": [
+          "other customer"
+        ]
+      }
+    },
+    {
+      "value": {
+        "first_notes": [
+          "received",
+          "estimate attached"
+        ],
+        "second_notes": [
+          "other customer"
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

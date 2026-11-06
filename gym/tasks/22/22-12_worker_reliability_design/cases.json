@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "workers": "stateless",
+        "concurrency": "one_run_per_thread",
+        "effects": "durable_unique_keys"
+      }
+    }
+  }
+]

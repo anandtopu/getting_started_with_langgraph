@@ -1,0 +1,118 @@
+[
+  {
+    "input": {
+      "python": [
+        3,
+        12
+      ],
+      "packages": [
+        "langgraph",
+        "pytest"
+      ],
+      "data_present": true,
+      "live": false,
+      "provider_ready": false
+    },
+    "expected": {
+      "value": {
+        "ready": true,
+        "errors": [],
+        "mode": "offline"
+      }
+    }
+  },
+  {
+    "input": {
+      "python": [
+        3,
+        12
+      ],
+      "packages": [
+        "langgraph",
+        "pytest"
+      ],
+      "data_present": true,
+      "live": true,
+      "provider_ready": false
+    },
+    "expected": {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Optional live provider is not configured"
+        ],
+        "mode": "live"
+      }
+    }
+  },
+  {
+    "input": {
+      "python": [
+        3,
+        12
+      ],
+      "packages": [
+        "langgraph",
+        "pytest"
+      ],
+      "data_present": false,
+      "live": false,
+      "provider_ready": false
+    },
+    "expected": {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Missing data/claims.db; restore the committed fixtures"
+        ],
+        "mode": "offline"
+      }
+    }
+  },
+  {
+    "input": {
+      "python": [
+        3,
+        12
+      ],
+      "packages": [],
+      "data_present": true,
+      "live": false,
+      "provider_ready": false
+    },
+    "expected": {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Missing package: langgraph",
+          "Missing package: pytest"
+        ],
+        "mode": "offline"
+      }
+    }
+  },
+  {
+    "input": {
+      "python": [
+        3,
+        10
+      ],
+      "packages": [
+        "langgraph",
+        "pytest"
+      ],
+      "data_present": true,
+      "live": false,
+      "provider_ready": false
+    },
+    "expected": {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Use Python 3.11–3.14"
+        ],
+        "mode": "offline"
+      }
+    }
+  }
+]

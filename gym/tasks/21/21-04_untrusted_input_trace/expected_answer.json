@@ -1,0 +1,23 @@
+{
+  "observations": [
+    {
+      "value": {
+        "route": "fast_track",
+        "payment_authorized": false,
+        "model_fields": [
+          "amount_cents",
+          "claim_type",
+          "confidence",
+          "loss_date"
+        ],
+        "tool_permissions": [
+          "read_synthetic_policy"
+        ]
+      }
+    },
+    {
+      "error": "ValidationError"
+    }
+  ],
+  "cause": "Preserve validated amounts before applying deterministic routing."
+}

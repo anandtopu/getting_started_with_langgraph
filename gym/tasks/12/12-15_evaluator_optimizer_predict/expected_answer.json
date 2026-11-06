@@ -1,0 +1,80 @@
+{
+  "observations": [
+    {
+      "value": {
+        "accepted": true,
+        "attempts": 2,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": [
+              "deductible_fact",
+              "respectful_tone"
+            ]
+          },
+          {
+            "attempt": 2,
+            "feedback": []
+          }
+        ],
+        "stop_reason": "accepted"
+      }
+    },
+    {
+      "value": {
+        "accepted": false,
+        "attempts": 1,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": [
+              "deductible_fact",
+              "respectful_tone"
+            ]
+          }
+        ],
+        "stop_reason": "budget_exhausted"
+      }
+    },
+    {
+      "value": {
+        "accepted": false,
+        "attempts": 2,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": [
+              "deductible_fact",
+              "respectful_tone"
+            ]
+          },
+          {
+            "attempt": 2,
+            "feedback": [
+              "deductible_fact",
+              "respectful_tone"
+            ]
+          }
+        ],
+        "stop_reason": "budget_exhausted"
+      }
+    },
+    {
+      "value": {
+        "accepted": true,
+        "attempts": 1,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": []
+          }
+        ],
+        "stop_reason": "accepted"
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

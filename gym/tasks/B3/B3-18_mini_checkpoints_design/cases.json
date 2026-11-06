@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "checkpoint": "copied_state_and_position",
+        "thread": "isolated",
+        "pause": "single_node_teaching_contract"
+      }
+    }
+  }
+]

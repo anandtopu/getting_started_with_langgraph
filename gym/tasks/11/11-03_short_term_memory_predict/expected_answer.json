@@ -1,0 +1,35 @@
+{
+  "observations": [
+    {
+      "value": {
+        "saved_messages": 4,
+        "model_context_sizes": [
+          1,
+          2
+        ],
+        "summary": "A pipe burst. | An estimate is now attached."
+      }
+    },
+    {
+      "value": {
+        "saved_messages": 4,
+        "model_context_sizes": [
+          1,
+          4
+        ],
+        "summary": "A pipe burst. | An estimate is now attached."
+      }
+    },
+    {
+      "value": {
+        "saved_messages": 4,
+        "model_context_sizes": [
+          1,
+          2
+        ],
+        "summary": "A pipe burst. | A contractor supplied photos."
+      }
+    }
+  ],
+  "cause": null
+}

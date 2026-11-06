@@ -1,0 +1,36 @@
+{
+  "observations": [
+    {
+      "value": {
+        "mini": {
+          "findings": [
+            "estimate",
+            "policy"
+          ]
+        },
+        "langgraph": {
+          "findings": [
+            "estimate",
+            "policy"
+          ]
+        },
+        "equal": true
+      }
+    },
+    {
+      "value": {
+        "mini": {
+          "conflict": true
+        },
+        "langgraph": {
+          "findings": [
+            "estimate",
+            "policy"
+          ]
+        },
+        "equal": false
+      }
+    }
+  ],
+  "cause": "Retain the overwrite-conflict case in the real runtime comparison."
+}

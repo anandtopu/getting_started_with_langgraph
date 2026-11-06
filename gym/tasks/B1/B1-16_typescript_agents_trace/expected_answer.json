@@ -1,0 +1,45 @@
+{
+  "observations": [
+    {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "prebuilt_roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "final": "Policy evidence checked; no payment authorized.",
+        "tool_ids": [
+          "lookup-1"
+        ]
+      }
+    },
+    {
+      "value": {
+        "roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "prebuilt_roles": [
+          "human",
+          "ai",
+          "tool",
+          "ai"
+        ],
+        "final": "Policy evidence checked; no payment authorized.",
+        "tool_ids": [
+          "lookup-1"
+        ]
+      }
+    }
+  ],
+  "cause": "Respect the configured loop budget in both JavaScript agents."
+}

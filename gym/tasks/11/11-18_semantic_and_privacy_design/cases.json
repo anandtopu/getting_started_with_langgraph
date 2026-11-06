@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "retrieval": "namespace_then_similarity",
+        "retention": "store_and_checkpoints",
+        "embeddings": "deterministic_teaching_vectors"
+      }
+    }
+  }
+]

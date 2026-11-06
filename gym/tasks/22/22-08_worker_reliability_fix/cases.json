@@ -1,0 +1,42 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "amount_cents": 50000,
+      "changed_payload": false
+    },
+    "expected": {
+      "value": {
+        "competing_worker_busy": true,
+        "first_created": true,
+        "replay_created": false,
+        "effects": 1
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0020",
+      "amount_cents": 50000,
+      "changed_payload": false
+    },
+    "expected": {
+      "value": {
+        "competing_worker_busy": true,
+        "first_created": true,
+        "replay_created": false,
+        "effects": 1
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "amount_cents": 50000,
+      "changed_payload": true
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "granularity": "per_tool_call",
+        "validation": "response_schema",
+        "decisions": "approve_or_reject"
+      }
+    }
+  }
+]

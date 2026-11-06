@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "order": "classify_gate_draft",
+        "authority": "policy_record",
+        "stop": "failed_gate"
+      }
+    }
+  }
+]

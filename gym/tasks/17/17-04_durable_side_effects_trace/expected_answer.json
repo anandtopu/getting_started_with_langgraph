@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "error": "RuntimeError"
+    },
+    {
+      "error": "RuntimeError"
+    }
+  ],
+  "cause": "Make the crash supervisor recognize the documented owned-worker exit."
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "tool_name": "read_claim"
+    },
+    "expected": {
+      "value": {
+        "tools": [
+          "list_capabilities",
+          "read_claim"
+        ],
+        "result": {
+          "claim_id": "CLM-0001",
+          "claim_type": "water",
+          "amount_cents": 2096759,
+          "route": "specialist"
+        },
+        "parameters": [
+          "claim_id"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0002",
+      "tool_name": "read_claim"
+    },
+    "expected": {
+      "value": {
+        "tools": [
+          "list_capabilities",
+          "read_claim"
+        ],
+        "result": {
+          "claim_id": "CLM-0002",
+          "claim_type": "theft",
+          "amount_cents": 2345665,
+          "route": "specialist"
+        },
+        "parameters": [
+          "claim_id"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "../../private",
+      "tool_name": "read_claim"
+    },
+    "expected": {
+      "error": "ToolError"
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "tool_name": "list_capabilities"
+    },
+    "expected": {
+      "error": "JSONDecodeError"
+    }
+  }
+]

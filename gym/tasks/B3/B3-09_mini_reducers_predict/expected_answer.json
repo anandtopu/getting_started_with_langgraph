@@ -1,0 +1,33 @@
+{
+  "observations": [
+    {
+      "value": {
+        "mini": {
+          "findings": [
+            "estimate",
+            "policy"
+          ]
+        },
+        "langgraph": {
+          "findings": [
+            "estimate",
+            "policy"
+          ]
+        },
+        "equal": true
+      }
+    },
+    {
+      "value": {
+        "mini": {
+          "conflict": true
+        },
+        "langgraph": {
+          "conflict": true
+        },
+        "equal": true
+      }
+    }
+  ],
+  "cause": null
+}

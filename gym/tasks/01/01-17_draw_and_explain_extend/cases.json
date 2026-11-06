@@ -1,0 +1,154 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "Pipe burst"
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "check_eligibility",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          },
+          {
+            "check_eligibility": {
+              "eligible": true
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": ""
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "check_eligibility",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": false
+            }
+          },
+          {
+            "check_eligibility": {
+              "eligible": false
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0042",
+      "description": " stolen watch "
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "check_eligibility",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          },
+          {
+            "check_eligibility": {
+              "eligible": true
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "",
+      "description": "Pipe burst"
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "check_eligibility",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          },
+          {
+            "check_eligibility": {
+              "eligible": false
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  }
+]

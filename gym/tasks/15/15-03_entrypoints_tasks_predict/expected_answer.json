@@ -1,0 +1,32 @@
+{
+  "observations": [
+    {
+      "value": {
+        "amount_cents": 125000,
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "route": "standard"
+      }
+    },
+    {
+      "value": {
+        "amount_cents": 100000,
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "route": "fast_track"
+      }
+    },
+    {
+      "value": {
+        "amount_cents": 125000,
+        "claim_id": "CLM-0001",
+        "description": "",
+        "route": "needs_information"
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

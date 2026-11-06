@@ -1,0 +1,29 @@
+{
+  "observations": [
+    {
+      "value": {
+        "progress": [
+          "review_documents"
+        ],
+        "text": "Estimate received.",
+        "current_ids": [
+          "old-approval"
+        ],
+        "can_submit": true
+      }
+    },
+    {
+      "value": {
+        "progress": [
+          "review_documents"
+        ],
+        "text": "Estimate received.",
+        "current_ids": [
+          "old-approval"
+        ],
+        "can_submit": false
+      }
+    }
+  ],
+  "cause": "Replace the stale approval identity with the current snapshot."
+}

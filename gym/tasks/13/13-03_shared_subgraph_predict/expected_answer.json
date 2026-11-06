@@ -1,0 +1,47 @@
+{
+  "observations": [
+    {
+      "value": {
+        "amount_cents": 600000,
+        "documents": [],
+        "flags": [
+          "high_value",
+          "intake_checked",
+          "missing_evidence"
+        ],
+        "workflow": "claim",
+        "destination": "claim_review"
+      }
+    },
+    {
+      "value": {
+        "amount_cents": 100000,
+        "documents": [
+          "estimate"
+        ],
+        "flags": [
+          "intake_checked"
+        ],
+        "workflow": "claim",
+        "destination": "claim_standard"
+      }
+    },
+    {
+      "value": {
+        "amount_cents": 600000,
+        "documents": [],
+        "flags": [
+          "high_value",
+          "intake_checked",
+          "missing_evidence"
+        ],
+        "workflow": "new_policy",
+        "destination": "new_policy_review"
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

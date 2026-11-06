@@ -1,0 +1,23 @@
+{
+  "observations": [
+    {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Optional live provider is not configured"
+        ],
+        "mode": "offline"
+      }
+    },
+    {
+      "value": {
+        "ready": false,
+        "errors": [
+          "Optional live provider is not configured"
+        ],
+        "mode": "live"
+      }
+    }
+  ],
+  "cause": "A missing provider is a problem only when live mode was requested."
+}

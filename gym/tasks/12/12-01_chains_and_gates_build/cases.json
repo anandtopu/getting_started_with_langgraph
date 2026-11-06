@@ -1,0 +1,72 @@
+[
+  {
+    "input": {
+      "category": "policy",
+      "policy_deductible": 100000,
+      "extracted_deductible": 100000
+    },
+    "expected": {
+      "value": {
+        "category": "policy",
+        "extracted_deductible": 100000,
+        "draft": {
+          "text": "Thank you for the synthetic claim. We will review your evidence.",
+          "deductible_cents": 100000
+        },
+        "accepted": true
+      }
+    }
+  },
+  {
+    "input": {
+      "category": "documents",
+      "policy_deductible": 100000,
+      "extracted_deductible": 100000
+    },
+    "expected": {
+      "value": {
+        "category": "documents",
+        "extracted_deductible": 100000,
+        "draft": {
+          "text": "Thank you for the synthetic claim. We will review your evidence.",
+          "deductible_cents": 100000
+        },
+        "accepted": true
+      }
+    }
+  },
+  {
+    "input": {
+      "category": "policy",
+      "policy_deductible": 100000,
+      "extracted_deductible": 90000
+    },
+    "expected": {
+      "value": {
+        "category": "policy",
+        "extracted_deductible": 90000,
+        "accepted": false
+      }
+    }
+  },
+  {
+    "input": {
+      "category": "approve",
+      "policy_deductible": 100000,
+      "extracted_deductible": 100000
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  },
+  {
+    "input": {
+      "category": "policy",
+      "policy_deductible": 100000,
+      "extracted_deductible": true
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  }
+]

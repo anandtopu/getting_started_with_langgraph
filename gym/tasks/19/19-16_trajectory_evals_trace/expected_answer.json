@@ -1,0 +1,17 @@
+{
+  "observations": [
+    {
+      "value": {
+        "score": true,
+        "key": "trajectory_strict_match"
+      }
+    },
+    {
+      "value": {
+        "score": false,
+        "key": "trajectory_strict_match"
+      }
+    }
+  ],
+  "cause": "Check the policy arguments, not only tool names."
+}

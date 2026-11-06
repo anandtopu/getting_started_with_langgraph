@@ -1,0 +1,23 @@
+{
+  "observations": [
+    {
+      "value": {
+        "admitted": true,
+        "effects": 1,
+        "status": "recorded",
+        "customer_approval_status": 403,
+        "stale_status": 409
+      }
+    },
+    {
+      "value": {
+        "admitted": true,
+        "effects": 0,
+        "status": "not_approved",
+        "customer_approval_status": 403,
+        "stale_status": 409
+      }
+    }
+  ],
+  "cause": "Reject an operation above the token admission budget."
+}

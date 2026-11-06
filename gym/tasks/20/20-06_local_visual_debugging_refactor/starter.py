@@ -1,0 +1,47 @@
+"""Refactor local visual debugging: Inspect the actual approval node in the generated graph diagram.. Run this file with Python. No live model or network."""
+
+import json
+
+from common.config import ROOT
+from common.copilot.v03 import build_graph
+from common.data import load_submission
+from common.pretty import print_state
+
+DEFAULT_CASE = {"amount_cents": 600000, "reported_route": "fast_track"}
+
+
+# YOUR CODE HERE: repair the contract described in task.md.
+def run(case: dict | None = None) -> dict:
+    case = DEFAULT_CASE if case is None else case
+    config = json.loads((ROOT / "langgraph.json").read_text("utf-8"))
+    source, symbol = config["graphs"]["claims"].split(":")
+    graph = build_graph()
+    diagram = graph.get_graph().draw_mermaid()
+    result = graph.invoke(
+        {
+            "claim": {**load_submission(1), "amount_cents": case["amount_cents"]},
+            "audit": [],
+            "findings": [],
+        },
+        {"configurable": {"thread_id": "debug-claim"}},
+        version="v2",
+    )
+    return {
+        "export_exists": (ROOT / source).is_file(),
+        "symbol": symbol,
+        "diagram_has_approval": "imaginary_node" in diagram,
+        "actual_route": result.value["route"],
+        "misrouted": result.value["route"] != case["reported_route"],
+        "paused": bool(result.interrupts),
+    }
+
+
+def main() -> None:
+    try:
+        print_state(run())
+    except Exception as error:
+        print_state({"observed_error": type(error).__name__})
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,50 @@
+[
+  {
+    "input": {
+      "max_messages": 2,
+      "second_text": "An estimate is now attached."
+    },
+    "expected": {
+      "value": {
+        "saved_messages": 4,
+        "model_context_sizes": [
+          1,
+          2
+        ],
+        "summary": "A pipe burst. | An estimate is now attached."
+      }
+    }
+  },
+  {
+    "input": {
+      "max_messages": 4,
+      "second_text": "An estimate is now attached."
+    },
+    "expected": {
+      "value": {
+        "saved_messages": 4,
+        "model_context_sizes": [
+          1,
+          4
+        ],
+        "summary": "A pipe burst. | An estimate is now attached."
+      }
+    }
+  },
+  {
+    "input": {
+      "max_messages": 2,
+      "second_text": "A contractor supplied photos."
+    },
+    "expected": {
+      "value": {
+        "saved_messages": 4,
+        "model_context_sizes": [
+          1,
+          2
+        ],
+        "summary": "A pipe burst. | A contractor supplied photos."
+      }
+    }
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "amount_cents": 600000
+    },
+    "expected": {
+      "value": {
+        "fields": [
+          "amount_cents",
+          "claim_id",
+          "risk"
+        ],
+        "claim_id": "CLM-0001",
+        "amount_cents": 600000,
+        "risk": "review"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "amount_cents": 500000
+    },
+    "expected": {
+      "value": {
+        "fields": [
+          "amount_cents",
+          "claim_id",
+          "risk"
+        ],
+        "claim_id": "CLM-0001",
+        "amount_cents": 500000,
+        "risk": "routine"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0200",
+      "amount_cents": 10000
+    },
+    "expected": {
+      "value": {
+        "fields": [
+          "amount_cents",
+          "claim_id",
+          "risk"
+        ],
+        "claim_id": "CLM-0200",
+        "amount_cents": 10000,
+        "risk": "routine"
+      }
+    }
+  }
+]

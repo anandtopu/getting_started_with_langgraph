@@ -1,0 +1,39 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	intake(intake)
+	policy(policy)
+	fraud(fraud)
+	communication(communication)
+	__end__([<p>__end__</p>]):::last
+	__start__ -.-> communication;
+	__start__ -.-> fraud;
+	__start__ -.-> intake;
+	__start__ -.-> policy;
+	communication -.-> __end__;
+	communication -.-> fraud;
+	communication -.-> intake;
+	communication -.-> policy;
+	fraud -.-> __end__;
+	fraud -.-> communication;
+	fraud -.-> intake;
+	fraud -.-> policy;
+	intake -.-> __end__;
+	intake -.-> communication;
+	intake -.-> fraud;
+	intake -.-> policy;
+	policy -.-> __end__;
+	policy -.-> communication;
+	policy -.-> fraud;
+	policy -.-> intake;
+	communication -.-> communication;
+	fraud -.-> fraud;
+	intake -.-> intake;
+	policy -.-> policy;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

@@ -1,0 +1,22 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	review_document(review_document)
+	prepare_police(prepare_police)
+	review_police(review_police)
+	summarize(summarize<hr/><small><em>defer = True</em></small>)
+	__end__([<p>__end__</p>]):::last
+	__start__ -.-> prepare_police;
+	__start__ -.-> review_document;
+	__start__ -.-> summarize;
+	prepare_police --> review_police;
+	review_document --> summarize;
+	review_police --> summarize;
+	summarize --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

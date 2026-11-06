@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "error": "JSONDecodeError"
+    },
+    {
+      "error": "JSONDecodeError"
+    }
+  ],
+  "cause": "A compiled graph cannot use a saver whose connection has closed."
+}

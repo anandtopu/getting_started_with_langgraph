@@ -1,0 +1,66 @@
+{
+  "observations": [
+    {
+      "value": {
+        "original": "fast_track",
+        "corrected": "standard",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "value": {
+        "original": "standard",
+        "corrected": "fast_track",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "value": {
+        "original": "fast_track",
+        "corrected": "standard",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "value": {
+        "original": "fast_track",
+        "corrected": "standard",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          2
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

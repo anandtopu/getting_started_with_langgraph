@@ -1,0 +1,29 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "amount_cents": 125000,
+        "route": "standard",
+        "audit": [
+          "normalized",
+          "routed"
+        ]
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Pipe burst",
+        "amount_cents": 100000,
+        "route": "standard",
+        "audit": [
+          "normalized",
+          "routed"
+        ]
+      }
+    }
+  ],
+  "cause": "Preserve Python's inclusive fast-track boundary."
+}

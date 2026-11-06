@@ -1,0 +1,51 @@
+{
+  "observations": [
+    {
+      "value": {
+        "functional": [
+          "estimate:ready",
+          "police_report:review",
+          "receipt:ready"
+        ],
+        "graph": [
+          "estimate:ready",
+          "police_report:review",
+          "receipt:ready"
+        ],
+        "equal": true
+      }
+    },
+    {
+      "value": {
+        "functional": [],
+        "graph": [],
+        "equal": true
+      }
+    },
+    {
+      "value": {
+        "functional": [
+          "estimate:ready",
+          "receipt:ready"
+        ],
+        "graph": [
+          "estimate:ready",
+          "receipt:ready"
+        ],
+        "equal": true
+      }
+    },
+    {
+      "value": {
+        "functional": [
+          "police_report:review"
+        ],
+        "graph": [
+          "police_report:review"
+        ],
+        "equal": true
+      }
+    }
+  ],
+  "cause": null
+}

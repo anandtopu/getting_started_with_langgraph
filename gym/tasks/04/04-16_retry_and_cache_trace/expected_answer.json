@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "value": {
+        "covered": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "lookup_calls": 3
+      }
+    },
+    {
+      "value": {
+        "covered": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "lookup_calls": 2
+      }
+    }
+  ],
+  "cause": "Customer identity belongs in the cache key."
+}

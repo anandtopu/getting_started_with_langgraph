@@ -1,0 +1,37 @@
+{
+  "observations": [
+    {
+      "value": {
+        "original": "fast_track",
+        "corrected": "fast_track",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "value": {
+        "original": "standard",
+        "corrected": "standard",
+        "pending_after_edit": [
+          "decide"
+        ],
+        "parent_exists": true,
+        "saved_steps": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      }
+    }
+  ],
+  "cause": "Continue the configuration returned by update_state, not an unrelated checkpoint."
+}

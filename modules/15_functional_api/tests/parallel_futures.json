@@ -1,0 +1,77 @@
+[
+  {
+    "input": {
+      "documents": [
+        "estimate",
+        "receipt",
+        "police_report"
+      ]
+    },
+    "expected": {
+      "value": {
+        "functional": [
+          "estimate:ready",
+          "police_report:review",
+          "receipt:ready"
+        ],
+        "graph": [
+          "estimate:ready",
+          "police_report:review",
+          "receipt:ready"
+        ],
+        "equal": true
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": []
+    },
+    "expected": {
+      "value": {
+        "functional": [],
+        "graph": [],
+        "equal": true
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": [
+        "receipt",
+        "estimate"
+      ]
+    },
+    "expected": {
+      "value": {
+        "functional": [
+          "estimate:ready",
+          "receipt:ready"
+        ],
+        "graph": [
+          "estimate:ready",
+          "receipt:ready"
+        ],
+        "equal": true
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": [
+        "police_report"
+      ]
+    },
+    "expected": {
+      "value": {
+        "functional": [
+          "police_report:review"
+        ],
+        "graph": [
+          "police_report:review"
+        ],
+        "equal": true
+      }
+    }
+  }
+]

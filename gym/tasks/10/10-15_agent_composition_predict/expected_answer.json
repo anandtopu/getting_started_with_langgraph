@@ -1,0 +1,33 @@
+{
+  "observations": [
+    {
+      "value": {
+        "fields": [
+          "claim_id",
+          "explanation",
+          "question",
+          "status"
+        ],
+        "claim_id": "CLM-0001",
+        "question": "What evidence is missing?",
+        "explanation": "Please attach a dated repair estimate.",
+        "status": "awaiting_evidence"
+      }
+    },
+    {
+      "value": {
+        "fields": [
+          "claim_id",
+          "explanation",
+          "question",
+          "status"
+        ],
+        "claim_id": "CLM-0099",
+        "question": "Which estimate is needed?",
+        "explanation": "Please attach a dated repair estimate.",
+        "status": "awaiting_evidence"
+      }
+    }
+  ],
+  "cause": null
+}

@@ -1,0 +1,18 @@
+{
+  "observations": [
+    {
+      "error": "ValueError"
+    },
+    {
+      "value": {
+        "output_type": "dict",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated"
+        }
+      }
+    }
+  ],
+  "cause": "Use Pydantic field access or model_dump instead of losing validated values."
+}

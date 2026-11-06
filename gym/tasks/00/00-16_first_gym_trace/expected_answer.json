@@ -1,0 +1,17 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "unknown"
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "label": "unknown"
+      }
+    }
+  ],
+  "cause": "Labels need case normalization before comparison."
+}

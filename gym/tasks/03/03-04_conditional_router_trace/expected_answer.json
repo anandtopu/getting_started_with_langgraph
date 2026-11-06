@@ -1,0 +1,21 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_type": "water",
+        "amount_cents": 100000,
+        "missing": [],
+        "route": "specialist"
+      }
+    },
+    {
+      "value": {
+        "claim_type": "water",
+        "amount_cents": 100001,
+        "missing": [],
+        "route": "specialist"
+      }
+    }
+  ],
+  "cause": "Path-map values must match each intended destination."
+}

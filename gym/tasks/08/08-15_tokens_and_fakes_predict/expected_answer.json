@@ -1,0 +1,46 @@
+{
+  "observations": [
+    {
+      "value": {
+        "text": "Larkspur received your synthetic claim.",
+        "matches_invoke": true,
+        "structured": null,
+        "nodes": [
+          "acknowledge"
+        ],
+        "nonempty_chunks": 5
+      }
+    },
+    {
+      "value": {
+        "text": "Estimate received.",
+        "matches_invoke": true,
+        "structured": null,
+        "nodes": [
+          "acknowledge"
+        ],
+        "nonempty_chunks": 2
+      }
+    },
+    {
+      "value": {
+        "text": "{\"claim_type\":\"water\",\"amount_cents\":50,\"confidence\":0.9}",
+        "matches_invoke": true,
+        "structured": {
+          "claim_type": "water",
+          "amount_cents": 50,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "nodes": [
+          "acknowledge"
+        ],
+        "nonempty_chunks": 1
+      }
+    },
+    {
+      "error": "ValidationError"
+    }
+  ],
+  "cause": null
+}

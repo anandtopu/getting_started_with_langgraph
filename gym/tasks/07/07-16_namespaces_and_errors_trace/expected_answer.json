@@ -1,0 +1,35 @@
+{
+  "observations": [
+    {
+      "value": {
+        "groups": {
+          "document_review": [
+            "check_document"
+          ],
+          "parent": [
+            "check_identity",
+            "document_review",
+            "summarize"
+          ]
+        },
+        "summary_last": false
+      }
+    },
+    {
+      "value": {
+        "groups": {
+          "document_review": [
+            "check_document"
+          ],
+          "parent": [
+            "check_identity",
+            "document_review",
+            "summarize"
+          ]
+        },
+        "summary_last": false
+      }
+    }
+  ],
+  "cause": "Keep parent and child scopes distinct."
+}

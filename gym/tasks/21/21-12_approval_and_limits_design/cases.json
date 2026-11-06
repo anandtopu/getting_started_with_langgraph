@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "admission": "call_and_token_limits",
+        "decision": "authenticated_adjuster",
+        "effect": "idempotent_ledger"
+      }
+    }
+  }
+]

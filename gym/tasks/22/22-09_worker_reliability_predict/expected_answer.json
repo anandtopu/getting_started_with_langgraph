@@ -1,0 +1,24 @@
+{
+  "observations": [
+    {
+      "value": {
+        "competing_worker_busy": true,
+        "first_created": true,
+        "replay_created": false,
+        "effects": 1
+      }
+    },
+    {
+      "value": {
+        "competing_worker_busy": true,
+        "first_created": true,
+        "replay_created": false,
+        "effects": 1
+      }
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

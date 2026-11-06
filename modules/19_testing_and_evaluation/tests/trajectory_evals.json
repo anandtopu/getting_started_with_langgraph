@@ -1,0 +1,66 @@
+[
+  {
+    "input": {
+      "tools": [
+        "lookup_policy",
+        "check_coverage"
+      ],
+      "mode": "strict",
+      "policy_id": "POL-0001"
+    },
+    "expected": {
+      "value": {
+        "score": true,
+        "key": "trajectory_strict_match"
+      }
+    }
+  },
+  {
+    "input": {
+      "tools": [
+        "check_coverage",
+        "lookup_policy"
+      ],
+      "mode": "strict",
+      "policy_id": "POL-0001"
+    },
+    "expected": {
+      "value": {
+        "score": false,
+        "key": "trajectory_strict_match"
+      }
+    }
+  },
+  {
+    "input": {
+      "tools": [
+        "check_coverage",
+        "lookup_policy"
+      ],
+      "mode": "unordered",
+      "policy_id": "POL-0001"
+    },
+    "expected": {
+      "value": {
+        "score": true,
+        "key": "trajectory_unordered_match"
+      }
+    }
+  },
+  {
+    "input": {
+      "tools": [
+        "lookup_policy",
+        "check_coverage"
+      ],
+      "mode": "strict",
+      "policy_id": "POL-0002"
+    },
+    "expected": {
+      "value": {
+        "score": false,
+        "key": "trajectory_strict_match"
+      }
+    }
+  }
+]

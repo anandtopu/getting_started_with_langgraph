@@ -1,0 +1,94 @@
+[
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": 125000,
+      "confidence": 0.9
+    },
+    "expected": {
+      "value": {
+        "facts": {
+          "claim_type": "water",
+          "amount_cents": 125000,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "route": "standard"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": 100000,
+      "confidence": 0.9
+    },
+    "expected": {
+      "value": {
+        "facts": {
+          "claim_type": "water",
+          "amount_cents": 100000,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "route": "fast_track"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": 125000,
+      "confidence": 0.7
+    },
+    "expected": {
+      "value": {
+        "facts": {
+          "claim_type": "water",
+          "amount_cents": 125000,
+          "loss_date": null,
+          "confidence": 0.7
+        },
+        "route": "review"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "unknown",
+      "amount_cents": 125000,
+      "confidence": 0.9
+    },
+    "expected": {
+      "value": {
+        "facts": {
+          "claim_type": "unknown",
+          "amount_cents": 125000,
+          "loss_date": null,
+          "confidence": 0.9
+        },
+        "route": "review"
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": true,
+      "confidence": 0.9
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  },
+  {
+    "input": {
+      "claim_type": "water",
+      "amount_cents": 125000,
+      "confidence": 2
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  }
+]

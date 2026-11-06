@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "error": "RuntimeError"
+    },
+    {
+      "error": "RuntimeError"
+    }
+  ],
+  "cause": "An interrupt needs persistence to resume the saved task."
+}

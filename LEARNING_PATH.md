@@ -2,7 +2,7 @@
 
 You will build one evolving system: the **Larkspur Claims Copilot**, using fictional claims and policies. Start with ordinary Python decisions, learn to predict graph execution, and then add models, tools, durable work, and interfaces. No insurance expertise is assumed; synthetic policy rules are supplied as testable facts, not real-world advice.
 
-This is the complete Phase 1 course plan. Commands, module files, and tasks named below are planned for later phases and are not installed yet. See [the build plan](PHASE_1_PLAN.md) and [all 486 tasks](docs/GYM_TASK_CATALOG.md).
+All lessons and [486 tasks](docs/GYM_TASK_CATALOG.md) are included. The [feature map](docs/FEATURE_MAP.md) links each group to its executable example and use case. See [optional dependencies](docs/OPTIONAL_DEPENDENCIES.md) before the advanced integration lessons.
 
 ## Time and routes
 
@@ -20,9 +20,9 @@ Before the first guided milestone, revisit the supplied first-task prediction in
 
 ## What you need first
 
-Basic Python functions, dictionaries, classes, type hints, a terminal, and basic Git. Python 3.12 is recommended. The planned support matrix is CPython 3.11–3.14 on Windows and Linux, plus a macOS smoke job. Package metadata permits this target; installation and runtime compatibility must still pass the Phase 2/CI checks before support is claimed.
+Basic Python functions, dictionaries, classes, type hints, a terminal, and basic Git. Python 3.12 is recommended. The acceptance matrix covers CPython 3.11–3.14 on Windows and Linux, plus Python 3.12 on macOS. Consult the acceptance report for actual run results.
 
-Teach new prerequisites at their first use: simple pytest assertions in 00; graph terminology in 01; reducers and Pydantic validation in 02; messages briefly in 02 and LLMs/prompts/tool messages fully in 08–09; middleware in 10; embeddings in 11; futures in 15; async/await and MCP in 16; HTTP/SSE and UI reruns in 18; deeper testing/evaluation in 19; Docker and deployment concepts in 22. Notebook explanations use top-level await where appropriate rather than starting a second event loop.
+Teach new prerequisites at their first use: simple pytest assertions in 00; graph terminology in 01; reducers and Pydantic validation in 02; messages briefly in 02 and LLMs/prompts/tool messages fully in 08–09; middleware in 10; embeddings in 11; futures in 15; async/await and MCP in 16; HTTP/SSE and UI reruns in 18; deeper testing/evaluation in 19; Docker and deployment concepts in 22. Shipped notebooks execute canonical scripts in child processes; use top-level await for your own asynchronous notebook experiments.
 
 ## Tier 1 — Graph fundamentals, no LLM
 
@@ -45,11 +45,11 @@ A deterministic intake engine with routing, parallel document checks, SQLite che
 
 You are ready for the next tier when you can:
 
-- Explain state, partial updates, and reducer behavior without running the code. Practice: [01-03, 02-09](docs/GYM_TASK_CATALOG.md#module-01-your-first-graph).
-- Predict legal parallel execution batches and fix conflicting writes. Practice: [04-08, 04-09, 04-10](docs/GYM_TASK_CATALOG.md#module-04-loops-parallel-branches-and-map-reduce).
-- Resume the same persisted claim across process sessions. Practice: [05-07, 05-08](docs/GYM_TASK_CATALOG.md#module-05-persistence-and-threads).
-- Require approval and prevent duplicate effects on resume. Practice: [06-01, 06-14](docs/GYM_TASK_CATALOG.md#module-06-human-in-the-loop-with-interrupts).
-- Replay a historical decision and create a separate corrected fork. Practice: [07-01, 07-02](docs/GYM_TASK_CATALOG.md#module-07-time-travel-debugging-and-streaming-basics).
+- Explain state, partial updates, and reducer behavior without running the code. Practice: [01-03, 02-09](modules/01_your_first_graph/README.md).
+- Predict legal parallel execution batches and fix conflicting writes. Practice: [04-08, 04-09, 04-10](modules/04_loops_parallel_map_reduce/README.md).
+- Resume the same persisted claim across process sessions. Practice: [05-07, 05-08](modules/05_persistence_and_threads/README.md).
+- Require approval and prevent duplicate effects on resume. Practice: [06-01, 06-14](modules/06_human_in_the_loop/README.md).
+- Replay a historical decision and create a separate corrected fork. Practice: [07-01, 07-02](modules/07_time_travel_and_streaming/README.md).
 
 If one criterion fails, repeat a Fix and a Trace task in that feature group, then attempt the checkpoint again with a different synthetic claim. Reading a solution counts as study, not an independent pass.
 
@@ -71,10 +71,10 @@ A policy Q&A agent over the five fictional policy documents, with local retrieva
 
 You are ready for the next tier when you can:
 
-- Validate model extraction and preserve message identity. Practice: [08-02, 08-09](docs/GYM_TASK_CATALOG.md#module-08-llms-inside-nodes).
-- Build and explain the tool loop, then compare a prebuilt agent. Practice: [09-07, 10-06](docs/GYM_TASK_CATALOG.md#module-09-tools-and-the-agent-loop).
-- Isolate two customers' memories and account for deletion scope. Practice: [11-08, 11-16](docs/GYM_TASK_CATALOG.md#module-11-memory).
-- Bound a letter revision workflow and verify policy facts. Practice: [12-14, 12-17](docs/GYM_TASK_CATALOG.md#module-12-workflow-patterns-with-llms).
+- Validate model extraction and preserve message identity. Practice: [08-02, 08-09](modules/08_llms_inside_nodes/README.md).
+- Build and explain the tool loop, then compare a prebuilt agent. Practice: [09-07, 10-06](modules/09_tools_and_agent_loop/README.md).
+- Isolate two customers' memories and account for deletion scope. Practice: [11-08, 11-16](modules/11_memory/README.md).
+- Bound a letter revision workflow and verify policy facts. Practice: [12-14, 12-17](modules/12_workflow_patterns/README.md).
 
 If one criterion fails, repeat a Fix and a Trace task in that feature group, then attempt the checkpoint again with a different synthetic claim. Reading a solution counts as study, not an independent pass.
 
@@ -96,11 +96,11 @@ A bounded supervisor team with a reusable fraud subgraph, local stdio MCP tools,
 
 You are ready for the next tier when you can:
 
-- Reuse a fraud subgraph with explicit state boundaries. Practice: [13-01, 13-08](docs/GYM_TASK_CATALOG.md#module-13-subgraphs).
-- Explain who owns history and control at every agent handoff. Practice: [14-08, 14-10](docs/GYM_TASK_CATALOG.md#module-14-multi-agent-systems).
-- Translate graph behavior into tasks and durable entrypoints. Practice: [15-06, 15-14](docs/GYM_TASK_CATALOG.md#module-15-the-functional-api).
-- Call local MCP tools without network or credentials. Practice: [16-13, 16-14](docs/GYM_TASK_CATALOG.md#module-16-external-systems-and-mcp).
-- Recover from a simulated crash without duplicate effects. Practice: [17-02, 17-05, 17-13](docs/GYM_TASK_CATALOG.md#module-17-durable-execution-and-long-running-workflows).
+- Reuse a fraud subgraph with explicit state boundaries. Practice: [13-01, 13-08](modules/13_subgraphs/README.md).
+- Explain who owns history and control at every agent handoff. Practice: [14-08, 14-10](modules/14_multi_agent_systems/README.md).
+- Translate graph behavior into tasks and durable entrypoints. Practice: [15-06, 15-14](modules/15_functional_api/README.md).
+- Call local MCP tools without network or credentials. Practice: [16-13, 16-14](modules/16_external_systems_and_mcp/README.md).
+- Recover from a simulated crash without duplicate effects. Practice: [17-02, 17-05, 17-13](modules/17_durable_execution/README.md).
 
 If one criterion fails, repeat a Fix and a Trace task in that feature group, then attempt the checkpoint again with a different synthetic claim. Reading a solution counts as study, not an independent pass.
 
@@ -122,11 +122,11 @@ The integrated API, dashboard, persistent claims workflow, scoped tools, local e
 
 You are ready for the next independent project when you can:
 
-- Stream progress, tokens, and approvals through an async UI boundary. Practice: [18-01, 18-08, 18-14](docs/GYM_TASK_CATALOG.md#module-18-streaming-to-user-interfaces).
-- Catch decision and tool-trajectory regressions with offline evaluation. Practice: [19-02, 19-14, 19-17](docs/GYM_TASK_CATALOG.md#module-19-testing-and-evaluation).
-- Diagnose a misroute without requiring a tracing account. Practice: [20-04, 20-16](docs/GYM_TASK_CATALOG.md#module-20-observability-and-visual-debugging).
-- Keep prompt injection from authorizing writes or leaking customer data. Practice: [21-02, 21-08, 21-14](docs/GYM_TASK_CATALOG.md#module-21-security-and-guardrails).
-- Explain persistence, ownership, concurrency, and recovery in deployment. Practice: [22-08, 22-10, 22-18](docs/GYM_TASK_CATALOG.md#module-22-deployment).
+- Stream progress, tokens, and approvals through an async UI boundary. Practice: [18-01, 18-08, 18-14](modules/18_streaming_user_interfaces/README.md).
+- Catch decision and tool-trajectory regressions with offline evaluation. Practice: [19-02, 19-14, 19-17](modules/19_testing_and_evaluation/README.md).
+- Diagnose a misroute without requiring a tracing account. Practice: [20-04, 20-16](modules/20_observability_and_debugging/README.md).
+- Keep prompt injection from authorizing writes or leaking customer data. Practice: [21-02, 21-08, 21-14](modules/21_security_and_guardrails/README.md).
+- Explain persistence, ownership, concurrency, and recovery in deployment. Practice: [22-08, 22-10, 22-18](modules/22_deployment/README.md).
 
 If one criterion fails, repeat a Fix and a Trace task in that feature group, then attempt the checkpoint again with a different synthetic claim. Reading a solution counts as study, not an independent pass.
 

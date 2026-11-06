@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "replay": "entrypoint_restarts",
+        "task_results": "checkpoint_reuse",
+        "effects": "idempotent_boundary"
+      }
+    }
+  }
+]

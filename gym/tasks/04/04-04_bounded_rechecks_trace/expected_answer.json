@@ -1,0 +1,21 @@
+{
+  "observations": [
+    {
+      "error": "GraphRecursionError"
+    },
+    {
+      "value": {
+        "history": [
+          true
+        ],
+        "budget": 3,
+        "attempts": 0,
+        "status": "ready",
+        "trace": [
+          "received"
+        ]
+      }
+    }
+  ],
+  "cause": "Without a changing retry counter, the graph reaches its recursion limit."
+}

@@ -1,0 +1,70 @@
+"""Predict wire pipeline across the declared cases. Run this file with Python. No live model or network."""
+
+from typing import TypedDict
+
+from langgraph.graph import END, START, StateGraph
+
+from common.pretty import print_state
+
+DEFAULT_CASE = {"claim_id": "CLM-0001", "description": " Water leak ", "steps": []}
+
+
+class State(TypedDict):
+    claim_id: str
+    description: str
+    status: str
+    acknowledged: bool
+    steps: list[str]
+
+
+def normalize(state: State) -> dict:
+    return {"description": state["description"].strip(), "steps": [*state["steps"], "normalize"]}
+
+
+def validate(state: State) -> dict:
+    return {
+        "status": "ready" if state["description"] else "needs_information",
+        "steps": [*state["steps"], "validate"],
+    }
+
+
+def acknowledge(state: State) -> dict:
+    return {"acknowledged": True, "steps": [*state["steps"], "acknowledge"]}
+
+
+def build_graph():
+    graph = StateGraph(State)
+    graph.add_node("normalize", normalize)
+    graph.add_node("validate", validate)
+    graph.add_node("acknowledge", acknowledge)
+    graph.add_edge(START, "normalize")
+    graph.add_edge("normalize", "validate")
+    graph.add_edge("validate", "acknowledge")
+    graph.add_edge("acknowledge", END)
+    return graph.compile()
+
+
+def scenario(case: dict | None = None) -> dict:
+    return build_graph().invoke(dict(DEFAULT_CASE if case is None else case), version="v2").value
+
+
+def main() -> None:
+    print_state(run())
+
+
+def run() -> dict:
+    observations = []
+    for case in [
+        {"claim_id": "CLM-0001", "description": " Water leak ", "steps": []},
+        {"claim_id": "CLM-0001", "description": " ", "steps": []},
+        {"claim_id": "CLM-0098", "description": " theft ", "steps": []},
+    ]:
+        try:
+            observations.append({"value": scenario(case)})
+        except Exception as error:
+            observations.append({"error": type(error).__name__})
+    return {"observations": observations, "cause": None}
+
+
+if __name__ == "__main__":
+    main()

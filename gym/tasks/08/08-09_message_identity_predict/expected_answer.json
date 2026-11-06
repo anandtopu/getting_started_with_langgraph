@@ -1,0 +1,66 @@
+{
+  "observations": [
+    {
+      "value": {
+        "messages": [
+          {
+            "role": "ai",
+            "id": "agent-1",
+            "text": ""
+          },
+          {
+            "role": "tool",
+            "id": "tool-1",
+            "text": "Synthetic policy found"
+          }
+        ],
+        "paired": true
+      }
+    },
+    {
+      "value": {
+        "messages": [
+          {
+            "role": "human",
+            "id": "customer-1",
+            "text": "Corrected: pipe burst"
+          },
+          {
+            "role": "ai",
+            "id": "agent-1",
+            "text": ""
+          },
+          {
+            "role": "tool",
+            "id": "tool-1",
+            "text": "Synthetic policy found"
+          }
+        ],
+        "paired": true
+      }
+    },
+    {
+      "value": {
+        "messages": [
+          {
+            "role": "human",
+            "id": "customer-1",
+            "text": "Corrected: theft"
+          },
+          {
+            "role": "ai",
+            "id": "agent-1",
+            "text": ""
+          },
+          {
+            "role": "tool",
+            "id": "tool-1",
+            "text": "Synthetic policy found"
+          }
+        ],
+        "paired": true
+      }
+    }
+  ],
+  "cause": null
+}

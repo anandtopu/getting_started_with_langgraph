@@ -1,0 +1,32 @@
+{
+  "observations": [
+    {
+      "value": {
+        "accepted": true,
+        "calls": 2,
+        "effects": 1,
+        "keys": [
+          "estimate-request:CLM-0001",
+          "estimate-request:CLM-0001"
+        ]
+      }
+    },
+    {
+      "value": {
+        "accepted": true,
+        "calls": 1,
+        "effects": 1,
+        "keys": [
+          "estimate-request:CLM-0001"
+        ]
+      }
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ValueError"
+    }
+  ],
+  "cause": null
+}

@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "value": {
+        "notes": [
+          "intake",
+          "policy",
+          "estimate"
+        ],
+        "reconstructed": true,
+        "beta": true
+      }
+    },
+    {
+      "value": {
+        "notes": [
+          "intake",
+          "policy",
+          "estimate"
+        ],
+        "reconstructed": true,
+        "beta": true
+      }
+    }
+  ],
+  "cause": "Honor and validate the requested snapshot cadence."
+}

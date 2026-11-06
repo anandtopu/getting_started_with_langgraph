@@ -1,0 +1,45 @@
+{
+  "observations": [
+    {
+      "value": {
+        "steps": [
+          "receive",
+          "validate"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "steps": [
+          "receive",
+          "validate"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": false
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "cause": "The intended final node must be connected."
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "status": "Beta",
+        "reducer": "batch_invariant",
+        "migration": "replay_test_old_threads"
+      }
+    }
+  }
+]

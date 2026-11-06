@@ -1,0 +1,29 @@
+{
+  "observations": [
+    {
+      "value": {
+        "first_notes": [
+          "received"
+        ],
+        "second_notes": [
+          "received",
+          "estimate attached"
+        ],
+        "closed": true
+      }
+    },
+    {
+      "value": {
+        "first_notes": [
+          "received"
+        ],
+        "second_notes": [
+          "received",
+          "estimate attached"
+        ],
+        "closed": true
+      }
+    }
+  ],
+  "cause": null
+}

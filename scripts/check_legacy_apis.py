@@ -27,7 +27,7 @@ def scan(root: Path = ROOT) -> list[str]:
             "docs/verification/"
         ):
             continue
-        if path.suffix not in {".py", ".md", ".ipynb", ".ts", ".yaml", ".yml", ".toml"}:
+        if path.suffix not in {".py", ".md", ".ipynb", ".ts", ".in", ".yaml", ".yml", ".toml"}:
             continue
         for line_number, line in enumerate(path.read_text("utf-8-sig").splitlines(), 1):
             for pattern in patterns:

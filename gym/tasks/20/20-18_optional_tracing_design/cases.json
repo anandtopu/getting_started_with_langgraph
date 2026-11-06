@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "tracing": "optional",
+        "evidence": "local_checkpoints",
+        "correction": "retained_branch"
+      }
+    }
+  }
+]

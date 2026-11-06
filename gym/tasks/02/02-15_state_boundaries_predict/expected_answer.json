@@ -1,0 +1,50 @@
+{
+  "observations": [
+    {
+      "value": {
+        "fields": [
+          "claim_id",
+          "messages"
+        ],
+        "claim_id": "CLM-0001",
+        "messages": [
+          {
+            "id": "customer-1",
+            "content": "Pipe burst"
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "fields": [
+          "claim_id",
+          "messages"
+        ],
+        "claim_id": "CLM-0022",
+        "messages": [
+          {
+            "id": "customer-1",
+            "content": "theft"
+          }
+        ]
+      }
+    },
+    {
+      "value": {
+        "fields": [
+          "claim_id",
+          "messages"
+        ],
+        "claim_id": "CLM-0001",
+        "messages": [
+          {
+            "id": "customer-1",
+            "content": ""
+          }
+        ]
+      }
+    }
+  ],
+  "cause": null
+}

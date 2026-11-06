@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "Water leak",
+        "acknowledged": true,
+        "steps": [
+          "normalize",
+          "acknowledge"
+        ]
+      }
+    },
+    {
+      "value": {
+        "claim_id": "CLM-0001",
+        "description": "",
+        "acknowledged": true,
+        "steps": [
+          "normalize",
+          "acknowledge"
+        ]
+      }
+    }
+  ],
+  "cause": "Validation must occur before acknowledging the claim."
+}

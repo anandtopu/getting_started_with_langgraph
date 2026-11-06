@@ -1,0 +1,124 @@
+[
+  {
+    "input": {
+      "kind": "pydantic",
+      "amount_cents": 125000,
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "output_type": "ClaimModel",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated",
+          "loss_date": null
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "kind": "typed",
+      "amount_cents": 125000,
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "output_type": "dict",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated",
+          "loss_date": null
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "kind": "dataclass",
+      "amount_cents": 125000,
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "value": {
+        "output_type": "ClaimData",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated",
+          "loss_date": null
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "kind": "pydantic",
+      "amount_cents": -1,
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  },
+  {
+    "input": {
+      "kind": "pydantic",
+      "amount_cents": true,
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  },
+  {
+    "input": {
+      "kind": "typed",
+      "amount_cents": 0,
+      "claim_id": "CLM-0001"
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "kind": "dataclass",
+      "amount_cents": 125000,
+      "claim_id": "CLM-0001",
+      "loss_date": "2026-02-01"
+    },
+    "expected": {
+      "value": {
+        "output_type": "ClaimData",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated",
+          "loss_date": "2026-02-01"
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "kind": "typed",
+      "amount_cents": 125000,
+      "claim_id": "CLM-0001",
+      "loss_date": null
+    },
+    "expected": {
+      "value": {
+        "output_type": "dict",
+        "value": {
+          "claim_id": "CLM-0001",
+          "amount_cents": 125000,
+          "status": "validated",
+          "loss_date": null
+        }
+      }
+    }
+  }
+]

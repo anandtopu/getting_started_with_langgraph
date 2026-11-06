@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "budgets": "model_and_tool",
+        "hooks": "ordered",
+        "state": "declared_schema"
+      }
+    }
+  }
+]

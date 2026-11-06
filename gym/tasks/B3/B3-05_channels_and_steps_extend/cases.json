@@ -1,0 +1,56 @@
+[
+  {
+    "input": {
+      "documents": [
+        "estimate",
+        "receipt"
+      ]
+    },
+    "expected": {
+      "value": {
+        "worker_views": [
+          0,
+          0
+        ],
+        "findings": [
+          "reviewed:estimate",
+          "reviewed:receipt"
+        ],
+        "count": 2,
+        "steps": 2
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": []
+    },
+    "expected": {
+      "value": {
+        "worker_views": [],
+        "findings": [],
+        "count": 0,
+        "steps": 1
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": [
+        "estimate"
+      ]
+    },
+    "expected": {
+      "value": {
+        "worker_views": [
+          0
+        ],
+        "findings": [
+          "reviewed:estimate"
+        ],
+        "count": 1,
+        "steps": 2
+      }
+    }
+  }
+]

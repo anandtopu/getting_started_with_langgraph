@@ -1,0 +1,23 @@
+{
+  "observations": [
+    {
+      "value": {
+        "paused": 1,
+        "tool_results": [
+          "The synthetic deductible is 100000 cents."
+        ],
+        "final": "The delegation request is complete."
+      }
+    },
+    {
+      "value": {
+        "paused": 1,
+        "tool_results": [
+          "The synthetic deductible is 100000 cents."
+        ],
+        "final": "The delegation request is complete."
+      }
+    }
+  ],
+  "cause": "Preserve a human rejection of delegation."
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "state": "session_projection",
+        "pending": "replace_on_snapshot",
+        "authority": "server_recheck"
+      }
+    }
+  }
+]

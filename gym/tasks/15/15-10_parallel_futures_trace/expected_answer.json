@@ -1,0 +1,25 @@
+{
+  "observations": [
+    {
+      "value": {
+        "functional": [
+          "estimate:ready",
+          "police_report:review",
+          "receipt:ready"
+        ],
+        "graph": [
+          "police_report:review"
+        ],
+        "equal": false
+      }
+    },
+    {
+      "value": {
+        "functional": [],
+        "graph": [],
+        "equal": true
+      }
+    }
+  ],
+  "cause": "Preserve every parallel graph result."
+}

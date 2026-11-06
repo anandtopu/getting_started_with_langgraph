@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from common.data import ROOT
+from common.optional import missing_for_path
 from common.process import offline_environment, run_process
 
 
@@ -22,7 +23,15 @@ def main() -> int:
     parser.add_argument("--live", action="store_true")
     arguments = parser.parse_args()
     failures = 0
+    checked = 0
+    skipped = 0
     for path in examples():
+        missing = missing_for_path(path)
+        if missing:
+            print(f"SKIP {path.relative_to(ROOT)}: {missing}")
+            skipped += 1
+            continue
+        checked += 1
         docstring = ast.get_docstring(ast.parse(path.read_text("utf-8"))) or ""
         use_live = arguments.live and "LLM: optional" in docstring
         command = [sys.executable] + ([] if use_live else ["-m", "common.offline"]) + [str(path)]
@@ -45,7 +54,7 @@ def main() -> int:
         except Exception as error:
             failures += 1
             print(f"FAIL {path.relative_to(ROOT)}: {type(error).__name__}")
-    print(f"{len(examples())} shipped examples checked; later-phase lessons are not yet present.")
+    print(f"{checked} shipped examples checked; {skipped} optional examples skipped.")
     return int(bool(failures))
 
 

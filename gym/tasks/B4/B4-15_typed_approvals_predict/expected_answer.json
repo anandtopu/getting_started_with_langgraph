@@ -1,0 +1,33 @@
+{
+  "observations": [
+    {
+      "value": {
+        "schema_present": true,
+        "effects": [
+          50000
+        ],
+        "interrupt_type": "tool_approval"
+      }
+    },
+    {
+      "value": {
+        "schema_present": true,
+        "effects": [],
+        "interrupt_type": "tool_approval"
+      }
+    },
+    {
+      "error": "ValidationError"
+    },
+    {
+      "value": {
+        "schema_present": true,
+        "effects": [
+          0
+        ],
+        "interrupt_type": "tool_approval"
+      }
+    }
+  ],
+  "cause": null
+}

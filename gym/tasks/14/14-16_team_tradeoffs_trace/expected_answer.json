@@ -1,0 +1,31 @@
+{
+  "observations": [
+    {
+      "value": {
+        "team_calls": 4,
+        "team_complete": false,
+        "reports": [
+          "intake checked",
+          "intake checked",
+          "intake checked",
+          "intake checked"
+        ],
+        "single_calls": 1,
+        "single_mentions_all_roles": true
+      }
+    },
+    {
+      "value": {
+        "team_calls": 2,
+        "team_complete": false,
+        "reports": [
+          "intake checked",
+          "intake checked"
+        ],
+        "single_calls": 1,
+        "single_mentions_all_roles": true
+      }
+    }
+  ],
+  "cause": "Advance to the next specialist instead of handing work back to itself."
+}

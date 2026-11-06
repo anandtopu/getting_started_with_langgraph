@@ -1,0 +1,31 @@
+{
+  "observations": [
+    {
+      "value": {
+        "interrupts": 1,
+        "result": {
+          "claim_id": "CLM-0001",
+          "approved": true
+        },
+        "counts": {
+          "entrypoint": 2,
+          "task": 1
+        }
+      }
+    },
+    {
+      "value": {
+        "interrupts": 1,
+        "result": {
+          "claim_id": "CLM-0001",
+          "approved": false
+        },
+        "counts": {
+          "entrypoint": 2,
+          "task": 1
+        }
+      }
+    }
+  ],
+  "cause": "Validate the resumed approval before returning a business result."
+}

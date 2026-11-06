@@ -1,0 +1,39 @@
+{
+  "observations": [
+    {
+      "value": {
+        "tools": [
+          "list_capabilities",
+          "read_claim"
+        ],
+        "result": {
+          "claim_id": "CLM-0001",
+          "claim_type": "water",
+          "amount_cents": 2096759,
+          "route": "specialist"
+        },
+        "parameters": [
+          "claim_id"
+        ]
+      }
+    },
+    {
+      "value": {
+        "tools": [
+          "list_capabilities",
+          "read_claim"
+        ],
+        "result": {
+          "claim_id": "CLM-0001",
+          "claim_type": "water",
+          "amount_cents": 2096759,
+          "route": "specialist"
+        },
+        "parameters": [
+          "claim_id"
+        ]
+      }
+    }
+  ],
+  "cause": "Pass the requested synthetic claim through schema validation."
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "trajectory": "tool_requests",
+        "order": "business_contract",
+        "arguments": "exact"
+      }
+    }
+  }
+]

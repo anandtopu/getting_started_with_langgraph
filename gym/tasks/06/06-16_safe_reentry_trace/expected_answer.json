@@ -1,0 +1,21 @@
+{
+  "observations": [
+    {
+      "value": {
+        "entries": 2,
+        "before_approval": 1,
+        "notifications": 3,
+        "approved": true
+      }
+    },
+    {
+      "value": {
+        "entries": 2,
+        "before_approval": 1,
+        "notifications": 2,
+        "approved": false
+      }
+    }
+  ],
+  "cause": "Effects before interrupt repeat when the node restarts."
+}

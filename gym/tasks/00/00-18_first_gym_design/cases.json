@@ -1,0 +1,12 @@
+[
+  {
+    "input": {},
+    "expected": {
+      "value": {
+        "acceptance": "known_and_unknown_labels",
+        "whitespace": "strip_then_lower",
+        "evidence": "passing_assertions"
+      }
+    }
+  }
+]

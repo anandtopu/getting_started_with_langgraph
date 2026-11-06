@@ -1,0 +1,45 @@
+{
+  "observations": [
+    {
+      "value": {
+        "services": [
+          "api",
+          "postgres",
+          "ui"
+        ],
+        "valid": true,
+        "errors": [],
+        "api_waits_for_database": true
+      }
+    },
+    {
+      "value": {
+        "services": [
+          "api",
+          "postgres",
+          "ui"
+        ],
+        "valid": false,
+        "errors": [
+          "unexpected_public_port"
+        ],
+        "api_waits_for_database": true
+      }
+    },
+    {
+      "value": {
+        "services": [
+          "api",
+          "postgres",
+          "ui"
+        ],
+        "valid": false,
+        "errors": [
+          "postgres_readiness_missing"
+        ],
+        "api_waits_for_database": true
+      }
+    }
+  ],
+  "cause": null
+}
