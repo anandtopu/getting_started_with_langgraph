@@ -193,7 +193,9 @@ def document_records() -> list[dict[str, Any]]:
 
 
 def write_pdf(path: Path, lines: list[str]) -> None:
-    document = canvas.Canvas(str(path), pagesize=letter, invariant=1, pageCompression=1)
+    # Different bundled zlib versions can encode identical content differently.
+    # Uncompressed streams keep these small fixtures byte-stable across interpreters.
+    document = canvas.Canvas(str(path), pagesize=letter, invariant=1, pageCompression=0)
     document.setTitle(path.stem.replace("_", " "))
     document.setAuthor("Larkspur Synthetic Training Data")
     document.setFillColor(HexColor("#173B46"))
