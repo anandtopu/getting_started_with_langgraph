@@ -150,9 +150,9 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"ready": false, "errors": ["Missing optional model integration"], "mode": "offline"}}`. Required and optional packages are different contracts. | Restore `errors = []` and check the boundary cases. | [00-07](../../gym/tasks/00/00-07_environment_build/task.md) |
+| Observed `{"value": {"ready": false, "errors": ["Missing optional model integration"], "mode": "offline"}}`. Required and optional packages are different contracts. | Restore `errors = []` and check the boundary cases. | [00-07](../../gym/tasks/00/00-07_environment_build/task.md) · [Related Fix 00-08](../../gym/tasks/00/00-08_environment_fix/task.md) |
 | Observed `{"value": {"ready": false, "errors": ["Optional live provider is not configured"], "mode": "offline"}}`. A missing provider is a problem only when live mode was requested. | Restore `case["live"] and not case["provider_ready"]` and check the boundary cases. | [00-08](../../gym/tasks/00/00-08_environment_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "label": "water"}}`. Unknown claim categories need an explicit label. | Restore `else "unknown"` and check the boundary cases. | [00-13](../../gym/tasks/00/00-13_first_gym_build/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "label": "water"}}`. Unknown claim categories need an explicit label. | Restore `else "unknown"` and check the boundary cases. | [00-13](../../gym/tasks/00/00-13_first_gym_build/task.md) · [Related Fix 00-14](../../gym/tasks/00/00-14_first_gym_fix/task.md) |
 | Observed `{"value": {"claim_id": "CLM-0001", "label": "unknown"}}`. Labels need case normalization before comparison. | Restore `value.strip().lower()` and check the boundary cases. | [00-14](../../gym/tasks/00/00-14_first_gym_fix/task.md) |
 
 ## Practice

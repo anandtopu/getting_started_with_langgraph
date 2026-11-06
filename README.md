@@ -2,7 +2,7 @@
 
 Build the fictional **Larkspur Claims Copilot** while learning to predict, test, and repair stateful workflows. You need basic Python, a terminal, and Git. No model, API key, or insurance background is needed for the quick start.
 
-The course includes **23 core modules, four bonus modules, 486 graded tasks, 27 notebooks, and five capstones**, culminating in a streaming claims application with durable approvals. Use the [acceptance report](docs/ACCEPTANCE_REPORT.md) for measured checks and remaining integration limits.
+**All phases complete.** The course includes **23 core modules, four bonus modules, 486 graded tasks, 27 notebooks, and five capstones**, culminating in a streaming claims application with durable approvals. Use the [acceptance report](docs/ACCEPTANCE_REPORT.md) for measured checks and remaining integration limits.
 
 ## Five-minute quick start
 

@@ -135,7 +135,7 @@ All graded comparisons use scripted fakes with temperature zero; temperature zer
 - Diagrams are generated from compiled graphs wherever the API supports them. Functional control-flow and system/deployment diagrams are explicitly labeled conceptual.
 - No real payout, external email, or insurer system is contacted. The synthetic ledger uses integer cents and idempotency keys. Checkpointing alone does not make an external side effect exactly-once.
 
-## Remaining verification gates
+## Initial verification gates (historical planning record)
 
 Before implementation is accepted: create the lockfile; run clean installs and the OS/Python matrix; inspect each used import and signature; execute all examples/notebooks; verify every code starter fails for its intended reason and every solution passes; validate the entire task and feature matrix; run lint/format, legacy-API and secret checks; perform local and external link checks; visually verify printable PDFs; and report real integration/live checks separately. No runtime or publication success is claimed by Phase 1.
 
@@ -170,3 +170,8 @@ Functional execution, process-crash recovery, async cancellation, nested interru
 Notebook cells invoke canonical scripts in bounded child processes. This avoids nested notebook event loops and notebook stderr streams that lack the descriptor needed by stdio MCP. All notebook outputs remain cleared in source control.
 
 GitHub acceptance uses checkout v7.0.1, setup-uv v10.3.3, and [setup-node v7](https://github.com/actions/setup-node), with Python 3.11–3.14 on Windows/Linux and Python 3.12 on macOS. Actual run evidence, rather than configured coverage, is recorded in the acceptance report.
+
+
+## Final acceptance
+
+All 14 jobs in the [final workflow](https://github.com/anandtopu/getting_started_with_langgraph/actions/runs/42185228068) passed. The [acceptance report](ACCEPTANCE_REPORT.md) records the platform matrix, full exercise and notebook runs, actual Docker/Postgres checks, portability repairs, and optional live-service limits.

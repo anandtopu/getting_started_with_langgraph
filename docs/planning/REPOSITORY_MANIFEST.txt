@@ -289,6 +289,7 @@ docs/VERIFICATION_NOTES.md
 docs/planning/PLAN_VALIDATION.json
 docs/planning/REPOSITORY_MANIFEST.txt
 docs/planning/course_catalog.json
+docs/verification/final_ci.json
 docs/verification/mcp-compatible.json
 docs/verification/npm-metadata.json
 docs/verification/phase_2_package_check.json
