@@ -12,7 +12,11 @@ from common.process import offline_environment, run_process
 
 
 def examples() -> list[Path]:
-    paths = [ROOT / "scripts/first_graph.py", ROOT / "scripts/fake_model_demo.py"]
+    paths = [
+        ROOT / "scripts/first_graph.py",
+        ROOT / "scripts/fake_model_demo.py",
+        ROOT / "scripts/live_claim_lab.py",
+    ]
     paths.extend(sorted((ROOT / "modules").glob("**/examples/*.py")))
     paths.extend(sorted((ROOT / "modules").glob("**/use_case/*.py")))
     return paths

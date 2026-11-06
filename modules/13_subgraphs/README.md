@@ -12,6 +12,8 @@ Complete [Workflow patterns with LLMs](../12_workflow_patterns/README.md). Read 
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain Compiled subgraph as node; shared state keys; parent reducers; reuse across workflows.
@@ -111,7 +113,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/13_subgraphs/examples/01_shared_subgraph.py
+uv run --no-sync python modules/13_subgraphs/examples/01_shared_subgraph.py
 ```
 
 **Predict, then run:** for {"amount_cents": 600000, "documents": [], "workflow": "claim"}, write the resulting fields and any expected error. Then test the boundary cases in tests/shared_subgraph.json.
@@ -140,7 +142,7 @@ A compiled subgraph can be a parent node when their state keys agree. Its update
 </details>
 
 ```text
-uv run python modules/13_subgraphs/examples/02_schema_adapters.py
+uv run --no-sync python modules/13_subgraphs/examples/02_schema_adapters.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "amount_cents": 600000}, write the resulting fields and any expected error. Then test the boundary cases in tests/schema_adapters.json.
@@ -168,7 +170,7 @@ When parent and child schemas differ, call the child inside an adapter node. Map
 </details>
 
 ```text
-uv run python modules/13_subgraphs/examples/03_subgraph_persistence.py
+uv run --no-sync python modules/13_subgraphs/examples/03_subgraph_persistence.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "approved": false, "persistent_child": false}, write the resulting fields and any expected error. Then test the boundary cases in tests/subgraph_persistence.json.
@@ -225,32 +227,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"amount_cents": 600000, "documents": [], "flags": ["missing_evidence"], "workflow": "claim", "destination": "claim_review"}}`. Keep evidence already recorded by the parent. | Restore `sorted(set(old) &#124; set(new))` and check the boundary cases. | [13-01](../../gym/tasks/13/13-01_shared_subgraph_build/task.md) · [Related Fix 13-02](../../gym/tasks/13/13-02_shared_subgraph_fix/task.md) |
-| Observed `{"value": {"amount_cents": 600000, "documents": [], "flags": ["intake_checked", "missing_evidence"], "workflow": "claim", "destination": "claim_review"}}`. Apply the high-value risk boundary inside the reusable child. | Restore `state["amount_cents"] > 500000` and check the boundary cases. | [13-02](../../gym/tasks/13/13-02_shared_subgraph_fix/task.md) |
-| Observed `{"value": {"fields": ["amount_cents", "claim_id", "risk"], "claim_id": "CLM-0001", "amount_cents": 600000, "risk": "routine"}}`. Map the actual claim amount into the child input. | Restore `"value": state["amount_cents"]` and check the boundary cases. | [13-07](../../gym/tasks/13/13-07_schema_adapters_build/task.md) · [Related Fix 13-08](../../gym/tasks/13/13-08_schema_adapters_fix/task.md) |
-| Observed `{"value": {"fields": ["amount_cents", "claim_id", "risk"], "claim_id": "CLM-0001", "amount_cents": 600000, "risk": "review"}}`. Preserve the exact review threshold. | Restore `state["value"] > 500000` and check the boundary cases. | [13-08](../../gym/tasks/13/13-08_schema_adapters_fix/task.md) |
-| Observed `{"error": "AttributeError"}`. Request nested snapshots when inspecting child state. | Restore `subgraphs=True)` and check the boundary cases. | [13-13](../../gym/tasks/13/13-13_subgraph_persistence_build/task.md) · [Related Fix 13-14](../../gym/tasks/13/13-14_subgraph_persistence_fix/task.md) |
-| Observed `{"value": {"child_pending": ["review"], "child_claim": "CLM-0001", "nested_stream": true, "approved": false, "checks": 1}}`. Reject a string masquerading as a human decision. | Restore `type(decision) is not bool` and check the boundary cases. | [13-14](../../gym/tasks/13/13-14_subgraph_persistence_fix/task.md) |
+| Observed `{"value": {"amount_cents": 600000, "documents": [], "flags": ["missing_evidence"], "workflow": "claim", "destination": "claim_review"}}`. Keep evidence already recorded by the parent. | Restore `sorted(set(old) &#124; set(new))` and check the boundary cases. | [13-01](../../gym/tasks/13/13-01_shared_subgraph_build/task.md) · Related Fix: [13-02](../../gym/tasks/13/13-02_shared_subgraph_fix/task.md) |
+| Observed `{"value": {"amount_cents": 600000, "documents": [], "flags": ["intake_checked", "missing_evidence"], "workflow": "claim", "destination": "claim_review"}}`. Apply the high-value risk boundary inside the reusable child. | Restore `state["amount_cents"] > 500000` and check the boundary cases. | [13-02](../../gym/tasks/13/13-02_shared_subgraph_fix/task.md) · Related Fix: [13-02](../../gym/tasks/13/13-02_shared_subgraph_fix/task.md) |
+| Observed `{"value": {"fields": ["amount_cents", "claim_id", "risk"], "claim_id": "CLM-0001", "amount_cents": 600000, "risk": "routine"}}`. Map the actual claim amount into the child input. | Restore `"value": state["amount_cents"]` and check the boundary cases. | [13-07](../../gym/tasks/13/13-07_schema_adapters_build/task.md) · Related Fix: [13-08](../../gym/tasks/13/13-08_schema_adapters_fix/task.md) |
+| Observed `{"value": {"fields": ["amount_cents", "claim_id", "risk"], "claim_id": "CLM-0001", "amount_cents": 600000, "risk": "review"}}`. Preserve the exact review threshold. | Restore `state["value"] > 500000` and check the boundary cases. | [13-08](../../gym/tasks/13/13-08_schema_adapters_fix/task.md) · Related Fix: [13-08](../../gym/tasks/13/13-08_schema_adapters_fix/task.md) |
+| Observed `{"error": "AttributeError"}`. Request nested snapshots when inspecting child state. | Restore `subgraphs=True)` and check the boundary cases. | [13-13](../../gym/tasks/13/13-13_subgraph_persistence_build/task.md) · Related Fix: [13-14](../../gym/tasks/13/13-14_subgraph_persistence_fix/task.md) |
+| Observed `{"value": {"child_pending": ["review"], "child_claim": "CLM-0001", "nested_stream": true, "approved": false, "checks": 1}}`. Reject a string masquerading as a human decision. | Restore `type(decision) is not bool` and check the boundary cases. | [13-14](../../gym/tasks/13/13-14_subgraph_persistence_fix/task.md) · Related Fix: [13-14](../../gym/tasks/13/13-14_subgraph_persistence_fix/task.md) |
 
 ## Practice
 
 - [13-01 — build, easy](../../gym/tasks/13/13-01_shared_subgraph_build/task.md): Build shared subgraph: Keep evidence already recorded by the parent.
 - [13-02 — fix, medium](../../gym/tasks/13/13-02_shared_subgraph_fix/task.md): Fix shared subgraph: Apply the high-value risk boundary inside the reusable child.
 - [13-03 — predict, easy](../../gym/tasks/13/13-03_shared_subgraph_predict/task.md): Predict shared subgraph across the declared cases
-- [13-04 — trace, medium](../../gym/tasks/13/13-04_shared_subgraph_trace/task.md): Trace shared subgraph: Apply the high-value risk boundary inside the reusable child.
-- [13-05 — extend, hard](../../gym/tasks/13/13-05_shared_subgraph_extend/task.md): Extend shared subgraph: Flag missing supporting documents.
-- [13-06 — refactor, hard](../../gym/tasks/13/13-06_shared_subgraph_refactor/task.md): Refactor shared subgraph: Do not confuse an intake milestone with a risk flag.
+- [13-04 — trace, medium](../../gym/tasks/13/13-04_shared_subgraph_trace/task.md): Diagnose shared subgraph from execution evidence
+- [13-05 — extend, hard](../../gym/tasks/13/13-05_shared_subgraph_extend/task.md): Extend shared subgraph: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [13-06 — refactor, hard](../../gym/tasks/13/13-06_shared_subgraph_refactor/task.md): Refactor shared subgraph: Extract parallel fraud checks into a reusable subgraph; keep both workflow outputs and rejection cases unchanged.
 - [13-07 — build, easy](../../gym/tasks/13/13-07_schema_adapters_build/task.md): Build schema adapters: Map the actual claim amount into the child input.
 - [13-08 — fix, medium](../../gym/tasks/13/13-08_schema_adapters_fix/task.md): Fix schema adapters: Preserve the exact review threshold.
 - [13-09 — predict, easy](../../gym/tasks/13/13-09_schema_adapters_predict/task.md): Predict schema adapters across the declared cases
-- [13-10 — trace, medium](../../gym/tasks/13/13-10_schema_adapters_trace/task.md): Trace schema adapters: Preserve the exact review threshold.
-- [13-11 — extend, hard](../../gym/tasks/13/13-11_schema_adapters_extend/task.md): Extend schema adapters: Return the public risk finding rather than private investigation notes.
-- [13-12 — refactor, hard](../../gym/tasks/13/13-12_schema_adapters_refactor/task.md): Refactor schema adapters: Preserve the parent claim identity across the adapter.
+- [13-10 — trace, medium](../../gym/tasks/13/13-10_schema_adapters_trace/task.md): Diagnose schema adapters from execution evidence
+- [13-11 — extend, hard](../../gym/tasks/13/13-11_schema_adapters_extend/task.md): Extend schema adapters: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [13-12 — refactor, hard](../../gym/tasks/13/13-12_schema_adapters_refactor/task.md): Refactor schema adapters: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [13-13 — build, easy](../../gym/tasks/13/13-13_subgraph_persistence_build/task.md): Build subgraph persistence: Request nested snapshots when inspecting child state.
 - [13-14 — fix, medium](../../gym/tasks/13/13-14_subgraph_persistence_fix/task.md): Fix subgraph persistence: Reject a string masquerading as a human decision.
 - [13-15 — predict, easy](../../gym/tasks/13/13-15_subgraph_persistence_predict/task.md): Predict subgraph persistence across the declared cases
-- [13-16 — trace, medium](../../gym/tasks/13/13-16_subgraph_persistence_trace/task.md): Trace subgraph persistence: Reject a string masquerading as a human decision.
-- [13-17 — extend, hard](../../gym/tasks/13/13-17_subgraph_persistence_extend/task.md): Extend subgraph persistence: Include nested updates when streaming subgraphs.
+- [13-16 — trace, medium](../../gym/tasks/13/13-16_subgraph_persistence_trace/task.md): Diagnose subgraph persistence from execution evidence
+- [13-17 — extend, hard](../../gym/tasks/13/13-17_subgraph_persistence_extend/task.md): Extend subgraph persistence: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [13-18 — design, hard](../../gym/tasks/13/13-18_subgraph_persistence_design/task.md): Design subgraph persistence and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

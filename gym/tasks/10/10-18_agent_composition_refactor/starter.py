@@ -1,4 +1,4 @@
-"""Refactor agent composition: Preserve the parent finalization step when refactoring the adapter.. Run this file with Python. No live model or network."""
+"""Refactor agent composition: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -38,7 +38,7 @@ def build_graph():
     graph.add_node("explain", explain)
     graph.add_node("finalize", finalize)
     graph.add_edge(START, "explain")
-    graph.add_edge("explain", END)
+    graph.add_edge("explain", "finalize")
     graph.add_edge("finalize", END)
     return graph.compile()
 

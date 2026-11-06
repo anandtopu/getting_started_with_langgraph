@@ -1,4 +1,4 @@
-# 12-16 — Trace evaluator optimizer: Require the authoritative deductible fact.
+# 12-16 — Diagnose evaluator optimizer from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ The evaluator names concrete factual and tone defects; the optimizer receives th
 
 ## Your task
 
-Require the authoritative deductible fact. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose evaluator optimizer from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -30,6 +30,13 @@ Require the authoritative deductible fact. Read trace.py before completing the a
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Stop unsuccessful revision at the configured budget."
+- "Require the authoritative deductible fact."
+- "Keep the respectful-tone criterion separate from the factual criterion."
+- "Stop immediately once both criteria pass."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

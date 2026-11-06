@@ -1,0 +1,43 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "public_bind": false,
+        "remove_healthcheck": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "services": [
+            "api",
+            "postgres",
+            "ui"
+          ],
+          "valid": true,
+          "errors": [],
+          "api_waits_for_database": true
+        }
+      }
+    },
+    {
+      "input": {
+        "public_bind": true,
+        "remove_healthcheck": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "services": [
+            "api",
+            "postgres",
+            "ui"
+          ],
+          "valid": true,
+          "errors": [],
+          "api_waits_for_database": true
+        }
+      }
+    }
+  ]
+}

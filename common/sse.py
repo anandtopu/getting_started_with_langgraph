@@ -15,16 +15,21 @@ def decode_events(text: str) -> list[dict]:
     events = []
     for frame in text.replace("\r\n", "\n").split("\n\n"):
         fields = {}
+        data_lines = []
         for line in frame.splitlines():
             if line and not line.startswith(":") and ":" in line:
                 key, value = line.split(":", 1)
-                fields[key] = value.lstrip(" ")
-        if "data" in fields:
+                value = value.removeprefix(" ")
+                if key == "data":
+                    data_lines.append(value)
+                else:
+                    fields[key] = value
+        if data_lines:
             events.append(
                 {
                     "id": fields.get("id"),
                     "event": fields.get("event", "message"),
-                    "data": json.loads(fields["data"]),
+                    "data": json.loads("\n".join(data_lines)),
                 }
             )
     return events

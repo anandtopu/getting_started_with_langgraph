@@ -1,4 +1,4 @@
-"""Trace channels and steps: Report the previous-boundary view seen by each worker.. Run this file with Python. No live model or network."""
+"""Diagnose channels and steps from execution evidence. Run this file with Python. No live model or network."""
 
 from common.mini_graph import MiniGraph
 from common.pretty import print_state

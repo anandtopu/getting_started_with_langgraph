@@ -1,4 +1,4 @@
-"""Trace schema contracts: Use Pydantic field access or model_dump instead of losing validated values.. Run this file with Python. No live model or network."""
+"""Diagnose schema contracts from execution evidence. Run this file with Python. No live model or network."""
 
 from dataclasses import asdict, dataclass
 from typing import TypedDict

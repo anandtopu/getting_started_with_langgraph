@@ -1,4 +1,4 @@
-"""Trace approve or reject: An interrupt needs persistence to resume the saved task.. Run this file with Python. No live model or network."""
+"""Diagnose approve or reject from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

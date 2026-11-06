@@ -1,4 +1,4 @@
-"""Trace replay and fork: Replay the new fork configuration, not its uncorrected parent.. Run this file with Python. No live model or network."""
+"""Diagnose replay and fork from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

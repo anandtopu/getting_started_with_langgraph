@@ -1,4 +1,4 @@
-"""Refactor approve or reject: Replacing a callback must preserve the actual human response.. Run this file with Python. No live model or network."""
+"""Refactor approve or reject: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -37,7 +37,7 @@ def run(case: dict | None = None) -> dict:
     graph = build_graph()
     config = {"configurable": {"thread_id": "review-claim"}}
     paused = graph.invoke({"amount_cents": case["amount_cents"]}, config, version="v2")
-    completed = graph.invoke(Command(resume={"approved": False}), config, version="v2")
+    completed = graph.invoke(Command(resume=case["decision"]), config, version="v2")
     return {
         "prompts": [item.value for item in paused.interrupts],
         "status": completed.value["status"],

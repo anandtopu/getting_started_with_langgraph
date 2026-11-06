@@ -1,4 +1,4 @@
-"""Refactor parallel futures: Schedule every document before resolving task futures.. Run this file with Python. No live model or network."""
+"""Refactor parallel futures: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -23,7 +23,7 @@ def inspect_document(document: str) -> str:
 
 @entrypoint()
 def functional(documents: list[str]) -> list[str]:
-    futures = [inspect_document(document) for document in documents[:1]]
+    futures = [inspect_document(document) for document in documents]
     return sorted(future.result() for future in futures)
 
 

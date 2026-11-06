@@ -1,4 +1,4 @@
-"""Extend replay and fork: Parentage must identify the selected historical evidence.. Run this file with Python. No live model or network."""
+"""Extend replay and fork: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -53,7 +53,7 @@ def run(case: dict | None = None) -> dict:
     historical = next(snapshot for snapshot in history if snapshot.next == ("decide",))
     replay = graph.invoke(None, historical.config, version="v2")
     fork_config = graph.update_state(
-        config, {"amount_cents": case["corrected_amount"]}, as_node="read_evidence"
+        historical.config, {"amount_cents": case["corrected_amount"]}, as_node="read_evidence"
     )
     fork_snapshot = graph.get_state(fork_config)
     fork = graph.invoke(None, fork_config, version="v2")
@@ -66,6 +66,10 @@ def run(case: dict | None = None) -> dict:
         "fork_parent_is_historical": fork_snapshot.parent_config["configurable"]["checkpoint_id"]
         == historical.config["configurable"]["checkpoint_id"],
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

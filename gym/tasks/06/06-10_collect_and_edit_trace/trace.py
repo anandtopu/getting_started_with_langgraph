@@ -1,4 +1,4 @@
-"""Trace collect and edit: Each interrupt must receive the response for its own request kind.. Run this file with Python. No live model or network."""
+"""Diagnose collect and edit from execution evidence. Run this file with Python. No live model or network."""
 
 from datetime import date
 from typing import TypedDict

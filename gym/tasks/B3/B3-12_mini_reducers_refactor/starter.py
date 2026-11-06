@@ -1,4 +1,4 @@
-"""Refactor mini reducers: Report conformance only when both observed contracts match.. Run this file with Python. No live model or network."""
+"""Refactor mini reducers: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -46,7 +46,7 @@ def run(case: dict | None = None) -> dict:
             observed[name] = {"findings": sorted(call()["findings"])}
         except (WriteConflict, InvalidUpdateError):
             observed[name] = {"conflict": True}
-    return {**observed, "equal": observed["mini"] != observed["langgraph"]}
+    return {**observed, "equal": observed["mini"] == observed["langgraph"]}
 
 
 def main() -> None:

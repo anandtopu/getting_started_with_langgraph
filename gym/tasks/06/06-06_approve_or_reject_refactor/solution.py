@@ -1,4 +1,4 @@
-"""Refactor approve or reject: Replacing a callback must preserve the actual human response.. Run this file with Python. No live model or network."""
+"""Refactor approve or reject: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -31,8 +31,15 @@ def build_graph():
     return graph.compile(checkpointer=InMemorySaver())
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     graph = build_graph()
     config = {"configurable": {"thread_id": "review-claim"}}
     paused = graph.invoke({"amount_cents": case["amount_cents"]}, config, version="v2")

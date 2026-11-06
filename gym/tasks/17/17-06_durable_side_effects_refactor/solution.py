@@ -1,4 +1,4 @@
-"""Refactor durable side effects: Report the durable ledger count, not an inferred execution count.. Run this file with Python. No live model or network."""
+"""Refactor durable side effects: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 import os
@@ -42,8 +42,15 @@ def worker(directory: Path, case: dict, crash: bool) -> dict:
         return {"value": result.value, "effects": ledger.rows()}
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     if case["durability"] not in {"sync", "async", "exit"}:
         raise ValueError("Unknown durability mode")
     with TemporaryDirectory(prefix="larkspur-crash-") as directory:

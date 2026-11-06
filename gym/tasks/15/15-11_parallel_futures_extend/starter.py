@@ -1,4 +1,4 @@
-"""Extend parallel futures: Keep police-report review semantics shared by both APIs.. Run this file with Python. No live model or network."""
+"""Extend parallel futures: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -13,7 +13,7 @@ DEFAULT_CASE = {"documents": ["estimate", "receipt", "police_report"]}
 
 
 def finding(document: str) -> str:
-    return document + (":review" if False else ":ready")
+    return document + (":review" if document == "police_report" else ":ready")
 
 
 @task
@@ -67,6 +67,10 @@ def run(case: dict | None = None) -> dict:
         "graph": sorted(second["findings"]),
         "equal": first == sorted(second["findings"]),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

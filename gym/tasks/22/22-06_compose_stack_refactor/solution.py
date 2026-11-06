@@ -1,4 +1,4 @@
-"""Refactor compose stack: Distinguish service readiness from process startup.. Run this file with Python. No live model or network."""
+"""Refactor compose stack: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import yaml
 
@@ -8,8 +8,15 @@ from common.pretty import print_state
 DEFAULT_CASE = {"public_bind": False, "remove_healthcheck": False}
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     stack = yaml.safe_load((ROOT / "compose.yaml").read_text("utf-8"))
     services = stack["services"]
     if case["public_bind"]:

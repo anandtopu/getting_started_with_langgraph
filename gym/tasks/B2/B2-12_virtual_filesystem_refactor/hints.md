@@ -6,8 +6,8 @@ A virtual filing tray is part of the case record, not unrestricted access to the
 
 ## Hint 2
 
-Honor and validate the requested virtual artifact path. Inspect the operation that owns this update or routing choice.
+Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: "file_path": case["path"]. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

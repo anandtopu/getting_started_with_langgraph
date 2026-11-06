@@ -6,8 +6,8 @@ A form template, a filled form object, and a clerk checking the form are differe
 
 ## Hint 2
 
-Converting schema styles must preserve valid values. Inspect the operation that owns this update or routing choice.
+Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: return asdict(state) if isinstance(state, ClaimData) else dict(state). Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

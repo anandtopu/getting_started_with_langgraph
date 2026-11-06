@@ -6,8 +6,8 @@ A familiar checklist can still assign tracked work orders and wait for their res
 
 ## Hint 2
 
-Normalize whitespace before choosing the missing-information branch. Inspect the operation that owns this update or routing choice.
+Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: claim["description"].strip(). Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the new node or boundary contract described above. Check every boundary input after the repair; a default-case pass alone is insufficient.

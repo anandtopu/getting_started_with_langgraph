@@ -1,4 +1,4 @@
-"""Extend durable side effects: Recover the original claim identity after restart.. Run this file with Python. No live model or network."""
+"""Extend durable side effects: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 import os
@@ -67,9 +67,13 @@ def run(case: dict | None = None) -> dict:
         return {
             "crash_exit": crashed.returncode,
             "effect_count": len(result["effects"]),
-            "claim_id": "CLM-0001",
+            "claim_id": result["value"]["claim_id"],
             "durability": case["durability"],
         }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

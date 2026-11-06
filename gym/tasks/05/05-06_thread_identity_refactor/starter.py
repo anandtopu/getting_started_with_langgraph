@@ -1,6 +1,7 @@
-"""Refactor thread identity: Continuing a session must not discard earlier notes.. Run this file with Python. No live model or network."""
+"""Refactor thread identity: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
-from typing import TypedDict
+import operator
+from typing import Annotated, TypedDict
 
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
@@ -12,7 +13,7 @@ DEFAULT_CASE = {"first_id": "CLM-0001", "second_id": "CLM-0002"}
 
 class State(TypedDict):
     claim_id: str
-    notes: list[str]
+    notes: Annotated[list[str], operator.add]
     status: str
 
 

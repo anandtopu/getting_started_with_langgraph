@@ -1,4 +1,4 @@
-# 03-16 — Trace early exit: Zero is a defined boundary, not an omitted case.
+# 03-16 — Diagnose early exit from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Termination is a routing outcome, not an exceptional Python crash. Screen invali
 
 ## Your task
 
-Zero is a defined boundary, not an omitted case. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose early exit from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Zero is a defined boundary, not an omitted case. Read trace.py before completing
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Rejected claims must stop before assignment."
+- "Zero is a defined boundary, not an omitted case."
+- "Duplicate submissions need an explicit terminal reason."
+- "Preserve eligible-case behavior while refactoring routes."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

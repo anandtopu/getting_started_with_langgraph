@@ -1,4 +1,4 @@
-"""Refactor local visual debugging: Inspect the actual approval node in the generated graph diagram.. Run this file with Python. No live model or network."""
+"""Refactor local visual debugging: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -29,7 +29,7 @@ def run(case: dict | None = None) -> dict:
     return {
         "export_exists": (ROOT / source).is_file(),
         "symbol": symbol,
-        "diagram_has_approval": "imaginary_node" in diagram,
+        "diagram_has_approval": "approve_claim" in diagram,
         "actual_route": result.value["route"],
         "misrouted": result.value["route"] != case["reported_route"],
         "paused": bool(result.interrupts),

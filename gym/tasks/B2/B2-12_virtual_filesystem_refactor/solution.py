@@ -1,4 +1,4 @@
-"""Refactor virtual filesystem: Honor and validate the requested virtual artifact path.. Run this file with Python. No live model or network."""
+"""Refactor virtual filesystem: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.checkpoint.memory import InMemorySaver
@@ -9,12 +9,19 @@ from common.pretty import print_state
 DEFAULT_CASE = {"path": "/claims/review.txt", "content": "Synthetic estimate requires review."}
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
+    case = prepare_case(case)
     from deepagents import create_deep_agent
     from deepagents.backends import StateBackend
     from deepagents.middleware.filesystem import FilesystemPermission
 
-    case = DEFAULT_CASE if case is None else case
     model = get_chat_model(
         responses=[
             AIMessage(

@@ -12,6 +12,10 @@ Complete [Time travel, debugging, and streaming basics](../07_time_travel_and_st
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
+After the deterministic lesson, use [the optional provider lab](../../docs/LIVE_MODEL_LAB.md) to try real extraction, scoped tool calls, and conversation memory with your configured provider. Graded results remain fake and offline.
+
 ## Learning objectives
 
 - Implement and explain LLM and prompt basics; init_chat_model; common model factory; provider configuration; structured output validation.
@@ -113,7 +117,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/08_llms_inside_nodes/examples/01_model_boundary.py
+uv run --no-sync python modules/08_llms_inside_nodes/examples/01_model_boundary.py
 ```
 
 **Predict, then run:** for {"claim_type": "water", "amount_cents": 125000, "confidence": 0.9}, write the resulting fields and any expected error. Then test the boundary cases in tests/model_boundary.json.
@@ -140,7 +144,7 @@ A model predicts text from messages; a prompt is its instruction and evidence. S
 </details>
 
 ```text
-uv run python modules/08_llms_inside_nodes/examples/02_message_identity.py
+uv run --no-sync python modules/08_llms_inside_nodes/examples/02_message_identity.py
 ```
 
 **Predict, then run:** for {"text": "Corrected: pipe burst", "remove_customer": true}, write the resulting fields and any expected error. Then test the boundary cases in tests/message_identity.json.
@@ -173,7 +177,7 @@ MessagesState applies add_messages: a matching message ID replaces a message ins
 </details>
 
 ```text
-uv run python modules/08_llms_inside_nodes/examples/03_tokens_and_fakes.py
+uv run --no-sync python modules/08_llms_inside_nodes/examples/03_tokens_and_fakes.py
 ```
 
 **Predict, then run:** for {"text": "Larkspur received your synthetic claim.", "structured": false}, write the resulting fields and any expected error. Then test the boundary cases in tests/tokens_and_fakes.json.
@@ -234,33 +238,33 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"facts": {"claim_type": "water", "amount_cents": 125000, "loss_date": null, "confidence": 0.9}, "route": "standard"}}`. Send uncertain extractions to review. | Restore `facts.confidence < 0.8` and check the boundary cases. | [08-01](../../gym/tasks/08/08-01_model_boundary_build/task.md) · [Related Fix 08-02](../../gym/tasks/08/08-02_model_boundary_fix/task.md) |
-| Observed `{"value": {"facts": {"claim_type": "water", "amount_cents": 125000, "loss_date": null, "confidence": 0.9}, "route": "standard"}}`. Include exactly 100000 cents in fast-track routing. | Restore `facts.amount_cents <= 100000` and check the boundary cases. | [08-02](../../gym/tasks/08/08-02_model_boundary_fix/task.md) |
-| Observed `{"error": "ValueError"}`. Delete by the existing message ID. | Restore `RemoveMessage(id="customer-1")` and check the boundary cases. | [08-07](../../gym/tasks/08/08-07_message_identity_build/task.md) · [Related Fix 08-08](../../gym/tasks/08/08-08_message_identity_fix/task.md) |
-| Observed `{"error": "AttributeError"}`. Correct an existing message without appending another customer message. | Restore `HumanMessage(content=case["text"], id="customer-1")` and check the boundary cases. | [08-08](../../gym/tasks/08/08-08_message_identity_fix/task.md) |
-| Observed `{"value": {"text": "Larkspur  received  your  synthetic  claim. ", "matches_invoke": false, "structured": null, "nodes": ["acknowledge"], "nonempty_chunks": 5}}`. Join chunks without inserting characters that were never emitted. | Restore `text = "".join(chunks)` and check the boundary cases. | [08-13](../../gym/tasks/08/08-13_tokens_and_fakes_build/task.md) · [Related Fix 08-14](../../gym/tasks/08/08-14_tokens_and_fakes_fix/task.md) |
-| Observed `{"error": "KeyError"}`. Read the documented node name from stream metadata. | Restore `metadata["langgraph_node"]` and check the boundary cases. | [08-14](../../gym/tasks/08/08-14_tokens_and_fakes_fix/task.md) |
+| Observed `{"value": {"facts": {"claim_type": "water", "amount_cents": 125000, "loss_date": null, "confidence": 0.9}, "route": "standard"}}`. Send uncertain extractions to review. | Restore `facts.confidence < 0.8` and check the boundary cases. | [08-01](../../gym/tasks/08/08-01_model_boundary_build/task.md) · Related Fix: [08-02](../../gym/tasks/08/08-02_model_boundary_fix/task.md) |
+| Observed `{"value": {"facts": {"claim_type": "water", "amount_cents": 125000, "loss_date": null, "confidence": 0.9}, "route": "standard"}}`. Include exactly 100000 cents in fast-track routing. | Restore `facts.amount_cents <= 100000` and check the boundary cases. | [08-02](../../gym/tasks/08/08-02_model_boundary_fix/task.md) · Related Fix: [08-02](../../gym/tasks/08/08-02_model_boundary_fix/task.md) |
+| Observed `{"error": "ValueError"}`. Delete by the existing message ID. | Restore `RemoveMessage(id="customer-1")` and check the boundary cases. | [08-07](../../gym/tasks/08/08-07_message_identity_build/task.md) · Related Fix: [08-08](../../gym/tasks/08/08-08_message_identity_fix/task.md) |
+| Observed `{"error": "AttributeError"}`. Correct an existing message without appending another customer message. | Restore `HumanMessage(content=case["text"], id="customer-1")` and check the boundary cases. | [08-08](../../gym/tasks/08/08-08_message_identity_fix/task.md) · Related Fix: [08-08](../../gym/tasks/08/08-08_message_identity_fix/task.md) |
+| Observed `{"value": {"text": "Larkspur  received  your  synthetic  claim. ", "matches_invoke": false, "structured": null, "nodes": ["acknowledge"], "nonempty_chunks": 5}}`. Join chunks without inserting characters that were never emitted. | Restore `text = "".join(chunks)` and check the boundary cases. | [08-13](../../gym/tasks/08/08-13_tokens_and_fakes_build/task.md) · Related Fix: [08-14](../../gym/tasks/08/08-14_tokens_and_fakes_fix/task.md) |
+| Observed `{"error": "KeyError"}`. Read the documented node name from stream metadata. | Restore `metadata["langgraph_node"]` and check the boundary cases. | [08-14](../../gym/tasks/08/08-14_tokens_and_fakes_fix/task.md) · Related Fix: [08-14](../../gym/tasks/08/08-14_tokens_and_fakes_fix/task.md) |
 
 ## Practice
 
 - [08-01 — build, easy](../../gym/tasks/08/08-01_model_boundary_build/task.md): Build model boundary: Send uncertain extractions to review.
 - [08-02 — fix, medium](../../gym/tasks/08/08-02_model_boundary_fix/task.md): Fix model boundary: Include exactly 100000 cents in fast-track routing.
 - [08-03 — predict, easy](../../gym/tasks/08/08-03_model_boundary_predict/task.md): Predict model boundary across the declared cases
-- [08-04 — trace, medium](../../gym/tasks/08/08-04_model_boundary_trace/task.md): Trace model boundary: Include exactly 100000 cents in fast-track routing.
-- [08-05 — extend, hard](../../gym/tasks/08/08-05_model_boundary_extend/task.md): Extend model boundary: Route an unknown category to review even with high confidence.
-- [08-06 — refactor, hard](../../gym/tasks/08/08-06_model_boundary_refactor/task.md): Refactor model boundary: Preserve the validated amount across the model boundary.
+- [08-04 — trace, medium](../../gym/tasks/08/08-04_model_boundary_trace/task.md): Diagnose model boundary from execution evidence
+- [08-05 — extend, hard](../../gym/tasks/08/08-05_model_boundary_extend/task.md): Extend model boundary: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [08-06 — refactor, hard](../../gym/tasks/08/08-06_model_boundary_refactor/task.md): Refactor model boundary: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [08-07 — build, easy](../../gym/tasks/08/08-07_message_identity_build/task.md): Build message identity: Delete by the existing message ID.
 - [08-08 — fix, medium](../../gym/tasks/08/08-08_message_identity_fix/task.md): Fix message identity: Correct an existing message without appending another customer message.
 - [08-09 — predict, easy](../../gym/tasks/08/08-09_message_identity_predict/task.md): Predict message identity across the declared cases
-- [08-10 — trace, medium](../../gym/tasks/08/08-10_message_identity_trace/task.md): Trace message identity: Correct an existing message without appending another customer message.
-- [08-11 — extend, hard](../../gym/tasks/08/08-11_message_identity_extend/task.md): Extend message identity: Make retention conditional on the requested minimization policy.
-- [08-12 — refactor, hard](../../gym/tasks/08/08-12_message_identity_refactor/task.md): Refactor message identity: Keep the corrected text when replacing a message.
+- [08-10 — trace, medium](../../gym/tasks/08/08-10_message_identity_trace/task.md): Diagnose message identity from execution evidence
+- [08-11 — extend, hard](../../gym/tasks/08/08-11_message_identity_extend/task.md): Extend message identity: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [08-12 — refactor, hard](../../gym/tasks/08/08-12_message_identity_refactor/task.md): Refactor message identity: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [08-13 — build, easy](../../gym/tasks/08/08-13_tokens_and_fakes_build/task.md): Build tokens and fakes: Join chunks without inserting characters that were never emitted.
 - [08-14 — fix, medium](../../gym/tasks/08/08-14_tokens_and_fakes_fix/task.md): Fix tokens and fakes: Read the documented node name from stream metadata.
 - [08-15 — predict, easy](../../gym/tasks/08/08-15_tokens_and_fakes_predict/task.md): Predict tokens and fakes across the declared cases
-- [08-16 — trace, medium](../../gym/tasks/08/08-16_tokens_and_fakes_trace/task.md): Trace tokens and fakes: Read the documented node name from stream metadata.
-- [08-17 — extend, hard](../../gym/tasks/08/08-17_tokens_and_fakes_extend/task.md): Extend tokens and fakes: Validate the fully assembled structured response.
-- [08-18 — refactor, hard](../../gym/tasks/08/08-18_tokens_and_fakes_refactor/task.md): Refactor tokens and fakes: Preserve emission order while collecting token chunks.
+- [08-16 — trace, medium](../../gym/tasks/08/08-16_tokens_and_fakes_trace/task.md): Diagnose tokens and fakes from execution evidence
+- [08-17 — extend, hard](../../gym/tasks/08/08-17_tokens_and_fakes_extend/task.md): Extend tokens and fakes: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [08-18 — refactor, hard](../../gym/tasks/08/08-18_tokens_and_fakes_refactor/task.md): Refactor tokens and fakes: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.
 

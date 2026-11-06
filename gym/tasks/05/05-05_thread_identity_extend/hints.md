@@ -6,8 +6,8 @@ The thread ID is the claim-folder number; reuse another customer's number and yo
 
 ## Hint 2
 
-Claim identity must participate in the thread mapping. Inspect the operation that owns this update or routing choice.
+Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: "claim:" + claim_id. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the new node or boundary contract described above. Check every boundary input after the repair; a default-case pass alone is insufficient.

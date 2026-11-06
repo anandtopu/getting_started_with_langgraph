@@ -12,6 +12,8 @@ Complete [Your first graph](../01_your_first_graph/README.md). Read dictionary k
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain TypedDict, dataclass, and Pydantic schemas; defaults; input validation; v2 output coercion.
@@ -113,7 +115,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/02_state_and_reducers/examples/01_schema_contracts.py
+uv run --no-sync python modules/02_state_and_reducers/examples/01_schema_contracts.py
 ```
 
 **Predict, then run:** for {"kind": "pydantic", "amount_cents": 125000, "claim_id": "CLM-0001"}, write the resulting fields and any expected error. Then test the boundary cases in tests/schema_contracts.json.
@@ -139,7 +141,7 @@ TypedDict describes a dictionary for type checking; it does not validate values 
 </details>
 
 ```text
-uv run python modules/02_state_and_reducers/examples/02_reducer_findings.py
+uv run --no-sync python modules/02_state_and_reducers/examples/02_reducer_findings.py
 ```
 
 **Predict, then run:** for {"first": {"id": "receipt", "severity": 1}, "second": {"id": "receipt", "severity": 3}}, write the resulting fields and any expected error. Then test the boundary cases in tests/reducer_findings.json.
@@ -170,7 +172,7 @@ A channel is one state field together with its update rule. The default rule ove
 </details>
 
 ```text
-uv run python modules/02_state_and_reducers/examples/03_state_boundaries.py
+uv run --no-sync python modules/02_state_and_reducers/examples/03_state_boundaries.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "text": "  Pipe burst  "}, write the resulting fields and any expected error. Then test the boundary cases in tests/state_boundaries.json.
@@ -240,33 +242,33 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"output_type": "ClaimModel", "value": {"claim_id": "CLM-0001", "amount_cents": 125000, "status": "received"}}}`. A successful validation node must record its result. | Restore `return {"status": "validated"}` and check the boundary cases. | [02-01](../../gym/tasks/02/02-01_schema_contracts_build/task.md) · [Related Fix 02-02](../../gym/tasks/02/02-02_schema_contracts_fix/task.md) |
-| Observed `{"error": "ValueError"}`. Use Pydantic field access or model_dump instead of losing validated values. | Restore `return state.model_dump()` and check the boundary cases. | [02-02](../../gym/tasks/02/02-02_schema_contracts_fix/task.md) |
-| Observed `{"value": {"findings": [{"id": "receipt", "severity": 3}], "log": ["estimate", "receipt"], "last": "receipt"}}`. A merge must preserve evidence from earlier updates. | Restore `indexed = {item["id"]: dict(item) for item in left}` and check the boundary cases. | [02-07](../../gym/tasks/02/02-07_reducer_findings_build/task.md) · [Related Fix 02-08](../../gym/tasks/02/02-08_reducer_findings_fix/task.md) |
-| Observed `{"value": {"findings": [{"id": "receipt", "severity": 3}], "log": ["estimate", "estimate", "receipt"], "last": "receipt"}}`. Return new evidence only; the reducer already has previous values. | Restore `"log": ["receipt"]` and check the boundary cases. | [02-08](../../gym/tasks/02/02-08_reducer_findings_fix/task.md) |
-| Observed `{"value": {"fields": ["claim_id", "messages", "private_notes", "text"], "claim_id": "CLM-0001", "messages": [{"id": "customer-1", "content": "Pipe burst"}]}}`. Internal channels must not become public output. | Restore `output_schema=Output` and check the boundary cases. | [02-13](../../gym/tasks/02/02-13_state_boundaries_build/task.md) · [Related Fix 02-14](../../gym/tasks/02/02-14_state_boundaries_fix/task.md) |
-| Observed `{"value": {"fields": ["claim_id", "messages"], "claim_id": "CLM-0001", "messages": [{"id": "customer-1", "content": "  Pipe burst  "}, {"id": "customer-2", "content": "Pipe burst"}]}}`. Use the same message ID to replace the original message. | Restore `state["text"].strip(), id="customer-1"` and check the boundary cases. | [02-14](../../gym/tasks/02/02-14_state_boundaries_fix/task.md) |
+| Observed `{"value": {"output_type": "ClaimModel", "value": {"claim_id": "CLM-0001", "amount_cents": 125000, "status": "received"}}}`. A successful validation node must record its result. | Restore `return {"status": "validated"}` and check the boundary cases. | [02-01](../../gym/tasks/02/02-01_schema_contracts_build/task.md) · Related Fix: [02-02](../../gym/tasks/02/02-02_schema_contracts_fix/task.md) |
+| Observed `{"error": "ValueError"}`. Use Pydantic field access or model_dump instead of losing validated values. | Restore `return state.model_dump()` and check the boundary cases. | [02-02](../../gym/tasks/02/02-02_schema_contracts_fix/task.md) · Related Fix: [02-02](../../gym/tasks/02/02-02_schema_contracts_fix/task.md) |
+| Observed `{"value": {"findings": [{"id": "receipt", "severity": 3}], "log": ["estimate", "receipt"], "last": "receipt"}}`. A merge must preserve evidence from earlier updates. | Restore `indexed = {item["id"]: dict(item) for item in left}` and check the boundary cases. | [02-07](../../gym/tasks/02/02-07_reducer_findings_build/task.md) · Related Fix: [02-08](../../gym/tasks/02/02-08_reducer_findings_fix/task.md) |
+| Observed `{"value": {"findings": [{"id": "receipt", "severity": 3}], "log": ["estimate", "estimate", "receipt"], "last": "receipt"}}`. Return new evidence only; the reducer already has previous values. | Restore `"log": ["receipt"]` and check the boundary cases. | [02-08](../../gym/tasks/02/02-08_reducer_findings_fix/task.md) · Related Fix: [02-08](../../gym/tasks/02/02-08_reducer_findings_fix/task.md) |
+| Observed `{"value": {"fields": ["claim_id", "messages", "private_notes", "text"], "claim_id": "CLM-0001", "messages": [{"id": "customer-1", "content": "Pipe burst"}]}}`. Internal channels must not become public output. | Restore `output_schema=Output` and check the boundary cases. | [02-13](../../gym/tasks/02/02-13_state_boundaries_build/task.md) · Related Fix: [02-14](../../gym/tasks/02/02-14_state_boundaries_fix/task.md) |
+| Observed `{"value": {"fields": ["claim_id", "messages"], "claim_id": "CLM-0001", "messages": [{"id": "customer-1", "content": "  Pipe burst  "}, {"id": "customer-2", "content": "Pipe burst"}]}}`. Use the same message ID to replace the original message. | Restore `state["text"].strip(), id="customer-1"` and check the boundary cases. | [02-14](../../gym/tasks/02/02-14_state_boundaries_fix/task.md) · Related Fix: [02-14](../../gym/tasks/02/02-14_state_boundaries_fix/task.md) |
 
 ## Practice
 
 - [02-01 — build, easy](../../gym/tasks/02/02-01_schema_contracts_build/task.md): Build schema contracts: A successful validation node must record its result.
 - [02-02 — fix, medium](../../gym/tasks/02/02-02_schema_contracts_fix/task.md): Fix schema contracts: Use Pydantic field access or model_dump instead of losing validated values.
 - [02-03 — predict, easy](../../gym/tasks/02/02-03_schema_contracts_predict/task.md): Predict schema contracts across the declared cases
-- [02-04 — trace, medium](../../gym/tasks/02/02-04_schema_contracts_trace/task.md): Trace schema contracts: Use Pydantic field access or model_dump instead of losing validated values.
-- [02-05 — extend, hard](../../gym/tasks/02/02-05_schema_contracts_extend/task.md): Extend schema contracts: The positive-amount contract excludes zero.
-- [02-06 — refactor, hard](../../gym/tasks/02/02-06_schema_contracts_refactor/task.md): Refactor schema contracts: Converting schema styles must preserve valid values.
+- [02-04 — trace, medium](../../gym/tasks/02/02-04_schema_contracts_trace/task.md): Diagnose schema contracts from execution evidence
+- [02-05 — extend, hard](../../gym/tasks/02/02-05_schema_contracts_extend/task.md): Extend schema contracts: Preserve an optional loss date and its None default across all three schema styles.
+- [02-06 — refactor, hard](../../gym/tasks/02/02-06_schema_contracts_refactor/task.md): Refactor schema contracts: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [02-07 — build, easy](../../gym/tasks/02/02-07_reducer_findings_build/task.md): Build reducer findings: A merge must preserve evidence from earlier updates.
 - [02-08 — fix, medium](../../gym/tasks/02/02-08_reducer_findings_fix/task.md): Fix reducer findings: Return new evidence only; the reducer already has previous values.
 - [02-09 — predict, easy](../../gym/tasks/02/02-09_reducer_findings_predict/task.md): Predict reducer findings across the declared cases
-- [02-10 — trace, medium](../../gym/tasks/02/02-10_reducer_findings_trace/task.md): Trace reducer findings: Return new evidence only; the reducer already has previous values.
-- [02-11 — extend, hard](../../gym/tasks/02/02-11_reducer_findings_extend/task.md): Extend reducer findings: Severity must not decrease when a later finding is weaker.
-- [02-12 — refactor, hard](../../gym/tasks/02/02-12_reducer_findings_refactor/task.md): Refactor reducer findings: Canonical presentation must not depend on arrival order.
+- [02-10 — trace, medium](../../gym/tasks/02/02-10_reducer_findings_trace/task.md): Diagnose reducer findings from execution evidence
+- [02-11 — extend, hard](../../gym/tasks/02/02-11_reducer_findings_extend/task.md): Extend reducer findings: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [02-12 — refactor, hard](../../gym/tasks/02/02-12_reducer_findings_refactor/task.md): Refactor reducer findings: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [02-13 — build, easy](../../gym/tasks/02/02-13_state_boundaries_build/task.md): Build state boundaries: Internal channels must not become public output.
 - [02-14 — fix, medium](../../gym/tasks/02/02-14_state_boundaries_fix/task.md): Fix state boundaries: Use the same message ID to replace the original message.
 - [02-15 — predict, easy](../../gym/tasks/02/02-15_state_boundaries_predict/task.md): Predict state boundaries across the declared cases
-- [02-16 — trace, medium](../../gym/tasks/02/02-16_state_boundaries_trace/task.md): Trace state boundaries: Use the same message ID to replace the original message.
-- [02-17 — extend, hard](../../gym/tasks/02/02-17_state_boundaries_extend/task.md): Extend state boundaries: Customer-facing correction must normalize text.
-- [02-18 — refactor, hard](../../gym/tasks/02/02-18_state_boundaries_refactor/task.md): Refactor state boundaries: A refactored input boundary must still supply the fields its nodes read.
+- [02-16 — trace, medium](../../gym/tasks/02/02-16_state_boundaries_trace/task.md): Diagnose state boundaries from execution evidence
+- [02-17 — extend, hard](../../gym/tasks/02/02-17_state_boundaries_extend/task.md): Extend state boundaries: Append a customer-safe explanation without exposing internal notes or duplicating the original message.
+- [02-18 — refactor, hard](../../gym/tasks/02/02-18_state_boundaries_refactor/task.md): Refactor state boundaries: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.
 

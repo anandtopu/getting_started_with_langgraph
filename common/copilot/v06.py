@@ -62,11 +62,18 @@ def draft_letter(state: MemoryClaimState) -> dict:
 
 
 def build_graph(checkpointer=None, store=None):
+    def authorize_customer(state: MemoryClaimState, runtime: Runtime[CustomerContext]) -> dict:
+        if runtime.context.customer_id != state["claim"]["customer_id"]:
+            raise PermissionError("Customer context does not own this claim")
+        return {}
+
     graph = StateGraph(MemoryClaimState, context_schema=CustomerContext)
+    graph.add_node("authorize_customer", authorize_customer)
     graph.add_node("intake_and_evidence", v05.build_graph(checkpointer=True))
     graph.add_node("remember", remember)
     graph.add_node("draft_letter", draft_letter)
-    graph.add_edge(START, "intake_and_evidence")
+    graph.add_edge(START, "authorize_customer")
+    graph.add_edge("authorize_customer", "intake_and_evidence")
     graph.add_edge("intake_and_evidence", "remember")
     graph.add_edge("remember", "draft_letter")
     graph.add_edge("draft_letter", END)

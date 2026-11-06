@@ -1,0 +1,102 @@
+[
+  {
+    "input": {
+      "customer_id": "CUS-0001",
+      "policy_version": 1,
+      "amount_cents": 125000,
+      "ttl": 10,
+      "advance": 10
+    },
+    "expected": {
+      "value": {
+        "covered": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "lookup_calls": 4
+      }
+    }
+  },
+  {
+    "input": {
+      "customer_id": "CUS-0001",
+      "policy_version": 1,
+      "amount_cents": 125000,
+      "ttl": 10,
+      "advance": 0
+    },
+    "expected": {
+      "value": {
+        "covered": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "lookup_calls": 3
+      }
+    }
+  },
+  {
+    "input": {
+      "customer_id": "CUS-0001",
+      "policy_version": 1,
+      "amount_cents": 300000,
+      "ttl": 10,
+      "advance": 10
+    },
+    "expected": {
+      "value": {
+        "covered": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "lookup_calls": 4
+      }
+    }
+  },
+  {
+    "input": {
+      "customer_id": "CUS-0001",
+      "policy_version": 2,
+      "amount_cents": 125000,
+      "ttl": 10,
+      "advance": 10
+    },
+    "expected": {
+      "value": {
+        "covered": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "lookup_calls": 4
+      }
+    }
+  },
+  {
+    "input": {
+      "customer_id": "CUS-0003",
+      "policy_version": 1,
+      "amount_cents": 125000,
+      "ttl": 10,
+      "advance": 10
+    },
+    "expected": {
+      "value": {
+        "covered": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "lookup_calls": 4
+      }
+    }
+  }
+]

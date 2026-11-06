@@ -1,4 +1,4 @@
-# 20-04 — Trace local visual debugging: Debug the supplied claim amount rather than a substituted value.
+# 20-04 — Diagnose local visual debugging from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ langgraph.json maps a public graph name to a Python export. The local Agent Serv
 
 ## Your task
 
-Debug the supplied claim amount rather than a substituted value. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose local visual debugging from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Debug the supplied claim amount rather than a substituted value. Read trace.py b
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Resolve the graph name declared in the server configuration."
+- "Debug the supplied claim amount rather than a substituted value."
+- "Report a discrepancy only when observed and reported routes differ."
+- "Inspect the actual approval node in the generated graph diagram."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

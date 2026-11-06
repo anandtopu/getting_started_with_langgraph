@@ -1,4 +1,4 @@
-"""Trace parallel futures: Preserve every parallel graph result.. Run this file with Python. No live model or network."""
+"""Diagnose parallel futures from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 

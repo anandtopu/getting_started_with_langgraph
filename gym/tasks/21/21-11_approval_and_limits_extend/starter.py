@@ -1,4 +1,4 @@
-"""Extend approval and limits: Keep a human rejection from creating an effect.. Run this file with Python. No live model or network."""
+"""Extend approval and limits: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from common.app_demo import run_demo
 from common.pretty import print_state
@@ -25,7 +25,7 @@ def run(case: dict | None = None) -> dict:
         or case["estimated_tokens"] > case["token_budget"]
     ):
         return {"admitted": False, "effects": 0, "reason": "budget"}
-    result = run_demo(approve=True, stale=True)
+    result = run_demo(approve=case["approved"], stale=True)
     return {
         "admitted": True,
         "effects": result["effects"],
@@ -33,6 +33,10 @@ def run(case: dict | None = None) -> dict:
         "customer_approval_status": result["customer_approval_status"],
         "stale_status": result["stale_status"],
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

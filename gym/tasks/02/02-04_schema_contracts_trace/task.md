@@ -1,4 +1,4 @@
-# 02-04 — Trace schema contracts: Use Pydantic field access or model_dump instead of losing validated values.
+# 02-04 — Diagnose schema contracts from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ TypedDict describes a dictionary for type checking; it does not validate values 
 
 ## Your task
 
-Use Pydantic field access or model_dump instead of losing validated values. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose schema contracts from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Use Pydantic field access or model_dump instead of losing validated values. Read
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "A successful validation node must record its result."
+- "Use Pydantic field access or model_dump instead of losing validated values."
+- "The positive-amount contract excludes zero."
+- "Converting schema styles must preserve valid values."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,0 +1,47 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "customer_id": "CUS-0001",
+        "policy_version": 1,
+        "amount_cents": 125000,
+        "ttl": 10,
+        "advance": 10
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "covered": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "lookup_calls": 3
+        }
+      }
+    },
+    {
+      "input": {
+        "customer_id": "CUS-0001",
+        "policy_version": 1,
+        "amount_cents": 125000,
+        "ttl": 10,
+        "advance": 0
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "covered": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "lookup_calls": 2
+        }
+      }
+    }
+  ]
+}

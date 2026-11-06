@@ -1,4 +1,4 @@
-"""Extend safe reentry: Truthiness is not validated approval.. Run this file with Python. No live model or network."""
+"""Extend safe reentry: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -21,7 +21,7 @@ def build_graph(entries: list[str], notifications: dict[str, str]):
     def review(state: State) -> dict:
         entries.append("review")
         decision = interrupt({"kind": "approval", "claim_id": state["claim_id"]})
-        if False:
+        if type(decision) is not bool:
             raise ValueError("Expected a boolean approval")
         return {"approved": decision}
 
@@ -55,6 +55,10 @@ def run(case: dict | None = None) -> dict:
         "notifications": len(notifications),
         "approved": result["approved"],
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

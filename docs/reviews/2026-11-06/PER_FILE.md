@@ -1,0 +1,43 @@
+# Per-file review
+
+## Scope
+
+Runtime code in `common/` and `apps/`; gym CLI, grading, and progress; canonical course sources and generators; all generated task packages through their contracts; five capstones; tests, dependency manifests, CI/deployment configuration, fixtures, and teaching documentation. The [shipped-file manifest](../../planning/REPOSITORY_MANIFEST.txt) enumerates the owned files. Generated fixtures and repetitive task copies receive exhaustive automated validation, with focused manual review of their source patterns and changed contracts.
+
+## Findings
+
+All items below have implementation fixes. Validation results are recorded in the [action plan](ACTION_PLAN.md).
+
+| ID | Severity | File / location | Line | Finding and impact | Fix and acceptance evidence |
+| --- | --- | --- | ---: | --- | --- |
+| R01 | P1 | `apps/api.py`, resume endpoint; `common/copilot/v08.py`, estimate wait | 33 | Invalid resume data was persisted before validation, so retrying could replay the same invalid response indefinitely. | Validate decision kind, required fields, dates, booleans, and coverage before submitting Command. An HTTP regression sends an invalid receipt, then successfully corrects the same interrupt. |
+| R02 | P1 | `capstones/02_policy_qa_with_memory/solution.py`, memory lookup; `common/copilot/v06.py`, graph entry | 80 | QA memory identity came from mutable graph input. The earlier Copilot checked ownership only after extraction/policy work. | Use trusted Runtime context for QA memory; authorize Copilot before any model or policy read. Tests substitute another customer in graph input and install a model-call tripwire. |
+| R03 | P2 | `common/copilot/v04.py`, extraction; `v05.py`, policy agent; `v07.py`, risk inspection | 22 | Supplied submissions 19, 20, 38, and 57 have missing amounts and crashed in strict extraction; later risk arithmetic also assumed an integer. | Route incomplete/invalid/duplicate inputs through intake without inventing facts or performing policy calculations. Test missing, negative, boolean, string, and unknown-category inputs. |
+| R04 | P2 | `apps/api.py`, authentication | 80 | Non-ASCII bearer text could make string compare_digest raise instead of returning unauthorized. | Compare encoded bytes; HTTP regression expects 401. |
+| R05 | P2 | `apps/api.py`, streaming run guard | 113 | Recovery with None was not rechecked under the execution lease, unlike initial and approval runs. | Recheck pending work, interrupts, and completion under the lease before recovery. |
+| R06 | P2 | `apps/api.py`, stream error boundary | 187 | Unexpected execution errors closed an already-started response without a usable terminal event. | Emit a generic error event, log only exception type, release the lease, and propagate cancellation. Regression checks no private exception detail is exposed. |
+| R07 | P2 | `apps/dashboard.py`, claim input and cached view | 19 | Changing a widget's default reset claim selection; cached streamed text was shared across thread/credential changes. | Stable widget identity, explicit new-thread handoff, and view scope based on endpoint/credentials/thread. Streamlit AppTest exercises switching claims. |
+| R08 | P2 | `gym/pytest_plugin.py`; `scripts/check_capstone.py` | 42 | A passed gym test could hide another skipped test; capstone candidates could skip acceptance checks and return success. | Record skipped setup/call reports and require a complete executed acceptance set. Negative grader tests cover both cases. |
+| R09 | P2 | `gym/progress.py`, fingerprint | 22 | A previous pass stayed current after its grading requirements changed. | Bind progress to the task type, tests, fixtures, and rubric as well as the attempt. A changed-contract regression requires rechecking without deleting learner work. |
+| R10 | P2 | `common/mini_graph.py`, budget boundary | 53 | A graph completing exactly on the final permitted step raised a budget error. | Return the completed snapshot at the boundary; retain errors for genuinely pending cycles. |
+| R11 | P2 | `scripts/authoring/refactors.py`; `scripts/build_course.py`; `scripts/validate_gym.py` | 6 | Most Refactor starters changed behavior and lacked structural acceptance checks. | All 54 Refactor tasks now retain a passing behavioral baseline plus a separate design check. Includes Graph-to-Functional, flat-to-subgraph, TypeScript builder/agent refactors, pure node updates, and input ownership boundaries. Release validation enforces baseline passes. |
+| R12 | P2 | `scripts/authoring/extensions.py`; generated Extend tests | 17 | Most Extend tasks merely repaired an existing feature; old-versus-new compatibility was not separately checked. | Keep eight existing feature additions; the other 73 add an isolated batch interface. Generated tasks retain baseline fields/list prefixes/errors plus new capability checks; batch tasks retain exact single-run behavior. |
+| R13 | P2 | `scripts/authoring/traces.py`; generated Trace guides | 28 | Generated Trace exercises primarily supplied programs/final answers and disclosed the expected cause in the task title. | Add local node-update evidence, label plain-Python/child-process limits, and ask learners to select a cause from competing diagnoses. The hand-authored introductory trace already supplies execution steps. |
+| R14 | P2 | `scripts/live_claim_lab.py`; beginner/provider guides | 22 | The only runnable provider opt-in was a generic greeting; foundational testing/schema/message/async concepts were insufficiently introduced. | Add fake/live extraction, scoped tools, and conversation memory, a skipped-by-default live test, and a beginner bridge linked at the lessons. |
+| R15 | P2 | `capstones/01_claims_intake_engine/solution.py`, replay | 37 | Invoking the final completed checkpoint did not demonstrate historical replay. | Replay a checkpoint before normalization, record executed nodes, and obtain a new approval when replay crosses the human boundary. Acceptance asserts executed nodes. |
+| R16 | P2 | `scripts/authoring/sources/22/03_managed_deployment.py.in`, request plan | 13 | The planned run input contained only claim_id and did not match the exported graph's claim state. | Supply the actual claim/audit/findings schema and test invoking it. Include explicit waiting, ephemeral, background, and cron SDK adapters without calling hosted services. |
+| R17 | P2 | `scripts/build_course.py`; new diagram/index builders | 372 | Regeneration lost supplementary diagrams/Fix links, could lower the release phase, ignored lint failure, and left public indexes stale. | Persist those behaviors in the generator, retain the highest released phase, fail on lint, and provide repeatable diagram/index builders. |
+| R18 | P3 | `gym/cli.py`, solution command | 270 | TypeScript solutions displayed only their Python bridge. | Reveal the .ts implementation too; a CLI regression checks it. |
+| R19 | P3 | `common/service.py`; `common/postgres_service.py` | 77 | Local lease entries accumulated after completion; Postgres effect keys had weaker input validation than SQLite keys. | Release unused lock entries and apply the same nonempty-string key contract. |
+| R20 | P2 | `common/sse.py`, decoder | 14 | Repeated SSE data lines overwrote each other instead of forming one JSON event. | Join data lines before JSON parsing; test CRLF and heartbeat comments. |
+| R21 | P2 | `common/pretty.py`, credential redaction | 11 | Application bearer and refresh tokens were not included in checkpoint/diagnostic redaction. | Redact credential token fields while preserving harmless token usage counts; independent regression covers both. |
+
+| R22 | P2 | `common/typescript.py`, external workspace | 16 | Node resolved packages relative to an external attempt and could not find course dependencies. | Stage the exact single-file TypeScript attempt inside a temporary course-relative directory; regression checks external workspace inputs and outputs. |
+
+## Validation
+
+See [release evidence](ACTION_PLAN.md). Regression tests target observable failures rather than only matching generated reference output. Existing data integrity, schema, authorization, checkpoint, process timeout, provider-construction, and cross-platform checks remain enabled.
+
+## Open questions
+
+No unresolved confirmed runtime defect from this review. The batch and input-boundary exercises deliberately reuse a practice pattern across feature groups; their behavior is valid, but human learner feedback can guide more varied advanced exercises. Runtime callback traces are not exact scheduler ordering, and isolated child processes cannot expose their internal callbacks to the parent collector.

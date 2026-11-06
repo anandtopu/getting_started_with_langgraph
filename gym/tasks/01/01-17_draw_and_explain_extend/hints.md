@@ -6,7 +6,7 @@ Compare the building plan with the visitor log: one describes possibilities, the
 
 ## Hint 2
 
-Add an eligibility node and verify both its diagram connection and runtime update. Inspect the operation that owns this update or routing choice.
+Add an opt-in eligibility node selected by eligibility_check=True. Preserve the original steps when absent; verify the new diagram connection and valid/invalid updates when enabled. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 

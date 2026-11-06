@@ -1,4 +1,4 @@
-"""Extend manual react: Respect the caller's execution budget.. Run this file with Python. No live model or network."""
+"""Extend manual react: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.tools import tool
@@ -55,7 +55,7 @@ def run(case: dict | None = None) -> dict:
         build_graph(case["policy_id"])
         .invoke(
             {"messages": [HumanMessage(content="Check the policy deductible.")]},
-            {"recursion_limit": 100},
+            {"recursion_limit": case["recursion_limit"]},
             version="v2",
         )
         .value
@@ -67,6 +67,10 @@ def run(case: dict | None = None) -> dict:
         ],
         "final": result["messages"][-1].content,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

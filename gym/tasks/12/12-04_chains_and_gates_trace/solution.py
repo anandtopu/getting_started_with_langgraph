@@ -1,4 +1,4 @@
-"""Trace chains and gates: Stop the chain when the fact gate fails.. Run this file with Python. No live model or network."""
+"""Diagnose chains and gates from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 from typing import Literal, TypedDict

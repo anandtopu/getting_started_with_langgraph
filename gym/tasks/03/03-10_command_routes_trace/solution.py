@@ -1,4 +1,4 @@
-"""Trace command routes: A competing static edge schedules an extra acknowledgment.. Run this file with Python. No live model or network."""
+"""Diagnose command routes from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, Literal, TypedDict

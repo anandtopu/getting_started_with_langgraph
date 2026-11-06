@@ -1,4 +1,4 @@
-"""Extend evaluator optimizer: Keep the respectful-tone criterion separate from the factual criterion.. Run this file with Python. No live model or network."""
+"""Extend evaluator optimizer: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -40,7 +40,7 @@ def build_graph(drafts: list[str], budget: int):
         feedback = []
         if "100000 cents" not in state["draft"]:
             feedback.append("deductible_fact")
-        if False:
+        if "thank" not in state["draft"].lower():
             feedback.append("respectful_tone")
         return {
             "feedback": feedback,
@@ -80,6 +80,10 @@ def run(case: dict | None = None) -> dict:
         "history": result["history"],
         "stop_reason": "accepted" if result["accepted"] else "budget_exhausted",
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

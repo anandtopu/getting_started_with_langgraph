@@ -1,4 +1,4 @@
-# 14-04 — Trace supervisor tools: Keep specialist roles attached to the evidence they reviewed.
+# 14-04 — Diagnose supervisor tools from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A supervisor may call specialists as tools. Each specialist gets a narrow eviden
 
 ## Your task
 
-Keep specialist roles attached to the evidence they reviewed. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose supervisor tools from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Keep specialist roles attached to the evidence they reviewed. Read trace.py befo
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Register both specialist capabilities with the supervisor."
+- "Keep specialist roles attached to the evidence they reviewed."
+- "Give the policy specialist authoritative scoped evidence."
+- "Return the specialist conclusion instead of its input prompt."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

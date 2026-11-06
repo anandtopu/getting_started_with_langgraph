@@ -1,4 +1,4 @@
-"""Refactor wire pipeline: Refactoring must preserve the complete execution sequence.. Run this file with Python. No live model or network."""
+"""Refactor wire pipeline: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -24,7 +24,7 @@ def normalize(state: State) -> dict:
 def validate(state: State) -> dict:
     return {
         "status": "ready" if state["description"] else "needs_information",
-        "steps": ["validate"],
+        "steps": [*state["steps"], "validate"],
     }
 
 

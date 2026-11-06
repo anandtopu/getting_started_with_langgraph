@@ -1,4 +1,4 @@
-# 09-10 — Trace manual react: Let the agent observe a policy lookup failure.
+# 09-10 — Diagnose manual react from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A manual agent loop alternates a model node and ToolNode. tools_condition checks
 
 ## Your task
 
-Let the agent observe a policy lookup failure. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose manual react from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Let the agent observe a policy lookup failure. Read trace.py before completing t
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Return tool evidence to the model before ending."
+- "Let the agent observe a policy lookup failure."
+- "Respect the caller's execution budget."
+- "Preserve the requested policy when constructing tool arguments."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

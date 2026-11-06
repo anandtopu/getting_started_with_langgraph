@@ -1,4 +1,4 @@
-"""Refactor entrypoints tasks: Reject booleans even though Python considers them integer instances.. Run this file with Python. No live model or network."""
+"""Refactor entrypoints tasks: Convert the working Graph API pipeline to an entrypoint with normalize and route tasks, preserving every existing result and validation error.. Run this file with Python. No live model or network."""
 
 from langgraph.func import entrypoint, task
 

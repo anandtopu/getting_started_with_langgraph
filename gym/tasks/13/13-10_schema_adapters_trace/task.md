@@ -1,4 +1,4 @@
-# 13-10 — Trace schema adapters: Preserve the exact review threshold.
+# 13-10 — Diagnose schema adapters from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ When parent and child schemas differ, call the child inside an adapter node. Map
 
 ## Your task
 
-Preserve the exact review threshold. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose schema adapters from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Preserve the exact review threshold. Read trace.py before completing the answer 
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Map the actual claim amount into the child input."
+- "Preserve the exact review threshold."
+- "Return the public risk finding rather than private investigation notes."
+- "Preserve the parent claim identity across the adapter."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

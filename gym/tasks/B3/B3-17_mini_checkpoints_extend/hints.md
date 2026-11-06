@@ -6,8 +6,8 @@ Each customer has a separate waiting folder, and an inspection copy cannot alter
 
 ## Hint 2
 
-Read the archived snapshot rather than an externally modified copy. Inspect the operation that owns this update or routing choice.
+Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: "original_id": graph.latest("A").values["claim_id"]. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the new node or boundary contract described above. Check every boundary input after the repair; a default-case pass alone is insufficient.

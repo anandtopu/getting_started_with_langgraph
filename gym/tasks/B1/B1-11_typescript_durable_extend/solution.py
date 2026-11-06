@@ -1,4 +1,4 @@
-"""Extend typescript durable: Preserve a rejected approval through JavaScript resume.. Run this file with Python. No live model or network."""
+"""Extend typescript durable: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from pathlib import Path
 
@@ -12,6 +12,25 @@ def run(case: dict | None = None) -> dict:
     return run_typescript(
         Path(__file__).with_suffix(".ts"), dict(DEFAULT_CASE if case is None else case)
     )
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    """Preview independent claims in order; one rejected input must not lose its siblings.
+
+    This sequential interface favors isolation over throughput. It is not a shared
+    checkpoint thread or a promise of transaction atomicity.
+    """
+    from copy import deepcopy
+
+    from common.pretty import safe_value
+
+    results = []
+    for case in cases:
+        try:
+            results.append({"value": safe_value(run(deepcopy(case)))})
+        except Exception as error:
+            results.append({"error": type(error).__name__})
+    return results
 
 
 def main() -> None:

@@ -6,8 +6,8 @@ Retain a ledger of additions with occasional full copies, then rebuild the curre
 
 ## Hint 2
 
-Checkpoint every supplied note before reconstruction. Inspect the operation that owns this update or routing choice.
+Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: for note in case["notes"]:. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the new node or boundary contract described above. Check every boundary input after the repair; a default-case pass alone is insufficient.

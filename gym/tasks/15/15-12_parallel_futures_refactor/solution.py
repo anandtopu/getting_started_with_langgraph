@@ -1,4 +1,4 @@
-"""Refactor parallel futures: Schedule every document before resolving task futures.. Run this file with Python. No live model or network."""
+"""Refactor parallel futures: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -55,8 +55,15 @@ def build_graph():
     return graph.compile()
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     first = functional.invoke(case["documents"], version="v2").value
     second = (
         build_graph().invoke({"documents": case["documents"], "findings": []}, version="v2").value

@@ -1,0 +1,104 @@
+[
+  {
+    "input": {
+      "history": [
+        false,
+        false,
+        true
+      ],
+      "budget": 3
+    },
+    "expected": {
+      "value": {
+        "history": [
+          false,
+          false,
+          true
+        ],
+        "budget": 3,
+        "attempts": 3,
+        "status": "ready",
+        "trace": [
+          "missing",
+          "missing",
+          "received"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "history": [
+        true
+      ],
+      "budget": 3
+    },
+    "expected": {
+      "value": {
+        "history": [
+          true
+        ],
+        "budget": 3,
+        "attempts": 1,
+        "status": "ready",
+        "trace": [
+          "received"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "history": [
+        false
+      ],
+      "budget": 2
+    },
+    "expected": {
+      "value": {
+        "history": [
+          false
+        ],
+        "budget": 2,
+        "attempts": 2,
+        "status": "exhausted",
+        "trace": [
+          "missing",
+          "missing"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "history": [
+        false,
+        false,
+        true
+      ],
+      "budget": 0
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "history": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "budget": 8,
+      "recursion_limit": 3
+    },
+    "expected": {
+      "error": "GraphRecursionError"
+    }
+  }
+]

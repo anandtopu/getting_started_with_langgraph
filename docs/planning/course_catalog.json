@@ -123,7 +123,7 @@
               "module": "00",
               "type": "trace",
               "level": "medium",
-              "description": "Trace environment: A missing provider is a problem only when live mode was requested.",
+              "description": "Diagnose environment from execution evidence",
               "group": "00-B",
               "folder": "gym/tasks/00/00-10_environment_trace"
             },
@@ -132,7 +132,7 @@
               "module": "00",
               "type": "extend",
               "level": "hard",
-              "description": "Extend environment: A setup report must identify missing committed fixtures.",
+              "description": "Extend environment: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "00-B",
               "folder": "gym/tasks/00/00-11_environment_extend"
             },
@@ -141,7 +141,7 @@
               "module": "00",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor environment: Use the supplied interpreter version; do not assume the recommended version is installed.",
+              "description": "Refactor environment: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "00-B",
               "folder": "gym/tasks/00/00-12_environment_refactor"
             }
@@ -191,7 +191,7 @@
               "module": "00",
               "type": "trace",
               "level": "medium",
-              "description": "Trace first gym: Labels need case normalization before comparison.",
+              "description": "Diagnose first gym from execution evidence",
               "group": "00-C",
               "folder": "gym/tasks/00/00-16_first_gym_trace"
             },
@@ -200,7 +200,7 @@
               "module": "00",
               "type": "extend",
               "level": "hard",
-              "description": "Extend first gym: Leading and trailing spaces are not claim categories.",
+              "description": "Extend first gym: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "00-C",
               "folder": "gym/tasks/00/00-17_first_gym_extend"
             },
@@ -270,7 +270,7 @@
               "module": "01",
               "type": "trace",
               "level": "medium",
-              "description": "Trace intake nodes: A graph node must return a mapping of state updates.",
+              "description": "Diagnose intake nodes from execution evidence",
               "group": "01-A",
               "folder": "gym/tasks/01/01-04_intake_nodes_trace"
             },
@@ -279,7 +279,7 @@
               "module": "01",
               "type": "extend",
               "level": "hard",
-              "description": "Extend intake nodes: An amount update must not erase the claim identifier.",
+              "description": "Extend intake nodes: Add a contact-normalization node without erasing claim identity.",
               "group": "01-A",
               "folder": "gym/tasks/01/01-05_intake_nodes_extend"
             },
@@ -339,7 +339,7 @@
               "module": "01",
               "type": "trace",
               "level": "medium",
-              "description": "Trace wire pipeline: Validation must occur before acknowledging the claim.",
+              "description": "Diagnose wire pipeline from execution evidence",
               "group": "01-B",
               "folder": "gym/tasks/01/01-10_wire_pipeline_trace"
             },
@@ -348,7 +348,7 @@
               "module": "01",
               "type": "extend",
               "level": "hard",
-              "description": "Extend wire pipeline: A completed acknowledgment must be visible in output.",
+              "description": "Extend wire pipeline: Connect the receipt-number node after acknowledgment and before termination.",
               "group": "01-B",
               "folder": "gym/tasks/01/01-11_wire_pipeline_extend"
             },
@@ -357,7 +357,7 @@
               "module": "01",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor wire pipeline: Refactoring must preserve the complete execution sequence.",
+              "description": "Refactor wire pipeline: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "01-B",
               "folder": "gym/tasks/01/01-12_wire_pipeline_refactor"
             }
@@ -406,7 +406,7 @@
               "module": "01",
               "type": "trace",
               "level": "medium",
-              "description": "Trace draw and explain: The intended final node must be connected.",
+              "description": "Diagnose draw and explain from execution evidence",
               "group": "01-C",
               "folder": "gym/tasks/01/01-16_draw_and_explain_trace"
             },
@@ -415,7 +415,7 @@
               "module": "01",
               "type": "extend",
               "level": "hard",
-              "description": "Extend draw and explain: Eligibility evidence must affect the validation result.",
+              "description": "Extend draw and explain: Add an opt-in eligibility node selected by eligibility_check=True. Preserve the original steps when absent; verify the new diagram connection and valid/invalid updates when enabled.",
               "group": "01-C",
               "folder": "gym/tasks/01/01-17_draw_and_explain_extend"
             },
@@ -485,7 +485,7 @@
               "module": "02",
               "type": "trace",
               "level": "medium",
-              "description": "Trace schema contracts: Use Pydantic field access or model_dump instead of losing validated values.",
+              "description": "Diagnose schema contracts from execution evidence",
               "group": "02-A",
               "folder": "gym/tasks/02/02-04_schema_contracts_trace"
             },
@@ -494,7 +494,7 @@
               "module": "02",
               "type": "extend",
               "level": "hard",
-              "description": "Extend schema contracts: The positive-amount contract excludes zero.",
+              "description": "Extend schema contracts: Preserve an optional loss date and its None default across all three schema styles.",
               "group": "02-A",
               "folder": "gym/tasks/02/02-05_schema_contracts_extend"
             },
@@ -503,7 +503,7 @@
               "module": "02",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor schema contracts: Converting schema styles must preserve valid values.",
+              "description": "Refactor schema contracts: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "02-A",
               "folder": "gym/tasks/02/02-06_schema_contracts_refactor"
             }
@@ -554,7 +554,7 @@
               "module": "02",
               "type": "trace",
               "level": "medium",
-              "description": "Trace reducer findings: Return new evidence only; the reducer already has previous values.",
+              "description": "Diagnose reducer findings from execution evidence",
               "group": "02-B",
               "folder": "gym/tasks/02/02-10_reducer_findings_trace"
             },
@@ -563,7 +563,7 @@
               "module": "02",
               "type": "extend",
               "level": "hard",
-              "description": "Extend reducer findings: Severity must not decrease when a later finding is weaker.",
+              "description": "Extend reducer findings: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "02-B",
               "folder": "gym/tasks/02/02-11_reducer_findings_extend"
             },
@@ -572,7 +572,7 @@
               "module": "02",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor reducer findings: Canonical presentation must not depend on arrival order.",
+              "description": "Refactor reducer findings: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "02-B",
               "folder": "gym/tasks/02/02-12_reducer_findings_refactor"
             }
@@ -622,7 +622,7 @@
               "module": "02",
               "type": "trace",
               "level": "medium",
-              "description": "Trace state boundaries: Use the same message ID to replace the original message.",
+              "description": "Diagnose state boundaries from execution evidence",
               "group": "02-C",
               "folder": "gym/tasks/02/02-16_state_boundaries_trace"
             },
@@ -631,7 +631,7 @@
               "module": "02",
               "type": "extend",
               "level": "hard",
-              "description": "Extend state boundaries: Customer-facing correction must normalize text.",
+              "description": "Extend state boundaries: Append a customer-safe explanation without exposing internal notes or duplicating the original message.",
               "group": "02-C",
               "folder": "gym/tasks/02/02-17_state_boundaries_extend"
             },
@@ -640,7 +640,7 @@
               "module": "02",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor state boundaries: A refactored input boundary must still supply the fields its nodes read.",
+              "description": "Refactor state boundaries: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "02-C",
               "folder": "gym/tasks/02/02-18_state_boundaries_refactor"
             }
@@ -701,7 +701,7 @@
               "module": "03",
               "type": "trace",
               "level": "medium",
-              "description": "Trace conditional router: Path-map values must match each intended destination.",
+              "description": "Diagnose conditional router from execution evidence",
               "group": "03-A",
               "folder": "gym/tasks/03/03-04_conditional_router_trace"
             },
@@ -710,7 +710,7 @@
               "module": "03",
               "type": "extend",
               "level": "hard",
-              "description": "Extend conditional router: High-value claims require specialist review.",
+              "description": "Extend conditional router: Add an opt-in jewelry-specialist path selected by specialize_jewelry=True. Preserve legacy routing when absent, and keep invalid-amount, high-value, and missing-evidence guards ahead of specialization.",
               "group": "03-A",
               "folder": "gym/tasks/03/03-05_conditional_router_extend"
             },
@@ -719,7 +719,7 @@
               "module": "03",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor conditional router: Refactoring must retain the missing-evidence route.",
+              "description": "Refactor conditional router: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "03-A",
               "folder": "gym/tasks/03/03-06_conditional_router_refactor"
             }
@@ -769,7 +769,7 @@
               "module": "03",
               "type": "trace",
               "level": "medium",
-              "description": "Trace command routes: A competing static edge schedules an extra acknowledgment.",
+              "description": "Diagnose command routes from execution evidence",
               "group": "03-B",
               "folder": "gym/tasks/03/03-10_command_routes_trace"
             },
@@ -778,7 +778,7 @@
               "module": "03",
               "type": "extend",
               "level": "hard",
-              "description": "Extend command routes: The recorded reason must explain the actual decision.",
+              "description": "Extend command routes: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "03-B",
               "folder": "gym/tasks/03/03-11_command_routes_extend"
             },
@@ -787,7 +787,7 @@
               "module": "03",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor command routes: Equivalent control flow must not duplicate work.",
+              "description": "Refactor command routes: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "03-B",
               "folder": "gym/tasks/03/03-12_command_routes_refactor"
             }
@@ -837,7 +837,7 @@
               "module": "03",
               "type": "trace",
               "level": "medium",
-              "description": "Trace early exit: Zero is a defined boundary, not an omitted case.",
+              "description": "Diagnose early exit from execution evidence",
               "group": "03-C",
               "folder": "gym/tasks/03/03-16_early_exit_trace"
             },
@@ -846,7 +846,7 @@
               "module": "03",
               "type": "extend",
               "level": "hard",
-              "description": "Extend early exit: Duplicate submissions need an explicit terminal reason.",
+              "description": "Extend early exit: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "03-C",
               "folder": "gym/tasks/03/03-17_early_exit_extend"
             },
@@ -915,7 +915,7 @@
               "module": "04",
               "type": "trace",
               "level": "medium",
-              "description": "Trace bounded rechecks: Without a changing retry counter, the graph reaches its recursion limit.",
+              "description": "Diagnose bounded rechecks from execution evidence",
               "group": "04-A",
               "folder": "gym/tasks/04/04-04_bounded_rechecks_trace"
             },
@@ -924,7 +924,7 @@
               "module": "04",
               "type": "extend",
               "level": "hard",
-              "description": "Extend bounded rechecks: The business budget needs an explicit exhausted outcome.",
+              "description": "Extend bounded rechecks: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "04-A",
               "folder": "gym/tasks/04/04-05_bounded_rechecks_extend"
             },
@@ -933,7 +933,7 @@
               "module": "04",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor bounded rechecks: Equivalent loops must preserve the exact attempt budget.",
+              "description": "Refactor bounded rechecks: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "04-A",
               "folder": "gym/tasks/04/04-06_bounded_rechecks_refactor"
             }
@@ -984,7 +984,7 @@
               "module": "04",
               "type": "trace",
               "level": "medium",
-              "description": "Trace fan out fan in: Parallel writes to an overwrite channel conflict.",
+              "description": "Diagnose fan out fan in from execution evidence",
               "group": "04-B",
               "folder": "gym/tasks/04/04-10_fan_out_fan_in_trace"
             },
@@ -993,7 +993,7 @@
               "module": "04",
               "type": "extend",
               "level": "hard",
-              "description": "Extend fan out fan in: The deeper police branch must finish before summary.",
+              "description": "Extend fan out fan in: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "04-B",
               "folder": "gym/tasks/04/04-11_fan_out_fan_in_extend"
             },
@@ -1002,7 +1002,7 @@
               "module": "04",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor fan out fan in: Do not treat arrival order as the public result order.",
+              "description": "Refactor fan out fan in: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "04-B",
               "folder": "gym/tasks/04/04-12_fan_out_fan_in_refactor"
             }
@@ -1053,7 +1053,7 @@
               "module": "04",
               "type": "trace",
               "level": "medium",
-              "description": "Trace retry and cache: Customer identity belongs in the cache key.",
+              "description": "Diagnose retry and cache from execution evidence",
               "group": "04-C",
               "folder": "gym/tasks/04/04-16_retry_and_cache_trace"
             },
@@ -1062,7 +1062,7 @@
               "module": "04",
               "type": "extend",
               "level": "hard",
-              "description": "Extend retry and cache: The cache must observe the injected clock advancing.",
+              "description": "Extend retry and cache: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "04-C",
               "folder": "gym/tasks/04/04-17_retry_and_cache_extend"
             },
@@ -1133,7 +1133,7 @@
               "module": "05",
               "type": "trace",
               "level": "medium",
-              "description": "Trace thread identity: A persisted invocation needs an explicit thread identifier.",
+              "description": "Diagnose thread identity from execution evidence",
               "group": "05-A",
               "folder": "gym/tasks/05/05-04_thread_identity_trace"
             },
@@ -1142,7 +1142,7 @@
               "module": "05",
               "type": "extend",
               "level": "hard",
-              "description": "Extend thread identity: Claim identity must participate in the thread mapping.",
+              "description": "Extend thread identity: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "05-A",
               "folder": "gym/tasks/05/05-05_thread_identity_extend"
             },
@@ -1151,7 +1151,7 @@
               "module": "05",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor thread identity: Continuing a session must not discard earlier notes.",
+              "description": "Refactor thread identity: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "05-A",
               "folder": "gym/tasks/05/05-06_thread_identity_refactor"
             }
@@ -1201,7 +1201,7 @@
               "module": "05",
               "type": "trace",
               "level": "medium",
-              "description": "Trace sqlite lifetime: A compiled graph cannot use a saver whose connection has closed.",
+              "description": "Diagnose sqlite lifetime from execution evidence",
               "group": "05-B",
               "folder": "gym/tasks/05/05-10_sqlite_lifetime_trace"
             },
@@ -1210,7 +1210,7 @@
               "module": "05",
               "type": "extend",
               "level": "hard",
-              "description": "Extend sqlite lifetime: Both processes must reopen the same logical claim thread.",
+              "description": "Extend sqlite lifetime: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "05-B",
               "folder": "gym/tasks/05/05-11_sqlite_lifetime_extend"
             },
@@ -1219,7 +1219,7 @@
               "module": "05",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor sqlite lifetime: Resource-lifetime refactoring must preserve continuation input.",
+              "description": "Refactor sqlite lifetime: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "05-B",
               "folder": "gym/tasks/05/05-12_sqlite_lifetime_refactor"
             }
@@ -1270,7 +1270,7 @@
               "module": "05",
               "type": "trace",
               "level": "medium",
-              "description": "Trace inspect checkpoints: Continue the configuration returned by update_state, not an unrelated checkpoint.",
+              "description": "Diagnose inspect checkpoints from execution evidence",
               "group": "05-C",
               "folder": "gym/tasks/05/05-16_inspect_checkpoints_trace"
             },
@@ -1279,7 +1279,7 @@
               "module": "05",
               "type": "extend",
               "level": "hard",
-              "description": "Extend inspect checkpoints: The edit attribution determines the pending successor nodes.",
+              "description": "Extend inspect checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "05-C",
               "folder": "gym/tasks/05/05-17_inspect_checkpoints_extend"
             },
@@ -1349,7 +1349,7 @@
               "module": "06",
               "type": "trace",
               "level": "medium",
-              "description": "Trace approve or reject: An interrupt needs persistence to resume the saved task.",
+              "description": "Diagnose approve or reject from execution evidence",
               "group": "06-A",
               "folder": "gym/tasks/06/06-04_approve_or_reject_trace"
             },
@@ -1358,7 +1358,7 @@
               "module": "06",
               "type": "extend",
               "level": "hard",
-              "description": "Extend approve or reject: Only a validated boolean authorizes this synthetic decision.",
+              "description": "Extend approve or reject: Validate adjuster identity from the trusted invocation configuration, independently of the response payload.",
               "group": "06-A",
               "folder": "gym/tasks/06/06-05_approve_or_reject_extend"
             },
@@ -1367,7 +1367,7 @@
               "module": "06",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor approve or reject: Replacing a callback must preserve the actual human response.",
+              "description": "Refactor approve or reject: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "06-A",
               "folder": "gym/tasks/06/06-06_approve_or_reject_refactor"
             }
@@ -1417,7 +1417,7 @@
               "module": "06",
               "type": "trace",
               "level": "medium",
-              "description": "Trace collect and edit: Each interrupt must receive the response for its own request kind.",
+              "description": "Diagnose collect and edit from execution evidence",
               "group": "06-B",
               "folder": "gym/tasks/06/06-10_collect_and_edit_trace"
             },
@@ -1426,7 +1426,7 @@
               "module": "06",
               "type": "extend",
               "level": "hard",
-              "description": "Extend collect and edit: Python booleans must not pass an integer money check.",
+              "description": "Extend collect and edit: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "06-B",
               "folder": "gym/tasks/06/06-11_collect_and_edit_extend"
             },
@@ -1485,7 +1485,7 @@
               "module": "06",
               "type": "trace",
               "level": "medium",
-              "description": "Trace safe reentry: Effects before interrupt repeat when the node restarts.",
+              "description": "Diagnose safe reentry from execution evidence",
               "group": "06-C",
               "folder": "gym/tasks/06/06-16_safe_reentry_trace"
             },
@@ -1494,7 +1494,7 @@
               "module": "06",
               "type": "extend",
               "level": "hard",
-              "description": "Extend safe reentry: Truthiness is not validated approval.",
+              "description": "Extend safe reentry: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "06-C",
               "folder": "gym/tasks/06/06-17_safe_reentry_extend"
             },
@@ -1503,7 +1503,7 @@
               "module": "06",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor safe reentry: Separate checkpointed work still needs an idempotent effect contract.",
+              "description": "Refactor safe reentry: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "06-C",
               "folder": "gym/tasks/06/06-18_safe_reentry_refactor"
             }
@@ -1565,7 +1565,7 @@
               "module": "07",
               "type": "trace",
               "level": "medium",
-              "description": "Trace replay and fork: Replay the new fork configuration, not its uncorrected parent.",
+              "description": "Diagnose replay and fork from execution evidence",
               "group": "07-A",
               "folder": "gym/tasks/07/07-04_replay_and_fork_trace"
             },
@@ -1574,7 +1574,7 @@
               "module": "07",
               "type": "extend",
               "level": "hard",
-              "description": "Extend replay and fork: Parentage must identify the selected historical evidence.",
+              "description": "Extend replay and fork: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "07-A",
               "folder": "gym/tasks/07/07-05_replay_and_fork_extend"
             },
@@ -1583,7 +1583,7 @@
               "module": "07",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor replay and fork: Replaying a completed checkpoint is different from rerunning pending review.",
+              "description": "Refactor replay and fork: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "07-A",
               "folder": "gym/tasks/07/07-06_replay_and_fork_refactor"
             }
@@ -1632,7 +1632,7 @@
               "module": "07",
               "type": "trace",
               "level": "medium",
-              "description": "Trace v2 stream parts: The state payload is inside data, not at the envelope root.",
+              "description": "Diagnose v2 stream parts from execution evidence",
               "group": "07-B",
               "folder": "gym/tasks/07/07-10_v2_stream_parts_trace"
             },
@@ -1641,7 +1641,7 @@
               "module": "07",
               "type": "extend",
               "level": "hard",
-              "description": "Extend v2 stream parts: Values events must retain interrupt information.",
+              "description": "Extend v2 stream parts: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "07-B",
               "folder": "gym/tasks/07/07-11_v2_stream_parts_extend"
             },
@@ -1650,7 +1650,7 @@
               "module": "07",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor v2 stream parts: A unified dispatcher must preserve custom progress payloads.",
+              "description": "Refactor v2 stream parts: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "07-B",
               "folder": "gym/tasks/07/07-12_v2_stream_parts_refactor"
             }
@@ -1700,7 +1700,7 @@
               "module": "07",
               "type": "trace",
               "level": "medium",
-              "description": "Trace namespaces and errors: Keep parent and child scopes distinct.",
+              "description": "Diagnose namespaces and errors from execution evidence",
               "group": "07-C",
               "folder": "gym/tasks/07/07-16_namespaces_and_errors_trace"
             },
@@ -1709,7 +1709,7 @@
               "module": "07",
               "type": "extend",
               "level": "hard",
-              "description": "Extend namespaces and errors: Group by stable scope names while retaining raw IDs separately when needed.",
+              "description": "Extend namespaces and errors: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "07-C",
               "folder": "gym/tasks/07/07-17_namespaces_and_errors_extend"
             },
@@ -1780,7 +1780,7 @@
               "module": "08",
               "type": "trace",
               "level": "medium",
-              "description": "Trace model boundary: Include exactly 100000 cents in fast-track routing.",
+              "description": "Diagnose model boundary from execution evidence",
               "group": "08-A",
               "folder": "gym/tasks/08/08-04_model_boundary_trace"
             },
@@ -1789,7 +1789,7 @@
               "module": "08",
               "type": "extend",
               "level": "hard",
-              "description": "Extend model boundary: Route an unknown category to review even with high confidence.",
+              "description": "Extend model boundary: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "08-A",
               "folder": "gym/tasks/08/08-05_model_boundary_extend"
             },
@@ -1798,7 +1798,7 @@
               "module": "08",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor model boundary: Preserve the validated amount across the model boundary.",
+              "description": "Refactor model boundary: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "08-A",
               "folder": "gym/tasks/08/08-06_model_boundary_refactor"
             }
@@ -1849,7 +1849,7 @@
               "module": "08",
               "type": "trace",
               "level": "medium",
-              "description": "Trace message identity: Correct an existing message without appending another customer message.",
+              "description": "Diagnose message identity from execution evidence",
               "group": "08-B",
               "folder": "gym/tasks/08/08-10_message_identity_trace"
             },
@@ -1858,7 +1858,7 @@
               "module": "08",
               "type": "extend",
               "level": "hard",
-              "description": "Extend message identity: Make retention conditional on the requested minimization policy.",
+              "description": "Extend message identity: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "08-B",
               "folder": "gym/tasks/08/08-11_message_identity_extend"
             },
@@ -1867,7 +1867,7 @@
               "module": "08",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor message identity: Keep the corrected text when replacing a message.",
+              "description": "Refactor message identity: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "08-B",
               "folder": "gym/tasks/08/08-12_message_identity_refactor"
             }
@@ -1917,7 +1917,7 @@
               "module": "08",
               "type": "trace",
               "level": "medium",
-              "description": "Trace tokens and fakes: Read the documented node name from stream metadata.",
+              "description": "Diagnose tokens and fakes from execution evidence",
               "group": "08-C",
               "folder": "gym/tasks/08/08-16_tokens_and_fakes_trace"
             },
@@ -1926,7 +1926,7 @@
               "module": "08",
               "type": "extend",
               "level": "hard",
-              "description": "Extend tokens and fakes: Validate the fully assembled structured response.",
+              "description": "Extend tokens and fakes: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "08-C",
               "folder": "gym/tasks/08/08-17_tokens_and_fakes_extend"
             },
@@ -1935,7 +1935,7 @@
               "module": "08",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor tokens and fakes: Preserve emission order while collecting token chunks.",
+              "description": "Refactor tokens and fakes: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "08-C",
               "folder": "gym/tasks/08/08-18_tokens_and_fakes_refactor"
             }
@@ -1997,7 +1997,7 @@
               "module": "09",
               "type": "trace",
               "level": "medium",
-              "description": "Trace tools and messages: Return a correlated tool error for an unknown policy.",
+              "description": "Diagnose tools and messages from execution evidence",
               "group": "09-A",
               "folder": "gym/tasks/09/09-04_tools_and_messages_trace"
             },
@@ -2006,7 +2006,7 @@
               "module": "09",
               "type": "extend",
               "level": "hard",
-              "description": "Extend tools and messages: Cap the proposal at the synthetic coverage limit.",
+              "description": "Extend tools and messages: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "09-A",
               "folder": "gym/tasks/09/09-05_tools_and_messages_extend"
             },
@@ -2015,7 +2015,7 @@
               "module": "09",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor tools and messages: Preserve the call identity rather than substituting the tool name.",
+              "description": "Refactor tools and messages: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "09-A",
               "folder": "gym/tasks/09/09-06_tools_and_messages_refactor"
             }
@@ -2066,7 +2066,7 @@
               "module": "09",
               "type": "trace",
               "level": "medium",
-              "description": "Trace manual react: Let the agent observe a policy lookup failure.",
+              "description": "Diagnose manual react from execution evidence",
               "group": "09-B",
               "folder": "gym/tasks/09/09-10_manual_react_trace"
             },
@@ -2075,7 +2075,7 @@
               "module": "09",
               "type": "extend",
               "level": "hard",
-              "description": "Extend manual react: Respect the caller's execution budget.",
+              "description": "Extend manual react: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "09-B",
               "folder": "gym/tasks/09/09-11_manual_react_extend"
             },
@@ -2084,7 +2084,7 @@
               "module": "09",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor manual react: Preserve the requested policy when constructing tool arguments.",
+              "description": "Refactor manual react: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "09-B",
               "folder": "gym/tasks/09/09-12_manual_react_refactor"
             }
@@ -2135,7 +2135,7 @@
               "module": "09",
               "type": "trace",
               "level": "medium",
-              "description": "Trace tool runtime: Keep the graph state consistent with the Store write.",
+              "description": "Diagnose tool runtime from execution evidence",
               "group": "09-C",
               "folder": "gym/tasks/09/09-16_tool_runtime_trace"
             },
@@ -2144,7 +2144,7 @@
               "module": "09",
               "type": "extend",
               "level": "hard",
-              "description": "Extend tool runtime: Support the declared SMS contact preference.",
+              "description": "Extend tool runtime: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "09-C",
               "folder": "gym/tasks/09/09-17_tool_runtime_extend"
             },
@@ -2214,7 +2214,7 @@
               "module": "10",
               "type": "trace",
               "level": "medium",
-              "description": "Trace create agent: Reject unknown policy IDs, not the known fixture.",
+              "description": "Diagnose create agent from execution evidence",
               "group": "10-A",
               "folder": "gym/tasks/10/10-04_create_agent_trace"
             },
@@ -2223,7 +2223,7 @@
               "module": "10",
               "type": "extend",
               "level": "hard",
-              "description": "Extend create agent: Pass through the requested policy instead of silently substituting another.",
+              "description": "Extend create agent: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "10-A",
               "folder": "gym/tasks/10/10-05_create_agent_extend"
             },
@@ -2232,7 +2232,7 @@
               "module": "10",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor create agent: Expose the final agent answer rather than the original question.",
+              "description": "Refactor create agent: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "10-A",
               "folder": "gym/tasks/10/10-06_create_agent_refactor"
             }
@@ -2283,7 +2283,7 @@
               "module": "10",
               "type": "trace",
               "level": "medium",
-              "description": "Trace middleware: Enforce the independent tool budget.",
+              "description": "Diagnose middleware from execution evidence",
               "group": "10-B",
               "folder": "gym/tasks/10/10-10_middleware_trace"
             },
@@ -2292,7 +2292,7 @@
               "module": "10",
               "type": "extend",
               "level": "hard",
-              "description": "Extend middleware: Distinguish the after hook from the before hook in lifecycle records.",
+              "description": "Extend middleware: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "10-B",
               "folder": "gym/tasks/10/10-11_middleware_extend"
             },
@@ -2351,7 +2351,7 @@
               "module": "10",
               "type": "trace",
               "level": "medium",
-              "description": "Trace agent composition: Do not turn an explanation into payment approval.",
+              "description": "Diagnose agent composition from execution evidence",
               "group": "10-C",
               "folder": "gym/tasks/10/10-16_agent_composition_trace"
             },
@@ -2360,7 +2360,7 @@
               "module": "10",
               "type": "extend",
               "level": "hard",
-              "description": "Extend agent composition: Select the specialist answer rather than its input question.",
+              "description": "Extend agent composition: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "10-C",
               "folder": "gym/tasks/10/10-17_agent_composition_extend"
             },
@@ -2369,7 +2369,7 @@
               "module": "10",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor agent composition: Preserve the parent finalization step when refactoring the adapter.",
+              "description": "Refactor agent composition: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "10-C",
               "folder": "gym/tasks/10/10-18_agent_composition_refactor"
             }
@@ -2430,7 +2430,7 @@
               "module": "11",
               "type": "trace",
               "level": "medium",
-              "description": "Trace short term memory: Use a new message ID for a new turn instead of overwriting the previous turn.",
+              "description": "Diagnose short term memory from execution evidence",
               "group": "11-A",
               "folder": "gym/tasks/11/11-04_short_term_memory_trace"
             },
@@ -2439,7 +2439,7 @@
               "module": "11",
               "type": "extend",
               "level": "hard",
-              "description": "Extend short term memory: Include newly supplied evidence in the summary.",
+              "description": "Extend short term memory: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "11-A",
               "folder": "gym/tasks/11/11-05_short_term_memory_extend"
             },
@@ -2448,7 +2448,7 @@
               "module": "11",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor short term memory: Retain the summarization step after responding.",
+              "description": "Refactor short term memory: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "11-A",
               "folder": "gym/tasks/11/11-06_short_term_memory_refactor"
             }
@@ -2499,7 +2499,7 @@
               "module": "11",
               "type": "trace",
               "level": "medium",
-              "description": "Trace store namespaces: Delete the actual memory key.",
+              "description": "Diagnose store namespaces from execution evidence",
               "group": "11-B",
               "folder": "gym/tasks/11/11-10_store_namespaces_trace"
             },
@@ -2508,7 +2508,7 @@
               "module": "11",
               "type": "extend",
               "level": "hard",
-              "description": "Extend store namespaces: Remember the supplied contact preference.",
+              "description": "Extend store namespaces: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "11-B",
               "folder": "gym/tasks/11/11-11_store_namespaces_extend"
             },
@@ -2517,7 +2517,7 @@
               "module": "11",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor store namespaces: Keep another customer's update outside this customer's namespace.",
+              "description": "Refactor store namespaces: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "11-B",
               "folder": "gym/tasks/11/11-12_store_namespaces_refactor"
             }
@@ -2568,7 +2568,7 @@
               "module": "11",
               "type": "trace",
               "level": "medium",
-              "description": "Trace semantic and privacy: Delete checkpoint history separately from Store records.",
+              "description": "Diagnose semantic and privacy from execution evidence",
               "group": "11-C",
               "folder": "gym/tasks/11/11-16_semantic_and_privacy_trace"
             },
@@ -2577,7 +2577,7 @@
               "module": "11",
               "type": "extend",
               "level": "hard",
-              "description": "Extend semantic and privacy: Delete the requested memory while preserving unrelated evidence.",
+              "description": "Extend semantic and privacy: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "11-C",
               "folder": "gym/tasks/11/11-17_semantic_and_privacy_extend"
             },
@@ -2647,7 +2647,7 @@
               "module": "12",
               "type": "trace",
               "level": "medium",
-              "description": "Trace chains and gates: Stop the chain when the fact gate fails.",
+              "description": "Diagnose chains and gates from execution evidence",
               "group": "12-A",
               "folder": "gym/tasks/12/12-04_chains_and_gates_trace"
             },
@@ -2656,7 +2656,7 @@
               "module": "12",
               "type": "extend",
               "level": "hard",
-              "description": "Extend chains and gates: Validate the routing category against an explicit allowlist.",
+              "description": "Extend chains and gates: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "12-A",
               "folder": "gym/tasks/12/12-05_chains_and_gates_extend"
             },
@@ -2715,7 +2715,7 @@
               "module": "12",
               "type": "trace",
               "level": "medium",
-              "description": "Trace orchestrator workers: Reject a plan that delegates the same section twice.",
+              "description": "Diagnose orchestrator workers from execution evidence",
               "group": "12-B",
               "folder": "gym/tasks/12/12-10_orchestrator_workers_trace"
             },
@@ -2724,7 +2724,7 @@
               "module": "12",
               "type": "extend",
               "level": "hard",
-              "description": "Extend orchestrator workers: Assemble reports by stable section identity.",
+              "description": "Extend orchestrator workers: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "12-B",
               "folder": "gym/tasks/12/12-11_orchestrator_workers_extend"
             },
@@ -2733,7 +2733,7 @@
               "module": "12",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor orchestrator workers: Run every approved worker in the plan.",
+              "description": "Refactor orchestrator workers: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "12-B",
               "folder": "gym/tasks/12/12-12_orchestrator_workers_refactor"
             }
@@ -2783,7 +2783,7 @@
               "module": "12",
               "type": "trace",
               "level": "medium",
-              "description": "Trace evaluator optimizer: Require the authoritative deductible fact.",
+              "description": "Diagnose evaluator optimizer from execution evidence",
               "group": "12-C",
               "folder": "gym/tasks/12/12-16_evaluator_optimizer_trace"
             },
@@ -2792,7 +2792,7 @@
               "module": "12",
               "type": "extend",
               "level": "hard",
-              "description": "Extend evaluator optimizer: Keep the respectful-tone criterion separate from the factual criterion.",
+              "description": "Extend evaluator optimizer: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "12-C",
               "folder": "gym/tasks/12/12-17_evaluator_optimizer_extend"
             },
@@ -2801,7 +2801,7 @@
               "module": "12",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor evaluator optimizer: Stop immediately once both criteria pass.",
+              "description": "Refactor evaluator optimizer: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "12-C",
               "folder": "gym/tasks/12/12-18_evaluator_optimizer_refactor"
             }
@@ -2862,7 +2862,7 @@
               "module": "13",
               "type": "trace",
               "level": "medium",
-              "description": "Trace shared subgraph: Apply the high-value risk boundary inside the reusable child.",
+              "description": "Diagnose shared subgraph from execution evidence",
               "group": "13-A",
               "folder": "gym/tasks/13/13-04_shared_subgraph_trace"
             },
@@ -2871,7 +2871,7 @@
               "module": "13",
               "type": "extend",
               "level": "hard",
-              "description": "Extend shared subgraph: Flag missing supporting documents.",
+              "description": "Extend shared subgraph: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "13-A",
               "folder": "gym/tasks/13/13-05_shared_subgraph_extend"
             },
@@ -2880,7 +2880,7 @@
               "module": "13",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor shared subgraph: Do not confuse an intake milestone with a risk flag.",
+              "description": "Refactor shared subgraph: Extract parallel fraud checks into a reusable subgraph; keep both workflow outputs and rejection cases unchanged.",
               "group": "13-A",
               "folder": "gym/tasks/13/13-06_shared_subgraph_refactor"
             }
@@ -2930,7 +2930,7 @@
               "module": "13",
               "type": "trace",
               "level": "medium",
-              "description": "Trace schema adapters: Preserve the exact review threshold.",
+              "description": "Diagnose schema adapters from execution evidence",
               "group": "13-B",
               "folder": "gym/tasks/13/13-10_schema_adapters_trace"
             },
@@ -2939,7 +2939,7 @@
               "module": "13",
               "type": "extend",
               "level": "hard",
-              "description": "Extend schema adapters: Return the public risk finding rather than private investigation notes.",
+              "description": "Extend schema adapters: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "13-B",
               "folder": "gym/tasks/13/13-11_schema_adapters_extend"
             },
@@ -2948,7 +2948,7 @@
               "module": "13",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor schema adapters: Preserve the parent claim identity across the adapter.",
+              "description": "Refactor schema adapters: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "13-B",
               "folder": "gym/tasks/13/13-12_schema_adapters_refactor"
             }
@@ -2999,7 +2999,7 @@
               "module": "13",
               "type": "trace",
               "level": "medium",
-              "description": "Trace subgraph persistence: Reject a string masquerading as a human decision.",
+              "description": "Diagnose subgraph persistence from execution evidence",
               "group": "13-C",
               "folder": "gym/tasks/13/13-16_subgraph_persistence_trace"
             },
@@ -3008,7 +3008,7 @@
               "module": "13",
               "type": "extend",
               "level": "hard",
-              "description": "Extend subgraph persistence: Include nested updates when streaming subgraphs.",
+              "description": "Extend subgraph persistence: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "13-C",
               "folder": "gym/tasks/13/13-17_subgraph_persistence_extend"
             },
@@ -3079,7 +3079,7 @@
               "module": "14",
               "type": "trace",
               "level": "medium",
-              "description": "Trace supervisor tools: Keep specialist roles attached to the evidence they reviewed.",
+              "description": "Diagnose supervisor tools from execution evidence",
               "group": "14-A",
               "folder": "gym/tasks/14/14-04_supervisor_tools_trace"
             },
@@ -3088,7 +3088,7 @@
               "module": "14",
               "type": "extend",
               "level": "hard",
-              "description": "Extend supervisor tools: Give the policy specialist authoritative scoped evidence.",
+              "description": "Extend supervisor tools: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "14-A",
               "folder": "gym/tasks/14/14-05_supervisor_tools_extend"
             },
@@ -3097,7 +3097,7 @@
               "module": "14",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor supervisor tools: Return the specialist conclusion instead of its input prompt.",
+              "description": "Refactor supervisor tools: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "14-A",
               "folder": "gym/tasks/14/14-06_supervisor_tools_refactor"
             }
@@ -3148,7 +3148,7 @@
               "module": "14",
               "type": "trace",
               "level": "medium",
-              "description": "Trace handoffs: Pair the handoff acknowledgment with its AI request.",
+              "description": "Diagnose handoffs from execution evidence",
               "group": "14-B",
               "folder": "gym/tasks/14/14-10_handoffs_trace"
             },
@@ -3157,7 +3157,7 @@
               "module": "14",
               "type": "extend",
               "level": "hard",
-              "description": "Extend handoffs: Update ownership together with the handoff.",
+              "description": "Extend handoffs: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "14-B",
               "folder": "gym/tasks/14/14-11_handoffs_extend"
             },
@@ -3166,7 +3166,7 @@
               "module": "14",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor handoffs: Forward the complete handoff pair.",
+              "description": "Refactor handoffs: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "14-B",
               "folder": "gym/tasks/14/14-12_handoffs_refactor"
             }
@@ -3216,7 +3216,7 @@
               "module": "14",
               "type": "trace",
               "level": "medium",
-              "description": "Trace team tradeoffs: Advance to the next specialist instead of handing work back to itself.",
+              "description": "Diagnose team tradeoffs from execution evidence",
               "group": "14-C",
               "folder": "gym/tasks/14/14-16_team_tradeoffs_trace"
             },
@@ -3225,7 +3225,7 @@
               "module": "14",
               "type": "extend",
               "level": "hard",
-              "description": "Extend team tradeoffs: Count every specialist operation against the budget.",
+              "description": "Extend team tradeoffs: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "14-C",
               "folder": "gym/tasks/14/14-17_team_tradeoffs_extend"
             },
@@ -3297,7 +3297,7 @@
               "module": "15",
               "type": "trace",
               "level": "medium",
-              "description": "Trace entrypoints tasks: Match the Graph API fast-track boundary.",
+              "description": "Diagnose entrypoints tasks from execution evidence",
               "group": "15-A",
               "folder": "gym/tasks/15/15-04_entrypoints_tasks_trace"
             },
@@ -3306,7 +3306,7 @@
               "module": "15",
               "type": "extend",
               "level": "hard",
-              "description": "Extend entrypoints tasks: Normalize whitespace before choosing the missing-information branch.",
+              "description": "Extend entrypoints tasks: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "15-A",
               "folder": "gym/tasks/15/15-05_entrypoints_tasks_extend"
             },
@@ -3315,7 +3315,7 @@
               "module": "15",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor entrypoints tasks: Reject booleans even though Python considers them integer instances.",
+              "description": "Refactor entrypoints tasks: Convert the working Graph API pipeline to an entrypoint with normalize and route tasks, preserving every existing result and validation error.",
               "group": "15-A",
               "folder": "gym/tasks/15/15-06_entrypoints_tasks_refactor"
             }
@@ -3365,7 +3365,7 @@
               "module": "15",
               "type": "trace",
               "level": "medium",
-              "description": "Trace parallel futures: Preserve every parallel graph result.",
+              "description": "Diagnose parallel futures from execution evidence",
               "group": "15-B",
               "folder": "gym/tasks/15/15-10_parallel_futures_trace"
             },
@@ -3374,7 +3374,7 @@
               "module": "15",
               "type": "extend",
               "level": "hard",
-              "description": "Extend parallel futures: Keep police-report review semantics shared by both APIs.",
+              "description": "Extend parallel futures: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "15-B",
               "folder": "gym/tasks/15/15-11_parallel_futures_extend"
             },
@@ -3383,7 +3383,7 @@
               "module": "15",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor parallel futures: Schedule every document before resolving task futures.",
+              "description": "Refactor parallel futures: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "15-B",
               "folder": "gym/tasks/15/15-12_parallel_futures_refactor"
             }
@@ -3434,7 +3434,7 @@
               "module": "15",
               "type": "trace",
               "level": "medium",
-              "description": "Trace functional resume: Validate the resumed approval before returning a business result.",
+              "description": "Diagnose functional resume from execution evidence",
               "group": "15-C",
               "folder": "gym/tasks/15/15-16_functional_resume_trace"
             },
@@ -3443,7 +3443,7 @@
               "module": "15",
               "type": "extend",
               "level": "hard",
-              "description": "Extend functional resume: Preserve a human rejection through entrypoint replay.",
+              "description": "Extend functional resume: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "15-C",
               "folder": "gym/tasks/15/15-17_functional_resume_extend"
             },
@@ -3514,7 +3514,7 @@
               "module": "16",
               "type": "trace",
               "level": "medium",
-              "description": "Trace api boundaries: Honor the bounded retry allowance after a lost acknowledgment.",
+              "description": "Diagnose api boundaries from execution evidence",
               "group": "16-A",
               "folder": "gym/tasks/16/16-04_api_boundaries_trace"
             },
@@ -3523,7 +3523,7 @@
               "module": "16",
               "type": "extend",
               "level": "hard",
-              "description": "Extend api boundaries: Raise only when the transient retry budget is exhausted.",
+              "description": "Extend api boundaries: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "16-A",
               "folder": "gym/tasks/16/16-05_api_boundaries_extend"
             },
@@ -3532,7 +3532,7 @@
               "module": "16",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor api boundaries: Return the actual service acknowledgment after a successful attempt.",
+              "description": "Refactor api boundaries: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "16-A",
               "folder": "gym/tasks/16/16-06_api_boundaries_refactor"
             }
@@ -3583,7 +3583,7 @@
               "module": "16",
               "type": "trace",
               "level": "medium",
-              "description": "Trace mcp server: Pass the requested synthetic claim through schema validation.",
+              "description": "Diagnose mcp server from execution evidence",
               "group": "16-B",
               "folder": "gym/tasks/16/16-10_mcp_server_trace"
             },
@@ -3592,7 +3592,7 @@
               "module": "16",
               "type": "extend",
               "level": "hard",
-              "description": "Extend mcp server: Dispatch both registered tools rather than only read_claim.",
+              "description": "Extend mcp server: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "16-B",
               "folder": "gym/tasks/16/16-11_mcp_server_extend"
             },
@@ -3601,7 +3601,7 @@
               "module": "16",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor mcp server: Publish the complete permitted capability list.",
+              "description": "Refactor mcp server: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "16-B",
               "folder": "gym/tasks/16/16-12_mcp_server_refactor"
             }
@@ -3653,7 +3653,7 @@
               "module": "16",
               "type": "trace",
               "level": "medium",
-              "description": "Trace mcp adapter: Send the selected claim identifier to the MCP service.",
+              "description": "Diagnose mcp adapter from execution evidence",
               "group": "16-C",
               "folder": "gym/tasks/16/16-16_mcp_adapter_trace"
             },
@@ -3662,7 +3662,7 @@
               "module": "16",
               "type": "extend",
               "level": "hard",
-              "description": "Extend mcp adapter: Preserve the declared request identity through the adapter.",
+              "description": "Extend mcp adapter: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "16-C",
               "folder": "gym/tasks/16/16-17_mcp_adapter_extend"
             },
@@ -3733,7 +3733,7 @@
               "module": "17",
               "type": "trace",
               "level": "medium",
-              "description": "Trace durable side effects: Make the crash supervisor recognize the documented owned-worker exit.",
+              "description": "Diagnose durable side effects from execution evidence",
               "group": "17-A",
               "folder": "gym/tasks/17/17-04_durable_side_effects_trace"
             },
@@ -3742,7 +3742,7 @@
               "module": "17",
               "type": "extend",
               "level": "hard",
-              "description": "Extend durable side effects: Recover the original claim identity after restart.",
+              "description": "Extend durable side effects: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "17-A",
               "folder": "gym/tasks/17/17-05_durable_side_effects_extend"
             },
@@ -3751,7 +3751,7 @@
               "module": "17",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor durable side effects: Report the durable ledger count, not an inferred execution count.",
+              "description": "Refactor durable side effects: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "17-A",
               "folder": "gym/tasks/17/17-06_durable_side_effects_refactor"
             }
@@ -3803,7 +3803,7 @@
               "module": "17",
               "type": "trace",
               "level": "medium",
-              "description": "Trace recovery policies: Do not label an exhausted or timed-out request as successful.",
+              "description": "Diagnose recovery policies from execution evidence",
               "group": "17-B",
               "folder": "gym/tasks/17/17-10_recovery_policies_trace"
             },
@@ -3812,7 +3812,7 @@
               "module": "17",
               "type": "extend",
               "level": "hard",
-              "description": "Extend recovery policies: Honor the cooperative shutdown request at the next boundary.",
+              "description": "Extend recovery policies: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "17-B",
               "folder": "gym/tasks/17/17-11_recovery_policies_extend"
             },
@@ -3872,7 +3872,7 @@
               "module": "17",
               "type": "trace",
               "level": "medium",
-              "description": "Trace long wait postgres: Compute elapsed business time from explicit dates.",
+              "description": "Diagnose long wait postgres from execution evidence",
               "group": "17-C",
               "folder": "gym/tasks/17/17-16_long_wait_postgres_trace"
             },
@@ -3881,7 +3881,7 @@
               "module": "17",
               "type": "extend",
               "level": "hard",
-              "description": "Extend long wait postgres: Require the missing document before ending the durable wait.",
+              "description": "Extend long wait postgres: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "17-C",
               "folder": "gym/tasks/17/17-17_long_wait_postgres_extend"
             },
@@ -3890,7 +3890,7 @@
               "module": "17",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor long wait postgres: Preserve the received evidence identifier on resume.",
+              "description": "Refactor long wait postgres: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "17-C",
               "folder": "gym/tasks/17/17-18_long_wait_postgres_refactor"
             }
@@ -3953,7 +3953,7 @@
               "module": "18",
               "type": "trace",
               "level": "medium",
-              "description": "Trace async streams: Request the intended seven stream projections.",
+              "description": "Diagnose async streams from execution evidence",
               "group": "18-A",
               "folder": "gym/tasks/18/18-04_async_streams_trace"
             },
@@ -3962,7 +3962,7 @@
               "module": "18",
               "type": "extend",
               "level": "hard",
-              "description": "Extend async streams: Cancel and await the pending async graph when requested.",
+              "description": "Extend async streams: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "18-A",
               "folder": "gym/tasks/18/18-05_async_streams_extend"
             },
@@ -3971,7 +3971,7 @@
               "module": "18",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor async streams: Record cleanup after the waiting node receives cancellation.",
+              "description": "Refactor async streams: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "18-A",
               "folder": "gym/tasks/18/18-06_async_streams_refactor"
             }
@@ -4022,7 +4022,7 @@
               "module": "18",
               "type": "trace",
               "level": "medium",
-              "description": "Trace sse api: Carry a rejection through the authenticated workflow.",
+              "description": "Diagnose sse api from execution evidence",
               "group": "18-B",
               "folder": "gym/tasks/18/18-10_sse_api_trace"
             },
@@ -4031,7 +4031,7 @@
               "module": "18",
               "type": "extend",
               "level": "hard",
-              "description": "Extend sse api: Emit each progress event once, not twice.",
+              "description": "Extend sse api: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "18-B",
               "folder": "gym/tasks/18/18-11_sse_api_extend"
             },
@@ -4040,7 +4040,7 @@
               "module": "18",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor sse api: Compare the payload field after decoding, not its event category.",
+              "description": "Refactor sse api: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "18-B",
               "folder": "gym/tasks/18/18-12_sse_api_refactor"
             }
@@ -4091,7 +4091,7 @@
               "module": "18",
               "type": "trace",
               "level": "medium",
-              "description": "Trace adjuster dashboard: Replace the stale approval identity with the current snapshot.",
+              "description": "Diagnose adjuster dashboard from execution evidence",
               "group": "18-C",
               "folder": "gym/tasks/18/18-16_adjuster_dashboard_trace"
             },
@@ -4100,7 +4100,7 @@
               "module": "18",
               "type": "extend",
               "level": "hard",
-              "description": "Extend adjuster dashboard: Enable submission only for a currently pending interrupt.",
+              "description": "Extend adjuster dashboard: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "18-C",
               "folder": "gym/tasks/18/18-17_adjuster_dashboard_extend"
             },
@@ -4171,7 +4171,7 @@
               "module": "19",
               "type": "trace",
               "level": "medium",
-              "description": "Trace test graph behavior: Include boolean cents in invalid-input coverage.",
+              "description": "Diagnose test graph behavior from execution evidence",
               "group": "19-A",
               "folder": "gym/tasks/19/19-04_test_graph_behavior_trace"
             },
@@ -4180,7 +4180,7 @@
               "module": "19",
               "type": "extend",
               "level": "hard",
-              "description": "Extend test graph behavior: Keep exactly 500000 cents in the standard route.",
+              "description": "Extend test graph behavior: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "19-A",
               "folder": "gym/tasks/19/19-05_test_graph_behavior_extend"
             },
@@ -4189,7 +4189,7 @@
               "module": "19",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor test graph behavior: Require both implementations to match the independent expected route.",
+              "description": "Refactor test graph behavior: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "19-A",
               "folder": "gym/tasks/19/19-06_test_graph_behavior_refactor"
             }
@@ -4240,7 +4240,7 @@
               "module": "19",
               "type": "trace",
               "level": "medium",
-              "description": "Trace test durable execution: Capture the pre-resume pending state before it changes.",
+              "description": "Diagnose test durable execution from execution evidence",
               "group": "19-B",
               "folder": "gym/tasks/19/19-10_test_durable_execution_trace"
             },
@@ -4249,7 +4249,7 @@
               "module": "19",
               "type": "extend",
               "level": "hard",
-              "description": "Extend test durable execution: Include every update group when checking reducer behavior.",
+              "description": "Extend test durable execution: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "19-B",
               "folder": "gym/tasks/19/19-11_test_durable_execution_extend"
             },
@@ -4258,7 +4258,7 @@
               "module": "19",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor test durable execution: Read the completed snapshot after resumption.",
+              "description": "Refactor test durable execution: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "19-B",
               "folder": "gym/tasks/19/19-12_test_durable_execution_refactor"
             }
@@ -4309,7 +4309,7 @@
               "module": "19",
               "type": "trace",
               "level": "medium",
-              "description": "Trace trajectory evals: Check the policy arguments, not only tool names.",
+              "description": "Diagnose trajectory evals from execution evidence",
               "group": "19-C",
               "folder": "gym/tasks/19/19-16_trajectory_evals_trace"
             },
@@ -4318,7 +4318,7 @@
               "module": "19",
               "type": "extend",
               "level": "hard",
-              "description": "Extend trajectory evals: Evaluate the actual requested policy instead of replacing it with the reference.",
+              "description": "Extend trajectory evals: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "19-C",
               "folder": "gym/tasks/19/19-17_trajectory_evals_extend"
             },
@@ -4390,7 +4390,7 @@
               "module": "20",
               "type": "trace",
               "level": "medium",
-              "description": "Trace local visual debugging: Debug the supplied claim amount rather than a substituted value.",
+              "description": "Diagnose local visual debugging from execution evidence",
               "group": "20-A",
               "folder": "gym/tasks/20/20-04_local_visual_debugging_trace"
             },
@@ -4399,7 +4399,7 @@
               "module": "20",
               "type": "extend",
               "level": "hard",
-              "description": "Extend local visual debugging: Report a discrepancy only when observed and reported routes differ.",
+              "description": "Extend local visual debugging: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "20-A",
               "folder": "gym/tasks/20/20-05_local_visual_debugging_extend"
             },
@@ -4408,7 +4408,7 @@
               "module": "20",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor local visual debugging: Inspect the actual approval node in the generated graph diagram.",
+              "description": "Refactor local visual debugging: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "20-A",
               "folder": "gym/tasks/20/20-06_local_visual_debugging_refactor"
             }
@@ -4459,7 +4459,7 @@
               "module": "20",
               "type": "trace",
               "level": "medium",
-              "description": "Trace structured logs: Attach each log record to its actual node.",
+              "description": "Diagnose structured logs from execution evidence",
               "group": "20-B",
               "folder": "gym/tasks/20/20-10_structured_logs_trace"
             },
@@ -4468,7 +4468,7 @@
               "module": "20",
               "type": "extend",
               "level": "hard",
-              "description": "Extend structured logs: Retain the caller's thread correlation identifier.",
+              "description": "Extend structured logs: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "20-B",
               "folder": "gym/tasks/20/20-11_structured_logs_extend"
             },
@@ -4477,7 +4477,7 @@
               "module": "20",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor structured logs: Do not report a successful node as failed during logging refactors.",
+              "description": "Refactor structured logs: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "20-B",
               "folder": "gym/tasks/20/20-12_structured_logs_refactor"
             }
@@ -4528,7 +4528,7 @@
               "module": "20",
               "type": "trace",
               "level": "medium",
-              "description": "Trace optional tracing: Fork at the intended pre-routing boundary.",
+              "description": "Diagnose optional tracing from execution evidence",
               "group": "20-C",
               "folder": "gym/tasks/20/20-16_optional_tracing_trace"
             },
@@ -4537,7 +4537,7 @@
               "module": "20",
               "type": "extend",
               "level": "hard",
-              "description": "Extend optional tracing: Keep the original route distinct from the corrected branch.",
+              "description": "Extend optional tracing: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "20-C",
               "folder": "gym/tasks/20/20-17_optional_tracing_extend"
             },
@@ -4608,7 +4608,7 @@
               "module": "21",
               "type": "trace",
               "level": "medium",
-              "description": "Trace untrusted input: Preserve validated amounts before applying deterministic routing.",
+              "description": "Diagnose untrusted input from execution evidence",
               "group": "21-A",
               "folder": "gym/tasks/21/21-04_untrusted_input_trace"
             },
@@ -4617,7 +4617,7 @@
               "module": "21",
               "type": "extend",
               "level": "hard",
-              "description": "Extend untrusted input: Expose and reject an unexpected authority field instead of silently hiding it from validation.",
+              "description": "Extend untrusted input: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "21-A",
               "folder": "gym/tasks/21/21-05_untrusted_input_extend"
             },
@@ -4626,7 +4626,7 @@
               "module": "21",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor untrusted input: Keep model-visible tool capabilities read-only.",
+              "description": "Refactor untrusted input: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "21-A",
               "folder": "gym/tasks/21/21-06_untrusted_input_refactor"
             }
@@ -4677,7 +4677,7 @@
               "module": "21",
               "type": "trace",
               "level": "medium",
-              "description": "Trace approval and limits: Reject an operation above the token admission budget.",
+              "description": "Diagnose approval and limits from execution evidence",
               "group": "21-B",
               "folder": "gym/tasks/21/21-10_approval_and_limits_trace"
             },
@@ -4686,7 +4686,7 @@
               "module": "21",
               "type": "extend",
               "level": "hard",
-              "description": "Extend approval and limits: Keep a human rejection from creating an effect.",
+              "description": "Extend approval and limits: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "21-B",
               "folder": "gym/tasks/21/21-11_approval_and_limits_extend"
             },
@@ -4746,7 +4746,7 @@
               "module": "21",
               "type": "trace",
               "level": "medium",
-              "description": "Trace private checkpoints: Apply the requested thread-retention deletion.",
+              "description": "Diagnose private checkpoints from execution evidence",
               "group": "21-C",
               "folder": "gym/tasks/21/21-16_private_checkpoints_trace"
             },
@@ -4755,7 +4755,7 @@
               "module": "21",
               "type": "extend",
               "level": "hard",
-              "description": "Extend private checkpoints: Verify that a wrong encryption key cannot restore the payload.",
+              "description": "Extend private checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "21-C",
               "folder": "gym/tasks/21/21-17_private_checkpoints_extend"
             },
@@ -4764,7 +4764,7 @@
               "module": "21",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor private checkpoints: Check exact restoration after successful authenticated decryption.",
+              "description": "Refactor private checkpoints: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "21-C",
               "folder": "gym/tasks/21/21-18_private_checkpoints_refactor"
             }
@@ -4826,7 +4826,7 @@
               "module": "22",
               "type": "trace",
               "level": "medium",
-              "description": "Trace compose stack: Detect accidental public binding of the teaching service.",
+              "description": "Diagnose compose stack from execution evidence",
               "group": "22-A",
               "folder": "gym/tasks/22/22-04_compose_stack_trace"
             },
@@ -4835,7 +4835,7 @@
               "module": "22",
               "type": "extend",
               "level": "hard",
-              "description": "Extend compose stack: Do not mark a stack valid after detecting a deployment error.",
+              "description": "Extend compose stack: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "22-A",
               "folder": "gym/tasks/22/22-05_compose_stack_extend"
             },
@@ -4844,7 +4844,7 @@
               "module": "22",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor compose stack: Distinguish service readiness from process startup.",
+              "description": "Refactor compose stack: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "22-A",
               "folder": "gym/tasks/22/22-06_compose_stack_refactor"
             }
@@ -4896,7 +4896,7 @@
               "module": "22",
               "type": "trace",
               "level": "medium",
-              "description": "Trace worker reliability: Report that a competing run was excluded.",
+              "description": "Diagnose worker reliability from execution evidence",
               "group": "22-B",
               "folder": "gym/tasks/22/22-10_worker_reliability_trace"
             },
@@ -4905,7 +4905,7 @@
               "module": "22",
               "type": "extend",
               "level": "hard",
-              "description": "Extend worker reliability: Exercise and reject idempotency-key reuse with a changed payload.",
+              "description": "Extend worker reliability: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "22-B",
               "folder": "gym/tasks/22/22-11_worker_reliability_extend"
             },
@@ -4966,7 +4966,7 @@
               "module": "22",
               "type": "trace",
               "level": "medium",
-              "description": "Trace managed deployment: Keep interactive waiting distinct from background execution.",
+              "description": "Diagnose managed deployment from execution evidence",
               "group": "22-C",
               "folder": "gym/tasks/22/22-16_managed_deployment_trace"
             },
@@ -4975,7 +4975,7 @@
               "module": "22",
               "type": "extend",
               "level": "hard",
-              "description": "Extend managed deployment: Reject an obviously malformed schedule before proposing a hosted job.",
+              "description": "Extend managed deployment: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "22-C",
               "folder": "gym/tasks/22/22-17_managed_deployment_extend"
             },
@@ -5046,7 +5046,7 @@
               "module": "B1",
               "type": "trace",
               "level": "medium",
-              "description": "Trace typescript state: Preserve Python's inclusive fast-track boundary.",
+              "description": "Diagnose typescript state from execution evidence",
               "group": "B1-A",
               "folder": "gym/tasks/B1/B1-04_typescript_state_trace"
             },
@@ -5055,7 +5055,7 @@
               "module": "B1",
               "type": "extend",
               "level": "hard",
-              "description": "Extend typescript state: Handle an empty normalized description as missing information.",
+              "description": "Extend typescript state: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B1-A",
               "folder": "gym/tasks/B1/B1-05_typescript_state_extend"
             },
@@ -5064,7 +5064,7 @@
               "module": "B1",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor typescript state: Accumulate both audit labels across node updates.",
+              "description": "Refactor typescript state: Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged.",
               "group": "B1-A",
               "folder": "gym/tasks/B1/B1-06_typescript_state_refactor"
             }
@@ -5115,7 +5115,7 @@
               "module": "B1",
               "type": "trace",
               "level": "medium",
-              "description": "Trace typescript durable: Accept explicit boolean decisions and reject strings at the interrupt boundary.",
+              "description": "Diagnose typescript durable from execution evidence",
               "group": "B1-B",
               "folder": "gym/tasks/B1/B1-10_typescript_durable_trace"
             },
@@ -5124,7 +5124,7 @@
               "module": "B1",
               "type": "extend",
               "level": "hard",
-              "description": "Extend typescript durable: Preserve a rejected approval through JavaScript resume.",
+              "description": "Extend typescript durable: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B1-B",
               "folder": "gym/tasks/B1/B1-11_typescript_durable_extend"
             },
@@ -5133,7 +5133,7 @@
               "module": "B1",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor typescript durable: Combine all parallel findings rather than retaining only the last write.",
+              "description": "Refactor typescript durable: Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged.",
               "group": "B1-B",
               "folder": "gym/tasks/B1/B1-12_typescript_durable_refactor"
             }
@@ -5184,7 +5184,7 @@
               "module": "B1",
               "type": "trace",
               "level": "medium",
-              "description": "Trace typescript agents: Respect the configured loop budget in both JavaScript agents.",
+              "description": "Diagnose typescript agents from execution evidence",
               "group": "B1-C",
               "folder": "gym/tasks/B1/B1-16_typescript_agents_trace"
             },
@@ -5193,7 +5193,7 @@
               "module": "B1",
               "type": "extend",
               "level": "hard",
-              "description": "Extend typescript agents: Preserve the expected tool-call identity across the language port.",
+              "description": "Extend typescript agents: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B1-C",
               "folder": "gym/tasks/B1/B1-17_typescript_agents_extend"
             },
@@ -5202,7 +5202,7 @@
               "module": "B1",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor typescript agents: Register the same evidence tool in the prebuilt implementation.",
+              "description": "Refactor typescript agents: Replace the manual model/tool loop with createAgent, keeping message roles, call IDs, errors, and final text unchanged.",
               "group": "B1-C",
               "folder": "gym/tasks/B1/B1-18_typescript_agents_refactor"
             }
@@ -5264,7 +5264,7 @@
               "module": "B2",
               "type": "trace",
               "level": "medium",
-              "description": "Trace deep agent planning: Keep task progress consistent with the supplied status.",
+              "description": "Diagnose deep agent planning from execution evidence",
               "group": "B2-A",
               "folder": "gym/tasks/B2/B2-04_deep_agent_planning_trace"
             },
@@ -5273,7 +5273,7 @@
               "module": "B2",
               "type": "extend",
               "level": "hard",
-              "description": "Extend deep agent planning: Do not mark unstarted document review as completed.",
+              "description": "Extend deep agent planning: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B2-A",
               "folder": "gym/tasks/B2/B2-05_deep_agent_planning_extend"
             },
@@ -5282,7 +5282,7 @@
               "module": "B2",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor deep agent planning: Call the registered planning capability.",
+              "description": "Refactor deep agent planning: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "B2-A",
               "folder": "gym/tasks/B2/B2-06_deep_agent_planning_refactor"
             }
@@ -5334,7 +5334,7 @@
               "module": "B2",
               "type": "trace",
               "level": "medium",
-              "description": "Trace virtual filesystem: Deny writes outside the permitted virtual directory.",
+              "description": "Diagnose virtual filesystem from execution evidence",
               "group": "B2-B",
               "folder": "gym/tasks/B2/B2-10_virtual_filesystem_trace"
             },
@@ -5343,7 +5343,7 @@
               "module": "B2",
               "type": "extend",
               "level": "hard",
-              "description": "Extend virtual filesystem: Persist the supplied investigation note without substitution.",
+              "description": "Extend virtual filesystem: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B2-B",
               "folder": "gym/tasks/B2/B2-11_virtual_filesystem_extend"
             },
@@ -5352,7 +5352,7 @@
               "module": "B2",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor virtual filesystem: Honor and validate the requested virtual artifact path.",
+              "description": "Refactor virtual filesystem: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "B2-B",
               "folder": "gym/tasks/B2/B2-12_virtual_filesystem_refactor"
             }
@@ -5403,7 +5403,7 @@
               "module": "B2",
               "type": "trace",
               "level": "medium",
-              "description": "Trace deep subagents: Preserve a human rejection of delegation.",
+              "description": "Diagnose deep subagents from execution evidence",
               "group": "B2-C",
               "folder": "gym/tasks/B2/B2-16_deep_subagents_trace"
             },
@@ -5412,7 +5412,7 @@
               "module": "B2",
               "type": "extend",
               "level": "hard",
-              "description": "Extend deep subagents: Keep the specialist's evidence answer tied to the policy fixture.",
+              "description": "Extend deep subagents: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B2-C",
               "folder": "gym/tasks/B2/B2-17_deep_subagents_extend"
             },
@@ -5483,7 +5483,7 @@
               "module": "B3",
               "type": "trace",
               "level": "medium",
-              "description": "Trace channels and steps: Report the previous-boundary view seen by each worker.",
+              "description": "Diagnose channels and steps from execution evidence",
               "group": "B3-A",
               "folder": "gym/tasks/B3/B3-04_channels_and_steps_trace"
             },
@@ -5492,7 +5492,7 @@
               "module": "B3",
               "type": "extend",
               "level": "hard",
-              "description": "Extend channels and steps: Run the summary even when the document fan-out is empty.",
+              "description": "Extend channels and steps: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B3-A",
               "folder": "gym/tasks/B3/B3-05_channels_and_steps_extend"
             },
@@ -5501,7 +5501,7 @@
               "module": "B3",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor channels and steps: Compute the summary from the merged findings.",
+              "description": "Refactor channels and steps: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "B3-A",
               "folder": "gym/tasks/B3/B3-06_channels_and_steps_refactor"
             }
@@ -5552,7 +5552,7 @@
               "module": "B3",
               "type": "trace",
               "level": "medium",
-              "description": "Trace mini reducers: Retain the overwrite-conflict case in the real runtime comparison.",
+              "description": "Diagnose mini reducers from execution evidence",
               "group": "B3-B",
               "folder": "gym/tasks/B3/B3-10_mini_reducers_trace"
             },
@@ -5561,7 +5561,7 @@
               "module": "B3",
               "type": "extend",
               "level": "hard",
-              "description": "Extend mini reducers: Schedule both independent inspections in the teaching runner.",
+              "description": "Extend mini reducers: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B3-B",
               "folder": "gym/tasks/B3/B3-11_mini_reducers_extend"
             },
@@ -5570,7 +5570,7 @@
               "module": "B3",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor mini reducers: Report conformance only when both observed contracts match.",
+              "description": "Refactor mini reducers: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "B3-B",
               "folder": "gym/tasks/B3/B3-12_mini_reducers_refactor"
             }
@@ -5621,7 +5621,7 @@
               "module": "B3",
               "type": "trace",
               "level": "medium",
-              "description": "Trace mini checkpoints: Validate the resumed decision before updating approval state.",
+              "description": "Diagnose mini checkpoints from execution evidence",
               "group": "B3-C",
               "folder": "gym/tasks/B3/B3-16_mini_checkpoints_trace"
             },
@@ -5630,7 +5630,7 @@
               "module": "B3",
               "type": "extend",
               "level": "hard",
-              "description": "Extend mini checkpoints: Read the archived snapshot rather than an externally modified copy.",
+              "description": "Extend mini checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B3-C",
               "folder": "gym/tasks/B3/B3-17_mini_checkpoints_extend"
             },
@@ -5701,7 +5701,7 @@
               "module": "B4",
               "type": "trace",
               "level": "medium",
-              "description": "Trace event streaming beta: Read the final model message from the completed output projection.",
+              "description": "Diagnose event streaming beta from execution evidence",
               "group": "B4-A",
               "folder": "gym/tasks/B4/B4-04_event_streaming_beta_trace"
             },
@@ -5710,7 +5710,7 @@
               "module": "B4",
               "type": "extend",
               "level": "hard",
-              "description": "Extend event streaming beta: Consume the raw protocol when inspecting lifecycle channels.",
+              "description": "Extend event streaming beta: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B4-A",
               "folder": "gym/tasks/B4/B4-05_event_streaming_beta_extend"
             },
@@ -5719,7 +5719,7 @@
               "module": "B4",
               "type": "refactor",
               "level": "hard",
-              "description": "Refactor event streaming beta: Use the v3 protocol namespace location rather than a guessed field.",
+              "description": "Refactor event streaming beta: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.",
               "group": "B4-A",
               "folder": "gym/tasks/B4/B4-06_event_streaming_beta_refactor"
             }
@@ -5770,7 +5770,7 @@
               "module": "B4",
               "type": "trace",
               "level": "medium",
-              "description": "Trace delta channels beta: Honor and validate the requested snapshot cadence.",
+              "description": "Diagnose delta channels beta from execution evidence",
               "group": "B4-B",
               "folder": "gym/tasks/B4/B4-10_delta_channels_beta_trace"
             },
@@ -5779,7 +5779,7 @@
               "module": "B4",
               "type": "extend",
               "level": "hard",
-              "description": "Extend delta channels beta: Checkpoint every supplied note before reconstruction.",
+              "description": "Extend delta channels beta: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B4-B",
               "folder": "gym/tasks/B4/B4-11_delta_channels_beta_extend"
             },
@@ -5839,7 +5839,7 @@
               "module": "B4",
               "type": "trace",
               "level": "medium",
-              "description": "Trace typed approvals: Respect rejection instead of coercing every decision to approval.",
+              "description": "Diagnose typed approvals from execution evidence",
               "group": "B4-C",
               "folder": "gym/tasks/B4/B4-16_typed_approvals_trace"
             },
@@ -5848,7 +5848,7 @@
               "module": "B4",
               "type": "extend",
               "level": "hard",
-              "description": "Extend typed approvals: Bind the proposal to its requested amount.",
+              "description": "Extend typed approvals: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
               "group": "B4-C",
               "folder": "gym/tasks/B4/B4-17_typed_approvals_extend"
             },

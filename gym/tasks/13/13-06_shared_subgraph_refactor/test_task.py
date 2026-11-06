@@ -16,3 +16,9 @@ def test_behavior(candidate, case):
     assert actual == case["expected"], (
         "LARKSPUR: preserve the declared state, routing, and boundary contracts"
     )
+
+
+def test_reusable_fraud_subgraph_is_connected(candidate):
+    children = dict(candidate.build_graph().get_subgraphs())
+    assert "fraud_checks" in children, "LARKSPUR: connect a reusable compiled fraud subgraph"
+    assert {"check_amount", "check_evidence"} <= set(children["fraud_checks"].get_graph().nodes)

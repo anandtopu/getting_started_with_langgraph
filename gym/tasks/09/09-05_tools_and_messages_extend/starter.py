@@ -1,4 +1,4 @@
-"""Extend tools and messages: Cap the proposal at the synthetic coverage limit.. Run this file with Python. No live model or network."""
+"""Extend tools and messages: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage
 from langchain_core.tools import tool
@@ -27,7 +27,7 @@ def lookup_policy(policy_id: str) -> str:
 @tool
 def proposed_payout(amount_cents: int) -> int:
     """Calculate a proposed synthetic amount; never initiate a payment."""
-    return calculate_payout(amount_cents, 900000, 100000)
+    return calculate_payout(amount_cents, 200000, 100000)
 
 
 def build_graph():
@@ -68,6 +68,10 @@ def run(case: dict | None = None) -> dict:
             key=lambda item: item["call_id"],
         )
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

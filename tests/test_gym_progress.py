@@ -3,6 +3,7 @@
 import json
 import multiprocessing
 import shutil
+from dataclasses import replace
 
 import pytest
 
@@ -41,6 +42,22 @@ def test_atomic_progress_and_stale_pass(tmp_path):
     with task.attempt_path(tmp_path).open("a", encoding="utf-8") as output:
         output.write("\n# learner edit\n")
     assert not is_current_pass(task, tmp_path, store.read()["tasks"][task.id])
+
+
+def test_changed_acceptance_contract_invalidates_an_old_pass(tmp_path):
+    original = Catalog().get("00-01")
+    folder = tmp_path / "task"
+    shutil.copytree(original.folder, folder)
+    task = replace(original, folder=folder)
+    workspace = tmp_path / "work"
+    copy_attempt(task, workspace)
+    store = ProgressStore(workspace)
+    store.record_check(task, fingerprint(task, workspace), True)
+    row = store.read()["tasks"][task.id]
+    assert is_current_pass(task, workspace, row)
+    with (folder / "test_task.py").open("a", encoding="utf-8") as output:
+        output.write("\ndef test_new_requirement():\n    assert False\n")
+    assert not is_current_pass(task, workspace, row)
 
 
 def test_solution_exposure_persists_after_reset(tmp_path):

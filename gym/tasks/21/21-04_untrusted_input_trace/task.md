@@ -1,4 +1,4 @@
-# 21-04 — Trace untrusted input: Preserve validated amounts before applying deterministic routing.
+# 21-04 — Diagnose untrusted input from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Claim text and retrieved documents are untrusted data. A structured schema rejec
 
 ## Your task
 
-Preserve validated amounts before applying deterministic routing. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose untrusted input from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Preserve validated amounts before applying deterministic routing. Read trace.py 
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Do not let extracted text authorize a payment."
+- "Preserve validated amounts before applying deterministic routing."
+- "Expose and reject an unexpected authority field instead of silently hiding it from validation."
+- "Keep model-visible tool capabilities read-only."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

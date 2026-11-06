@@ -1,4 +1,4 @@
-"""Trace mini checkpoints: Validate the resumed decision before updating approval state.. Run this file with Python. No live model or network."""
+"""Diagnose mini checkpoints from execution evidence. Run this file with Python. No live model or network."""
 
 from common.mini_graph import MiniGraph, Pause
 from common.pretty import print_state

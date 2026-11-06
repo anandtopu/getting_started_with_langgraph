@@ -1,4 +1,4 @@
-# 02-10 — Trace reducer findings: Return new evidence only; the reducer already has previous values.
+# 02-10 — Diagnose reducer findings from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A channel is one state field together with its update rule. The default rule ove
 
 ## Your task
 
-Return new evidence only; the reducer already has previous values. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose reducer findings from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -36,6 +36,13 @@ Return new evidence only; the reducer already has previous values. Read trace.py
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "A merge must preserve evidence from earlier updates."
+- "Return new evidence only; the reducer already has previous values."
+- "Severity must not decrease when a later finding is weaker."
+- "Canonical presentation must not depend on arrival order."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

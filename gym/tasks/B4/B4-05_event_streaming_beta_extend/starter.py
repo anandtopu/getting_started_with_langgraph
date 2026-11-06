@@ -1,4 +1,4 @@
-"""Extend event streaming beta: Consume the raw protocol when inspecting lifecycle channels.. Run this file with Python. No live model or network."""
+"""Extend event streaming beta: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -40,7 +40,7 @@ def run(case: dict | None = None) -> dict:
     raw = build_graph(case["text"]).stream_events(
         {"messages": [HumanMessage(content="Update this claim.")]}, version="v3"
     )
-    events = []
+    events = list(raw)
     tool_model = get_chat_model(
         responses=[
             AIMessage(
@@ -75,6 +75,10 @@ def run(case: dict | None = None) -> dict:
         "nested": any(event["params"]["namespace"] for event in events),
         "beta": True,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

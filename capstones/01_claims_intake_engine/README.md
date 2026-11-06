@@ -10,7 +10,7 @@ As an adjuster, I can reopen a high-value claim after restart, approve or reject
 
 Approval must preserve an explicit rejection; small eligible claims may auto-route.
 
-- Input `{}` must satisfy `{"approved": true, "waited": true, "replay_matches": true}`.
+- Input `{}` must satisfy `{"approved": true, "waited": true, "replay_matches": true, "replayed_nodes": ["normalize", "validate", "review_document", "route"]}`.
 - Input `{"approved": false}` must satisfy `{"approved": false}`.
 - Input `{"amount_cents": 10000}` must satisfy `{"approved": true, "waited": false}`.
 
@@ -66,6 +66,12 @@ The checker loads the selected candidate, not the reference. A mechanical pass d
   "waited": true,
   "checkpoints": 7,
   "replay_matches": true,
+  "replayed_nodes": [
+    "normalize",
+    "validate",
+    "review_document",
+    "route"
+  ],
   "findings": [
     "reviewed:DOC-001"
   ]

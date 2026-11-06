@@ -1,4 +1,4 @@
-"""Extend mcp server: Dispatch both registered tools rather than only read_claim.. Run this file with Python. No live model or network."""
+"""Extend mcp server: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import asyncio
 import json
@@ -13,7 +13,7 @@ async def arun(case: dict) -> dict:
     server = create_server()
     tools = await server.list_tools()
     arguments = {"claim_id": case["claim_id"]} if case["tool_name"] == "read_claim" else {}
-    response = await server.call_tool("read_claim", arguments)
+    response = await server.call_tool(case["tool_name"], arguments)
     # SDK tool calls return content plus structured output when available.
     content = response[0] if isinstance(response, tuple) else response
     text = "".join(item.text for item in content if item.type == "text")
@@ -29,6 +29,10 @@ async def arun(case: dict) -> dict:
 # YOUR CODE HERE: repair the contract described in task.md.
 def run(case: dict | None = None) -> dict:
     return asyncio.run(arun(dict(DEFAULT_CASE if case is None else case)))
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

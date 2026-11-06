@@ -1,4 +1,4 @@
-"""Extend mini reducers: Schedule both independent inspections in the teaching runner.. Run this file with Python. No live model or network."""
+"""Extend mini reducers: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -29,7 +29,7 @@ def run(case: dict | None = None) -> dict:
             "estimate": lambda state, resume: {"findings": ["estimate"]},
         },
         {},
-        ["policy"],
+        ["policy", "estimate"],
         {"findings": operator.add} if case["use_reducer"] else {},
     )
     graph = StateGraph(Reduced if case["use_reducer"] else Overwrite)
@@ -47,6 +47,10 @@ def run(case: dict | None = None) -> dict:
         except (WriteConflict, InvalidUpdateError):
             observed[name] = {"conflict": True}
     return {**observed, "equal": observed["mini"] == observed["langgraph"]}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

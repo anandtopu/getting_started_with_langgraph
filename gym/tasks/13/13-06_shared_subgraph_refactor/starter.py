@@ -1,4 +1,4 @@
-"""Refactor shared subgraph: Do not confuse an intake milestone with a risk flag.. Run this file with Python. No live model or network."""
+"""Refactor shared subgraph: Extract parallel fraud checks into a reusable subgraph; keep both workflow outputs and rejection cases unchanged.. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 
@@ -42,15 +42,24 @@ def build_graph():
     def route(state: State) -> dict:
         if state["workflow"] not in {"claim", "new_policy"}:
             raise ValueError("Unknown workflow")
-        risk_flags = set(state["flags"])
+        risk_flags = set(state["flags"]) - {"intake_checked"}
         return {"destination": state["workflow"] + ("_review" if risk_flags else "_standard")}
 
     graph = StateGraph(State)
+
     # KEY IDEA: a compiled graph is a node whose shared keys cross this boundary.
-    graph.add_node("fraud_checks", build_fraud_graph())
+    def check_amount(state):
+        return {"flags": ["high_value"] if state["amount_cents"] > 500000 else []}
+
+    def check_evidence(state):
+        return {"flags": [] if state["documents"] else ["missing_evidence"]}
+
+    graph.add_node("check_amount", check_amount)
+    graph.add_node("check_evidence", check_evidence)
     graph.add_node("route", route)
-    graph.add_edge(START, "fraud_checks")
-    graph.add_edge("fraud_checks", "route")
+    graph.add_edge(START, "check_amount")
+    graph.add_edge(START, "check_evidence")
+    graph.add_edge(["check_amount", "check_evidence"], "route")
     graph.add_edge("route", END)
     return graph.compile()
 

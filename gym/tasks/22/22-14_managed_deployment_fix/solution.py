@@ -1,5 +1,6 @@
 """Fix managed deployment: Keep interactive waiting distinct from background execution.. Run this file with Python. No live model or network."""
 
+from common.data import load_submission
 from common.pretty import print_state
 
 DEFAULT_CASE = {
@@ -18,7 +19,10 @@ def request_plan(case: dict) -> dict:
     return {
         "assistant": {"graph_id": case["assistant_id"]},
         "thread": {"thread_id": case["thread_id"]},
-        "run": {"assistant_id": case["assistant_id"], "input": {"claim_id": "CLM-0001"}},
+        "run": {
+            "assistant_id": case["assistant_id"],
+            "input": {"claim": load_submission(1), "audit": [], "findings": []},
+        },
         "mode": "background" if case["background"] else "wait",
         "schedule": case["schedule"],
     }
@@ -27,6 +31,23 @@ def request_plan(case: dict) -> dict:
 async def submit_background(client, thread_id: str, assistant_id: str, input_state: dict):
     """Explicit live variant: the caller supplies an authenticated SDK client and full state."""
     return await client.runs.create(thread_id, assistant_id, input=input_state)
+
+
+async def submit_wait(client, thread_id: str, assistant_id: str, input_state: dict):
+    """Wait for completion on a persistent thread; the caller owns authentication."""
+    return await client.runs.wait(thread_id, assistant_id, input=input_state)
+
+
+async def submit_ephemeral(client, assistant_id: str, input_state: dict):
+    """Use only for work that needs no durable human-response thread."""
+    return await client.runs.wait(None, assistant_id, input=input_state)
+
+
+async def schedule_run(client, thread_id: str, assistant_id: str, input_state: dict, schedule: str):
+    """Explicit live action: schedule repeated input. Retain its cron_id for deletion."""
+    return await client.crons.create_for_thread(
+        thread_id, assistant_id, input=input_state, schedule=schedule
+    )
 
 
 def run(case: dict | None = None) -> dict:

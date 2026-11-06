@@ -1,4 +1,4 @@
-"""Extend private checkpoints: Verify that a wrong encryption key cannot restore the payload.. Run this file with Python. No live model or network."""
+"""Extend private checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import secrets
 from typing import TypedDict
@@ -24,7 +24,7 @@ def run(case: dict | None = None) -> dict:
     encoded = serializer.dumps_typed({"note": case["note"]})
     reader = (
         EncryptedSerializer.from_pycryptodome_aes(key=secrets.token_bytes(32))
-        if False
+        if case["wrong_key"]
         else serializer
     )
     restored = reader.loads_typed(encoded)
@@ -48,6 +48,10 @@ def run(case: dict | None = None) -> dict:
         "retained": bool(graph.get_state(config).values),
         "key_logged": False,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

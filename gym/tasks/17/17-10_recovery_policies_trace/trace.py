@@ -1,4 +1,4 @@
-"""Trace recovery policies: Do not label an exhausted or timed-out request as successful.. Run this file with Python. No live model or network."""
+"""Diagnose recovery policies from execution evidence. Run this file with Python. No live model or network."""
 
 import asyncio
 from typing import TypedDict

@@ -6,8 +6,8 @@ A checklist needs arrows as well as boxes; an unconnected desk never receives th
 
 ## Hint 2
 
-Refactoring must preserve the complete execution sequence. Inspect the operation that owns this update or routing choice.
+Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: [*state["steps"], "validate"]. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

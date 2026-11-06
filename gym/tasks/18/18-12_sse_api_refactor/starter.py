@@ -1,4 +1,4 @@
-"""Refactor sse api: Compare the payload field after decoding, not its event category.. Run this file with Python. No live model or network."""
+"""Refactor sse api: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from common.app_demo import run_demo
 from common.pretty import print_state
@@ -15,7 +15,7 @@ def run(case: dict | None = None) -> dict:
     result = run_demo(approve=case["approved"], stale=case["stale"])
     return {
         **result,
-        "framing_roundtrip": decoded[0]["event"] == case["note"],
+        "framing_roundtrip": decoded[0]["data"]["node"] == case["note"],
         "frame_count": len(decoded),
     }
 

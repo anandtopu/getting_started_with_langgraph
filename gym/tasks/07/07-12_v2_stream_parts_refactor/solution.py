@@ -1,4 +1,4 @@
-"""Refactor v2 stream parts: A unified dispatcher must preserve custom progress payloads.. Run this file with Python. No live model or network."""
+"""Refactor v2 stream parts: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -53,9 +53,17 @@ def summarize_part(part: dict) -> dict:
     return result
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
+    case = prepare_case(case)
     parts = build_graph().stream(
-        dict(DEFAULT_CASE if case is None else case),
+        dict(case),
         {"configurable": {"thread_id": "stream-claim"}},
         stream_mode=["updates", "values", "custom", "debug"],
         version="v2",

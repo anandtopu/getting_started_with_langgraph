@@ -12,6 +12,8 @@ Complete [Security and guardrails](../21_security_and_guardrails/README.md). Rea
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain FastAPI self-hosting; Docker Compose API/Postgres/UI; healthchecks; schema setup; configuration and secrets.
@@ -24,7 +26,25 @@ Run the completed Claims Copilot behind an API with durable storage and a dashbo
 
 ## How it works
 
-Generated from this module's cumulative Claims Copilot graph. It shows component structure; only a runtime trace proves which nodes executed.
+### Compose Stack
+
+The self-hosted stack has an API, Postgres, and a Streamlit UI. Database readiness gates API startup, and API health gates the UI. Required credentials come from the environment; published ports bind to localhost for this teaching deployment. The example validates the committed configuration, while the integration job actually starts the containers and calls the service.
+
+Open the service counter only after the archive is ready, then open the waiting room.
+
+### Worker Reliability
+
+Stateless workers share durable checkpoints, ownership records, and effect keys. One active run may mutate a thread at a time. The local registry demonstrates lease exclusion within one process; the Postgres implementation uses a transaction-scoped advisory lock across workers. A new ledger instance proves that idempotency survives worker replacement, and conflicting payloads are rejected.
+
+Any adjuster may pick up the durable folder, but only one holds its checkout card at a time.
+
+### Managed Deployment
+
+An assistant selects graph configuration, a thread identifies persisted state, and a run is one execution. Agent Server supports background runs; LangSmith Deployment adds managed hosting and scheduled jobs subject to account access and current pricing. This offline request planner creates no hosted resources. The explicit SDK function requires a caller-supplied authenticated client and full graph input.
+
+A service definition, a case folder, and a work session are three different identifiers.
+
+The checked-in diagram was generated from the executable lesson or cumulative Copilot graph. Edges describe possible work; inspect the runtime trace to see what ran.
 
 ```mermaid
 ---
@@ -51,14 +71,16 @@ graph TD;
 	secure_claim\3areview\3adurable_review\3areview_claim\3aconsult_specialists --> secure_claim\3areview\3acomplete_review;
 	subgraph durable_review
 	secure_claim\3areview\3adurable_review\3aawait_estimate(await_estimate)
-	secure_claim\3areview\3adurable_review\3aawait_estimate --> secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
+	secure_claim\3areview\3adurable_review\3aawait_estimate --> secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer;
 	subgraph review_claim
 	secure_claim\3areview\3adurable_review\3areview_claim\3aconsult_specialists(consult_specialists)
 	secure_claim\3areview\3adurable_review\3areview_claim\3afraud_review\3ainspect_evidence --> secure_claim\3areview\3adurable_review\3areview_claim\3aconsult_specialists;
 	secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter --> secure_claim\3areview\3adurable_review\3areview_claim\3afraud_review\3ainspect_evidence;
 	subgraph intake_policy_memory
+	secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer(authorize_customer)
 	secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember(remember)
 	secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter(draft_letter)
+	secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer --> secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
 	secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent --> secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember;
 	secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember --> secure_claim\3areview\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter;
 	subgraph intake_and_evidence
@@ -92,24 +114,6 @@ graph TD;
 
 ```
 
-### Compose Stack
-
-The self-hosted stack has an API, Postgres, and a Streamlit UI. Database readiness gates API startup, and API health gates the UI. Required credentials come from the environment; published ports bind to localhost for this teaching deployment. The example validates the committed configuration, while the integration job actually starts the containers and calls the service.
-
-Open the service counter only after the archive is ready, then open the waiting room.
-
-### Worker Reliability
-
-Stateless workers share durable checkpoints, ownership records, and effect keys. One active run may mutate a thread at a time. The local registry demonstrates lease exclusion within one process; the Postgres implementation uses a transaction-scoped advisory lock across workers. A new ledger instance proves that idempotency survives worker replacement, and conflicting payloads are rejected.
-
-Any adjuster may pick up the durable folder, but only one holds its checkout card at a time.
-
-### Managed Deployment
-
-An assistant selects graph configuration, a thread identifies persisted state, and a run is one execution. Agent Server supports background runs; LangSmith Deployment adds managed hosting and scheduled jobs subject to account access and current pricing. This offline request planner creates no hosted resources. The explicit SDK function requires a caller-supplied authenticated client and full graph input.
-
-A service definition, a case folder, and a work session are three different identifiers.
-
 ## Key APIs at a glance
 
 | API / executable example | What it does | When to use it |
@@ -123,7 +127,7 @@ A service definition, a case folder, and a work session are three different iden
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/22_deployment/examples/01_compose_stack.py
+uv run --no-sync python modules/22_deployment/examples/01_compose_stack.py
 ```
 
 **Predict, then run:** for {"public_bind": false, "remove_healthcheck": false}, write the resulting fields and any expected error. Then test the boundary cases in tests/compose_stack.json.
@@ -151,7 +155,7 @@ The self-hosted stack has an API, Postgres, and a Streamlit UI. Database readine
 </details>
 
 ```text
-uv run python modules/22_deployment/examples/02_worker_reliability.py
+uv run --no-sync python modules/22_deployment/examples/02_worker_reliability.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "amount_cents": 50000, "changed_payload": false}, write the resulting fields and any expected error. Then test the boundary cases in tests/worker_reliability.json.
@@ -175,7 +179,7 @@ Stateless workers share durable checkpoints, ownership records, and effect keys.
 </details>
 
 ```text
-uv run python modules/22_deployment/examples/03_managed_deployment.py
+uv run --no-sync python modules/22_deployment/examples/03_managed_deployment.py
 ```
 
 **Predict, then run:** for {"assistant_id": "claims", "thread_id": "claim-thread", "schedule": "0 9 * * 1-5", "background": true}, write the resulting fields and any expected error. Then test the boundary cases in tests/managed_deployment.json.
@@ -195,7 +199,22 @@ uv run python modules/22_deployment/examples/03_managed_deployment.py
     "run": {
       "assistant_id": "claims",
       "input": {
-        "claim_id": "CLM-0001"
+        "claim": {
+          "amount_cents": 2096759,
+          "claim_id": "CLM-0001",
+          "claim_type": "water",
+          "customer_id": "CUS-0001",
+          "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+          "documents": [
+            "DOC-001"
+          ],
+          "duplicate_of": null,
+          "fraud_indicators": [],
+          "loss_date": "2026-01-01",
+          "policy_id": "POL-0001"
+        },
+        "audit": [],
+        "findings": []
       }
     },
     "mode": "background",
@@ -242,32 +261,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"services": ["api", "postgres", "ui"], "valid": true, "errors": [], "api_waits_for_database": true}}`. Reject a database without a readiness check. | Restore `if "healthcheck" not in services["postgres"]:` and check the boundary cases. | [22-01](../../gym/tasks/22/22-01_compose_stack_build/task.md) · [Related Fix 22-02](../../gym/tasks/22/22-02_compose_stack_fix/task.md) |
-| Observed `{"value": {"services": ["api", "postgres", "ui"], "valid": true, "errors": [], "api_waits_for_database": true}}`. Detect accidental public binding of the teaching service. | Restore `not binding.startswith("127.0.0.1:")` and check the boundary cases. | [22-02](../../gym/tasks/22/22-02_compose_stack_fix/task.md) |
-| Observed `{"value": {"competing_worker_busy": true, "first_created": true, "replay_created": true, "effects": 2}}`. Use the same business effect identity after worker replacement. | Restore `"payment:" + case["claim_id"]` and check the boundary cases. | [22-07](../../gym/tasks/22/22-07_worker_reliability_build/task.md) · [Related Fix 22-08](../../gym/tasks/22/22-08_worker_reliability_fix/task.md) |
-| Observed `{"value": {"competing_worker_busy": false, "first_created": true, "replay_created": false, "effects": 1}}`. Report that a competing run was excluded. | Restore `busy = True` and check the boundary cases. | [22-08](../../gym/tasks/22/22-08_worker_reliability_fix/task.md) |
-| Observed `{"value": {"assistant": {"graph_id": "claims"}, "thread": {"thread_id": "claim-thread"}, "run": {"assistant_id": "claims", "input": {"claim_id": "CLM-0001"}}, "mode": "background", "schedule": "0 9 * * 1-5"}}`. Require both assistant configuration and thread identity. | Restore `if not case["assistant_id"] or not case["thread_id"]:` and check the boundary cases. | [22-13](../../gym/tasks/22/22-13_managed_deployment_build/task.md) · [Related Fix 22-14](../../gym/tasks/22/22-14_managed_deployment_fix/task.md) |
-| Observed `{"value": {"assistant": {"graph_id": "claims"}, "thread": {"thread_id": "claim-thread"}, "run": {"assistant_id": "claims", "input": {"claim_id": "CLM-0001"}}, "mode": "background", "schedule": "0 9 * * 1-5"}}`. Keep interactive waiting distinct from background execution. | Restore `"background" if case["background"] else "wait"` and check the boundary cases. | [22-14](../../gym/tasks/22/22-14_managed_deployment_fix/task.md) |
+| Observed `{"value": {"services": ["api", "postgres", "ui"], "valid": true, "errors": [], "api_waits_for_database": true}}`. Reject a database without a readiness check. | Restore `if "healthcheck" not in services["postgres"]:` and check the boundary cases. | [22-01](../../gym/tasks/22/22-01_compose_stack_build/task.md) · Related Fix: [22-02](../../gym/tasks/22/22-02_compose_stack_fix/task.md) |
+| Observed `{"value": {"services": ["api", "postgres", "ui"], "valid": true, "errors": [], "api_waits_for_database": true}}`. Detect accidental public binding of the teaching service. | Restore `not binding.startswith("127.0.0.1:")` and check the boundary cases. | [22-02](../../gym/tasks/22/22-02_compose_stack_fix/task.md) · Related Fix: [22-02](../../gym/tasks/22/22-02_compose_stack_fix/task.md) |
+| Observed `{"value": {"competing_worker_busy": true, "first_created": true, "replay_created": true, "effects": 2}}`. Use the same business effect identity after worker replacement. | Restore `"payment:" + case["claim_id"]` and check the boundary cases. | [22-07](../../gym/tasks/22/22-07_worker_reliability_build/task.md) · Related Fix: [22-08](../../gym/tasks/22/22-08_worker_reliability_fix/task.md) |
+| Observed `{"value": {"competing_worker_busy": false, "first_created": true, "replay_created": false, "effects": 1}}`. Report that a competing run was excluded. | Restore `busy = True` and check the boundary cases. | [22-08](../../gym/tasks/22/22-08_worker_reliability_fix/task.md) · Related Fix: [22-08](../../gym/tasks/22/22-08_worker_reliability_fix/task.md) |
+| Observed `{"value": {"assistant": {"graph_id": "claims"}, "thread": {"thread_id": "claim-thread"}, "run": {"assistant_id": "claims", "input": {"claim": {"amount_cents": 2096759, "claim_id": "CLM-0001", "claim_type": "water", "cust`. Require both assistant configuration and thread identity. | Restore `if not case["assistant_id"] or not case["thread_id"]:` and check the boundary cases. | [22-13](../../gym/tasks/22/22-13_managed_deployment_build/task.md) · Related Fix: [22-14](../../gym/tasks/22/22-14_managed_deployment_fix/task.md) |
+| Observed `{"value": {"assistant": {"graph_id": "claims"}, "thread": {"thread_id": "claim-thread"}, "run": {"assistant_id": "claims", "input": {"claim": {"amount_cents": 2096759, "claim_id": "CLM-0001", "claim_type": "water", "cust`. Keep interactive waiting distinct from background execution. | Restore `"background" if case["background"] else "wait"` and check the boundary cases. | [22-14](../../gym/tasks/22/22-14_managed_deployment_fix/task.md) · Related Fix: [22-14](../../gym/tasks/22/22-14_managed_deployment_fix/task.md) |
 
 ## Practice
 
 - [22-01 — build, easy](../../gym/tasks/22/22-01_compose_stack_build/task.md): Build compose stack: Reject a database without a readiness check.
 - [22-02 — fix, medium](../../gym/tasks/22/22-02_compose_stack_fix/task.md): Fix compose stack: Detect accidental public binding of the teaching service.
 - [22-03 — predict, easy](../../gym/tasks/22/22-03_compose_stack_predict/task.md): Predict compose stack across the declared cases
-- [22-04 — trace, medium](../../gym/tasks/22/22-04_compose_stack_trace/task.md): Trace compose stack: Detect accidental public binding of the teaching service.
-- [22-05 — extend, hard](../../gym/tasks/22/22-05_compose_stack_extend/task.md): Extend compose stack: Do not mark a stack valid after detecting a deployment error.
-- [22-06 — refactor, hard](../../gym/tasks/22/22-06_compose_stack_refactor/task.md): Refactor compose stack: Distinguish service readiness from process startup.
+- [22-04 — trace, medium](../../gym/tasks/22/22-04_compose_stack_trace/task.md): Diagnose compose stack from execution evidence
+- [22-05 — extend, hard](../../gym/tasks/22/22-05_compose_stack_extend/task.md): Extend compose stack: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [22-06 — refactor, hard](../../gym/tasks/22/22-06_compose_stack_refactor/task.md): Refactor compose stack: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [22-07 — build, easy](../../gym/tasks/22/22-07_worker_reliability_build/task.md): Build worker reliability: Use the same business effect identity after worker replacement.
 - [22-08 — fix, medium](../../gym/tasks/22/22-08_worker_reliability_fix/task.md): Fix worker reliability: Report that a competing run was excluded.
 - [22-09 — predict, easy](../../gym/tasks/22/22-09_worker_reliability_predict/task.md): Predict worker reliability across the declared cases
-- [22-10 — trace, medium](../../gym/tasks/22/22-10_worker_reliability_trace/task.md): Trace worker reliability: Report that a competing run was excluded.
-- [22-11 — extend, hard](../../gym/tasks/22/22-11_worker_reliability_extend/task.md): Extend worker reliability: Exercise and reject idempotency-key reuse with a changed payload.
+- [22-10 — trace, medium](../../gym/tasks/22/22-10_worker_reliability_trace/task.md): Diagnose worker reliability from execution evidence
+- [22-11 — extend, hard](../../gym/tasks/22/22-11_worker_reliability_extend/task.md): Extend worker reliability: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [22-12 — design, hard](../../gym/tasks/22/22-12_worker_reliability_design/task.md): Design worker reliability and justify the boundary policies
 - [22-13 — build, easy](../../gym/tasks/22/22-13_managed_deployment_build/task.md): Build managed deployment: Require both assistant configuration and thread identity.
 - [22-14 — fix, medium](../../gym/tasks/22/22-14_managed_deployment_fix/task.md): Fix managed deployment: Keep interactive waiting distinct from background execution.
 - [22-15 — predict, easy](../../gym/tasks/22/22-15_managed_deployment_predict/task.md): Predict managed deployment across the declared cases
-- [22-16 — trace, medium](../../gym/tasks/22/22-16_managed_deployment_trace/task.md): Trace managed deployment: Keep interactive waiting distinct from background execution.
-- [22-17 — extend, hard](../../gym/tasks/22/22-17_managed_deployment_extend/task.md): Extend managed deployment: Reject an obviously malformed schedule before proposing a hosted job.
+- [22-16 — trace, medium](../../gym/tasks/22/22-16_managed_deployment_trace/task.md): Diagnose managed deployment from execution evidence
+- [22-17 — extend, hard](../../gym/tasks/22/22-17_managed_deployment_extend/task.md): Extend managed deployment: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [22-18 — design, hard](../../gym/tasks/22/22-18_managed_deployment_design/task.md): Design managed deployment and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

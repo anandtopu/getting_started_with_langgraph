@@ -1,4 +1,4 @@
-"""Trace safe reentry: Effects before interrupt repeat when the node restarts.. Run this file with Python. No live model or network."""
+"""Diagnose safe reentry from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

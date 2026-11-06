@@ -1,4 +1,4 @@
-# B4-16 — Trace typed approvals: Respect rejection instead of coercing every decision to approval.
+# B4-16 — Diagnose typed approvals from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Per-call HumanInTheLoopMiddleware emits one approval request for each gated tool
 
 ## Your task
 
-Respect rejection instead of coercing every decision to approval. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose typed approvals from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Respect rejection instead of coercing every decision to approval. Read trace.py 
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Use per-call requests when resuming individual interrupt IDs."
+- "Respect rejection instead of coercing every decision to approval."
+- "Bind the proposal to its requested amount."
+- "Record one effect for one approved tool execution."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

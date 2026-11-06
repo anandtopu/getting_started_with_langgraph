@@ -1,4 +1,4 @@
-# 08-16 — Trace tokens and fakes: Read the documented node name from stream metadata.
+# 08-16 — Diagnose tokens and fakes from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ The messages stream emits a chunk and metadata inside each v2 part's data field.
 
 ## Your task
 
-Read the documented node name from stream metadata. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose tokens and fakes from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Read the documented node name from stream metadata. Read trace.py before complet
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Join chunks without inserting characters that were never emitted."
+- "Read the documented node name from stream metadata."
+- "Validate the fully assembled structured response."
+- "Preserve emission order while collecting token chunks."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

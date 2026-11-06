@@ -27,6 +27,19 @@ def fingerprint(task: Task, workspace: Path) -> str | None:
     for path in paths:
         digest.update(path.name.encode())
         digest.update(path.read_bytes())
+    # A pass belongs to the grading contract as well as the learner's current code.
+    digest.update(task.type.encode())
+    for name in (
+        "test_task.py",
+        "cases.json",
+        "baseline_cases.json",
+        "expected_answer.json",
+        "rubric.md",
+    ):
+        path = task.folder / name
+        if path.is_file():
+            digest.update(name.encode())
+            digest.update(path.read_bytes())
     return digest.hexdigest()
 
 

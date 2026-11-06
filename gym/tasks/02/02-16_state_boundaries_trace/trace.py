@@ -1,4 +1,4 @@
-"""Trace state boundaries: Use the same message ID to replace the original message.. Run this file with Python. No live model or network."""
+"""Diagnose state boundaries from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 

@@ -1,4 +1,4 @@
-"""Extend conditional router: High-value claims require specialist review.. Run this file with Python. No live model or network."""
+"""Extend conditional router: Add an opt-in jewelry-specialist path selected by specialize_jewelry=True. Preserve legacy routing when absent, and keep invalid-amount, high-value, and missing-evidence guards ahead of specialization.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -14,6 +14,7 @@ class State(TypedDict):
     amount_cents: int
     missing: list[str]
     route: str
+    specialize_jewelry: bool
 
 
 def route_claim(state: State) -> str:
@@ -22,7 +23,11 @@ def route_claim(state: State) -> str:
         return "invalid"
     if state["missing"]:
         return "needs_information"
-    if state["claim_type"] == "jewelry":
+    if (
+        state.get("specialize_jewelry", False) is True
+        and state["claim_type"] == "jewelry"
+        and amount <= 500000
+    ):
         return "jewelry_specialist"
     if (
         state["claim_type"] not in {"water", "theft", "fire", "storm", "liability"}

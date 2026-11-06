@@ -1,4 +1,4 @@
-"""Refactor mcp server: Publish the complete permitted capability list.. Run this file with Python. No live model or network."""
+"""Refactor mcp server: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import asyncio
 import json
@@ -18,7 +18,7 @@ async def arun(case: dict) -> dict:
     content = response[0] if isinstance(response, tuple) else response
     text = "".join(item.text for item in content if item.type == "text")
     return {
-        "tools": sorted(item.name for item in tools if item.name == "read_claim"),
+        "tools": sorted(item.name for item in tools),
         "result": json.loads(text),
         "parameters": sorted(
             next(item.inputSchema for item in tools if item.name == "read_claim")["properties"]

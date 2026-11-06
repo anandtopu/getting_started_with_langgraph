@@ -1,4 +1,4 @@
-"""Refactor create agent: Expose the final agent answer rather than the original question.. Run this file with Python. No live model or network."""
+"""Refactor create agent: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage
@@ -48,7 +48,7 @@ def run(case: dict | None = None) -> dict:
     return {
         "roles": [message.type for message in value["messages"]],
         "tools": [message.name for message in value["messages"] if message.type == "tool"],
-        "final": value["messages"][0].content,
+        "final": value["messages"][-1].content,
     }
 
 

@@ -6,8 +6,8 @@ A familiar checklist can still assign tracked work orders and wait for their res
 
 ## Hint 2
 
-Reject booleans even though Python considers them integer instances. Inspect the operation that owns this update or routing choice.
+Convert the working Graph API pipeline to an entrypoint with normalize and route tasks, preserving every existing result and validation error. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: type(claim["amount_cents"]) is not int. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

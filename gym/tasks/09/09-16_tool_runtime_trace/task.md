@@ -1,4 +1,4 @@
-# 09-16 — Trace tool runtime: Keep the graph state consistent with the Store write.
+# 09-16 — Diagnose tool runtime from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ ToolRuntime injects trusted context, graph state, the Store, and tool_call_id wi
 
 ## Your task
 
-Keep the graph state consistent with the Store write. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose tool runtime from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Keep the graph state consistent with the Store write. Read trace.py before compl
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Write only in the trusted customer namespace."
+- "Keep the graph state consistent with the Store write."
+- "Support the declared SMS contact preference."
+- "Acknowledge the tool request using its injected identity."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

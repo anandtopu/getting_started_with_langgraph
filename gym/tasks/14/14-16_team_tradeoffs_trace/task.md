@@ -1,4 +1,4 @@
-# 14-16 — Trace team tradeoffs: Advance to the next specialist instead of handing work back to itself.
+# 14-16 — Diagnose team tradeoffs from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A swarm-style team routes according to the active specialist, without requiring 
 
 ## Your task
 
-Advance to the next specialist instead of handing work back to itself. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose team tradeoffs from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Advance to the next specialist instead of handing work back to itself. Read trac
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Stop delegation when the business call budget is exhausted."
+- "Advance to the next specialist instead of handing work back to itself."
+- "Count every specialist operation against the budget."
+- "Mark successful completion when the final specialist finishes."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

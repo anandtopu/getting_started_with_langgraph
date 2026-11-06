@@ -1,4 +1,4 @@
-"""Extend deep agent planning: Do not mark unstarted document review as completed.. Run this file with Python. No live model or network."""
+"""Extend deep agent planning: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 
@@ -17,7 +17,7 @@ def run(case: dict | None = None) -> dict:
     case = DEFAULT_CASE if case is None else case
     todos = [
         {"content": "Read the policy deductible", "status": case["first_status"]},
-        {"content": "Review the contractor estimate", "status": "completed"},
+        {"content": "Review the contractor estimate", "status": "pending"},
     ]
     model = get_chat_model(
         responses=[
@@ -47,6 +47,10 @@ def run(case: dict | None = None) -> dict:
         ],
         "final": result["messages"][-1].content,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

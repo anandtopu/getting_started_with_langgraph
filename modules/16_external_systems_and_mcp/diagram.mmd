@@ -7,13 +7,15 @@ graph TD;
 	__start__([<p>__start__</p>]):::first
 	consult_specialists(consult_specialists)
 	__end__([<p>__end__</p>]):::last
-	__start__ --> intake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
+	__start__ --> intake_policy_memory\3aauthorize_customer;
 	fraud_review\3ainspect_evidence --> consult_specialists;
 	intake_policy_memory\3adraft_letter --> fraud_review\3ainspect_evidence;
 	consult_specialists --> __end__;
 	subgraph intake_policy_memory
+	intake_policy_memory\3aauthorize_customer(authorize_customer)
 	intake_policy_memory\3aremember(remember)
 	intake_policy_memory\3adraft_letter(draft_letter)
+	intake_policy_memory\3aauthorize_customer --> intake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
 	intake_policy_memory\3aintake_and_evidence\3apolicy_agent --> intake_policy_memory\3aremember;
 	intake_policy_memory\3aremember --> intake_policy_memory\3adraft_letter;
 	subgraph intake_and_evidence

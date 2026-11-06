@@ -1,4 +1,4 @@
-# 17-04 — Trace durable side effects: Make the crash supervisor recognize the documented owned-worker exit.
+# 17-04 — Diagnose durable side effects from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A task result is reusable only after it is checkpointed. This example kills an o
 
 ## Your task
 
-Make the crash supervisor recognize the documented owned-worker exit. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose durable side effects from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Make the crash supervisor recognize the documented owned-worker exit. Read trace
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Keep the effect identity stable across process death."
+- "Make the crash supervisor recognize the documented owned-worker exit."
+- "Recover the original claim identity after restart."
+- "Report the durable ledger count, not an inferred execution count."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

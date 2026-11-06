@@ -6,8 +6,8 @@ A service counter publishes a small menu of permitted requests, not keys to ever
 
 ## Hint 2
 
-Dispatch both registered tools rather than only read_claim. Inspect the operation that owns this update or routing choice.
+Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: server.call_tool(case["tool_name"], arguments). Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the new node or boundary contract described above. Check every boundary input after the repair; a default-case pass alone is insufficient.

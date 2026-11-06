@@ -1,4 +1,4 @@
-"""Extend namespaces and errors: Group by stable scope names while retaining raw IDs separately when needed.. Run this file with Python. No live model or network."""
+"""Extend namespaces and errors: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -57,13 +57,17 @@ def run(case: dict | None = None) -> dict:
     )
     groups: dict[str, list[str]] = {}
     for part in events:
-        scope = "/".join(segment for segment in part["ns"]) or "parent"
+        scope = "/".join(segment.split(":")[0] for segment in part["ns"]) or "parent"
         groups.setdefault(scope, []).extend(part["data"])
     parent_order = [next(iter(part["data"])) for part in events if not part["ns"]]
     return {
         "groups": {key: sorted(value) for key, value in sorted(groups.items())},
         "summary_last": parent_order[-1] == "summarize",
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

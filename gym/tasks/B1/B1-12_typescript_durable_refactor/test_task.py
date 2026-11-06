@@ -16,3 +16,13 @@ def test_behavior(candidate, case):
     assert actual == case["expected"], (
         "LARKSPUR: preserve the declared state, routing, and boundary contracts"
     )
+
+
+def test_typescript_structure(candidate_path):
+    source = candidate_path.with_suffix(".ts").read_text("utf-8")
+    assert "buildGraph(" in source, (
+        "LARKSPUR: implement the requested TypeScript construction boundary"
+    )
+    assert "export function buildGraph(" in source and source.count("buildGraph(") >= 2, (
+        "LARKSPUR: call the extracted builder"
+    )

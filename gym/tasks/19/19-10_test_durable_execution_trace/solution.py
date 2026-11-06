@@ -1,4 +1,4 @@
-"""Trace test durable execution: Capture the pre-resume pending state before it changes.. Run this file with Python. No live model or network."""
+"""Diagnose test durable execution from execution evidence. Run this file with Python. No live model or network."""
 
 from langgraph.types import Command
 

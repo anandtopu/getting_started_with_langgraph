@@ -1,4 +1,4 @@
-"""Trace compose stack: Detect accidental public binding of the teaching service.. Run this file with Python. No live model or network."""
+"""Diagnose compose stack from execution evidence. Run this file with Python. No live model or network."""
 
 import yaml
 

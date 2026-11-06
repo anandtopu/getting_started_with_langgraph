@@ -12,6 +12,8 @@ Complete [Setup and orientation](../00_setup/README.md). Read dictionary keys, f
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain StateGraph; TypedDict state; nodes as functions; partial node updates.
@@ -119,7 +121,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/01_your_first_graph/examples/01_intake_nodes.py
+uv run --no-sync python modules/01_your_first_graph/examples/01_intake_nodes.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "description": "  Pipe burst  ", "amount_cents": "125000"}, write the resulting fields and any expected error. Then test the boundary cases in tests/intake_nodes.json.
@@ -142,7 +144,7 @@ State is the information available to a graph. TypedDict documents its keys. A n
 </details>
 
 ```text
-uv run python modules/01_your_first_graph/examples/02_wire_pipeline.py
+uv run --no-sync python modules/01_your_first_graph/examples/02_wire_pipeline.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "description": " Water leak ", "steps": []}, write the resulting fields and any expected error. Then test the boundary cases in tests/wire_pipeline.json.
@@ -171,7 +173,7 @@ Edges declare which node can run next. START is the entry point and END marks te
 </details>
 
 ```text
-uv run python modules/01_your_first_graph/examples/03_draw_and_explain.py
+uv run --no-sync python modules/01_your_first_graph/examples/03_draw_and_explain.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "description": "Pipe burst"}, write the resulting fields and any expected error. Then test the boundary cases in tests/draw_and_explain.json.
@@ -261,32 +263,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"claim_id": "CLM-0001", "description": "  Pipe burst  ", "amount_cents": 125000}}`. Normalize the description while preserving unrelated state. | Restore `state["description"].strip()` and check the boundary cases. | [01-01](../../gym/tasks/01/01-01_intake_nodes_build/task.md) · [Related Fix 01-02](../../gym/tasks/01/01-02_intake_nodes_fix/task.md) |
-| Observed `{"error": "InvalidUpdateError"}`. A graph node must return a mapping of state updates. | Restore `return {"amount_cents": int(amount)}` and check the boundary cases. | [01-02](../../gym/tasks/01/01-02_intake_nodes_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "description": "Water leak", "status": "ready", "steps": ["normalize", "validate"]}}`. The acknowledgment must be reachable. | Restore `graph.add_edge("validate", "acknowledge")` and check the boundary cases. | [01-07](../../gym/tasks/01/01-07_wire_pipeline_build/task.md) · [Related Fix 01-08](../../gym/tasks/01/01-08_wire_pipeline_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "description": "Water leak", "acknowledged": true, "steps": ["normalize", "acknowledge"]}}`. Validation must occur before acknowledging the claim. | Restore `graph.add_edge("normalize", "validate")` and check the boundary cases. | [01-08](../../gym/tasks/01/01-08_wire_pipeline_fix/task.md) |
-| Observed `{"value": {"steps": ["receive", "acknowledge"], "updates": [{"receive": {"received": true}}, {"acknowledge": {"acknowledged": true}}]}}`. The diagram must include validation on the executed route. | Restore `graph.add_edge("receive", "validate")` and check the boundary cases. | [01-13](../../gym/tasks/01/01-13_draw_and_explain_build/task.md) · [Related Fix 01-14](../../gym/tasks/01/01-14_draw_and_explain_fix/task.md) |
-| Observed `{"value": {"steps": ["receive", "validate"], "updates": [{"receive": {"received": true}}, {"validate": {"valid": true}}]}}`. The intended final node must be connected. | Restore `graph.add_edge("validate", "acknowledge")` and check the boundary cases. | [01-14](../../gym/tasks/01/01-14_draw_and_explain_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "description": "  Pipe burst  ", "amount_cents": 125000}}`. Normalize the description while preserving unrelated state. | Restore `state["description"].strip()` and check the boundary cases. | [01-01](../../gym/tasks/01/01-01_intake_nodes_build/task.md) · Related Fix: [01-02](../../gym/tasks/01/01-02_intake_nodes_fix/task.md) |
+| Observed `{"error": "InvalidUpdateError"}`. A graph node must return a mapping of state updates. | Restore `return {"amount_cents": int(amount)}` and check the boundary cases. | [01-02](../../gym/tasks/01/01-02_intake_nodes_fix/task.md) · Related Fix: [01-02](../../gym/tasks/01/01-02_intake_nodes_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "description": "Water leak", "status": "ready", "steps": ["normalize", "validate"]}}`. The acknowledgment must be reachable. | Restore `graph.add_edge("validate", "acknowledge")` and check the boundary cases. | [01-07](../../gym/tasks/01/01-07_wire_pipeline_build/task.md) · Related Fix: [01-08](../../gym/tasks/01/01-08_wire_pipeline_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "description": "Water leak", "acknowledged": true, "steps": ["normalize", "acknowledge"]}}`. Validation must occur before acknowledging the claim. | Restore `graph.add_edge("normalize", "validate")` and check the boundary cases. | [01-08](../../gym/tasks/01/01-08_wire_pipeline_fix/task.md) · Related Fix: [01-08](../../gym/tasks/01/01-08_wire_pipeline_fix/task.md) |
+| Observed `{"value": {"steps": ["receive", "acknowledge"], "updates": [{"receive": {"received": true}}, {"acknowledge": {"acknowledged": true}}]}}`. The diagram must include validation on the executed route. | Restore `graph.add_edge("receive", "validate")` and check the boundary cases. | [01-13](../../gym/tasks/01/01-13_draw_and_explain_build/task.md) · Related Fix: [01-14](../../gym/tasks/01/01-14_draw_and_explain_fix/task.md) |
+| Observed `{"value": {"steps": ["receive", "validate"], "updates": [{"receive": {"received": true}}, {"validate": {"valid": true}}]}}`. The intended final node must be connected. | Restore `graph.add_edge("validate", "acknowledge")` and check the boundary cases. | [01-14](../../gym/tasks/01/01-14_draw_and_explain_fix/task.md) · Related Fix: [01-14](../../gym/tasks/01/01-14_draw_and_explain_fix/task.md) |
 
 ## Practice
 
 - [01-01 — build, easy](../../gym/tasks/01/01-01_intake_nodes_build/task.md): Build intake nodes: Normalize the description while preserving unrelated state.
 - [01-02 — fix, medium](../../gym/tasks/01/01-02_intake_nodes_fix/task.md): Fix intake nodes: A graph node must return a mapping of state updates.
 - [01-03 — predict, easy](../../gym/tasks/01/01-03_intake_nodes_predict/task.md): Predict intake nodes across the declared cases
-- [01-04 — trace, medium](../../gym/tasks/01/01-04_intake_nodes_trace/task.md): Trace intake nodes: A graph node must return a mapping of state updates.
-- [01-05 — extend, hard](../../gym/tasks/01/01-05_intake_nodes_extend/task.md): Extend intake nodes: An amount update must not erase the claim identifier.
+- [01-04 — trace, medium](../../gym/tasks/01/01-04_intake_nodes_trace/task.md): Diagnose intake nodes from execution evidence
+- [01-05 — extend, hard](../../gym/tasks/01/01-05_intake_nodes_extend/task.md): Extend intake nodes: Add a contact-normalization node without erasing claim identity.
 - [01-06 — refactor, hard](../../gym/tasks/01/01-06_intake_nodes_refactor/task.md): Refactor intake nodes: Refactor mutation into a pure partial update.
 - [01-07 — build, easy](../../gym/tasks/01/01-07_wire_pipeline_build/task.md): Build wire pipeline: The acknowledgment must be reachable.
 - [01-08 — fix, medium](../../gym/tasks/01/01-08_wire_pipeline_fix/task.md): Fix wire pipeline: Validation must occur before acknowledging the claim.
 - [01-09 — predict, easy](../../gym/tasks/01/01-09_wire_pipeline_predict/task.md): Predict wire pipeline across the declared cases
-- [01-10 — trace, medium](../../gym/tasks/01/01-10_wire_pipeline_trace/task.md): Trace wire pipeline: Validation must occur before acknowledging the claim.
-- [01-11 — extend, hard](../../gym/tasks/01/01-11_wire_pipeline_extend/task.md): Extend wire pipeline: A completed acknowledgment must be visible in output.
-- [01-12 — refactor, hard](../../gym/tasks/01/01-12_wire_pipeline_refactor/task.md): Refactor wire pipeline: Refactoring must preserve the complete execution sequence.
+- [01-10 — trace, medium](../../gym/tasks/01/01-10_wire_pipeline_trace/task.md): Diagnose wire pipeline from execution evidence
+- [01-11 — extend, hard](../../gym/tasks/01/01-11_wire_pipeline_extend/task.md): Extend wire pipeline: Connect the receipt-number node after acknowledgment and before termination.
+- [01-12 — refactor, hard](../../gym/tasks/01/01-12_wire_pipeline_refactor/task.md): Refactor wire pipeline: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [01-13 — build, easy](../../gym/tasks/01/01-13_draw_and_explain_build/task.md): Build draw and explain: The diagram must include validation on the executed route.
 - [01-14 — fix, medium](../../gym/tasks/01/01-14_draw_and_explain_fix/task.md): Fix draw and explain: The intended final node must be connected.
 - [01-15 — predict, easy](../../gym/tasks/01/01-15_draw_and_explain_predict/task.md): Predict draw and explain across the declared cases
-- [01-16 — trace, medium](../../gym/tasks/01/01-16_draw_and_explain_trace/task.md): Trace draw and explain: The intended final node must be connected.
-- [01-17 — extend, hard](../../gym/tasks/01/01-17_draw_and_explain_extend/task.md): Extend draw and explain: Eligibility evidence must affect the validation result.
+- [01-16 — trace, medium](../../gym/tasks/01/01-16_draw_and_explain_trace/task.md): Diagnose draw and explain from execution evidence
+- [01-17 — extend, hard](../../gym/tasks/01/01-17_draw_and_explain_extend/task.md): Extend draw and explain: Add an opt-in eligibility node selected by eligibility_check=True. Preserve the original steps when absent; verify the new diagram connection and valid/invalid updates when enabled.
 - [01-18 — design, hard](../../gym/tasks/01/01-18_draw_and_explain_design/task.md): Design draw and explain and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

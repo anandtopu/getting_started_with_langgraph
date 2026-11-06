@@ -12,6 +12,10 @@ Complete [Memory](../11_memory/README.md). Read dictionary keys, functions, and 
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
+After the deterministic lesson, use [the optional provider lab](../../docs/LIVE_MODEL_LAB.md) to try real extraction, scoped tool calls, and conversation memory with your configured provider. Graded results remain fake and offline.
+
 ## Learning objectives
 
 - Implement and explain Prompt chaining; deterministic gates; model-based routing with validated outputs; workflow versus agent choice.
@@ -101,7 +105,7 @@ A letter editor returns a short checklist, but has a fixed number of revision ro
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/12_workflow_patterns/examples/01_chains_and_gates.py
+uv run --no-sync python modules/12_workflow_patterns/examples/01_chains_and_gates.py
 ```
 
 **Predict, then run:** for {"category": "policy", "policy_deductible": 100000, "extracted_deductible": 100000}, write the resulting fields and any expected error. Then test the boundary cases in tests/chains_and_gates.json.
@@ -128,7 +132,7 @@ Prompt chaining fixes the order of model operations. A deterministic gate compar
 </details>
 
 ```text
-uv run python modules/12_workflow_patterns/examples/02_orchestrator_workers.py
+uv run --no-sync python modules/12_workflow_patterns/examples/02_orchestrator_workers.py
 ```
 
 **Predict, then run:** for {"sections": ["coverage", "deductible", "exclusions"]}, write the resulting fields and any expected error. Then test the boundary cases in tests/orchestrator_workers.json.
@@ -155,7 +159,7 @@ An orchestrator proposes a structured plan, then Send creates one worker invocat
 </details>
 
 ```text
-uv run python modules/12_workflow_patterns/examples/03_evaluator_optimizer.py
+uv run --no-sync python modules/12_workflow_patterns/examples/03_evaluator_optimizer.py
 ```
 
 **Predict, then run:** for {"drafts": ["Your deductible is 90000 cents.", "Thank you. Your deductible is 100000 cents."], "budget": 3}, write the resulting fields and any expected error. Then test the boundary cases in tests/evaluator_optimizer.json.
@@ -220,33 +224,33 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"category": "policy", "extracted_deductible": 100000, "draft": {"text": "Thank you for the synthetic claim. We will review your evidence.", "deductible_cents": 100000}, "accepted": true}}`. Reject contradictory extracted facts before drafting. | Restore `state["extracted_deductible"] == case["policy_deductible"]` and check the boundary cases. | [12-01](../../gym/tasks/12/12-01_chains_and_gates_build/task.md) · [Related Fix 12-02](../../gym/tasks/12/12-02_chains_and_gates_fix/task.md) |
-| Observed `{"value": {"category": "policy", "extracted_deductible": 100000, "draft": {"text": "Thank you for the synthetic claim. We will review your evidence.", "deductible_cents": 100000}, "accepted": true}}`. Stop the chain when the fact gate fails. | Restore `"draft" if state["accepted"] else END` and check the boundary cases. | [12-02](../../gym/tasks/12/12-02_chains_and_gates_fix/task.md) |
-| Observed `{"value": {"sections": ["exclusions"], "report": "Flood needs the separate add-on.", "model_calls": 2}}`. Accumulate every worker result instead of overwriting sibling reports. | Restore `operator.add]` and check the boundary cases. | [12-07](../../gym/tasks/12/12-07_orchestrator_workers_build/task.md) · [Related Fix 12-08](../../gym/tasks/12/12-08_orchestrator_workers_fix/task.md) |
-| Observed `{"value": {"sections": ["coverage", "deductible", "exclusions"], "report": "Water damage is a synthetic covered cause.\nThe synthetic deductible is 100000 cents.\nFlood needs the separate add-on.", "model_calls": 4}}`. Reject a plan that delegates the same section twice. | Restore `if len(value) != len(set(value)):` and check the boundary cases. | [12-08](../../gym/tasks/12/12-08_orchestrator_workers_fix/task.md) |
-| Observed `{"value": {"accepted": true, "attempts": 2, "history": [{"attempt": 1, "feedback": ["deductible_fact", "respectful_tone"]}, {"attempt": 2, "feedback": []}], "stop_reason": "accepted"}}`. Stop unsuccessful revision at the configured budget. | Restore `state["attempts"] >= state["budget"]` and check the boundary cases. | [12-13](../../gym/tasks/12/12-13_evaluator_optimizer_build/task.md) · [Related Fix 12-14](../../gym/tasks/12/12-14_evaluator_optimizer_fix/task.md) |
-| Observed `{"value": {"accepted": true, "attempts": 2, "history": [{"attempt": 1, "feedback": ["respectful_tone"]}, {"attempt": 2, "feedback": []}], "stop_reason": "accepted"}}`. Require the authoritative deductible fact. | Restore `"100000 cents" not in state["draft"]` and check the boundary cases. | [12-14](../../gym/tasks/12/12-14_evaluator_optimizer_fix/task.md) |
+| Observed `{"value": {"category": "policy", "extracted_deductible": 100000, "draft": {"text": "Thank you for the synthetic claim. We will review your evidence.", "deductible_cents": 100000}, "accepted": true}}`. Reject contradictory extracted facts before drafting. | Restore `state["extracted_deductible"] == case["policy_deductible"]` and check the boundary cases. | [12-01](../../gym/tasks/12/12-01_chains_and_gates_build/task.md) · Related Fix: [12-02](../../gym/tasks/12/12-02_chains_and_gates_fix/task.md) |
+| Observed `{"value": {"category": "policy", "extracted_deductible": 100000, "draft": {"text": "Thank you for the synthetic claim. We will review your evidence.", "deductible_cents": 100000}, "accepted": true}}`. Stop the chain when the fact gate fails. | Restore `"draft" if state["accepted"] else END` and check the boundary cases. | [12-02](../../gym/tasks/12/12-02_chains_and_gates_fix/task.md) · Related Fix: [12-02](../../gym/tasks/12/12-02_chains_and_gates_fix/task.md) |
+| Observed `{"value": {"sections": ["exclusions"], "report": "Flood needs the separate add-on.", "model_calls": 2}}`. Accumulate every worker result instead of overwriting sibling reports. | Restore `operator.add]` and check the boundary cases. | [12-07](../../gym/tasks/12/12-07_orchestrator_workers_build/task.md) · Related Fix: [12-08](../../gym/tasks/12/12-08_orchestrator_workers_fix/task.md) |
+| Observed `{"value": {"sections": ["coverage", "deductible", "exclusions"], "report": "Water damage is a synthetic covered cause.\nThe synthetic deductible is 100000 cents.\nFlood needs the separate add-on.", "model_calls": 4}}`. Reject a plan that delegates the same section twice. | Restore `if len(value) != len(set(value)):` and check the boundary cases. | [12-08](../../gym/tasks/12/12-08_orchestrator_workers_fix/task.md) · Related Fix: [12-08](../../gym/tasks/12/12-08_orchestrator_workers_fix/task.md) |
+| Observed `{"value": {"accepted": true, "attempts": 2, "history": [{"attempt": 1, "feedback": ["deductible_fact", "respectful_tone"]}, {"attempt": 2, "feedback": []}], "stop_reason": "accepted"}}`. Stop unsuccessful revision at the configured budget. | Restore `state["attempts"] >= state["budget"]` and check the boundary cases. | [12-13](../../gym/tasks/12/12-13_evaluator_optimizer_build/task.md) · Related Fix: [12-14](../../gym/tasks/12/12-14_evaluator_optimizer_fix/task.md) |
+| Observed `{"value": {"accepted": true, "attempts": 2, "history": [{"attempt": 1, "feedback": ["respectful_tone"]}, {"attempt": 2, "feedback": []}], "stop_reason": "accepted"}}`. Require the authoritative deductible fact. | Restore `"100000 cents" not in state["draft"]` and check the boundary cases. | [12-14](../../gym/tasks/12/12-14_evaluator_optimizer_fix/task.md) · Related Fix: [12-14](../../gym/tasks/12/12-14_evaluator_optimizer_fix/task.md) |
 
 ## Practice
 
 - [12-01 — build, easy](../../gym/tasks/12/12-01_chains_and_gates_build/task.md): Build chains and gates: Reject contradictory extracted facts before drafting.
 - [12-02 — fix, medium](../../gym/tasks/12/12-02_chains_and_gates_fix/task.md): Fix chains and gates: Stop the chain when the fact gate fails.
 - [12-03 — predict, easy](../../gym/tasks/12/12-03_chains_and_gates_predict/task.md): Predict chains and gates across the declared cases
-- [12-04 — trace, medium](../../gym/tasks/12/12-04_chains_and_gates_trace/task.md): Trace chains and gates: Stop the chain when the fact gate fails.
-- [12-05 — extend, hard](../../gym/tasks/12/12-05_chains_and_gates_extend/task.md): Extend chains and gates: Validate the routing category against an explicit allowlist.
+- [12-04 — trace, medium](../../gym/tasks/12/12-04_chains_and_gates_trace/task.md): Diagnose chains and gates from execution evidence
+- [12-05 — extend, hard](../../gym/tasks/12/12-05_chains_and_gates_extend/task.md): Extend chains and gates: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [12-06 — design, hard](../../gym/tasks/12/12-06_chains_and_gates_design/task.md): Design chains and gates and justify the boundary policies
 - [12-07 — build, easy](../../gym/tasks/12/12-07_orchestrator_workers_build/task.md): Build orchestrator workers: Accumulate every worker result instead of overwriting sibling reports.
 - [12-08 — fix, medium](../../gym/tasks/12/12-08_orchestrator_workers_fix/task.md): Fix orchestrator workers: Reject a plan that delegates the same section twice.
 - [12-09 — predict, easy](../../gym/tasks/12/12-09_orchestrator_workers_predict/task.md): Predict orchestrator workers across the declared cases
-- [12-10 — trace, medium](../../gym/tasks/12/12-10_orchestrator_workers_trace/task.md): Trace orchestrator workers: Reject a plan that delegates the same section twice.
-- [12-11 — extend, hard](../../gym/tasks/12/12-11_orchestrator_workers_extend/task.md): Extend orchestrator workers: Assemble reports by stable section identity.
-- [12-12 — refactor, hard](../../gym/tasks/12/12-12_orchestrator_workers_refactor/task.md): Refactor orchestrator workers: Run every approved worker in the plan.
+- [12-10 — trace, medium](../../gym/tasks/12/12-10_orchestrator_workers_trace/task.md): Diagnose orchestrator workers from execution evidence
+- [12-11 — extend, hard](../../gym/tasks/12/12-11_orchestrator_workers_extend/task.md): Extend orchestrator workers: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [12-12 — refactor, hard](../../gym/tasks/12/12-12_orchestrator_workers_refactor/task.md): Refactor orchestrator workers: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [12-13 — build, easy](../../gym/tasks/12/12-13_evaluator_optimizer_build/task.md): Build evaluator optimizer: Stop unsuccessful revision at the configured budget.
 - [12-14 — fix, medium](../../gym/tasks/12/12-14_evaluator_optimizer_fix/task.md): Fix evaluator optimizer: Require the authoritative deductible fact.
 - [12-15 — predict, easy](../../gym/tasks/12/12-15_evaluator_optimizer_predict/task.md): Predict evaluator optimizer across the declared cases
-- [12-16 — trace, medium](../../gym/tasks/12/12-16_evaluator_optimizer_trace/task.md): Trace evaluator optimizer: Require the authoritative deductible fact.
-- [12-17 — extend, hard](../../gym/tasks/12/12-17_evaluator_optimizer_extend/task.md): Extend evaluator optimizer: Keep the respectful-tone criterion separate from the factual criterion.
-- [12-18 — refactor, hard](../../gym/tasks/12/12-18_evaluator_optimizer_refactor/task.md): Refactor evaluator optimizer: Stop immediately once both criteria pass.
+- [12-16 — trace, medium](../../gym/tasks/12/12-16_evaluator_optimizer_trace/task.md): Diagnose evaluator optimizer from execution evidence
+- [12-17 — extend, hard](../../gym/tasks/12/12-17_evaluator_optimizer_extend/task.md): Extend evaluator optimizer: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [12-18 — refactor, hard](../../gym/tasks/12/12-18_evaluator_optimizer_refactor/task.md): Refactor evaluator optimizer: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.
 

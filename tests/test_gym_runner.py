@@ -37,6 +37,20 @@ def test_environment_removes_credentials(monkeypatch):
     assert environment["LANGSMITH_TRACING"] == "false"
 
 
+def test_one_pass_does_not_hide_a_skipped_acceptance_check(tmp_path):
+    task = replace(Catalog().get("00-01"), folder=tmp_path)
+    (tmp_path / "test_task.py").write_text(
+        "import pytest\ndef test_good():\n    assert True\n"
+        "@pytest.mark.skip(reason='missing acceptance')\ndef test_missing():\n    assert False\n",
+        encoding="utf-8",
+    )
+    candidate = tmp_path / "candidate.py"
+    candidate.write_text("value = 1\n", encoding="utf-8")
+    result = check_task(task, candidate)
+    assert not result.passed and result.returncode == 5
+    assert any(item["outcome"] == "skipped" for item in result.tests)
+
+
 def test_child_network_is_blocked(tmp_path):
     attempt = tmp_path / "network.py"
     attempt.write_text(

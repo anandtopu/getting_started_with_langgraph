@@ -1,4 +1,4 @@
-# 01-05 — Extend intake nodes: An amount update must not erase the claim identifier.
+# 01-05 — Extend intake nodes: Add a contact-normalization node without erasing claim identity.
 
 Type: extend. Difficulty: hard. No live model, key, or network is required.
 
@@ -48,6 +48,8 @@ Add a contact-normalization node without erasing claim identity. Preserve run(ca
   }
 ]
 ```
+
+The new capability is checked in addition to the original cases. For run_batch, edit the Python orchestration interface (including in the TypeScript bonus); leave run(case) behavior intact. A batch is sequential and each case owns a new workflow invocation, not a shared durable thread.
 
 cases.json declares the expected output or expected exception type for every input. Exceptions are observed by the grader; import errors are setup failures. The starter's demo prints a known runtime error when appropriate, so you can inspect it without losing the exercise context.
 

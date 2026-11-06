@@ -1,4 +1,4 @@
-# 04-04 — Trace bounded rechecks: Without a changing retry counter, the graph reaches its recursion limit.
+# 04-04 — Diagnose bounded rechecks from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A loop is an edge back to earlier work. Business state must move toward an exit.
 
 ## Your task
 
-Without a changing retry counter, the graph reaches its recursion limit. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose bounded rechecks from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -30,6 +30,13 @@ Without a changing retry counter, the graph reaches its recursion limit. Read tr
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Received evidence must terminate the recheck loop."
+- "Without a changing retry counter, the graph reaches its recursion limit."
+- "The business budget needs an explicit exhausted outcome."
+- "Equivalent loops must preserve the exact attempt budget."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

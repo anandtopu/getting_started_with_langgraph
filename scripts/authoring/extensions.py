@@ -61,14 +61,23 @@ def extend(group: str, source: str):
         )
         source = source.replace(
             'graph.add_edge("validate", "acknowledge")',
-            'graph.add_node("check_eligibility", check_eligibility)\n    graph.add_edge("validate", "check_eligibility")\n    graph.add_edge("check_eligibility", "acknowledge")',
+            'if include_eligibility:\n        graph.add_node("check_eligibility", check_eligibility)\n        graph.add_edge("validate", "check_eligibility")\n        graph.add_edge("check_eligibility", "acknowledge")\n    else:\n        graph.add_edge("validate", "acknowledge")',
+        )
+        source = source.replace("def build_graph():", "def build_graph(include_eligibility=False):")
+        source = source.replace(
+            "graph = build_graph()",
+            'graph = build_graph(bool((case or {}).get("eligibility_check", False)))',
         )
         broken = source.replace('state["valid"] and bool(state["claim_id"])', "True")
         return (
             source,
             broken,
-            [{"claim_id": ""}],
-            "Add an eligibility node and verify both its diagram connection and runtime update.",
+            [
+                {"eligibility_check": True},
+                {"eligibility_check": True, "claim_id": ""},
+                {"eligibility_check": True, "description": ""},
+            ],
+            "Add an opt-in eligibility node selected by eligibility_check=True. Preserve the original steps when absent; verify the new diagram connection and valid/invalid updates when enabled.",
         )
     if group == "02-A":
         source = source.replace(
@@ -113,17 +122,22 @@ def extend(group: str, source: str):
             "Append a customer-safe explanation without exposing internal notes or duplicating the original message.",
         )
     if group == "03-A":
+        source = source.replace("    route: str", "    route: str\n    specialize_jewelry: bool")
         source = source.replace(
             'return "needs_information"',
-            'return "needs_information"\n    if state["claim_type"] == "jewelry":\n        return "jewelry_specialist"',
+            'return "needs_information"\n    if state.get("specialize_jewelry", False) is True and state["claim_type"] == "jewelry" and amount <= 500000:\n        return "jewelry_specialist"',
         )
         source = source.replace("destinations = [", 'destinations = ["jewelry_specialist", ')
         broken = source.replace('return "jewelry_specialist"', 'return "specialist"')
         return (
             source,
             broken,
-            [{"claim_type": "jewelry", "amount_cents": 50000}],
-            "Add a distinct jewelry-specialist path while preserving amount and missing-evidence guards.",
+            [
+                {"specialize_jewelry": True, "claim_type": "jewelry", "amount_cents": 50000},
+                {"specialize_jewelry": True, "claim_type": "jewelry", "amount_cents": 500001},
+                {"specialize_jewelry": True, "claim_type": "jewelry", "missing": ["estimate"]},
+            ],
+            "Add an opt-in jewelry-specialist path selected by specialize_jewelry=True. Preserve legacy routing when absent, and keep invalid-amount, high-value, and missing-evidence guards ahead of specialization.",
         )
     if group == "06-A":
         source = source.replace(
@@ -157,4 +171,33 @@ def extend(group: str, source: str):
             [{"adjuster_id": "unknown", "decision": {"approved": True, "adjuster_id": "ADJ-001"}}],
             "Validate adjuster identity from the trusted invocation configuration, independently of the response payload.",
         )
-    return None
+    feature = '''
+def run_batch(cases: list[dict]) -> list[dict]:
+    """Preview independent claims in order; one rejected input must not lose its siblings.
+
+    This sequential interface favors isolation over throughput. It is not a shared
+    checkpoint thread or a promise of transaction atomicity.
+    """
+    from copy import deepcopy
+    from common.pretty import safe_value
+    results = []
+    for case in cases:
+        try:
+            results.append({"value": safe_value(run(deepcopy(case)))})
+        except Exception as error:
+            results.append({"error": type(error).__name__})
+    return results
+
+'''
+    solution = source.replace("\ndef main(", feature + "\ndef main(", 1)
+    starter = source.replace(
+        "\ndef main(",
+        "\ndef run_batch(cases: list[dict]) -> list[dict]:\n    return []\n\n\ndef main(",
+        1,
+    )
+    return (
+        solution,
+        starter,
+        [],
+        "Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.",
+    )

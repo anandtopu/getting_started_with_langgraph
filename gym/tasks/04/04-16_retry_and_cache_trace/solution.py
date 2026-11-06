@@ -1,4 +1,4 @@
-"""Trace retry and cache: Customer identity belongs in the cache key.. Run this file with Python. No live model or network."""
+"""Diagnose retry and cache from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 from typing import TypedDict

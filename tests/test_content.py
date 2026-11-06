@@ -57,3 +57,22 @@ def test_migration_debugging_example_runs(capsys):
     assert len(examples) == 1
     exec(compile(examples[0], "migration-example", "exec"), {"__name__": "__main__"})
     assert "validated" in capsys.readouterr().out
+
+
+def test_redaction_covers_application_bearer_tokens_without_hiding_usage_counts():
+    from common.pretty import safe_value
+
+    value = safe_value(
+        {
+            "LARKSPUR_ADJUSTER_TOKEN": "private-adjuster",
+            "access_token": "private-access",
+            "refresh_token": "private-refresh",
+            "total_tokens": 512,
+        }
+    )
+    assert value == {
+        "LARKSPUR_ADJUSTER_TOKEN": "[REDACTED]",
+        "access_token": "[REDACTED]",
+        "refresh_token": "[REDACTED]",
+        "total_tokens": 512,
+    }

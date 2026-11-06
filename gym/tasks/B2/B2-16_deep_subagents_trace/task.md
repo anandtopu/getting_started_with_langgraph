@@ -1,4 +1,4 @@
-# B2-16 — Trace deep subagents: Preserve a human rejection of delegation.
+# B2-16 — Diagnose deep subagents from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A deep-agent specialist has an explicit name, scoped tools, and isolated context
 
 ## Your task
 
-Preserve a human rejection of delegation. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose deep subagents from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Preserve a human rejection of delegation. Read trace.py before completing the an
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Delegate to the explicitly registered specialist."
+- "Preserve a human rejection of delegation."
+- "Keep the specialist's evidence answer tied to the policy fixture."
+- "Allow the bounded model operations needed to complete an approved delegation."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,4 +1,4 @@
-"""Refactor deep agent planning: Call the registered planning capability.. Run this file with Python. No live model or network."""
+"""Refactor deep agent planning: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 
@@ -23,9 +23,7 @@ def run(case: dict | None = None) -> dict:
         responses=[
             AIMessage(
                 content="",
-                tool_calls=[
-                    {"name": "missing_planning_tool", "args": {"todos": todos}, "id": "plan-1"}
-                ],
+                tool_calls=[{"name": "write_todos", "args": {"todos": todos}, "id": "plan-1"}],
             ),
             AIMessage(content="The policy and document investigation plan is recorded."),
         ]

@@ -1,4 +1,4 @@
-# 00-10 — Trace environment: A missing provider is a problem only when live mode was requested.
+# 00-10 — Diagnose environment from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ An environment is the interpreter and packages used by one command. A package in
 
 ## Your task
 
-A missing provider is a problem only when live mode was requested. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose environment from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -42,6 +42,13 @@ A missing provider is a problem only when live mode was requested. Read trace.py
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Required and optional packages are different contracts."
+- "A missing provider is a problem only when live mode was requested."
+- "A setup report must identify missing committed fixtures."
+- "Use the supplied interpreter version; do not assume the recommended version is installed."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

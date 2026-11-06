@@ -6,8 +6,8 @@ The same claim folder can use different language labels while keeping its busine
 
 ## Hint 2
 
-Accumulate both audit labels across node updates. Inspect the operation that owns this update or routing choice.
+Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: old.concat(update). Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

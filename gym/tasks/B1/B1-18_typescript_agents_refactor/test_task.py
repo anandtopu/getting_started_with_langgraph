@@ -16,3 +16,11 @@ def test_behavior(candidate, case):
     assert actual == case["expected"], (
         "LARKSPUR: preserve the declared state, routing, and boundary contracts"
     )
+
+
+def test_typescript_structure(candidate_path):
+    source = candidate_path.with_suffix(".ts").read_text("utf-8")
+    assert "createAgent({ model: model(), tools: [lookup] })" in source, (
+        "LARKSPUR: implement the requested TypeScript construction boundary"
+    )
+    assert "new StateGraph(" not in source, "LARKSPUR: remove the manual agent loop"

@@ -1,4 +1,3 @@
-// YOUR CODE HERE: repair the task contract.
 /** Typed state, partial updates, and reducers. Run: node modules/bonus/B1_langgraph_js/examples/01_typescript_state.ts
  * No LLM. Expected: trim the description, route integer cents, retain both audit labels.
  */
@@ -9,7 +8,7 @@ export const DEFAULT_CASE = { claim_id: "CLM-0001", description: "  Pipe burst  
 const State = new StateSchema({
   claim_id: z.string(), description: z.string(), amount_cents: z.number().int().nonnegative(),
   route: z.string().default(""),
-  audit: new ReducedValue(z.array(z.string()).default([]), { reducer: (old, update) => update }),
+  audit: new ReducedValue(z.array(z.string()).default([]), { reducer: (old, update) => old.concat(update) }),
 });
 
 export async function run(input = DEFAULT_CASE) {

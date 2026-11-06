@@ -1,4 +1,4 @@
-"""Trace thread identity: A persisted invocation needs an explicit thread identifier.. Run this file with Python. No live model or network."""
+"""Diagnose thread identity from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict

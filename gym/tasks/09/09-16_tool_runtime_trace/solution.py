@@ -1,4 +1,4 @@
-"""Trace tool runtime: Keep the graph state consistent with the Store write.. Run this file with Python. No live model or network."""
+"""Diagnose tool runtime from execution evidence. Run this file with Python. No live model or network."""
 
 from dataclasses import dataclass
 

@@ -6,6 +6,7 @@ LLM: local scripted fakes. Deploy the same v11 graph with compose.yaml.
 """
 
 from common.app_demo import run_demo
+from common.copilot.v11 import build_graph as build_graph
 from common.pretty import print_state
 
 

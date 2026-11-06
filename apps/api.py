@@ -1,8 +1,10 @@
 """Authenticated streaming claims API. Local tests use in-process HTTP without a socket."""
 
 import hmac
+import logging
 import re
 from contextlib import asynccontextmanager
+from datetime import date
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, Header, HTTPException
@@ -26,6 +28,28 @@ class ResumeThread(BaseModel):
     coverage_confirmed: StrictBool = False
     document_id: str | None = None
     received_on: str | None = None
+
+
+def validate_decision(request: dict, body: ResumeThread) -> None:
+    """Validate before persisting Command(resume): a bad saved resume is replayed too."""
+    kind = request.get("kind")
+    if kind == "estimate_wait":
+        if not body.document_id or not body.document_id.strip() or not body.received_on:
+            raise HTTPException(422, "Provide an estimate document ID and receipt date")
+        try:
+            if date.fromisoformat(body.received_on) < date.fromisoformat(request["requested_on"]):
+                raise ValueError("Receipt precedes request")
+        except ValueError:
+            raise HTTPException(
+                422, "Provide a valid receipt date on or after the request"
+            ) from None
+    elif kind in {"payment_approval", "payout_approval"}:
+        if body.approved is None:
+            raise HTTPException(422, "Provide an explicit approval or rejection")
+        if kind == "payment_approval" and body.approved and not body.coverage_confirmed:
+            raise HTTPException(422, "Confirm policy coverage before approving payment")
+    else:
+        raise HTTPException(422, "Unsupported decision kind")
 
 
 def create_app(
@@ -53,7 +77,7 @@ def create_app(
             else ""
         )
         for token, principal in token_map.items():
-            if hmac.compare_digest(supplied, token):
+            if hmac.compare_digest(supplied.encode("utf-8"), token.encode("utf-8")):
                 return principal
         raise HTTPException(401, "Authentication required")
 
@@ -86,6 +110,15 @@ def create_app(
         )
         try:
             async with app.state.registry.guard(thread_id):
+                if input_value is None:
+                    current = await snapshot(thread_id)
+                    if current["interrupts"] or current["summary"] or not current["pending_nodes"]:
+                        yield encode_event(
+                            "error",
+                            {"message": "Thread changed; refresh before recovering."},
+                            sequence,
+                        )
+                        return
                 if isinstance(input_value, dict):
                     current = await snapshot(thread_id)
                     if current["interrupts"] or current["summary"] or current["pending_nodes"]:
@@ -151,6 +184,14 @@ def create_app(
                 {"message": "The request failed validation or authorization."},
                 sequence + 1,
             )
+        except Exception as error:
+            # Cancellation inherits BaseException and still propagates for proper cleanup.
+            logging.getLogger(__name__).error("Claim stream failed: %s", type(error).__name__)
+            yield encode_event(
+                "error",
+                {"message": "The run stopped. Refresh the thread before retrying."},
+                sequence + 1,
+            )
 
     @app.get("/health")
     async def health():
@@ -205,6 +246,7 @@ def create_app(
             and principal.role != "adjuster"
         ):
             raise HTTPException(403, "An adjuster must make this decision")
+        validate_decision(pending[body.interrupt_id], body)
         return StreamingResponse(events(thread_id, principal, body), media_type="text/event-stream")
 
     return app

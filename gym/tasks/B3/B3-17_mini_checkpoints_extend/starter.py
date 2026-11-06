@@ -1,4 +1,4 @@
-"""Extend mini checkpoints: Read the archived snapshot rather than an externally modified copy.. Run this file with Python. No live model or network."""
+"""Extend mini checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from common.mini_graph import MiniGraph, Pause
 from common.pretty import print_state
@@ -27,9 +27,13 @@ def run(case: dict | None = None) -> dict:
         "request": paused.request,
         "approved": result.values["approved"],
         "other_pending": graph.latest("B").pending,
-        "original_id": copy.values["claim_id"],
+        "original_id": graph.latest("A").values["claim_id"],
         "completed": not result.pending,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

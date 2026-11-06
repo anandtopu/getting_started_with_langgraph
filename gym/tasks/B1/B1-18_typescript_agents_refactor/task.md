@@ -1,4 +1,4 @@
-# B1-18 — Refactor typescript agents: Register the same evidence tool in the prebuilt implementation.
+# B1-18 — Refactor typescript agents: Replace the manual model/tool loop with createAgent, keeping message roles, call IDs, errors, and final text unchanged.
 
 Type: refactor. Difficulty: hard. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ The TypeScript model factory returns a scripted LangChain fake with tool calls. 
 
 ## Your task
 
-Register the same evidence tool in the prebuilt implementation. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
+Replace the manual model/tool loop with createAgent, keeping message roles, call IDs, errors, and final text unchanged. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
 
 ## Inputs and acceptance
 
@@ -28,6 +28,8 @@ Register the same evidence tool in the prebuilt implementation. Preserve run(cas
   }
 ]
 ```
+
+The starter already satisfies the original behavior cases. It fails the separate structural requirement. Keep those original tests green while changing the design; a renamed function alone does not establish the required boundary.
 
 cases.json declares the expected output or expected exception type for every input. Exceptions are observed by the grader; import errors are setup failures. The starter's demo prints a known runtime error when appropriate, so you can inspect it without losing the exercise context.
 

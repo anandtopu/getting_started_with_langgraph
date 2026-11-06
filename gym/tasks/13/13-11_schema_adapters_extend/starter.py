@@ -1,4 +1,4 @@
-"""Extend schema adapters: Return the public risk finding rather than private investigation notes.. Run this file with Python. No live model or network."""
+"""Extend schema adapters: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -40,7 +40,7 @@ def build_graph():
             {"case_number": state["claim_id"], "value": state["amount_cents"]}, version="v2"
         )
         # KEY IDEA: only the reviewed finding crosses the child output boundary.
-        return {"risk": result.value["private_notes"]}
+        return {"risk": result.value["finding"]}
 
     parent = StateGraph(Claim)
     parent.add_node("fraud_adapter", adapt)
@@ -53,6 +53,10 @@ def build_graph():
 def run(case: dict | None = None) -> dict:
     result = build_graph().invoke(dict(DEFAULT_CASE if case is None else case), version="v2").value
     return {"fields": sorted(result), **result}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

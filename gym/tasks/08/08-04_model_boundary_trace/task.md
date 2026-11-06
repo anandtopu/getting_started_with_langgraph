@@ -1,4 +1,4 @@
-# 08-04 — Trace model boundary: Include exactly 100000 cents in fast-track routing.
+# 08-04 — Diagnose model boundary from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A model predicts text from messages; a prompt is its instruction and evidence. S
 
 ## Your task
 
-Include exactly 100000 cents in fast-track routing. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose model boundary from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Include exactly 100000 cents in fast-track routing. Read trace.py before complet
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Send uncertain extractions to review."
+- "Include exactly 100000 cents in fast-track routing."
+- "Route an unknown category to review even with high confidence."
+- "Preserve the validated amount across the model boundary."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

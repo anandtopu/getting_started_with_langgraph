@@ -1,4 +1,4 @@
-# 07-16 — Trace namespaces and errors: Keep parent and child scopes distinct.
+# 07-16 — Diagnose namespaces and errors from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A subgraph namespace identifies nested work. Sibling parallel events can arrive 
 
 ## Your task
 
-Keep parent and child scopes distinct. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose namespaces and errors from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -22,6 +22,13 @@ Keep parent and child scopes distinct. Read trace.py before completing the answe
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Nested updates require subgraph streaming."
+- "Keep parent and child scopes distinct."
+- "Group by stable scope names while retaining raw IDs separately when needed."
+- "Canonical event reports need an explicit presentation order."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

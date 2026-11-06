@@ -1,4 +1,4 @@
-"""Trace semantic and privacy: Delete checkpoint history separately from Store records.. Run this file with Python. No live model or network."""
+"""Diagnose semantic and privacy from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

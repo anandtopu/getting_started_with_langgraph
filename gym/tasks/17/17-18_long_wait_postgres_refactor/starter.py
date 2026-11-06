@@ -1,4 +1,4 @@
-"""Refactor long wait postgres: Preserve the received evidence identifier on resume.. Run this file with Python. No live model or network."""
+"""Refactor long wait postgres: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from datetime import date
 from pathlib import Path
@@ -33,7 +33,7 @@ def build_graph(checkpointer):
         if elapsed < 0:
             raise ValueError("Receipt cannot precede the request")
         return {
-            "document_id": "unverified",
+            "document_id": response["document_id"],
             "received_on": response["received_on"],
             "waited_days": elapsed,
         }

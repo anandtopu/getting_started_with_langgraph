@@ -1,4 +1,4 @@
-"""Extend short term memory: Include newly supplied evidence in the summary.. Run this file with Python. No live model or network."""
+"""Extend short term memory: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, trim_messages
 from langgraph.checkpoint.memory import InMemorySaver
@@ -40,7 +40,7 @@ def build_graph(seen: list[int], max_messages: int = 2):
 
     def summarize(state: State) -> dict:
         facts = [message.content for message in state["messages"] if message.type == "human"]
-        return {"summary": " | ".join(facts[:1])[:160]}
+        return {"summary": " | ".join(facts[-2:])[:160]}
 
     graph = StateGraph(State)
     graph.add_node("respond", respond)
@@ -70,6 +70,10 @@ def run(case: dict | None = None) -> dict:
         "model_context_sizes": seen,
         "summary": result["summary"],
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

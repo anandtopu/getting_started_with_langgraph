@@ -1,4 +1,4 @@
-"""Trace deep subagents: Preserve a human rejection of delegation.. Run this file with Python. No live model or network."""
+"""Diagnose deep subagents from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.checkpoint.memory import InMemorySaver

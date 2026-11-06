@@ -1,0 +1,52 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "model_limit": 3,
+        "tool_limit": 1
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "events": [
+            "before_model",
+            "wrap_enter",
+            "wrap_exit",
+            "after_model",
+            "tool",
+            "before_model",
+            "wrap_enter",
+            "wrap_exit",
+            "after_model"
+          ],
+          "model_calls": 2,
+          "tool_calls": 1,
+          "final": "Policy fact checked."
+        }
+      }
+    },
+    {
+      "input": {
+        "model_limit": 1,
+        "tool_limit": 1
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "events": [
+            "before_model",
+            "wrap_enter",
+            "wrap_exit",
+            "after_model",
+            "tool",
+            "before_model"
+          ],
+          "model_calls": 1,
+          "tool_calls": 1,
+          "final": "Model call limits exceeded: run limit (1/1)"
+        }
+      }
+    }
+  ]
+}

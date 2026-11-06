@@ -1,4 +1,4 @@
-# 19-10 — Trace test durable execution: Capture the pre-resume pending state before it changes.
+# 19-10 — Diagnose test durable execution from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Durable tests assert the state before a pause, the pending node, and the resumed
 
 ## Your task
 
-Capture the pre-resume pending state before it changes. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose test durable execution from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -46,6 +46,13 @@ Capture the pre-resume pending state before it changes. Read trace.py before com
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Test rejection as well as approval on resume."
+- "Capture the pre-resume pending state before it changes."
+- "Include every update group when checking reducer behavior."
+- "Read the completed snapshot after resumption."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,4 +1,4 @@
-"""Extend fan out fan in: The deeper police branch must finish before summary.. Run this file with Python. No live model or network."""
+"""Extend fan out fan in: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -52,7 +52,7 @@ def build_graph():
     graph.add_node("review_document", review_document, input_schema=Worker)
     graph.add_node("prepare_police", prepare_police, input_schema=Worker)
     graph.add_node("review_police", review_police)
-    graph.add_node("summarize", summarize, defer=False)
+    graph.add_node("summarize", summarize, defer=True)
     graph.add_conditional_edges(START, dispatch, ["review_document", "prepare_police", "summarize"])
     graph.add_edge("prepare_police", "review_police")
     graph.add_edge("review_document", "summarize")
@@ -77,6 +77,10 @@ def run(case: dict | None = None) -> dict:
         .value
     )
     return {"findings": sorted(result["findings"]), "summaries": result["summaries"]}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

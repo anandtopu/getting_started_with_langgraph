@@ -1,9 +1,9 @@
-# Why the solution works
+# Why the refactor works
 
 A routing function chooses a label from current state. A path map connects that label to a real node. A total router has an outcome for every accepted input, including zero, missing evidence, unknown categories, and malformed amounts.
 
-Refactoring must retain the missing-evidence route. The implementation preserves the claim identity and separates the tested concern from unrelated state. The cases include normal and boundary inputs, so replacing the result with a single constant is not a general repair.
+Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
-The deliberate fault changes 'if state["missing"]:' to 'if False:'. Follow the data affected by that operation before inspecting later nodes. For predictions, distinguish returned values from error types. For traces, the observed failure is evidence of the first broken contract, not proof that the framework is unreliable.
+The starter is a working behavioral baseline. The reference changes its design, then runs the same case fixtures and a separate structural check. Inspect both test groups: matching one happy-path output does not prove equivalence. Preserve rejection/error behavior and input ownership as well as successful results.
 
-Run the task tests against your selected workspace file. Viewing this reference is assisted study; a written Design rationale still requires the rubric.
+Run the selected workspace file through gym check. Viewing the reference is recorded as assisted study.

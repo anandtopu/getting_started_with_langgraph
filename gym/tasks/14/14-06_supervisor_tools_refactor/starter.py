@@ -1,4 +1,4 @@
-"""Refactor supervisor tools: Return the specialist conclusion instead of its input prompt.. Run this file with Python. No live model or network."""
+"""Refactor supervisor tools: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage
@@ -25,7 +25,7 @@ def build_graph(seen: list[dict]):
         )
         return (
             agent.invoke({"messages": [HumanMessage(content=evidence)]}, version="v2")
-            .value["messages"][0]
+            .value["messages"][-1]
             .content
         )
 

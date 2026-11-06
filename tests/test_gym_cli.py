@@ -50,6 +50,7 @@ def test_code_check_loads_the_selected_attempt(tmp_path, capsys):
     task = catalog.get("00-01")
     assert run_cli(tmp_path, "start", task.id) == 0
     assert run_cli(tmp_path, "check", task.id) == 1
+
     assert "NOT YET" in capsys.readouterr().out
     shutil.copyfile(task.folder / "solution.py", task.attempt_path(tmp_path))
     assert run_cli(tmp_path, "check", task.id) == 0
@@ -57,6 +58,11 @@ def test_code_check_loads_the_selected_attempt(tmp_path, capsys):
     # A plausible but wrong learner function must fail even though the reference still exists.
     task.attempt_path(tmp_path).write_text("def run(claim):\n    return {}\n", encoding="utf-8")
     assert run_cli(tmp_path, "check", task.id) == 1
+
+
+def test_typescript_solution_reveals_the_actual_implementation(tmp_path, capsys):
+    assert run_cli(tmp_path, "solution", "B1-01", "--yes") == 0
+    assert "new StateGraph" in capsys.readouterr().out
 
 
 @pytest.mark.parametrize("identifier", ["00-03", "00-04"])

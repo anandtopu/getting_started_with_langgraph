@@ -1,4 +1,4 @@
-"""Trace typescript state: Preserve Python's inclusive fast-track boundary.. Run this file with Python. No live model or network."""
+"""Diagnose typescript state from execution evidence. Run this file with Python. No live model or network."""
 
 from pathlib import Path
 

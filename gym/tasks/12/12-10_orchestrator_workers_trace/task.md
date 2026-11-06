@@ -1,4 +1,4 @@
-# 12-10 — Trace orchestrator workers: Reject a plan that delegates the same section twice.
+# 12-10 — Diagnose orchestrator workers from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ An orchestrator proposes a structured plan, then Send creates one worker invocat
 
 ## Your task
 
-Reject a plan that delegates the same section twice. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose orchestrator workers from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Reject a plan that delegates the same section twice. Read trace.py before comple
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Accumulate every worker result instead of overwriting sibling reports."
+- "Reject a plan that delegates the same section twice."
+- "Assemble reports by stable section identity."
+- "Run every approved worker in the plan."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,4 +1,4 @@
-"""Trace first gym: Labels need case normalization before comparison.. Run this file with Python. No live model or network."""
+"""Diagnose first gym from execution evidence. Run this file with Python. No live model or network."""
 
 from common.pretty import print_state
 

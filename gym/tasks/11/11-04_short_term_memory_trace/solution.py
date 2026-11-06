@@ -1,4 +1,4 @@
-"""Trace short term memory: Use a new message ID for a new turn instead of overwriting the previous turn.. Run this file with Python. No live model or network."""
+"""Diagnose short term memory from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, trim_messages
 from langgraph.checkpoint.memory import InMemorySaver

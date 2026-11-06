@@ -11,6 +11,8 @@ class PostgresLedger:
         self.connection_string = connection_string
 
     def record(self, key: str, payload: dict) -> bool:
+        if not key or not isinstance(key, str):
+            raise ValueError("A stable effect key is required")
         import psycopg
 
         encoded = json.dumps(payload, sort_keys=True, separators=(",", ":"))

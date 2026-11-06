@@ -1,0 +1,89 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "assistant_id": "claims",
+        "thread_id": "claim-thread",
+        "schedule": "0 9 * * 1-5",
+        "background": true
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "assistant": {
+            "graph_id": "claims"
+          },
+          "thread": {
+            "thread_id": "claim-thread"
+          },
+          "run": {
+            "assistant_id": "claims",
+            "input": {
+              "claim": {
+                "amount_cents": 2096759,
+                "claim_id": "CLM-0001",
+                "claim_type": "water",
+                "customer_id": "CUS-0001",
+                "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+                "documents": [
+                  "DOC-001"
+                ],
+                "duplicate_of": null,
+                "fraud_indicators": [],
+                "loss_date": "2026-01-01",
+                "policy_id": "POL-0001"
+              },
+              "audit": [],
+              "findings": []
+            }
+          },
+          "mode": "background",
+          "schedule": "0 9 * * 1-5"
+        }
+      }
+    },
+    {
+      "input": {
+        "assistant_id": "claims",
+        "thread_id": "claim-thread",
+        "schedule": "0 9 * * 1-5",
+        "background": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "assistant": {
+            "graph_id": "claims"
+          },
+          "thread": {
+            "thread_id": "claim-thread"
+          },
+          "run": {
+            "assistant_id": "claims",
+            "input": {
+              "claim": {
+                "amount_cents": 2096759,
+                "claim_id": "CLM-0001",
+                "claim_type": "water",
+                "customer_id": "CUS-0001",
+                "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+                "documents": [
+                  "DOC-001"
+                ],
+                "duplicate_of": null,
+                "fraud_indicators": [],
+                "loss_date": "2026-01-01",
+                "policy_id": "POL-0001"
+              },
+              "audit": [],
+              "findings": []
+            }
+          },
+          "mode": "background",
+          "schedule": "0 9 * * 1-5"
+        }
+      }
+    }
+  ]
+}

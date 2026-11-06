@@ -1,4 +1,4 @@
-"""Extend long wait postgres: Require the missing document before ending the durable wait.. Run this file with Python. No live model or network."""
+"""Extend long wait postgres: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from datetime import date
 from pathlib import Path
@@ -84,6 +84,25 @@ def run(case: dict | None = None) -> dict:
         with SqliteSaver.from_conn_string(path) as saver:
             result = build_graph(saver).invoke(Command(resume=case), config, version="v2")
         return {"interrupts": len(paused.interrupts), **result.value}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    """Preview independent claims in order; one rejected input must not lose its siblings.
+
+    This sequential interface favors isolation over throughput. It is not a shared
+    checkpoint thread or a promise of transaction atomicity.
+    """
+    from copy import deepcopy
+
+    from common.pretty import safe_value
+
+    results = []
+    for case in cases:
+        try:
+            results.append({"value": safe_value(run(deepcopy(case)))})
+        except Exception as error:
+            results.append({"error": type(error).__name__})
+    return results
 
 
 def main() -> None:

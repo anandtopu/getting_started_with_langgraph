@@ -1,4 +1,4 @@
-"""Refactor structured logs: Do not report a successful node as failed during logging refactors.. Run this file with Python. No live model or network."""
+"""Refactor structured logs: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -13,8 +13,15 @@ DEFAULT_CASE = {
 }
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     records = []
     for node in ["normalize", "route", "approve_claim"]:
         record = log_record({**case, "event": "node_finished", "node": node, "status": "ok"})

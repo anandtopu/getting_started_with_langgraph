@@ -1,4 +1,4 @@
-"""Refactor sqlite lifetime: Resource-lifetime refactoring must preserve continuation input.. Run this file with Python. No live model or network."""
+"""Refactor sqlite lifetime: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 import operator
@@ -39,7 +39,7 @@ def session(database: str, phase: str, claim_id: str) -> dict:
     config = {"configurable": {"thread_id": claim_id}}
     payload = {
         "claim_id": claim_id,
-        "notes": ["received" if phase == "start" else "received"],
+        "notes": ["received" if phase == "start" else "estimate attached"],
     }
     with SqliteSaver.from_conn_string(database) as saver:
         result = build_graph(saver).invoke(payload, config, version="v2").value

@@ -1,0 +1,49 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "chunks": [
+          "Estimate ",
+          "received."
+        ],
+        "submitted_id": "old-approval"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "progress": [
+            "review_documents"
+          ],
+          "text": "Estimate received.",
+          "current_ids": [
+            "old-approval"
+          ],
+          "can_submit": true
+        }
+      }
+    },
+    {
+      "input": {
+        "chunks": [
+          "Estimate ",
+          "received."
+        ],
+        "submitted_id": "current-approval"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "progress": [
+            "review_documents"
+          ],
+          "text": "Estimate received.",
+          "current_ids": [
+            "old-approval"
+          ],
+          "can_submit": false
+        }
+      }
+    }
+  ]
+}

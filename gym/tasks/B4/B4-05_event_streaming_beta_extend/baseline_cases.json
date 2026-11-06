@@ -1,0 +1,50 @@
+[
+  {
+    "input": {
+      "text": "Synthetic claim review is complete."
+    },
+    "expected": {
+      "value": {
+        "texts": [
+          "Synthetic claim review is complete."
+        ],
+        "final": "Synthetic claim review is complete.",
+        "tool_arguments": {
+          "policy_id": "POL-0001"
+        },
+        "tool_delta_count": 2,
+        "channels": [
+          "lifecycle",
+          "messages",
+          "values"
+        ],
+        "nested": true,
+        "beta": true
+      }
+    }
+  },
+  {
+    "input": {
+      "text": "Estimate accepted for review."
+    },
+    "expected": {
+      "value": {
+        "texts": [
+          "Estimate accepted for review."
+        ],
+        "final": "Estimate accepted for review.",
+        "tool_arguments": {
+          "policy_id": "POL-0001"
+        },
+        "tool_delta_count": 2,
+        "channels": [
+          "lifecycle",
+          "messages",
+          "values"
+        ],
+        "nested": true,
+        "beta": true
+      }
+    }
+  }
+]

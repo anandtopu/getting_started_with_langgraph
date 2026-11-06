@@ -11,17 +11,18 @@ from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.tools import tool
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
+from langgraph.runtime import Runtime
 from langgraph.store.memory import InMemoryStore
 from typing_extensions import TypedDict
 
 from common.config import ROOT
+from common.copilot.v06 import CustomerContext
 from common.models import get_chat_model
 from common.pretty import print_state
 
 
 class QAState(TypedDict):
     question: str
-    customer_id: str
     answer: str
     citations: list[str]
     preference: str
@@ -42,7 +43,7 @@ def retrieve(question: str) -> list[dict]:
 def build_graph(store=None, checkpointer=None):
     store = store if store is not None else InMemoryStore()
 
-    def answer_question(state):
+    def answer_question(state, runtime: Runtime[CustomerContext]):
         evidence = retrieve(state["question"])
 
         @tool
@@ -83,7 +84,7 @@ def build_graph(store=None, checkpointer=None):
             "preference": memory.value["preference"] if memory else "email",
         }
 
-    graph = StateGraph(QAState)
+    graph = StateGraph(QAState, context_schema=CustomerContext)
     graph.add_node("retrieve_and_answer", answer_question)
     graph.add_edge(START, "retrieve_and_answer")
     graph.add_edge("retrieve_and_answer", END)
@@ -97,8 +98,11 @@ def run(case=None):
     store.put(("customers", "CUS-0001"), "contact", {"preference": "sms"})
     graph = build_graph(store)
     config = {"configurable": {"thread_id": case["customer_id"] + ":qa"}}
-    graph.invoke(case, config, version="v2")
-    result = graph.invoke(case, config, version="v2").value
+    context = CustomerContext(case["customer_id"])
+    graph.invoke({"question": case["question"]}, config, context=context, version="v2")
+    result = graph.invoke(
+        {"question": case["question"]}, config, context=context, version="v2"
+    ).value
     return {key: result[key] for key in ("answer", "citations", "preference")}
 
 

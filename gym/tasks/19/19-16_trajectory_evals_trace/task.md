@@ -1,4 +1,4 @@
-# 19-16 — Trace trajectory evals: Check the policy arguments, not only tool names.
+# 19-16 — Diagnose trajectory evals from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A trajectory is the sequence of tool requests, separate from the final answer. a
 
 ## Your task
 
-Check the policy arguments, not only tool names. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose trajectory evals from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -32,6 +32,13 @@ Check the policy arguments, not only tool names. Read trace.py before completing
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Respect strict ordering when the evaluation contract requests it."
+- "Check the policy arguments, not only tool names."
+- "Evaluate the actual requested policy instead of replacing it with the reference."
+- "Preserve the evaluator's boolean score in the report."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

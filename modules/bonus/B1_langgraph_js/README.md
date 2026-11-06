@@ -12,6 +12,8 @@ Complete [Deployment](../../22_deployment/README.md). Read dictionary keys, func
 
 Optional installation requirements are listed in [the setup guide](../../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain TypeScript primer; LangGraph.js state schema; nodes and reducers; graph compilation; Python behavior parity.
@@ -23,24 +25,6 @@ Optional installation requirements are listed in [the setup guide](../../../docs
 Port core claim workflows and the tool loop to TypeScript. Predict the state before running code, then compare the observed result. A state is the data visible to a node; a node is one unit of work; an edge selects later work. A checkpoint is a saved state boundary, not a promise that an external effect happened exactly once.
 
 ## How it works
-
-Generated with drawMermaid() from the actual TypeScript state example before invocation.
-
-```mermaid
-%%{init: {'flowchart': {'curve': 'linear'}}}%%
-graph TD;
-	__start__([<p>__start__</p>]):::first
-	normalize(normalize)
-	assign_route(assign_route)
-	__end__([<p>__end__</p>]):::last
-	__start__ --> normalize;
-	assign_route --> __end__;
-	normalize --> assign_route;
-	classDef default fill:#f2f0ff,line-height:1.2;
-	classDef first fill-opacity:0;
-	classDef last fill:#bfb6fc;
-
-```
 
 ### Typescript State
 
@@ -59,6 +43,24 @@ The same waiting shelf works across languages, but each desk's form has its own 
 The TypeScript model factory returns a scripted LangChain fake with tool calls. A manual StateGraph loop and createAgent consume the same trajectory, making their roles and call identities directly comparable. The Python gym bridge executes the selected TypeScript file in Node; it never supplies the business answer itself.
 
 Two service-desk layouts must produce the same numbered work orders and final explanation.
+
+The checked-in diagram was generated from the executable lesson or cumulative Copilot graph. Edges describe possible work; inspect the runtime trace to see what ran.
+
+```mermaid
+%%{init: {'flowchart': {'curve': 'linear'}}}%%
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	normalize(normalize)
+	assign_route(assign_route)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> normalize;
+	assign_route --> __end__;
+	normalize --> assign_route;
+	classDef default fill:#f2f0ff,line-height:1.2;
+	classDef first fill-opacity:0;
+	classDef last fill:#bfb6fc;
+
+```
 
 ## Key APIs at a glance
 
@@ -208,33 +210,33 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"claim_id": "CLM-0001", "description": "  Pipe burst  ", "amount_cents": 125000, "route": "standard", "audit": ["normalized", "routed"]}}`. Trim the input description before testing completeness. | Restore `state.description.trim()` and check the boundary cases. | [B1-01](../../../gym/tasks/B1/B1-01_typescript_state_build/task.md) · [Related Fix B1-02](../../../gym/tasks/B1/B1-02_typescript_state_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "description": "Pipe burst", "amount_cents": 125000, "route": "standard", "audit": ["normalized", "routed"]}}`. Preserve Python's inclusive fast-track boundary. | Restore `state.amount_cents <= 100000` and check the boundary cases. | [B1-02](../../../gym/tasks/B1/B1-02_typescript_state_fix/task.md) |
-| Observed `{"value": {"findings": ["reviewed:estimate"], "approved": false, "pending_before": ["approve"], "stream_parts": 2}}`. Review every document before the approval step. | Restore `state.documents.map((document)` and check the boundary cases. | [B1-07](../../../gym/tasks/B1/B1-07_typescript_durable_build/task.md) · [Related Fix B1-08](../../../gym/tasks/B1/B1-08_typescript_durable_fix/task.md) |
-| Observed `{"error": "TypeScriptError"}`. Accept explicit boolean decisions and reject strings at the interrupt boundary. | Restore `typeof decision !== "boolean"` and check the boundary cases. | [B1-08](../../../gym/tasks/B1/B1-08_typescript_durable_fix/task.md) |
-| Observed `{"value": {"roles": ["human", "ai", "tool"], "prebuilt_roles": ["human", "ai", "tool", "ai"], "final": "Deductible: 100000 cents", "tool_ids": ["lookup-1"]}}`. Return the tool result to the manual agent before ending. | Restore `.addEdge("tools", "model")` and check the boundary cases. | [B1-13](../../../gym/tasks/B1/B1-13_typescript_agents_build/task.md) · [Related Fix B1-14](../../../gym/tasks/B1/B1-14_typescript_agents_fix/task.md) |
-| Observed `{"value": {"roles": ["human", "ai", "tool", "ai"], "prebuilt_roles": ["human", "ai", "tool", "ai"], "final": "Policy evidence checked; no payment authorized.", "tool_ids": ["lookup-1"]}}`. Respect the configured loop budget in both JavaScript agents. | Restore `recursionLimit: input.recursion_limit` and check the boundary cases. | [B1-14](../../../gym/tasks/B1/B1-14_typescript_agents_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "description": "  Pipe burst  ", "amount_cents": 125000, "route": "standard", "audit": ["normalized", "routed"]}}`. Trim the input description before testing completeness. | Restore `state.description.trim()` and check the boundary cases. | [B1-01](../../../gym/tasks/B1/B1-01_typescript_state_build/task.md) · Related Fix: [B1-02](../../../gym/tasks/B1/B1-02_typescript_state_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "description": "Pipe burst", "amount_cents": 125000, "route": "standard", "audit": ["normalized", "routed"]}}`. Preserve Python's inclusive fast-track boundary. | Restore `state.amount_cents <= 100000` and check the boundary cases. | [B1-02](../../../gym/tasks/B1/B1-02_typescript_state_fix/task.md) · Related Fix: [B1-02](../../../gym/tasks/B1/B1-02_typescript_state_fix/task.md) |
+| Observed `{"value": {"findings": ["reviewed:estimate"], "approved": false, "pending_before": ["approve"], "stream_parts": 2}}`. Review every document before the approval step. | Restore `state.documents.map((document)` and check the boundary cases. | [B1-07](../../../gym/tasks/B1/B1-07_typescript_durable_build/task.md) · Related Fix: [B1-08](../../../gym/tasks/B1/B1-08_typescript_durable_fix/task.md) |
+| Observed `{"error": "TypeScriptError"}`. Accept explicit boolean decisions and reject strings at the interrupt boundary. | Restore `typeof decision !== "boolean"` and check the boundary cases. | [B1-08](../../../gym/tasks/B1/B1-08_typescript_durable_fix/task.md) · Related Fix: [B1-08](../../../gym/tasks/B1/B1-08_typescript_durable_fix/task.md) |
+| Observed `{"value": {"roles": ["human", "ai", "tool"], "prebuilt_roles": ["human", "ai", "tool", "ai"], "final": "Deductible: 100000 cents", "tool_ids": ["lookup-1"]}}`. Return the tool result to the manual agent before ending. | Restore `.addEdge("tools", "model")` and check the boundary cases. | [B1-13](../../../gym/tasks/B1/B1-13_typescript_agents_build/task.md) · Related Fix: [B1-14](../../../gym/tasks/B1/B1-14_typescript_agents_fix/task.md) |
+| Observed `{"value": {"roles": ["human", "ai", "tool", "ai"], "prebuilt_roles": ["human", "ai", "tool", "ai"], "final": "Policy evidence checked; no payment authorized.", "tool_ids": ["lookup-1"]}}`. Respect the configured loop budget in both JavaScript agents. | Restore `recursionLimit: input.recursion_limit` and check the boundary cases. | [B1-14](../../../gym/tasks/B1/B1-14_typescript_agents_fix/task.md) · Related Fix: [B1-14](../../../gym/tasks/B1/B1-14_typescript_agents_fix/task.md) |
 
 ## Practice
 
 - [B1-01 — build, easy](../../../gym/tasks/B1/B1-01_typescript_state_build/task.md): Build typescript state: Trim the input description before testing completeness.
 - [B1-02 — fix, medium](../../../gym/tasks/B1/B1-02_typescript_state_fix/task.md): Fix typescript state: Preserve Python's inclusive fast-track boundary.
 - [B1-03 — predict, easy](../../../gym/tasks/B1/B1-03_typescript_state_predict/task.md): Predict typescript state across the declared cases
-- [B1-04 — trace, medium](../../../gym/tasks/B1/B1-04_typescript_state_trace/task.md): Trace typescript state: Preserve Python's inclusive fast-track boundary.
-- [B1-05 — extend, hard](../../../gym/tasks/B1/B1-05_typescript_state_extend/task.md): Extend typescript state: Handle an empty normalized description as missing information.
-- [B1-06 — refactor, hard](../../../gym/tasks/B1/B1-06_typescript_state_refactor/task.md): Refactor typescript state: Accumulate both audit labels across node updates.
+- [B1-04 — trace, medium](../../../gym/tasks/B1/B1-04_typescript_state_trace/task.md): Diagnose typescript state from execution evidence
+- [B1-05 — extend, hard](../../../gym/tasks/B1/B1-05_typescript_state_extend/task.md): Extend typescript state: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [B1-06 — refactor, hard](../../../gym/tasks/B1/B1-06_typescript_state_refactor/task.md): Refactor typescript state: Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged.
 - [B1-07 — build, easy](../../../gym/tasks/B1/B1-07_typescript_durable_build/task.md): Build typescript durable: Review every document before the approval step.
 - [B1-08 — fix, medium](../../../gym/tasks/B1/B1-08_typescript_durable_fix/task.md): Fix typescript durable: Accept explicit boolean decisions and reject strings at the interrupt boundary.
 - [B1-09 — predict, easy](../../../gym/tasks/B1/B1-09_typescript_durable_predict/task.md): Predict typescript durable across the declared cases
-- [B1-10 — trace, medium](../../../gym/tasks/B1/B1-10_typescript_durable_trace/task.md): Trace typescript durable: Accept explicit boolean decisions and reject strings at the interrupt boundary.
-- [B1-11 — extend, hard](../../../gym/tasks/B1/B1-11_typescript_durable_extend/task.md): Extend typescript durable: Preserve a rejected approval through JavaScript resume.
-- [B1-12 — refactor, hard](../../../gym/tasks/B1/B1-12_typescript_durable_refactor/task.md): Refactor typescript durable: Combine all parallel findings rather than retaining only the last write.
+- [B1-10 — trace, medium](../../../gym/tasks/B1/B1-10_typescript_durable_trace/task.md): Diagnose typescript durable from execution evidence
+- [B1-11 — extend, hard](../../../gym/tasks/B1/B1-11_typescript_durable_extend/task.md): Extend typescript durable: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [B1-12 — refactor, hard](../../../gym/tasks/B1/B1-12_typescript_durable_refactor/task.md): Refactor typescript durable: Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged.
 - [B1-13 — build, easy](../../../gym/tasks/B1/B1-13_typescript_agents_build/task.md): Build typescript agents: Return the tool result to the manual agent before ending.
 - [B1-14 — fix, medium](../../../gym/tasks/B1/B1-14_typescript_agents_fix/task.md): Fix typescript agents: Respect the configured loop budget in both JavaScript agents.
 - [B1-15 — predict, easy](../../../gym/tasks/B1/B1-15_typescript_agents_predict/task.md): Predict typescript agents across the declared cases
-- [B1-16 — trace, medium](../../../gym/tasks/B1/B1-16_typescript_agents_trace/task.md): Trace typescript agents: Respect the configured loop budget in both JavaScript agents.
-- [B1-17 — extend, hard](../../../gym/tasks/B1/B1-17_typescript_agents_extend/task.md): Extend typescript agents: Preserve the expected tool-call identity across the language port.
-- [B1-18 — refactor, hard](../../../gym/tasks/B1/B1-18_typescript_agents_refactor/task.md): Refactor typescript agents: Register the same evidence tool in the prebuilt implementation.
+- [B1-16 — trace, medium](../../../gym/tasks/B1/B1-16_typescript_agents_trace/task.md): Diagnose typescript agents from execution evidence
+- [B1-17 — extend, hard](../../../gym/tasks/B1/B1-17_typescript_agents_extend/task.md): Extend typescript agents: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [B1-18 — refactor, hard](../../../gym/tasks/B1/B1-18_typescript_agents_refactor/task.md): Refactor typescript agents: Replace the manual model/tool loop with createAgent, keeping message roles, call IDs, errors, and final text unchanged.
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.
 

@@ -3,7 +3,7 @@
 import pytest
 from langgraph.types import Command
 
-from common.copilot import v03, v04, v05, v06
+from common.copilot import v03, v04, v05, v06, v07
 from common.data import load_submission
 
 
@@ -34,6 +34,29 @@ def test_policy_agent_exposes_all_four_read_only_tools():
     assert result["claim"]["claim_id"] == load_submission(1)["claim_id"]
 
 
+@pytest.mark.parametrize("number", [19, 20, 38, 57])
+def test_incomplete_fixture_reaches_intake_without_invented_model_facts(number):
+    result = v07.run(load_submission(number))
+    assert result["approved"] is False
+    assert result["route"] in {"needs_information", "duplicate"}
+    assert result["claim"]["amount_cents"] is None
+    assert result["extracted"] == {} and result["policy_evidence"] == []
+    assert "not approved" in result["letter"]
+
+
+@pytest.mark.parametrize("amount", [-1, True, "100"])
+def test_invalid_amount_reaches_rejection_instead_of_model_validation(amount):
+    result = v07.run({**load_submission(1), "amount_cents": amount})
+    assert result["route"] == "invalid" and not result["approved"]
+
+
+def test_unknown_category_is_preserved_for_specialist_review():
+    result = v04.run({**load_submission(1), "claim_type": " JEWELRY "}, approved=False)
+    assert result["extracted"]["claim_type"] == "unknown"
+    assert result["claim"]["claim_type"] == "jewelry"
+    assert result["route"] == "specialist"
+
+
 def test_letter_respects_rejection_and_customer_preference():
     result = v06.run(
         {**load_submission(1), "amount_cents": 600000}, approved=False, preference="sms"
@@ -44,7 +67,11 @@ def test_letter_respects_rejection_and_customer_preference():
     assert result["letter_attempts"] == 2
 
 
-def test_customer_context_cannot_read_another_customers_memory():
+def test_customer_context_cannot_read_another_customers_memory(monkeypatch):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Authorization must precede model extraction and policy reads")
+
+    monkeypatch.setattr(v04, "get_chat_model", forbidden)
     graph = v06.build_graph()
     claim = {**load_submission(1), "amount_cents": 10000, "claim_type": "water"}
     with pytest.raises(PermissionError, match="does not own"):

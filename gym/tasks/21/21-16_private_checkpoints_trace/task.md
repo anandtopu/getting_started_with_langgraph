@@ -1,4 +1,4 @@
-# 21-16 — Trace private checkpoints: Apply the requested thread-retention deletion.
+# 21-16 — Diagnose private checkpoints from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ EncryptedSerializer encrypts serialized checkpoint payloads using an externally 
 
 ## Your task
 
-Apply the requested thread-retention deletion. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose private checkpoints from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Apply the requested thread-retention deletion. Read trace.py before completing t
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Install encryption on the actual checkpointer, not just a standalone serialization demo."
+- "Apply the requested thread-retention deletion."
+- "Verify that a wrong encryption key cannot restore the payload."
+- "Check exact restoration after successful authenticated decryption."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

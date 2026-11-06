@@ -1,4 +1,4 @@
-"""Trace structured logs: Attach each log record to its actual node.. Run this file with Python. No live model or network."""
+"""Diagnose structured logs from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 

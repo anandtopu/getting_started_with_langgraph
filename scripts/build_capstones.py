@@ -14,7 +14,15 @@ PROJECTS = [
         "As an adjuster, I can reopen a high-value claim after restart, approve or reject it, and inspect its saved history.",
         [("approved", True), ("replay_matches", True), ("waited", True)],
         [
-            ({}, {"approved": True, "waited": True, "replay_matches": True}),
+            (
+                {},
+                {
+                    "approved": True,
+                    "waited": True,
+                    "replay_matches": True,
+                    "replayed_nodes": ["normalize", "validate", "review_document", "route"],
+                },
+            ),
             ({"approved": False}, {"approved": False}),
             ({"amount_cents": 10000}, {"approved": True, "waited": False}),
         ],
@@ -35,7 +43,7 @@ PROJECTS = [
             ({"question": "quasarxyz"}, {"citations": []}),
             ({"question": "renters deductible"}, {"citations": ["renters.md"]}),
         ],
-        'state["customer_id"]), "contact"',
+        'runtime.context.customer_id), "contact"',
         '"CUS-0001"), "contact"',
         "Customer memory must use the active identity; unknown questions must abstain.",
     ),

@@ -1,4 +1,4 @@
-"""Refactor replay and fork: Replaying a completed checkpoint is different from rerunning pending review.. Run this file with Python. No live model or network."""
+"""Refactor replay and fork: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -51,7 +51,7 @@ def run(case: dict | None = None) -> dict:
     original_config = graph.get_state(config).config
     history = list(graph.get_state_history(config))
     historical = next(snapshot for snapshot in history if snapshot.next == ("decide",))
-    replay = graph.invoke(None, original_config, version="v2")
+    replay = graph.invoke(None, historical.config, version="v2")
     fork_config = graph.update_state(
         historical.config, {"amount_cents": case["corrected_amount"]}, as_node="read_evidence"
     )

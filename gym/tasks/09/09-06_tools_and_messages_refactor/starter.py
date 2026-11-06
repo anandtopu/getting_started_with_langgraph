@@ -1,4 +1,4 @@
-"""Refactor tools and messages: Preserve the call identity rather than substituting the tool name.. Run this file with Python. No live model or network."""
+"""Refactor tools and messages: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage
 from langchain_core.tools import tool
@@ -58,7 +58,7 @@ def run(case: dict | None = None) -> dict:
         "results": sorted(
             [
                 {
-                    "call_id": message.name,
+                    "call_id": message.tool_call_id,
                     "status": message.status,
                     "content": message.content,
                 }

@@ -1,4 +1,4 @@
-"""Refactor typescript agents: Register the same evidence tool in the prebuilt implementation.. Run this file with Python. No live model or network."""
+"""Refactor typescript agents: Replace the manual model/tool loop with createAgent, keeping message roles, call IDs, errors, and final text unchanged.. Run this file with Python. No live model or network."""
 
 from pathlib import Path
 

@@ -1,4 +1,4 @@
-"""Refactor local visual debugging: Inspect the actual approval node in the generated graph diagram.. Run this file with Python. No live model or network."""
+"""Refactor local visual debugging: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -10,8 +10,15 @@ from common.pretty import print_state
 DEFAULT_CASE = {"amount_cents": 600000, "reported_route": "fast_track"}
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     config = json.loads((ROOT / "langgraph.json").read_text("utf-8"))
     source, symbol = config["graphs"]["claims"].split(":")
     graph = build_graph()

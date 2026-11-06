@@ -1,0 +1,47 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "query": "water leak",
+        "customer_id": "CUS-0001"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "ranking": [
+            "water",
+            "theft"
+          ],
+          "remaining": [
+            "theft"
+          ],
+          "other_customer_visible": false,
+          "checkpoint_retains_fact_after_store_delete": true,
+          "checkpoint_deleted_separately": false
+        }
+      }
+    },
+    {
+      "input": {
+        "query": "theft",
+        "customer_id": "CUS-0001"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "ranking": [
+            "theft",
+            "water"
+          ],
+          "remaining": [
+            "theft"
+          ],
+          "other_customer_visible": false,
+          "checkpoint_retains_fact_after_store_delete": true,
+          "checkpoint_deleted_separately": false
+        }
+      }
+    }
+  ]
+}

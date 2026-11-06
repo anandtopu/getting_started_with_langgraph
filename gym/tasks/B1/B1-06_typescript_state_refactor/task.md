@@ -1,4 +1,4 @@
-# B1-06 — Refactor typescript state: Accumulate both audit labels across node updates.
+# B1-06 — Refactor typescript state: Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged.
 
 Type: refactor. Difficulty: hard. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ TypeScript adds static types to JavaScript; StateSchema uses Zod schemas for gra
 
 ## Your task
 
-Accumulate both audit labels across node updates. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
+Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
 
 ## Inputs and acceptance
 
@@ -36,6 +36,8 @@ Accumulate both audit labels across node updates. Preserve run(case) and the exi
   }
 ]
 ```
+
+The starter already satisfies the original behavior cases. It fails the separate structural requirement. Keep those original tests green while changing the design; a renamed function alone does not establish the required boundary.
 
 cases.json declares the expected output or expected exception type for every input. Exceptions are observed by the grader; import errors are setup failures. The starter's demo prints a known runtime error when appropriate, so you can inspect it without losing the exercise context.
 

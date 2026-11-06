@@ -1,4 +1,4 @@
-# 06-10 — Trace collect and edit: Each interrupt must receive the response for its own request kind.
+# 06-10 — Diagnose collect and edit from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Parallel pauses can be answered with an interrupt-ID-to-response map. IDs identi
 
 ## Your task
 
-Each interrupt must receive the response for its own request kind. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose collect and edit from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Each interrupt must receive the response for its own request kind. Read trace.py
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "A zero approved amount is a valid edited decision."
+- "Each interrupt must receive the response for its own request kind."
+- "Python booleans must not pass an integer money check."
+- "Date input must be validated before becoming graph state."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

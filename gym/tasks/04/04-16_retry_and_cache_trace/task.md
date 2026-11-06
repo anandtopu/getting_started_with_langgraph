@@ -1,4 +1,4 @@
-# 04-16 — Trace retry and cache: Customer identity belongs in the cache key.
+# 04-16 — Diagnose retry and cache from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Retry a transient failure only when repeating the operation is safe. A cache sto
 
 ## Your task
 
-Customer identity belongs in the cache key. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose retry and cache from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -30,6 +30,13 @@ Customer identity belongs in the cache key. Read trace.py before completing the 
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "A bounded retry must recover from the injected transient read failure."
+- "Customer identity belongs in the cache key."
+- "The cache must observe the injected clock advancing."
+- "A refactor must preserve expiration, not silently make cached results permanent."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

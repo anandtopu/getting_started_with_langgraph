@@ -1,4 +1,4 @@
-"""Extend evaluator optimizer: Keep the respectful-tone criterion separate from the factual criterion.. Run this file with Python. No live model or network."""
+"""Extend evaluator optimizer: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -79,6 +79,25 @@ def run(case: dict | None = None) -> dict:
         "history": result["history"],
         "stop_reason": "accepted" if result["accepted"] else "budget_exhausted",
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    """Preview independent claims in order; one rejected input must not lose its siblings.
+
+    This sequential interface favors isolation over throughput. It is not a shared
+    checkpoint thread or a promise of transaction atomicity.
+    """
+    from copy import deepcopy
+
+    from common.pretty import safe_value
+
+    results = []
+    for case in cases:
+        try:
+            results.append({"value": safe_value(run(deepcopy(case)))})
+        except Exception as error:
+            results.append({"error": type(error).__name__})
+    return results
 
 
 def main() -> None:

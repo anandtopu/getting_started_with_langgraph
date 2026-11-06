@@ -62,6 +62,7 @@ jobs:
       - run: uv run --no-sync ruff format --check .
       - run: uv run --no-sync pytest
       - run: uv run --no-sync python scripts/check_providers.py
+      - run: uv run --no-sync python scripts/check_local_server.py
       - run: uv run --no-sync python scripts/validate_gym.py --release --jobs 4
       - run: uv run --no-sync python scripts/validate_capstones.py
       - run: uv run --no-sync python scripts/run_all_examples.py

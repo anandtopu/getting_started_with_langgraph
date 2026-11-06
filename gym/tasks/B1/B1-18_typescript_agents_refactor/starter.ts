@@ -1,4 +1,3 @@
-// YOUR CODE HERE: repair the task contract.
 /** Compare a wired tool loop with createAgent using the same fake trajectory. No live model.
  * Run: node modules/bonus/B1_langgraph_js/examples/03_typescript_agents.ts
  * Expected: human -> AI request -> tool response -> AI conclusion in both implementations.
@@ -37,7 +36,7 @@ export async function run(input = DEFAULT_CASE) {
   const inputState = { messages: [new HumanMessage("Check the deductible.")] };
   const config = { recursionLimit: input.recursion_limit };
   const first = await manual.invoke(inputState, config);
-  const second = await createAgent({ model: model(), tools: [] }).invoke(inputState, config);
+  const second = await createAgent({ model: model(), tools: [lookup] }).invoke(inputState, config);
   const roles = first.messages.map((message) => message.type);
   return { roles, prebuilt_roles: second.messages.map((message) => message.type), final: first.messages.at(-1)?.content,
     tool_ids: first.messages.filter(ToolMessage.isInstance).map((message) => message.tool_call_id) };

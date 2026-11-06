@@ -1,4 +1,4 @@
-"""Extend delta channels beta: Checkpoint every supplied note before reconstruction.. Run this file with Python. No live model or network."""
+"""Extend delta channels beta: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 
@@ -35,7 +35,7 @@ def run(case: dict | None = None) -> dict:
     case = DEFAULT_CASE if case is None else case
     graph = build_graph(case["snapshot_frequency"])
     config = {"configurable": {"thread_id": "delta-claim"}}
-    for note in case["notes"][:1]:
+    for note in case["notes"]:
         graph.invoke({"note": note}, config, version="v2")
     values = graph.get_state(config).values
     return {
@@ -43,6 +43,10 @@ def run(case: dict | None = None) -> dict:
         "reconstructed": values.get("notes", []) == case["notes"],
         "beta": True,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

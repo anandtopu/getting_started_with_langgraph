@@ -1,4 +1,4 @@
-"""Extend supervisor tools: Give the policy specialist authoritative scoped evidence.. Run this file with Python. No live model or network."""
+"""Extend supervisor tools: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage
@@ -32,7 +32,7 @@ def build_graph(seen: list[dict]):
     @tool
     def policy_expert() -> str:
         """Ask the policy expert about the scoped synthetic deductible."""
-        return specialist("policy", "Deductible: 0 cents")
+        return specialist("policy", "Deductible: 100000 cents")
 
     @tool
     def fraud_analyst() -> str:
@@ -75,6 +75,10 @@ def run(case: dict | None = None) -> dict:
         "final": result["messages"][-1].content,
         "private_note_leaked": any(case["private_note"] in item["input"] for item in seen),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

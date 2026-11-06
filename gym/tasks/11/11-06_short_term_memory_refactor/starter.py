@@ -1,4 +1,4 @@
-"""Refactor short term memory: Retain the summarization step after responding.. Run this file with Python. No live model or network."""
+"""Refactor short term memory: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, trim_messages
 from langgraph.checkpoint.memory import InMemorySaver
@@ -46,7 +46,7 @@ def build_graph(seen: list[int], max_messages: int = 2):
     graph.add_node("respond", respond)
     graph.add_node("summarize", summarize)
     graph.add_edge(START, "respond")
-    graph.add_edge("respond", END)
+    graph.add_edge("respond", "summarize")
     graph.add_edge("summarize", END)
     return graph.compile(checkpointer=InMemorySaver())
 

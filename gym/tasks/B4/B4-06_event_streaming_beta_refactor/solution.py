@@ -1,4 +1,4 @@
-"""Refactor event streaming beta: Use the v3 protocol namespace location rather than a guessed field.. Run this file with Python. No live model or network."""
+"""Refactor event streaming beta: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -29,8 +29,15 @@ def build_graph(text="Synthetic claim review is complete."):
     return graph.compile(name="claim_parent")
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     stream = build_graph(case["text"]).stream_events(
         {"messages": [HumanMessage(content="Update this claim.")]}, version="v3"
     )

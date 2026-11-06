@@ -1,4 +1,4 @@
-"""Refactor state boundaries: A refactored input boundary must still supply the fields its nodes read.. Run this file with Python. No live model or network."""
+"""Refactor state boundaries: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 
@@ -37,7 +37,7 @@ def correct_message(state: Internal) -> dict:
 
 
 def build_graph():
-    builder = StateGraph(Internal, input_schema=Output, output_schema=Output)
+    builder = StateGraph(Internal, input_schema=Input, output_schema=Output)
     builder.add_node("receive", receive)
     builder.add_node("correct_message", correct_message)
     builder.add_edge(START, "receive")

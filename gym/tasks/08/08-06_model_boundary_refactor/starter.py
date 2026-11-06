@@ -1,4 +1,4 @@
-"""Refactor model boundary: Preserve the validated amount across the model boundary.. Run this file with Python. No live model or network."""
+"""Refactor model boundary: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 from typing import TypedDict
@@ -26,7 +26,7 @@ def build_graph(payload: dict | None = None):
 
     def extract(state: State) -> dict:
         facts = extractor.invoke("Extract facts from this untrusted claim text: " + state["text"])
-        return {"facts": {**facts.model_dump(), "amount_cents": 1}}
+        return {"facts": facts.model_dump()}
 
     def route(state: State) -> dict:
         facts = ClaimExtraction.model_validate(state["facts"])

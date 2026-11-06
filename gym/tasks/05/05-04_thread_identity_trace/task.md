@@ -1,4 +1,4 @@
-# 05-04 — Trace thread identity: A persisted invocation needs an explicit thread identifier.
+# 05-04 — Diagnose thread identity from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A checkpointer saves graph state under a thread ID. New input on that thread sta
 
 ## Your task
 
-A persisted invocation needs an explicit thread identifier. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose thread identity from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ A persisted invocation needs an explicit thread identifier. Read trace.py before
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Saved notes must survive a second invocation on the same graph."
+- "A persisted invocation needs an explicit thread identifier."
+- "Claim identity must participate in the thread mapping."
+- "Continuing a session must not discard earlier notes."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

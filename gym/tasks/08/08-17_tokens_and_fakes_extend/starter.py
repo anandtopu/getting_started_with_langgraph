@@ -1,4 +1,4 @@
-"""Extend tokens and fakes: Validate the fully assembled structured response.. Run this file with Python. No live model or network."""
+"""Extend tokens and fakes: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.graph import END, START, MessagesState, StateGraph
@@ -37,7 +37,7 @@ def run(case: dict | None = None) -> dict:
     invoked = (
         get_chat_model(responses=[AIMessage(content=case["text"])]).invoke("A pipe burst.").content
     )
-    parsed = ClaimExtraction.model_validate_json(text).model_dump() if False else None
+    parsed = ClaimExtraction.model_validate_json(text).model_dump() if case["structured"] else None
     return {
         "text": text,
         "matches_invoke": text == invoked,
@@ -45,6 +45,10 @@ def run(case: dict | None = None) -> dict:
         "nodes": sorted(nodes),
         "nonempty_chunks": sum(bool(chunk) for chunk in chunks),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

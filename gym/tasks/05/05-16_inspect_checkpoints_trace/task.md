@@ -1,4 +1,4 @@
-# 05-16 — Trace inspect checkpoints: Continue the configuration returned by update_state, not an unrelated checkpoint.
+# 05-16 — Diagnose inspect checkpoints from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A StateSnapshot contains values, pending next nodes, metadata, and a parent conf
 
 ## Your task
 
-Continue the configuration returned by update_state, not an unrelated checkpoint. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose inspect checkpoints from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Continue the configuration returned by update_state, not an unrelated checkpoint
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "The corrected checkpoint must contain the replacement evidence."
+- "Continue the configuration returned by update_state, not an unrelated checkpoint."
+- "The edit attribution determines the pending successor nodes."
+- "Present logical step order explicitly instead of relying on history arrival order."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -7,6 +7,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import Command
 
+from common.claims import normalize_claim, route_claim
 from common.copilot import v03
 from common.copilot.v01 import ClaimState
 from common.data import load_submission
@@ -19,10 +20,16 @@ class ExtractedState(ClaimState):
 
 
 def extract(state: ExtractedState) -> dict:
-    claim = state["claim"]
+    claim = normalize_claim(state["claim"])
+    # Incomplete/invalid submissions belong to intake, not to the strict model schema.
+    # Preserve the original evidence; never invent an amount just to satisfy validation.
+    if route_claim(claim) in {"needs_information", "invalid", "duplicate"}:
+        return {"extracted": {}, "audit": ["extraction_deferred_to_intake"]}
     # The scripted answer is fixture evidence, not a claim about live extraction accuracy.
     payload = {
-        "claim_type": claim["claim_type"],
+        "claim_type": claim["claim_type"]
+        if claim["claim_type"] in {"water", "theft", "fire", "storm", "liability"}
+        else "unknown",
         "amount_cents": claim["amount_cents"],
         "confidence": 0.95,
         "loss_date": claim.get("loss_date"),

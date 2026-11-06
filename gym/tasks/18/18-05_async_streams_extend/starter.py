@@ -1,4 +1,4 @@
-"""Extend async streams: Cancel and await the pending async graph when requested.. Run this file with Python. No live model or network."""
+"""Extend async streams: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import asyncio
 
@@ -50,7 +50,7 @@ async def arun(case):
         finally:
             cleaned.append("closed")
 
-    if False:
+    if case["cancel"]:
         graph = (
             StateGraph(MessagesState)
             .add_node("wait", waiting_node)
@@ -76,6 +76,10 @@ async def arun(case):
 # YOUR CODE HERE: repair the contract described in task.md.
 def run(case: dict | None = None) -> dict:
     return asyncio.run(arun(dict(DEFAULT_CASE if case is None else case)))
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

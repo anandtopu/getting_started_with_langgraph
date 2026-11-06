@@ -1,4 +1,4 @@
-"""Extend optional tracing: Keep the original route distinct from the corrected branch.. Run this file with Python. No live model or network."""
+"""Extend optional tracing: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langsmith import tracing_context
 
@@ -31,12 +31,16 @@ def run(case: dict | None = None) -> dict:
         )
         result = graph.invoke(None, fork, version="v2")
     return {
-        "original_route": result.value["route"],
+        "original_route": history[0].values["route"],
         "forked_route": result.value["route"],
         "fork_pending": list(before_route.next),
         "history_retained": len(list(graph.get_state_history(config))) > len(history),
         "remote_tracing": False,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

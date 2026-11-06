@@ -1,4 +1,4 @@
-"""Trace middleware: Enforce the independent tool budget.. Run this file with Python. No live model or network."""
+"""Diagnose middleware from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain.agents import AgentState, create_agent
 from langchain.agents.middleware import (

@@ -1,4 +1,4 @@
-"""Trace event streaming beta: Read the final model message from the completed output projection.. Run this file with Python. No live model or network."""
+"""Diagnose event streaming beta from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 

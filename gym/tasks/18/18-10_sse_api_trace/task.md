@@ -1,4 +1,4 @@
-# 18-10 — Trace sse api: Carry a rejection through the authenticated workflow.
+# 18-10 — Diagnose sse api from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ An SSE frame ends with a blank line and carries JSON on its data line. JSON esca
 
 ## Your task
 
-Carry a rejection through the authenticated workflow. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose sse api from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Carry a rejection through the authenticated workflow. Read trace.py before compl
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Preserve the exact event payload through SSE encoding."
+- "Carry a rejection through the authenticated workflow."
+- "Emit each progress event once, not twice."
+- "Compare the payload field after decoding, not its event category."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,4 +1,4 @@
-"""Trace async streams: Request the intended seven stream projections.. Run this file with Python. No live model or network."""
+"""Diagnose async streams from execution evidence. Run this file with Python. No live model or network."""
 
 import asyncio
 

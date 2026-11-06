@@ -1,9 +1,9 @@
-# Why the solution works
+# Why the refactor works
 
 A compiled subgraph can be a parent node when their state keys agree. Its updates still meet the parent's reducers. This fraud checker is reused for claims and new policies; its idempotent flag reducer avoids duplicating shared evidence when the child returns accumulated state.
 
-Do not confuse an intake milestone with a risk flag. The implementation preserves the claim identity and separates the tested concern from unrelated state. The cases include normal and boundary inputs, so replacing the result with a single constant is not a general repair.
+Extract parallel fraud checks into a reusable subgraph; keep both workflow outputs and rejection cases unchanged.
 
-The deliberate fault changes 'set(state["flags"]) - {"intake_checked"}' to 'set(state["flags"])'. Follow the data affected by that operation before inspecting later nodes. For predictions, distinguish returned values from error types. For traces, the observed failure is evidence of the first broken contract, not proof that the framework is unreliable.
+The starter is a working behavioral baseline. The reference changes its design, then runs the same case fixtures and a separate structural check. Inspect both test groups: matching one happy-path output does not prove equivalence. Preserve rejection/error behavior and input ownership as well as successful results.
 
-Run the task tests against your selected workspace file. Viewing this reference is assisted study; a written Design rationale still requires the rubric.
+Run the selected workspace file through gym check. Viewing the reference is recorded as assisted study.

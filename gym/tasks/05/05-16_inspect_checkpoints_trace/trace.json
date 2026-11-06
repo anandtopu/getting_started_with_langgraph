@@ -1,0 +1,53 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "amount_cents": 100000,
+        "corrected_amount": 200000,
+        "durability": "sync"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "original": "fast_track",
+          "corrected": "fast_track",
+          "pending_after_edit": [
+            "decide"
+          ],
+          "parent_exists": true,
+          "saved_steps": [
+            -1,
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "input": {
+        "amount_cents": 200000,
+        "corrected_amount": 50000,
+        "durability": "sync"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "original": "standard",
+          "corrected": "standard",
+          "pending_after_edit": [
+            "decide"
+          ],
+          "parent_exists": true,
+          "saved_steps": [
+            -1,
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    }
+  ]
+}

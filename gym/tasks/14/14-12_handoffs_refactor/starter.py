@@ -1,4 +1,4 @@
-"""Refactor handoffs: Forward the complete handoff pair.. Run this file with Python. No live model or network."""
+"""Refactor handoffs: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from langgraph.graph import END, START, MessagesState, StateGraph
@@ -29,7 +29,7 @@ def build_graph():
         return Command(
             graph=Command.PARENT,
             goto="policy",
-            update={"messages": [request], "active_agent": "policy"},
+            update={"messages": [request, response], "active_agent": "policy"},
         )
 
     def policy(state: State) -> dict:

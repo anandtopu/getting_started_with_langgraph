@@ -1,4 +1,4 @@
-"""Refactor typescript durable: Combine all parallel findings rather than retaining only the last write.. Run this file with Python. No live model or network."""
+"""Refactor typescript durable: Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged.. Run this file with Python. No live model or network."""
 
 from pathlib import Path
 

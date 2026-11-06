@@ -1,4 +1,4 @@
-"""Refactor manual react: Preserve the requested policy when constructing tool arguments.. Run this file with Python. No live model or network."""
+"""Refactor manual react: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.tools import tool
@@ -27,7 +27,7 @@ def build_graph(policy_id: str = "POL-0001"):
                 tool_calls=[
                     {
                         "name": "policy_deductible",
-                        "args": {"policy_id": "MISSING"},
+                        "args": {"policy_id": policy_id},
                         "id": "policy-1",
                     }
                 ],

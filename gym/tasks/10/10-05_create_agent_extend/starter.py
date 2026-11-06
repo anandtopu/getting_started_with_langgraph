@@ -1,4 +1,4 @@
-"""Extend create agent: Pass through the requested policy instead of silently substituting another.. Run this file with Python. No live model or network."""
+"""Extend create agent: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage
@@ -24,7 +24,7 @@ def build_graph(policy_id: str = "POL-0001"):
             AIMessage(
                 content="",
                 tool_calls=[
-                    {"name": "lookup_policy", "args": {"policy_id": "POL-0001"}, "id": "lookup-1"}
+                    {"name": "lookup_policy", "args": {"policy_id": policy_id}, "id": "lookup-1"}
                 ],
             ),
             AIMessage(content="A policy lookup is evidence, not payout authorization."),
@@ -50,6 +50,10 @@ def run(case: dict | None = None) -> dict:
         "tools": [message.name for message in value["messages"] if message.type == "tool"],
         "final": value["messages"][-1].content,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

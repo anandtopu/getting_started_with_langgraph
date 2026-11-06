@@ -1,4 +1,4 @@
-"""Extend reducer findings: Severity must not decrease when a later finding is weaker.. Run this file with Python. No live model or network."""
+"""Extend reducer findings: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -19,7 +19,7 @@ def merge_findings(left: list[dict], right: list[dict]) -> list[dict]:
         key = finding["id"]
         indexed[key] = {
             "id": key,
-            "severity": finding["severity"],
+            "severity": max(indexed.get(key, {}).get("severity", 0), finding["severity"]),
         }
     return [indexed[key] for key in sorted(indexed)]
 
@@ -60,6 +60,10 @@ def run(case: dict | None = None) -> dict:
         .value
     )
     return {key: result[key] for key in ("findings", "log", "last")}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

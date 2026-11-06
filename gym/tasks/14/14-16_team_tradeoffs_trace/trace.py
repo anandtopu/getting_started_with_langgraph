@@ -1,4 +1,4 @@
-"""Trace team tradeoffs: Advance to the next specialist instead of handing work back to itself.. Run this file with Python. No live model or network."""
+"""Diagnose team tradeoffs from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict

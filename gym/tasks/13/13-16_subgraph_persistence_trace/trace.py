@@ -1,4 +1,4 @@
-"""Trace subgraph persistence: Reject a string masquerading as a human decision.. Run this file with Python. No live model or network."""
+"""Diagnose subgraph persistence from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

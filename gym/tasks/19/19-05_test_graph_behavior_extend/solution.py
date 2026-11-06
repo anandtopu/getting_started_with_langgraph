@@ -1,4 +1,4 @@
-"""Extend test graph behavior: Keep exactly 500000 cents in the standard route.. Run this file with Python. No live model or network."""
+"""Extend test graph behavior: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from common.claims import route_claim
 from common.copilot import v01
@@ -34,6 +34,25 @@ def run(case: dict | None = None) -> dict:
         "rows": rows,
         "passed": all(row["expected"] == row["rule"] == row["graph"] for row in rows),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    """Preview independent claims in order; one rejected input must not lose its siblings.
+
+    This sequential interface favors isolation over throughput. It is not a shared
+    checkpoint thread or a promise of transaction atomicity.
+    """
+    from copy import deepcopy
+
+    from common.pretty import safe_value
+
+    results = []
+    for case in cases:
+        try:
+            results.append({"value": safe_value(run(deepcopy(case)))})
+        except Exception as error:
+            results.append({"error": type(error).__name__})
+    return results
 
 
 def main() -> None:

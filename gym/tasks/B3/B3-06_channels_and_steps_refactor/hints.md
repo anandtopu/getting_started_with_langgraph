@@ -6,8 +6,8 @@ Every inspector receives a photocopy from the same morning; their notes are comb
 
 ## Hint 2
 
-Compute the summary from the merged findings. Inspect the operation that owns this update or routing choice.
+Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: "count": len(state["findings"]). Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

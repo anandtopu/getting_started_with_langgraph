@@ -1,4 +1,4 @@
-"""Trace untrusted input: Preserve validated amounts before applying deterministic routing.. Run this file with Python. No live model or network."""
+"""Diagnose untrusted input from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 

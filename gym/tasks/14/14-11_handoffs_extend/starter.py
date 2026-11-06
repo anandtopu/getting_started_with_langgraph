@@ -1,4 +1,4 @@
-"""Extend handoffs: Update ownership together with the handoff.. Run this file with Python. No live model or network."""
+"""Extend handoffs: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from langgraph.graph import END, START, MessagesState, StateGraph
@@ -29,7 +29,7 @@ def build_graph():
         return Command(
             graph=Command.PARENT,
             goto="policy",
-            update={"messages": [request, response], "active_agent": "intake"},
+            update={"messages": [request, response], "active_agent": "policy"},
         )
 
     def policy(state: State) -> dict:
@@ -76,6 +76,10 @@ def run(case: dict | None = None) -> dict:
         "roles": [message.type for message in messages],
         "answer": messages[-1].content,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

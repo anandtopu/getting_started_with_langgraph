@@ -1,4 +1,4 @@
-"""Trace mcp server: Pass the requested synthetic claim through schema validation.. Run this file with Python. No live model or network."""
+"""Diagnose mcp server from execution evidence. Run this file with Python. No live model or network."""
 
 import asyncio
 import json

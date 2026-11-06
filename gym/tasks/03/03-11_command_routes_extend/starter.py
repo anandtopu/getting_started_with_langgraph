@@ -1,4 +1,4 @@
-"""Extend command routes: The recorded reason must explain the actual decision.. Run this file with Python. No live model or network."""
+"""Extend command routes: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, Literal, TypedDict
@@ -20,7 +20,9 @@ class State(TypedDict):
 
 def triage(state: State) -> Command[Literal["review", "acknowledge"]]:
     destination = "review" if state["suspicious"] else "acknowledge"
-    return Command(update={"reason": "routine"}, goto=destination)
+    return Command(
+        update={"reason": "indicator" if state["suspicious"] else "routine"}, goto=destination
+    )
 
 
 def review(state: State) -> dict:
@@ -49,6 +51,10 @@ def run(case: dict | None = None) -> dict:
         .invoke({**(DEFAULT_CASE if case is None else case), "visited": []}, version="v2")
         .value
     )
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

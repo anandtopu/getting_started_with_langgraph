@@ -1,4 +1,4 @@
-"""Extend approve or reject: Only a validated boolean authorizes this synthetic decision.. Run this file with Python. No live model or network."""
+"""Extend approve or reject: Validate adjuster identity from the trusted invocation configuration, independently of the response payload.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

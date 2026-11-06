@@ -1,4 +1,4 @@
-# 15-10 — Trace parallel futures: Preserve every parallel graph result.
+# 15-10 — Diagnose parallel futures from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Create all task futures before resolving them to allow concurrent work. Collect 
 
 ## Your task
 
-Preserve every parallel graph result. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose parallel futures from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Preserve every parallel graph result. Read trace.py before completing the answer
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Canonicalize Functional API results independently of input order."
+- "Preserve every parallel graph result."
+- "Keep police-report review semantics shared by both APIs."
+- "Schedule every document before resolving task futures."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

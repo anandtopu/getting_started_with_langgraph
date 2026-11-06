@@ -1,0 +1,35 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "claim_id": "CLM-0001",
+        "approved": true
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "entries": 2,
+          "before_approval": 1,
+          "notifications": 3,
+          "approved": true
+        }
+      }
+    },
+    {
+      "input": {
+        "claim_id": "CLM-0001",
+        "approved": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "entries": 2,
+          "before_approval": 1,
+          "notifications": 2,
+          "approved": false
+        }
+      }
+    }
+  ]
+}

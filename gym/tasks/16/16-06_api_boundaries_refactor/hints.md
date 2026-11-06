@@ -6,8 +6,8 @@ If a receipt is lost, resend the same numbered order rather than creating a seco
 
 ## Hint 2
 
-Return the actual service acknowledgment after a successful attempt. Inspect the operation that owns this update or routing choice.
+Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: response.json(). Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

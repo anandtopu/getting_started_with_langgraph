@@ -1,4 +1,4 @@
-"""Extend schema contracts: The positive-amount contract excludes zero.. Run this file with Python. No live model or network."""
+"""Extend schema contracts: Preserve an optional loss date and its None default across all three schema styles.. Run this file with Python. No live model or network."""
 
 from dataclasses import asdict, dataclass
 from typing import TypedDict

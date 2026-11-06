@@ -1,4 +1,4 @@
-"""Trace typescript agents: Respect the configured loop budget in both JavaScript agents.. Run this file with Python. No live model or network."""
+"""Diagnose typescript agents from execution evidence. Run this file with Python. No live model or network."""
 
 from pathlib import Path
 

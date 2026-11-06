@@ -1,4 +1,4 @@
-"""Extend collect and edit: Python booleans must not pass an integer money check.. Run this file with Python. No live model or network."""
+"""Extend collect and edit: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from datetime import date
 from typing import TypedDict
@@ -25,7 +25,7 @@ def collect_date(state: State) -> dict:
 
 def edit_amount(state: State) -> dict:
     response = interrupt({"kind": "approved_cents", "claim_id": state["claim_id"]})
-    if not isinstance(response, int) or not 0 <= response <= 500000:
+    if type(response) is not int or not 0 <= response <= 500000:
         raise ValueError("Edited amount must be integer cents within the proposal limit")
     return {"approved_cents": response}
 
@@ -50,6 +50,10 @@ def run(case: dict | None = None) -> dict:
     responses = {item.id: case[item.value["kind"]] for item in paused.interrupts}
     result = graph.invoke(Command(resume=responses), config, version="v2").value
     return {"prompts": sorted(item.value["kind"] for item in paused.interrupts), "result": result}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

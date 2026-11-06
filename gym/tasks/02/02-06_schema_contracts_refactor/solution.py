@@ -1,4 +1,4 @@
-"""Refactor schema contracts: Converting schema styles must preserve valid values.. Run this file with Python. No live model or network."""
+"""Refactor schema contracts: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from dataclasses import asdict, dataclass
 from typing import TypedDict
@@ -53,8 +53,16 @@ def build_graph(kind: str = "pydantic"):
     return builder.compile()
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    values = dict(DEFAULT_CASE if case is None else case)
+    case = prepare_case(case)
+    values = dict(case)
     kind = values.pop("kind", "pydantic")
     result = build_graph(kind).invoke(values, version="v2").value
     return {"output_type": type(result).__name__, "value": as_mapping(result)}

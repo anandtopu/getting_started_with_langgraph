@@ -1,4 +1,4 @@
-# 01-16 — Trace draw and explain: The intended final node must be connected.
+# 01-16 — Diagnose draw and explain from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A generated diagram shows the compiled edges rather than a hand-drawn guess. In 
 
 ## Your task
 
-The intended final node must be connected. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose draw and explain from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ The intended final node must be connected. Read trace.py before completing the a
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "The diagram must include validation on the executed route."
+- "The intended final node must be connected."
+- "Eligibility evidence must affect the validation result."
+- "The final update must reflect earlier state."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

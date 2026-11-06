@@ -1,4 +1,4 @@
-"""Trace sse api: Carry a rejection through the authenticated workflow.. Run this file with Python. No live model or network."""
+"""Diagnose sse api from execution evidence. Run this file with Python. No live model or network."""
 
 from common.app_demo import run_demo
 from common.pretty import print_state

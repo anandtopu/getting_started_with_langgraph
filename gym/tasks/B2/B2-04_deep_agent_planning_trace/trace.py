@@ -1,4 +1,4 @@
-"""Trace deep agent planning: Keep task progress consistent with the supplied status.. Run this file with Python. No live model or network."""
+"""Diagnose deep agent planning from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 

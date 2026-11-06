@@ -1,4 +1,4 @@
-"""Trace functional resume: Validate the resumed approval before returning a business result.. Run this file with Python. No live model or network."""
+"""Diagnose functional resume from execution evidence. Run this file with Python. No live model or network."""
 
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.func import entrypoint, task

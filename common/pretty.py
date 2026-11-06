@@ -8,7 +8,18 @@ from typing import Any
 from pydantic import BaseModel
 from rich.console import Console
 
-SECRET_WORDS = ("api_key", "password", "secret", "authorization", "aes_key", "database_url")
+SECRET_WORDS = (
+    "api_key",
+    "password",
+    "secret",
+    "authorization",
+    "aes_key",
+    "database_url",
+    "access_token",
+    "refresh_token",
+    "customer_token",
+    "adjuster_token",
+)
 
 
 def safe_value(value: Any) -> Any:

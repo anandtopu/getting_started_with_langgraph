@@ -12,6 +12,8 @@ Complete [Multi-agent systems](../14_multi_agent_systems/README.md). Read dictio
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain entrypoint; task; single-input contract; task futures; result(); normal Python control flow.
@@ -74,7 +76,7 @@ Reread the checklist after a pause while reusing stamped, completed work orders.
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/15_functional_api/examples/01_entrypoints_tasks.py
+uv run --no-sync python modules/15_functional_api/examples/01_entrypoints_tasks.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "description": "  Pipe burst  ", "amount_cents": 125000}, write the resulting fields and any expected error. Then test the boundary cases in tests/entrypoints_tasks.json.
@@ -98,7 +100,7 @@ An entrypoint accepts one serializable input and uses ordinary Python branches. 
 </details>
 
 ```text
-uv run python modules/15_functional_api/examples/02_parallel_futures.py
+uv run --no-sync python modules/15_functional_api/examples/02_parallel_futures.py
 ```
 
 **Predict, then run:** for {"documents": ["estimate", "receipt", "police_report"]}, write the resulting fields and any expected error. Then test the boundary cases in tests/parallel_futures.json.
@@ -129,7 +131,7 @@ Create all task futures before resolving them to allow concurrent work. Collect 
 </details>
 
 ```text
-uv run python modules/15_functional_api/examples/03_functional_resume.py
+uv run --no-sync python modules/15_functional_api/examples/03_functional_resume.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "approved": true}, write the resulting fields and any expected error. Then test the boundary cases in tests/functional_resume.json.
@@ -189,32 +191,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"error": "TypeError"}`. Resolve the normalization future before reading its fields. | Restore `normalize(claim).result()` and check the boundary cases. | [15-01](../../gym/tasks/15/15-01_entrypoints_tasks_build/task.md) · [Related Fix 15-02](../../gym/tasks/15/15-02_entrypoints_tasks_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "description": "Pipe burst", "amount_cents": 125000, "route": "standard"}}`. Match the Graph API fast-track boundary. | Restore `claim["amount_cents"] <= 100000` and check the boundary cases. | [15-02](../../gym/tasks/15/15-02_entrypoints_tasks_fix/task.md) |
-| Observed `{"value": {"functional": ["estimate:ready", "receipt:ready", "police_report:review"], "graph": ["estimate:ready", "police_report:review", "receipt:ready"], "equal": false}}`. Canonicalize Functional API results independently of input order. | Restore `sorted(future.result() for future in futures)` and check the boundary cases. | [15-07](../../gym/tasks/15/15-07_parallel_futures_build/task.md) · [Related Fix 15-08](../../gym/tasks/15/15-08_parallel_futures_fix/task.md) |
-| Observed `{"value": {"functional": ["estimate:ready", "police_report:review", "receipt:ready"], "graph": ["police_report:review"], "equal": false}}`. Preserve every parallel graph result. | Restore `operator.add]` and check the boundary cases. | [15-08](../../gym/tasks/15/15-08_parallel_futures_fix/task.md) |
-| Observed `{"error": "AttributeError"}`. Use a task boundary so completed evidence can be reused during replay. | Restore `@task     def collect_evidence` and check the boundary cases. | [15-13](../../gym/tasks/15/15-13_functional_resume_build/task.md) · [Related Fix 15-14](../../gym/tasks/15/15-14_functional_resume_fix/task.md) |
-| Observed `{"value": {"interrupts": 1, "result": {"claim_id": "CLM-0001", "approved": true}, "counts": {"entrypoint": 2, "task": 1}}}`. Validate the resumed approval before returning a business result. | Restore `type(decision) is not bool` and check the boundary cases. | [15-14](../../gym/tasks/15/15-14_functional_resume_fix/task.md) |
+| Observed `{"error": "TypeError"}`. Resolve the normalization future before reading its fields. | Restore `normalize(claim).result()` and check the boundary cases. | [15-01](../../gym/tasks/15/15-01_entrypoints_tasks_build/task.md) · Related Fix: [15-02](../../gym/tasks/15/15-02_entrypoints_tasks_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "description": "Pipe burst", "amount_cents": 125000, "route": "standard"}}`. Match the Graph API fast-track boundary. | Restore `claim["amount_cents"] <= 100000` and check the boundary cases. | [15-02](../../gym/tasks/15/15-02_entrypoints_tasks_fix/task.md) · Related Fix: [15-02](../../gym/tasks/15/15-02_entrypoints_tasks_fix/task.md) |
+| Observed `{"value": {"functional": ["estimate:ready", "receipt:ready", "police_report:review"], "graph": ["estimate:ready", "police_report:review", "receipt:ready"], "equal": false}}`. Canonicalize Functional API results independently of input order. | Restore `sorted(future.result() for future in futures)` and check the boundary cases. | [15-07](../../gym/tasks/15/15-07_parallel_futures_build/task.md) · Related Fix: [15-08](../../gym/tasks/15/15-08_parallel_futures_fix/task.md) |
+| Observed `{"value": {"functional": ["estimate:ready", "police_report:review", "receipt:ready"], "graph": ["police_report:review"], "equal": false}}`. Preserve every parallel graph result. | Restore `operator.add]` and check the boundary cases. | [15-08](../../gym/tasks/15/15-08_parallel_futures_fix/task.md) · Related Fix: [15-08](../../gym/tasks/15/15-08_parallel_futures_fix/task.md) |
+| Observed `{"error": "AttributeError"}`. Use a task boundary so completed evidence can be reused during replay. | Restore `@task     def collect_evidence` and check the boundary cases. | [15-13](../../gym/tasks/15/15-13_functional_resume_build/task.md) · Related Fix: [15-14](../../gym/tasks/15/15-14_functional_resume_fix/task.md) |
+| Observed `{"value": {"interrupts": 1, "result": {"claim_id": "CLM-0001", "approved": true}, "counts": {"entrypoint": 2, "task": 1}}}`. Validate the resumed approval before returning a business result. | Restore `type(decision) is not bool` and check the boundary cases. | [15-14](../../gym/tasks/15/15-14_functional_resume_fix/task.md) · Related Fix: [15-14](../../gym/tasks/15/15-14_functional_resume_fix/task.md) |
 
 ## Practice
 
 - [15-01 — build, easy](../../gym/tasks/15/15-01_entrypoints_tasks_build/task.md): Build entrypoints tasks: Resolve the normalization future before reading its fields.
 - [15-02 — fix, medium](../../gym/tasks/15/15-02_entrypoints_tasks_fix/task.md): Fix entrypoints tasks: Match the Graph API fast-track boundary.
 - [15-03 — predict, easy](../../gym/tasks/15/15-03_entrypoints_tasks_predict/task.md): Predict entrypoints tasks across the declared cases
-- [15-04 — trace, medium](../../gym/tasks/15/15-04_entrypoints_tasks_trace/task.md): Trace entrypoints tasks: Match the Graph API fast-track boundary.
-- [15-05 — extend, hard](../../gym/tasks/15/15-05_entrypoints_tasks_extend/task.md): Extend entrypoints tasks: Normalize whitespace before choosing the missing-information branch.
-- [15-06 — refactor, hard](../../gym/tasks/15/15-06_entrypoints_tasks_refactor/task.md): Refactor entrypoints tasks: Reject booleans even though Python considers them integer instances.
+- [15-04 — trace, medium](../../gym/tasks/15/15-04_entrypoints_tasks_trace/task.md): Diagnose entrypoints tasks from execution evidence
+- [15-05 — extend, hard](../../gym/tasks/15/15-05_entrypoints_tasks_extend/task.md): Extend entrypoints tasks: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [15-06 — refactor, hard](../../gym/tasks/15/15-06_entrypoints_tasks_refactor/task.md): Refactor entrypoints tasks: Convert the working Graph API pipeline to an entrypoint with normalize and route tasks, preserving every existing result and validation error.
 - [15-07 — build, easy](../../gym/tasks/15/15-07_parallel_futures_build/task.md): Build parallel futures: Canonicalize Functional API results independently of input order.
 - [15-08 — fix, medium](../../gym/tasks/15/15-08_parallel_futures_fix/task.md): Fix parallel futures: Preserve every parallel graph result.
 - [15-09 — predict, easy](../../gym/tasks/15/15-09_parallel_futures_predict/task.md): Predict parallel futures across the declared cases
-- [15-10 — trace, medium](../../gym/tasks/15/15-10_parallel_futures_trace/task.md): Trace parallel futures: Preserve every parallel graph result.
-- [15-11 — extend, hard](../../gym/tasks/15/15-11_parallel_futures_extend/task.md): Extend parallel futures: Keep police-report review semantics shared by both APIs.
-- [15-12 — refactor, hard](../../gym/tasks/15/15-12_parallel_futures_refactor/task.md): Refactor parallel futures: Schedule every document before resolving task futures.
+- [15-10 — trace, medium](../../gym/tasks/15/15-10_parallel_futures_trace/task.md): Diagnose parallel futures from execution evidence
+- [15-11 — extend, hard](../../gym/tasks/15/15-11_parallel_futures_extend/task.md): Extend parallel futures: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [15-12 — refactor, hard](../../gym/tasks/15/15-12_parallel_futures_refactor/task.md): Refactor parallel futures: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [15-13 — build, easy](../../gym/tasks/15/15-13_functional_resume_build/task.md): Build functional resume: Use a task boundary so completed evidence can be reused during replay.
 - [15-14 — fix, medium](../../gym/tasks/15/15-14_functional_resume_fix/task.md): Fix functional resume: Validate the resumed approval before returning a business result.
 - [15-15 — predict, easy](../../gym/tasks/15/15-15_functional_resume_predict/task.md): Predict functional resume across the declared cases
-- [15-16 — trace, medium](../../gym/tasks/15/15-16_functional_resume_trace/task.md): Trace functional resume: Validate the resumed approval before returning a business result.
-- [15-17 — extend, hard](../../gym/tasks/15/15-17_functional_resume_extend/task.md): Extend functional resume: Preserve a human rejection through entrypoint replay.
+- [15-16 — trace, medium](../../gym/tasks/15/15-16_functional_resume_trace/task.md): Diagnose functional resume from execution evidence
+- [15-17 — extend, hard](../../gym/tasks/15/15-17_functional_resume_extend/task.md): Extend functional resume: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [15-18 — design, hard](../../gym/tasks/15/15-18_functional_resume_design/task.md): Design functional resume and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

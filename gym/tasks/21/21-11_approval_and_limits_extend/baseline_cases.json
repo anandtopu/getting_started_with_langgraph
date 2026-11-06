@@ -1,0 +1,82 @@
+[
+  {
+    "input": {
+      "approved": true,
+      "planned_calls": 10,
+      "call_budget": 12,
+      "estimated_tokens": 1000,
+      "token_budget": 2000
+    },
+    "expected": {
+      "value": {
+        "admitted": true,
+        "effects": 1,
+        "status": "recorded",
+        "customer_approval_status": 403,
+        "stale_status": 409
+      }
+    }
+  },
+  {
+    "input": {
+      "approved": false,
+      "planned_calls": 10,
+      "call_budget": 12,
+      "estimated_tokens": 1000,
+      "token_budget": 2000
+    },
+    "expected": {
+      "value": {
+        "admitted": true,
+        "effects": 0,
+        "status": "not_approved",
+        "customer_approval_status": 403,
+        "stale_status": 409
+      }
+    }
+  },
+  {
+    "input": {
+      "approved": true,
+      "planned_calls": 13,
+      "call_budget": 12,
+      "estimated_tokens": 1000,
+      "token_budget": 2000
+    },
+    "expected": {
+      "value": {
+        "admitted": false,
+        "effects": 0,
+        "reason": "budget"
+      }
+    }
+  },
+  {
+    "input": {
+      "approved": true,
+      "planned_calls": 10,
+      "call_budget": 12,
+      "estimated_tokens": 2001,
+      "token_budget": 2000
+    },
+    "expected": {
+      "value": {
+        "admitted": false,
+        "effects": 0,
+        "reason": "budget"
+      }
+    }
+  },
+  {
+    "input": {
+      "approved": true,
+      "planned_calls": true,
+      "call_budget": 12,
+      "estimated_tokens": 1000,
+      "token_budget": 2000
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

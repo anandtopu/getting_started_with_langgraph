@@ -1,0 +1,45 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "path": "/claims/review.txt",
+        "content": "Synthetic estimate requires review."
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "paths": [
+            "/claims/review.txt"
+          ],
+          "contents": {
+            "/claims/review.txt": "Synthetic estimate requires review."
+          },
+          "tool_statuses": [
+            "success"
+          ]
+        }
+      }
+    },
+    {
+      "input": {
+        "path": "/private/key.txt",
+        "content": "Synthetic estimate requires review."
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "paths": [
+            "/private/key.txt"
+          ],
+          "contents": {
+            "/private/key.txt": "Synthetic estimate requires review."
+          },
+          "tool_statuses": [
+            "success"
+          ]
+        }
+      }
+    }
+  ]
+}

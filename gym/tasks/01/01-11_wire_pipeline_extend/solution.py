@@ -1,4 +1,4 @@
-"""Extend wire pipeline: A completed acknowledgment must be visible in output.. Run this file with Python. No live model or network."""
+"""Extend wire pipeline: Connect the receipt-number node after acknowledgment and before termination.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

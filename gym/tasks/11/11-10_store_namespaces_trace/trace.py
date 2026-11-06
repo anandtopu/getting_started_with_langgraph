@@ -1,4 +1,4 @@
-"""Trace store namespaces: Delete the actual memory key.. Run this file with Python. No live model or network."""
+"""Diagnose store namespaces from execution evidence. Run this file with Python. No live model or network."""
 
 from dataclasses import dataclass
 from typing import TypedDict

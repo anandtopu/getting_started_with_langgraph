@@ -1,4 +1,3 @@
-// YOUR CODE HERE: repair the task contract.
 /** Typed state, partial updates, and reducers. Run: node modules/bonus/B1_langgraph_js/examples/01_typescript_state.ts
  * No LLM. Expected: trim the description, route integer cents, retain both audit labels.
  */
@@ -15,7 +14,7 @@ const State = new StateSchema({
 export async function run(input = DEFAULT_CASE) {
   const graph = new StateGraph(State)
     .addNode("normalize", (state) => ({ description: state.description.trim(), audit: ["normalized"] }))
-    .addNode("assign_route", (state) => ({ route: false ? "needs_information" : state.amount_cents <= 100000 ? "fast_track" : "standard", audit: ["routed"] }))
+    .addNode("assign_route", (state) => ({ route: !state.description ? "needs_information" : state.amount_cents <= 100000 ? "fast_track" : "standard", audit: ["routed"] }))
     .addEdge(START, "normalize").addEdge("normalize", "assign_route").addEdge("assign_route", END).compile();
   return await graph.invoke({ ...input, audit: [] });
 }

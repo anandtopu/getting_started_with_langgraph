@@ -74,3 +74,4 @@ class ThreadRegistry:
             yield
         finally:
             lock.release()
+            self.locks.pop(thread_id, None)

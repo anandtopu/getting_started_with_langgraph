@@ -1,4 +1,4 @@
-"""Extend retry and cache: The cache must observe the injected clock advancing.. Run this file with Python. No live model or network."""
+"""Extend retry and cache: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 from typing import TypedDict
@@ -56,7 +56,7 @@ def run(case: dict | None = None) -> dict:
             raise ConnectionError("Synthetic transient policy read")
         return {"covered": state["customer_id"] == "CUS-0001" and state["amount_cents"] <= 200000}
 
-    graph = build_graph(lookup, ClockCache(lambda: 0), values["ttl"])
+    graph = build_graph(lookup, ClockCache(lambda: clock[0]), values["ttl"])
     payload = {key: values[key] for key in ("customer_id", "policy_version", "amount_cents")}
     results = [graph.invoke(payload, version="v2").value["covered"]]
     results.append(graph.invoke(payload, version="v2").value["covered"])
@@ -65,6 +65,10 @@ def run(case: dict | None = None) -> dict:
     other = {**payload, "customer_id": "CUS-0002"}
     results.append(graph.invoke(other, version="v2").value["covered"])
     return {"covered": results, "lookup_calls": len(calls)}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

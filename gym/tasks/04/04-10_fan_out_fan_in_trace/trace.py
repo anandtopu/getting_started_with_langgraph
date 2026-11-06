@@ -1,4 +1,4 @@
-"""Trace fan out fan in: Parallel writes to an overwrite channel conflict.. Run this file with Python. No live model or network."""
+"""Diagnose fan out fan in from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict

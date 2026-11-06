@@ -1,4 +1,4 @@
-"""Trace durable side effects: Make the crash supervisor recognize the documented owned-worker exit.. Run this file with Python. No live model or network."""
+"""Diagnose durable side effects from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 import os

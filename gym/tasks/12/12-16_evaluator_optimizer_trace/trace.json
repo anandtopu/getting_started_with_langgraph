@@ -1,0 +1,59 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "drafts": [
+          "Your deductible is 90000 cents.",
+          "Thank you. Your deductible is 100000 cents."
+        ],
+        "budget": 3
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "accepted": true,
+          "attempts": 2,
+          "history": [
+            {
+              "attempt": 1,
+              "feedback": [
+                "respectful_tone"
+              ]
+            },
+            {
+              "attempt": 2,
+              "feedback": []
+            }
+          ],
+          "stop_reason": "accepted"
+        }
+      }
+    },
+    {
+      "input": {
+        "drafts": [
+          "Your deductible is 90000 cents.",
+          "Thank you. Your deductible is 100000 cents."
+        ],
+        "budget": 1
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "accepted": false,
+          "attempts": 1,
+          "history": [
+            {
+              "attempt": 1,
+              "feedback": [
+                "respectful_tone"
+              ]
+            }
+          ],
+          "stop_reason": "budget_exhausted"
+        }
+      }
+    }
+  ]
+}

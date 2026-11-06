@@ -1,4 +1,4 @@
-"""Trace intake nodes: A graph node must return a mapping of state updates.. Run this file with Python. No live model or network."""
+"""Diagnose intake nodes from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

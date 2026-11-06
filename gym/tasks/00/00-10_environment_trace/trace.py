@@ -1,4 +1,4 @@
-"""Trace environment: A missing provider is a problem only when live mode was requested.. Run this file with Python. No live model or network."""
+"""Diagnose environment from execution evidence. Run this file with Python. No live model or network."""
 
 import importlib.metadata
 import sys

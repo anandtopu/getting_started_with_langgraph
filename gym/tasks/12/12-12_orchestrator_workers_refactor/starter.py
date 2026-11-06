@@ -1,4 +1,4 @@
-"""Refactor orchestrator workers: Run every approved worker in the plan.. Run this file with Python. No live model or network."""
+"""Refactor orchestrator workers: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 import operator
@@ -58,9 +58,9 @@ def build_graph(sections: list[str] | None = None):
         }
 
     def dispatch(state: State) -> list:
-        return [
-            Send("write_section", {"section": section}) for section in state["sections"][:1]
-        ] or ["assemble"]
+        return [Send("write_section", {"section": section}) for section in state["sections"]] or [
+            "assemble"
+        ]
 
     def write_section(state: Worker) -> dict:
         model = get_chat_model(responses=[AIMessage(content=FACTS[state["section"]])])

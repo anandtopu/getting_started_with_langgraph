@@ -9,7 +9,6 @@
         "steps": [
           "receive",
           "validate",
-          "check_eligibility",
           "acknowledge"
         ],
         "updates": [
@@ -21,11 +20,6 @@
           {
             "validate": {
               "valid": true
-            }
-          },
-          {
-            "check_eligibility": {
-              "eligible": true
             }
           },
           {
@@ -47,7 +41,6 @@
         "steps": [
           "receive",
           "validate",
-          "check_eligibility",
           "acknowledge"
         ],
         "updates": [
@@ -59,11 +52,6 @@
           {
             "validate": {
               "valid": false
-            }
-          },
-          {
-            "check_eligibility": {
-              "eligible": false
             }
           },
           {
@@ -79,6 +67,39 @@
     "input": {
       "claim_id": "CLM-0042",
       "description": " stolen watch "
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": true
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "Pipe burst",
+      "eligibility_check": true
     },
     "expected": {
       "value": {
@@ -116,7 +137,8 @@
   {
     "input": {
       "claim_id": "",
-      "description": "Pipe burst"
+      "description": "Pipe burst",
+      "eligibility_check": true
     },
     "expected": {
       "value": {
@@ -135,6 +157,45 @@
           {
             "validate": {
               "valid": true
+            }
+          },
+          {
+            "check_eligibility": {
+              "eligible": false
+            }
+          },
+          {
+            "acknowledge": {
+              "acknowledged": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "description": "",
+      "eligibility_check": true
+    },
+    "expected": {
+      "value": {
+        "steps": [
+          "receive",
+          "validate",
+          "check_eligibility",
+          "acknowledge"
+        ],
+        "updates": [
+          {
+            "receive": {
+              "received": true
+            }
+          },
+          {
+            "validate": {
+              "valid": false
             }
           },
           {

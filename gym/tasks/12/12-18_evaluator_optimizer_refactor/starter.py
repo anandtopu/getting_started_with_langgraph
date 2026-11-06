@@ -1,4 +1,4 @@
-"""Refactor evaluator optimizer: Stop immediately once both criteria pass.. Run this file with Python. No live model or network."""
+"""Refactor evaluator optimizer: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -49,7 +49,7 @@ def build_graph(drafts: list[str], budget: int):
         }
 
     def continue_or_stop(state: State) -> str:
-        return END if False or state["attempts"] >= state["budget"] else "write_letter"
+        return END if state["accepted"] or state["attempts"] >= state["budget"] else "write_letter"
 
     graph = StateGraph(State)
     graph.add_node("write_letter", write_letter)

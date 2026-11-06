@@ -1,4 +1,4 @@
-"""Trace sqlite lifetime: A compiled graph cannot use a saver whose connection has closed.. Run this file with Python. No live model or network."""
+"""Diagnose sqlite lifetime from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 import operator

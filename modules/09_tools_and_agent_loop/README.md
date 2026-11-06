@@ -12,6 +12,10 @@ Complete [LLMs inside nodes](../08_llms_inside_nodes/README.md). Read dictionary
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
+After the deterministic lesson, use [the optional provider lab](../../docs/LIVE_MODEL_LAB.md) to try real extraction, scoped tool calls, and conversation memory with your configured provider. Graded results remain fake and offline.
+
 ## Learning objectives
 
 - Implement and explain Tool definitions and schemas; tool calls; ToolMessage IDs; tool errors; deterministic policy lookup.
@@ -112,7 +116,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/09_tools_and_agent_loop/examples/01_tools_and_messages.py
+uv run --no-sync python modules/09_tools_and_agent_loop/examples/01_tools_and_messages.py
 ```
 
 **Predict, then run:** for {"policy_id": "POL-0001", "amount_cents": 125000}, write the resulting fields and any expected error. Then test the boundary cases in tests/tools_and_messages.json.
@@ -144,7 +148,7 @@ A tool's typed parameters become a schema the model can request. ToolNode runs t
 </details>
 
 ```text
-uv run python modules/09_tools_and_agent_loop/examples/02_manual_react.py
+uv run --no-sync python modules/09_tools_and_agent_loop/examples/02_manual_react.py
 ```
 
 **Predict, then run:** for {"policy_id": "POL-0001", "recursion_limit": 12}, write the resulting fields and any expected error. Then test the boundary cases in tests/manual_react.json.
@@ -174,7 +178,7 @@ A manual agent loop alternates a model node and ToolNode. tools_condition checks
 </details>
 
 ```text
-uv run python modules/09_tools_and_agent_loop/examples/03_tool_runtime.py
+uv run --no-sync python modules/09_tools_and_agent_loop/examples/03_tool_runtime.py
 ```
 
 **Predict, then run:** for {"customer_id": "CUS-0001", "preference": "email"}, write the resulting fields and any expected error. Then test the boundary cases in tests/tool_runtime.json.
@@ -235,32 +239,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"results": [{"call_id": "payout-call", "status": "success", "content": "125000"}, {"call_id": "policy-call", "status": "success", "content": "limit=25000000; deductible=100000"}]}}`. Apply the deductible before proposing a payout. | Restore `calculate_payout(amount_cents, 200000, 100000)` and check the boundary cases. | [09-01](../../gym/tasks/09/09-01_tools_and_messages_build/task.md) · [Related Fix 09-02](../../gym/tasks/09/09-02_tools_and_messages_fix/task.md) |
-| Observed `{"value": {"results": [{"call_id": "payout-call", "status": "success", "content": "25000"}, {"call_id": "policy-call", "status": "success", "content": "limit=25000000; deductible=100000"}]}}`. Return a correlated tool error for an unknown policy. | Restore `handle_tool_errors=True` and check the boundary cases. | [09-02](../../gym/tasks/09/09-02_tools_and_messages_fix/task.md) |
-| Observed `{"value": {"roles": ["human", "ai", "tool"], "tool_results": ["100000 cents"], "final": "100000 cents"}}`. Return tool evidence to the model before ending. | Restore `graph.add_edge("tools", "call_model")` and check the boundary cases. | [09-07](../../gym/tasks/09/09-07_manual_react_build/task.md) · [Related Fix 09-08](../../gym/tasks/09/09-08_manual_react_fix/task.md) |
-| Observed `{"value": {"roles": ["human", "ai", "tool", "ai"], "tool_results": ["100000 cents"], "final": "Use the tool result as evidence; this is not payment approval."}}`. Let the agent observe a policy lookup failure. | Restore `handle_tool_errors=True` and check the boundary cases. | [09-08](../../gym/tasks/09/09-08_manual_react_fix/task.md) |
-| Observed `{"value": {"saved": null, "state_preference": "email", "tool_call_id": "save-1", "model_visible_fields": ["preference"]}}`. Write only in the trusted customer namespace. | Restore `runtime.context.customer_id, "preferences"` and check the boundary cases. | [09-13](../../gym/tasks/09/09-13_tool_runtime_build/task.md) · [Related Fix 09-14](../../gym/tasks/09/09-14_tool_runtime_fix/task.md) |
-| Observed `{"value": {"saved": {"value": "email"}, "state_preference": "phone", "tool_call_id": "save-1", "model_visible_fields": ["preference"]}}`. Keep the graph state consistent with the Store write. | Restore `"saved_preference": preference` and check the boundary cases. | [09-14](../../gym/tasks/09/09-14_tool_runtime_fix/task.md) |
+| Observed `{"value": {"results": [{"call_id": "payout-call", "status": "success", "content": "125000"}, {"call_id": "policy-call", "status": "success", "content": "limit=25000000; deductible=100000"}]}}`. Apply the deductible before proposing a payout. | Restore `calculate_payout(amount_cents, 200000, 100000)` and check the boundary cases. | [09-01](../../gym/tasks/09/09-01_tools_and_messages_build/task.md) · Related Fix: [09-02](../../gym/tasks/09/09-02_tools_and_messages_fix/task.md) |
+| Observed `{"value": {"results": [{"call_id": "payout-call", "status": "success", "content": "25000"}, {"call_id": "policy-call", "status": "success", "content": "limit=25000000; deductible=100000"}]}}`. Return a correlated tool error for an unknown policy. | Restore `handle_tool_errors=True` and check the boundary cases. | [09-02](../../gym/tasks/09/09-02_tools_and_messages_fix/task.md) · Related Fix: [09-02](../../gym/tasks/09/09-02_tools_and_messages_fix/task.md) |
+| Observed `{"value": {"roles": ["human", "ai", "tool"], "tool_results": ["100000 cents"], "final": "100000 cents"}}`. Return tool evidence to the model before ending. | Restore `graph.add_edge("tools", "call_model")` and check the boundary cases. | [09-07](../../gym/tasks/09/09-07_manual_react_build/task.md) · Related Fix: [09-08](../../gym/tasks/09/09-08_manual_react_fix/task.md) |
+| Observed `{"value": {"roles": ["human", "ai", "tool", "ai"], "tool_results": ["100000 cents"], "final": "Use the tool result as evidence; this is not payment approval."}}`. Let the agent observe a policy lookup failure. | Restore `handle_tool_errors=True` and check the boundary cases. | [09-08](../../gym/tasks/09/09-08_manual_react_fix/task.md) · Related Fix: [09-08](../../gym/tasks/09/09-08_manual_react_fix/task.md) |
+| Observed `{"value": {"saved": null, "state_preference": "email", "tool_call_id": "save-1", "model_visible_fields": ["preference"]}}`. Write only in the trusted customer namespace. | Restore `runtime.context.customer_id, "preferences"` and check the boundary cases. | [09-13](../../gym/tasks/09/09-13_tool_runtime_build/task.md) · Related Fix: [09-14](../../gym/tasks/09/09-14_tool_runtime_fix/task.md) |
+| Observed `{"value": {"saved": {"value": "email"}, "state_preference": "phone", "tool_call_id": "save-1", "model_visible_fields": ["preference"]}}`. Keep the graph state consistent with the Store write. | Restore `"saved_preference": preference` and check the boundary cases. | [09-14](../../gym/tasks/09/09-14_tool_runtime_fix/task.md) · Related Fix: [09-14](../../gym/tasks/09/09-14_tool_runtime_fix/task.md) |
 
 ## Practice
 
 - [09-01 — build, easy](../../gym/tasks/09/09-01_tools_and_messages_build/task.md): Build tools and messages: Apply the deductible before proposing a payout.
 - [09-02 — fix, medium](../../gym/tasks/09/09-02_tools_and_messages_fix/task.md): Fix tools and messages: Return a correlated tool error for an unknown policy.
 - [09-03 — predict, easy](../../gym/tasks/09/09-03_tools_and_messages_predict/task.md): Predict tools and messages across the declared cases
-- [09-04 — trace, medium](../../gym/tasks/09/09-04_tools_and_messages_trace/task.md): Trace tools and messages: Return a correlated tool error for an unknown policy.
-- [09-05 — extend, hard](../../gym/tasks/09/09-05_tools_and_messages_extend/task.md): Extend tools and messages: Cap the proposal at the synthetic coverage limit.
-- [09-06 — refactor, hard](../../gym/tasks/09/09-06_tools_and_messages_refactor/task.md): Refactor tools and messages: Preserve the call identity rather than substituting the tool name.
+- [09-04 — trace, medium](../../gym/tasks/09/09-04_tools_and_messages_trace/task.md): Diagnose tools and messages from execution evidence
+- [09-05 — extend, hard](../../gym/tasks/09/09-05_tools_and_messages_extend/task.md): Extend tools and messages: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [09-06 — refactor, hard](../../gym/tasks/09/09-06_tools_and_messages_refactor/task.md): Refactor tools and messages: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [09-07 — build, easy](../../gym/tasks/09/09-07_manual_react_build/task.md): Build manual react: Return tool evidence to the model before ending.
 - [09-08 — fix, medium](../../gym/tasks/09/09-08_manual_react_fix/task.md): Fix manual react: Let the agent observe a policy lookup failure.
 - [09-09 — predict, easy](../../gym/tasks/09/09-09_manual_react_predict/task.md): Predict manual react across the declared cases
-- [09-10 — trace, medium](../../gym/tasks/09/09-10_manual_react_trace/task.md): Trace manual react: Let the agent observe a policy lookup failure.
-- [09-11 — extend, hard](../../gym/tasks/09/09-11_manual_react_extend/task.md): Extend manual react: Respect the caller's execution budget.
-- [09-12 — refactor, hard](../../gym/tasks/09/09-12_manual_react_refactor/task.md): Refactor manual react: Preserve the requested policy when constructing tool arguments.
+- [09-10 — trace, medium](../../gym/tasks/09/09-10_manual_react_trace/task.md): Diagnose manual react from execution evidence
+- [09-11 — extend, hard](../../gym/tasks/09/09-11_manual_react_extend/task.md): Extend manual react: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [09-12 — refactor, hard](../../gym/tasks/09/09-12_manual_react_refactor/task.md): Refactor manual react: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [09-13 — build, easy](../../gym/tasks/09/09-13_tool_runtime_build/task.md): Build tool runtime: Write only in the trusted customer namespace.
 - [09-14 — fix, medium](../../gym/tasks/09/09-14_tool_runtime_fix/task.md): Fix tool runtime: Keep the graph state consistent with the Store write.
 - [09-15 — predict, easy](../../gym/tasks/09/09-15_tool_runtime_predict/task.md): Predict tool runtime across the declared cases
-- [09-16 — trace, medium](../../gym/tasks/09/09-16_tool_runtime_trace/task.md): Trace tool runtime: Keep the graph state consistent with the Store write.
-- [09-17 — extend, hard](../../gym/tasks/09/09-17_tool_runtime_extend/task.md): Extend tool runtime: Support the declared SMS contact preference.
+- [09-16 — trace, medium](../../gym/tasks/09/09-16_tool_runtime_trace/task.md): Diagnose tool runtime from execution evidence
+- [09-17 — extend, hard](../../gym/tasks/09/09-17_tool_runtime_extend/task.md): Extend tool runtime: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [09-18 — design, hard](../../gym/tasks/09/09-18_tool_runtime_design/task.md): Design tool runtime and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

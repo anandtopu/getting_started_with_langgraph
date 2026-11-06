@@ -1,4 +1,4 @@
-"""Trace orchestrator workers: Reject a plan that delegates the same section twice.. Run this file with Python. No live model or network."""
+"""Diagnose orchestrator workers from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 import operator

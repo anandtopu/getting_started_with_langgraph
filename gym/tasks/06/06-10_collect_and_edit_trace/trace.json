@@ -1,0 +1,25 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "loss_date": "2026-01-01",
+        "approved_cents": 125000
+      },
+      "node_updates": [],
+      "observed_result": {
+        "error": "ValueError"
+      }
+    },
+    {
+      "input": {
+        "loss_date": "2026-01-01",
+        "approved_cents": 0
+      },
+      "node_updates": [],
+      "observed_result": {
+        "error": "ValueError"
+      }
+    }
+  ]
+}

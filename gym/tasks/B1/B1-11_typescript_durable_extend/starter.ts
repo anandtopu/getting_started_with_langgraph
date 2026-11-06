@@ -1,4 +1,3 @@
-// YOUR CODE HERE: repair the task contract.
 /** Send, SQLite checkpoints, interrupts, and JavaScript streams. No LLM.
  * Run: node modules/bonus/B1_langgraph_js/examples/02_typescript_durable.ts
  * Expected: parallel findings, a saved approval pause, and an explicit human decision.
@@ -22,7 +21,7 @@ export async function run(input = DEFAULT_CASE) {
       .addNode("approve", () => {
         const decision = interrupt({ question: "Approve the synthetic claim?" });
         if (typeof decision !== "boolean") throw new TypeError("Boolean approval required");
-        return { approved: true };
+        return { approved: decision };
       })
       .addConditionalEdges(START, (state) => state.documents.length ? state.documents.map((document) => new Send("review_document", { document })) : ["approve"], ["review_document", "approve"])
       .addEdge("review_document", "approve").addEdge("approve", END).compile({ checkpointer: saver });

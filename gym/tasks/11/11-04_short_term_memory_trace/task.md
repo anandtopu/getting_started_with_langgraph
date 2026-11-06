@@ -1,4 +1,4 @@
-# 11-04 — Trace short term memory: Use a new message ID for a new turn instead of overwriting the previous turn.
+# 11-04 — Diagnose short term memory from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Checkpoint history and model context are different collections. Trimming chooses
 
 ## Your task
 
-Use a new message ID for a new turn instead of overwriting the previous turn. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose short term memory from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Use a new message ID for a new turn instead of overwriting the previous turn. Re
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Bound the messages sent to the model."
+- "Use a new message ID for a new turn instead of overwriting the previous turn."
+- "Include newly supplied evidence in the summary."
+- "Retain the summarization step after responding."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

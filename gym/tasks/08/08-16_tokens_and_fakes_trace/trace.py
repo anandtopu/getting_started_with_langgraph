@@ -1,4 +1,4 @@
-"""Trace tokens and fakes: Read the documented node name from stream metadata.. Run this file with Python. No live model or network."""
+"""Diagnose tokens and fakes from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.graph import END, START, MessagesState, StateGraph

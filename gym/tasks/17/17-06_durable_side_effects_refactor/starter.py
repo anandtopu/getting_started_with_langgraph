@@ -1,4 +1,4 @@
-"""Refactor durable side effects: Report the durable ledger count, not an inferred execution count.. Run this file with Python. No live model or network."""
+"""Refactor durable side effects: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 import os
@@ -66,7 +66,7 @@ def run(case: dict | None = None) -> dict:
         result = json.loads(resumed.stdout.strip().splitlines()[-1])
         return {
             "crash_exit": crashed.returncode,
-            "effect_count": len(result["effects"]) + 1,
+            "effect_count": len(result["effects"]),
             "claim_id": result["value"]["claim_id"],
             "durability": case["durability"],
         }

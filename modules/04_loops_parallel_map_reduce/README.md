@@ -12,6 +12,8 @@ Complete [Branching and routing](../03_branching_and_routing/README.md). Read di
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain Loops with exit conditions; recursion_limit; GraphRecursionError.
@@ -100,7 +102,7 @@ A policy lookup card belongs to a customer and policy version, not just the shel
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/04_loops_parallel_map_reduce/examples/01_bounded_rechecks.py
+uv run --no-sync python modules/04_loops_parallel_map_reduce/examples/01_bounded_rechecks.py
 ```
 
 **Predict, then run:** for {"history": [false, false, true], "budget": 3}, write the resulting fields and any expected error. Then test the boundary cases in tests/bounded_rechecks.json.
@@ -133,7 +135,7 @@ A loop is an edge back to earlier work. Business state must move toward an exit.
 </details>
 
 ```text
-uv run python modules/04_loops_parallel_map_reduce/examples/02_fan_out_fan_in.py
+uv run --no-sync python modules/04_loops_parallel_map_reduce/examples/02_fan_out_fan_in.py
 ```
 
 **Predict, then run:** for {"documents": [{"id": "DOC-001", "kind": "estimate"}, {"id": "DOC-021", "kind": "police"}]}, write the resulting fields and any expected error. Then test the boundary cases in tests/fan_out_fan_in.json.
@@ -163,7 +165,7 @@ Send creates one worker invocation per item with its own input. Parallel workers
 </details>
 
 ```text
-uv run python modules/04_loops_parallel_map_reduce/examples/03_retry_and_cache.py
+uv run --no-sync python modules/04_loops_parallel_map_reduce/examples/03_retry_and_cache.py
 ```
 
 **Predict, then run:** for {"customer_id": "CUS-0001", "policy_version": 1, "amount_cents": 125000, "ttl": 10, "advance": 10}, write the resulting fields and any expected error. Then test the boundary cases in tests/retry_and_cache.json.
@@ -222,32 +224,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"history": [false, false, true], "budget": 3, "attempts": 3, "status": "exhausted", "trace": ["missing", "missing", "missing"]}}`. Received evidence must terminate the recheck loop. | Restore `index < len(state["history"]) and state["history"][index]` and check the boundary cases. | [04-01](../../gym/tasks/04/04-01_bounded_rechecks_build/task.md) · [Related Fix 04-02](../../gym/tasks/04/04-02_bounded_rechecks_fix/task.md) |
-| Observed `{"error": "GraphRecursionError"}`. Without a changing retry counter, the graph reaches its recursion limit. | Restore `"attempts": index + 1` and check the boundary cases. | [04-02](../../gym/tasks/04/04-02_bounded_rechecks_fix/task.md) |
-| Observed `{"value": {"findings": ["DOC-021"], "summaries": [["DOC-021"]]}}`. Each worker must contribute its own document evidence. | Restore `return {"findings": [state["document"]["id"]]}` and check the boundary cases. | [04-07](../../gym/tasks/04/04-07_fan_out_fan_in_build/task.md) · [Related Fix 04-08](../../gym/tasks/04/04-08_fan_out_fan_in_fix/task.md) |
-| Observed `{"value": {"findings": ["DOC-021"], "summaries": [["DOC-021"]]}}`. Parallel writes to an overwrite channel conflict. | Restore `findings: Annotated[list[str], operator.add]` and check the boundary cases. | [04-08](../../gym/tasks/04/04-08_fan_out_fan_in_fix/task.md) |
-| Observed `{"error": "ConnectionError"}`. A bounded retry must recover from the injected transient read failure. | Restore `max_attempts=2` and check the boundary cases. | [04-13](../../gym/tasks/04/04-13_retry_and_cache_build/task.md) · [Related Fix 04-14](../../gym/tasks/04/04-14_retry_and_cache_fix/task.md) |
-| Observed `{"value": {"covered": [true, true, true, true], "lookup_calls": 3}}`. Customer identity belongs in the cache key. | Restore `[state["customer_id"], state["policy_version"], state["amount_cents"]]` and check the boundary cases. | [04-14](../../gym/tasks/04/04-14_retry_and_cache_fix/task.md) |
+| Observed `{"value": {"history": [false, false, true], "budget": 3, "attempts": 3, "status": "exhausted", "trace": ["missing", "missing", "missing"]}}`. Received evidence must terminate the recheck loop. | Restore `index < len(state["history"]) and state["history"][index]` and check the boundary cases. | [04-01](../../gym/tasks/04/04-01_bounded_rechecks_build/task.md) · Related Fix: [04-02](../../gym/tasks/04/04-02_bounded_rechecks_fix/task.md) |
+| Observed `{"error": "GraphRecursionError"}`. Without a changing retry counter, the graph reaches its recursion limit. | Restore `"attempts": index + 1` and check the boundary cases. | [04-02](../../gym/tasks/04/04-02_bounded_rechecks_fix/task.md) · Related Fix: [04-02](../../gym/tasks/04/04-02_bounded_rechecks_fix/task.md) |
+| Observed `{"value": {"findings": ["DOC-021"], "summaries": [["DOC-021"]]}}`. Each worker must contribute its own document evidence. | Restore `return {"findings": [state["document"]["id"]]}` and check the boundary cases. | [04-07](../../gym/tasks/04/04-07_fan_out_fan_in_build/task.md) · Related Fix: [04-08](../../gym/tasks/04/04-08_fan_out_fan_in_fix/task.md) |
+| Observed `{"value": {"findings": ["DOC-021"], "summaries": [["DOC-021"]]}}`. Parallel writes to an overwrite channel conflict. | Restore `findings: Annotated[list[str], operator.add]` and check the boundary cases. | [04-08](../../gym/tasks/04/04-08_fan_out_fan_in_fix/task.md) · Related Fix: [04-08](../../gym/tasks/04/04-08_fan_out_fan_in_fix/task.md) |
+| Observed `{"error": "ConnectionError"}`. A bounded retry must recover from the injected transient read failure. | Restore `max_attempts=2` and check the boundary cases. | [04-13](../../gym/tasks/04/04-13_retry_and_cache_build/task.md) · Related Fix: [04-14](../../gym/tasks/04/04-14_retry_and_cache_fix/task.md) |
+| Observed `{"value": {"covered": [true, true, true, true], "lookup_calls": 3}}`. Customer identity belongs in the cache key. | Restore `[state["customer_id"], state["policy_version"], state["amount_cents"]]` and check the boundary cases. | [04-14](../../gym/tasks/04/04-14_retry_and_cache_fix/task.md) · Related Fix: [04-14](../../gym/tasks/04/04-14_retry_and_cache_fix/task.md) |
 
 ## Practice
 
 - [04-01 — build, easy](../../gym/tasks/04/04-01_bounded_rechecks_build/task.md): Build bounded rechecks: Received evidence must terminate the recheck loop.
 - [04-02 — fix, medium](../../gym/tasks/04/04-02_bounded_rechecks_fix/task.md): Fix bounded rechecks: Without a changing retry counter, the graph reaches its recursion limit.
 - [04-03 — predict, easy](../../gym/tasks/04/04-03_bounded_rechecks_predict/task.md): Predict bounded rechecks across the declared cases
-- [04-04 — trace, medium](../../gym/tasks/04/04-04_bounded_rechecks_trace/task.md): Trace bounded rechecks: Without a changing retry counter, the graph reaches its recursion limit.
-- [04-05 — extend, hard](../../gym/tasks/04/04-05_bounded_rechecks_extend/task.md): Extend bounded rechecks: The business budget needs an explicit exhausted outcome.
-- [04-06 — refactor, hard](../../gym/tasks/04/04-06_bounded_rechecks_refactor/task.md): Refactor bounded rechecks: Equivalent loops must preserve the exact attempt budget.
+- [04-04 — trace, medium](../../gym/tasks/04/04-04_bounded_rechecks_trace/task.md): Diagnose bounded rechecks from execution evidence
+- [04-05 — extend, hard](../../gym/tasks/04/04-05_bounded_rechecks_extend/task.md): Extend bounded rechecks: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [04-06 — refactor, hard](../../gym/tasks/04/04-06_bounded_rechecks_refactor/task.md): Refactor bounded rechecks: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [04-07 — build, easy](../../gym/tasks/04/04-07_fan_out_fan_in_build/task.md): Build fan out fan in: Each worker must contribute its own document evidence.
 - [04-08 — fix, medium](../../gym/tasks/04/04-08_fan_out_fan_in_fix/task.md): Fix fan out fan in: Parallel writes to an overwrite channel conflict.
 - [04-09 — predict, easy](../../gym/tasks/04/04-09_fan_out_fan_in_predict/task.md): Predict fan out fan in across the declared cases
-- [04-10 — trace, medium](../../gym/tasks/04/04-10_fan_out_fan_in_trace/task.md): Trace fan out fan in: Parallel writes to an overwrite channel conflict.
-- [04-11 — extend, hard](../../gym/tasks/04/04-11_fan_out_fan_in_extend/task.md): Extend fan out fan in: The deeper police branch must finish before summary.
-- [04-12 — refactor, hard](../../gym/tasks/04/04-12_fan_out_fan_in_refactor/task.md): Refactor fan out fan in: Do not treat arrival order as the public result order.
+- [04-10 — trace, medium](../../gym/tasks/04/04-10_fan_out_fan_in_trace/task.md): Diagnose fan out fan in from execution evidence
+- [04-11 — extend, hard](../../gym/tasks/04/04-11_fan_out_fan_in_extend/task.md): Extend fan out fan in: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [04-12 — refactor, hard](../../gym/tasks/04/04-12_fan_out_fan_in_refactor/task.md): Refactor fan out fan in: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [04-13 — build, easy](../../gym/tasks/04/04-13_retry_and_cache_build/task.md): Build retry and cache: A bounded retry must recover from the injected transient read failure.
 - [04-14 — fix, medium](../../gym/tasks/04/04-14_retry_and_cache_fix/task.md): Fix retry and cache: Customer identity belongs in the cache key.
 - [04-15 — predict, easy](../../gym/tasks/04/04-15_retry_and_cache_predict/task.md): Predict retry and cache across the declared cases
-- [04-16 — trace, medium](../../gym/tasks/04/04-16_retry_and_cache_trace/task.md): Trace retry and cache: Customer identity belongs in the cache key.
-- [04-17 — extend, hard](../../gym/tasks/04/04-17_retry_and_cache_extend/task.md): Extend retry and cache: The cache must observe the injected clock advancing.
+- [04-16 — trace, medium](../../gym/tasks/04/04-16_retry_and_cache_trace/task.md): Diagnose retry and cache from execution evidence
+- [04-17 — extend, hard](../../gym/tasks/04/04-17_retry_and_cache_extend/task.md): Extend retry and cache: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [04-18 — design, hard](../../gym/tasks/04/04-18_retry_and_cache_design/task.md): Design retry and cache and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

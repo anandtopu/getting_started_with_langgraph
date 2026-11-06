@@ -16,3 +16,14 @@ def test_behavior(candidate, case):
     assert actual == case["expected"], (
         "LARKSPUR: preserve the declared state, routing, and boundary contracts"
     )
+
+
+@pytest.mark.parametrize(
+    "case", json.loads(Path(__file__).with_name("baseline_cases.json").read_text("utf-8"))
+)
+def test_original_contract_survives_extension(candidate, case):
+    from common.exercises import preserves_original
+
+    assert preserves_original(case["expected"], observe(candidate, case["input"])), (
+        "LARKSPUR: retain the original fields, list prefix, and errors when adding a feature"
+    )

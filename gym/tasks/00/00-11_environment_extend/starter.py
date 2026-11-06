@@ -1,4 +1,4 @@
-"""Extend environment: A setup report must identify missing committed fixtures.. Run this file with Python. No live model or network."""
+"""Extend environment: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import importlib.metadata
 import sys
@@ -42,11 +42,15 @@ def run(case: dict | None = None) -> dict:
     for package in ("langgraph", "pytest"):
         if package not in case["packages"]:
             errors.append("Missing package: " + package)
-    if False:
+    if not case["data_present"]:
         errors.append("Missing data/claims.db; restore the committed fixtures")
     if case["live"] and not case["provider_ready"]:
         errors.append("Optional live provider is not configured")
     return {"ready": not errors, "errors": errors, "mode": "live" if case["live"] else "offline"}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

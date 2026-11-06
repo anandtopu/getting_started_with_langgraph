@@ -1,4 +1,4 @@
-"""Trace draw and explain: The intended final node must be connected.. Run this file with Python. No live model or network."""
+"""Diagnose draw and explain from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

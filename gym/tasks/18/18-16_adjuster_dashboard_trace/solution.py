@@ -1,4 +1,4 @@
-"""Trace adjuster dashboard: Replace the stale approval identity with the current snapshot.. Run this file with Python. No live model or network."""
+"""Diagnose adjuster dashboard from execution evidence. Run this file with Python. No live model or network."""
 
 from common.pretty import print_state
 from common.sse import update_dashboard

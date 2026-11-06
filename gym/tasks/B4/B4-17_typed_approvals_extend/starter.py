@@ -1,4 +1,4 @@
-"""Extend typed approvals: Bind the proposal to its requested amount.. Run this file with Python. No live model or network."""
+"""Extend typed approvals: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain.agents.middleware import HumanInTheLoopMiddleware
@@ -31,7 +31,11 @@ def run(case: dict | None = None) -> dict:
             AIMessage(
                 content="",
                 tool_calls=[
-                    {"name": "propose_payment", "args": {"amount_cents": 50000}, "id": "proposal-1"}
+                    {
+                        "name": "propose_payment",
+                        "args": {"amount_cents": case["amount_cents"]},
+                        "id": "proposal-1",
+                    }
                 ],
             ),
             AIMessage(content="The proposal review is complete."),
@@ -63,6 +67,10 @@ def run(case: dict | None = None) -> dict:
         "effects": effects,
         "interrupt_type": pending.value["type"],
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

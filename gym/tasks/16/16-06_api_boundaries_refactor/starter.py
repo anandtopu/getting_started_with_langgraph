@@ -1,4 +1,4 @@
-"""Refactor api boundaries: Return the actual service acknowledgment after a successful attempt.. Run this file with Python. No live model or network."""
+"""Refactor api boundaries: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import asyncio
 import json
@@ -22,7 +22,7 @@ async def submit(client: httpx.AsyncClient, claim_id: str, attempts: int) -> dic
                 timeout=1,
             )
             response.raise_for_status()
-            return {"accepted": False}
+            return response.json()
         except (httpx.TimeoutException, httpx.TransportError):
             if attempt + 1 == attempts:
                 raise

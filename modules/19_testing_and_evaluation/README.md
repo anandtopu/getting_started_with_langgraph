@@ -12,6 +12,8 @@ Complete [Streaming to user interfaces](../18_streaming_user_interfaces/README.m
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain pytest primer in depth; node unit tests; graph tests; fake models; routing and final-state assertions.
@@ -24,7 +26,25 @@ Prevent regressions in claims decisions and tool behavior. Predict the state bef
 
 ## How it works
 
-Generated from this module's cumulative Claims Copilot graph. It shows component structure; only a runtime trace proves which nodes executed.
+### Test Graph Behavior
+
+A pytest test is a function whose assertions express requirements. Parametrized tests run it over many inputs. Compare pure node rules and whole graphs against independently specified boundary outcomes; comparing two copies of the same implementation can preserve the same bug. Fake models make orchestration tests repeatable, not model accuracy measurable.
+
+Check a ruler against known measurements instead of checking it against a second copy of the same misprinted ruler.
+
+### Test Durable Execution
+
+Durable tests assert the state before a pause, the pending node, and the resumed result. Snapshot only stable semantic fields, not random checkpoint IDs or timestamps. Reducer algebra can be checked over many generated inputs: associativity and idempotence protect parallel and replay behavior. The process-death test in module 17 covers a failure an in-memory mock cannot reproduce.
+
+Inspect the waiting shelf before and after an approval rather than checking only the final receipt.
+
+### Trajectory Evals
+
+A trajectory is the sequence of tool requests, separate from the final answer. agentevals can compare strict order, unordered calls, subsets, or supersets. Exact argument matching catches the right tool used on the wrong policy. Choose the matching rule from the business requirement; parallel independent calls may legitimately change order.
+
+Review both the investigator's conclusion and the records they actually requested.
+
+The checked-in diagram was generated from the executable lesson or cumulative Copilot graph. Edges describe possible work; inspect the runtime trace to see what ran.
 
 ```mermaid
 ---
@@ -43,14 +63,16 @@ graph TD;
 	complete_review --> __end__;
 	subgraph durable_review
 	durable_review\3aawait_estimate(await_estimate)
-	durable_review\3aawait_estimate --> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
+	durable_review\3aawait_estimate --> durable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer;
 	subgraph review_claim
 	durable_review\3areview_claim\3aconsult_specialists(consult_specialists)
 	durable_review\3areview_claim\3afraud_review\3ainspect_evidence --> durable_review\3areview_claim\3aconsult_specialists;
 	durable_review\3areview_claim\3aintake_policy_memory\3adraft_letter --> durable_review\3areview_claim\3afraud_review\3ainspect_evidence;
 	subgraph intake_policy_memory
+	durable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer(authorize_customer)
 	durable_review\3areview_claim\3aintake_policy_memory\3aremember(remember)
 	durable_review\3areview_claim\3aintake_policy_memory\3adraft_letter(draft_letter)
+	durable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer --> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
 	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent --> durable_review\3areview_claim\3aintake_policy_memory\3aremember;
 	durable_review\3areview_claim\3aintake_policy_memory\3aremember --> durable_review\3areview_claim\3aintake_policy_memory\3adraft_letter;
 	subgraph intake_and_evidence
@@ -82,24 +104,6 @@ graph TD;
 
 ```
 
-### Test Graph Behavior
-
-A pytest test is a function whose assertions express requirements. Parametrized tests run it over many inputs. Compare pure node rules and whole graphs against independently specified boundary outcomes; comparing two copies of the same implementation can preserve the same bug. Fake models make orchestration tests repeatable, not model accuracy measurable.
-
-Check a ruler against known measurements instead of checking it against a second copy of the same misprinted ruler.
-
-### Test Durable Execution
-
-Durable tests assert the state before a pause, the pending node, and the resumed result. Snapshot only stable semantic fields, not random checkpoint IDs or timestamps. Reducer algebra can be checked over many generated inputs: associativity and idempotence protect parallel and replay behavior. The process-death test in module 17 covers a failure an in-memory mock cannot reproduce.
-
-Inspect the waiting shelf before and after an approval rather than checking only the final receipt.
-
-### Trajectory Evals
-
-A trajectory is the sequence of tool requests, separate from the final answer. agentevals can compare strict order, unordered calls, subsets, or supersets. Exact argument matching catches the right tool used on the wrong policy. Choose the matching rule from the business requirement; parallel independent calls may legitimately change order.
-
-Review both the investigator's conclusion and the records they actually requested.
-
 ## Key APIs at a glance
 
 | API / executable example | What it does | When to use it |
@@ -113,7 +117,7 @@ Review both the investigator's conclusion and the records they actually requeste
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/19_testing_and_evaluation/examples/01_test_graph_behavior.py
+uv run --no-sync python modules/19_testing_and_evaluation/examples/01_test_graph_behavior.py
 ```
 
 **Predict, then run:** for {"amounts": [100000, 100001, 500001, true]}, write the resulting fields and any expected error. Then test the boundary cases in tests/test_graph_behavior.json.
@@ -160,7 +164,7 @@ A pytest test is a function whose assertions express requirements. Parametrized 
 </details>
 
 ```text
-uv run python modules/19_testing_and_evaluation/examples/02_test_durable_execution.py
+uv run --no-sync python modules/19_testing_and_evaluation/examples/02_test_durable_execution.py
 ```
 
 **Predict, then run:** for {"approved": false, "groups": [["receipt"], ["estimate", "receipt"], ["policy"]]}, write the resulting fields and any expected error. Then test the boundary cases in tests/test_durable_execution.json.
@@ -192,7 +196,7 @@ Durable tests assert the state before a pause, the pending node, and the resumed
 </details>
 
 ```text
-uv run python modules/19_testing_and_evaluation/examples/03_trajectory_evals.py
+uv run --no-sync python modules/19_testing_and_evaluation/examples/03_trajectory_evals.py
 ```
 
 **Predict, then run:** for {"tools": ["lookup_policy", "check_coverage"], "mode": "strict", "policy_id": "POL-0001"}, write the resulting fields and any expected error. Then test the boundary cases in tests/trajectory_evals.json.
@@ -244,32 +248,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"rows": [{"amount": 100000, "expected": "standard", "rule": "fast_track", "graph": "fast_track"}, {"amount": 100001, "expected": "standard", "rule": "standard", "graph": "standard"}, {"amount": 500001, "expect`. Specify the inclusive fast-track boundary in the test oracle. | Restore `amount <= 100000` and check the boundary cases. | [19-01](../../gym/tasks/19/19-01_test_graph_behavior_build/task.md) · [Related Fix 19-02](../../gym/tasks/19/19-02_test_graph_behavior_fix/task.md) |
-| Observed `{"value": {"rows": [{"amount": 100000, "expected": "fast_track", "rule": "fast_track", "graph": "fast_track"}, {"amount": 100001, "expected": "standard", "rule": "standard", "graph": "standard"}, {"amount": 500001, "expe`. Include boolean cents in invalid-input coverage. | Restore `type(amount) is not int` and check the boundary cases. | [19-02](../../gym/tasks/19/19-02_test_graph_behavior_fix/task.md) |
-| Observed `{"value": {"paused": true, "pending_before": ["approve_claim"], "pending_after": [], "approved": true, "associative": true, "merged": ["estimate", "policy", "receipt"]}}`. Test rejection as well as approval on resume. | Restore `"approved": case["approved"]` and check the boundary cases. | [19-07](../../gym/tasks/19/19-07_test_durable_execution_build/task.md) · [Related Fix 19-08](../../gym/tasks/19/19-08_test_durable_execution_fix/task.md) |
-| Observed `{"value": {"paused": true, "pending_before": [], "pending_after": [], "approved": false, "associative": true, "merged": ["estimate", "policy", "receipt"]}}`. Capture the pre-resume pending state before it changes. | Restore `"pending_before": list(before.next)` and check the boundary cases. | [19-08](../../gym/tasks/19/19-08_test_durable_execution_fix/task.md) |
-| Observed `{"value": {"score": true, "key": "trajectory_unordered_match"}}`. Respect strict ordering when the evaluation contract requests it. | Restore `trajectory_match_mode=case["mode"]` and check the boundary cases. | [19-13](../../gym/tasks/19/19-13_trajectory_evals_build/task.md) · [Related Fix 19-14](../../gym/tasks/19/19-14_trajectory_evals_fix/task.md) |
-| Observed `{"value": {"score": true, "key": "trajectory_strict_match"}}`. Check the policy arguments, not only tool names. | Restore `tool_args_match_mode="exact"` and check the boundary cases. | [19-14](../../gym/tasks/19/19-14_trajectory_evals_fix/task.md) |
+| Observed `{"value": {"rows": [{"amount": 100000, "expected": "standard", "rule": "fast_track", "graph": "fast_track"}, {"amount": 100001, "expected": "standard", "rule": "standard", "graph": "standard"}, {"amount": 500001, "expect`. Specify the inclusive fast-track boundary in the test oracle. | Restore `amount <= 100000` and check the boundary cases. | [19-01](../../gym/tasks/19/19-01_test_graph_behavior_build/task.md) · Related Fix: [19-02](../../gym/tasks/19/19-02_test_graph_behavior_fix/task.md) |
+| Observed `{"value": {"rows": [{"amount": 100000, "expected": "fast_track", "rule": "fast_track", "graph": "fast_track"}, {"amount": 100001, "expected": "standard", "rule": "standard", "graph": "standard"}, {"amount": 500001, "expe`. Include boolean cents in invalid-input coverage. | Restore `type(amount) is not int` and check the boundary cases. | [19-02](../../gym/tasks/19/19-02_test_graph_behavior_fix/task.md) · Related Fix: [19-02](../../gym/tasks/19/19-02_test_graph_behavior_fix/task.md) |
+| Observed `{"value": {"paused": true, "pending_before": ["approve_claim"], "pending_after": [], "approved": true, "associative": true, "merged": ["estimate", "policy", "receipt"]}}`. Test rejection as well as approval on resume. | Restore `"approved": case["approved"]` and check the boundary cases. | [19-07](../../gym/tasks/19/19-07_test_durable_execution_build/task.md) · Related Fix: [19-08](../../gym/tasks/19/19-08_test_durable_execution_fix/task.md) |
+| Observed `{"value": {"paused": true, "pending_before": [], "pending_after": [], "approved": false, "associative": true, "merged": ["estimate", "policy", "receipt"]}}`. Capture the pre-resume pending state before it changes. | Restore `"pending_before": list(before.next)` and check the boundary cases. | [19-08](../../gym/tasks/19/19-08_test_durable_execution_fix/task.md) · Related Fix: [19-08](../../gym/tasks/19/19-08_test_durable_execution_fix/task.md) |
+| Observed `{"value": {"score": true, "key": "trajectory_unordered_match"}}`. Respect strict ordering when the evaluation contract requests it. | Restore `trajectory_match_mode=case["mode"]` and check the boundary cases. | [19-13](../../gym/tasks/19/19-13_trajectory_evals_build/task.md) · Related Fix: [19-14](../../gym/tasks/19/19-14_trajectory_evals_fix/task.md) |
+| Observed `{"value": {"score": true, "key": "trajectory_strict_match"}}`. Check the policy arguments, not only tool names. | Restore `tool_args_match_mode="exact"` and check the boundary cases. | [19-14](../../gym/tasks/19/19-14_trajectory_evals_fix/task.md) · Related Fix: [19-14](../../gym/tasks/19/19-14_trajectory_evals_fix/task.md) |
 
 ## Practice
 
 - [19-01 — build, easy](../../gym/tasks/19/19-01_test_graph_behavior_build/task.md): Build test graph behavior: Specify the inclusive fast-track boundary in the test oracle.
 - [19-02 — fix, medium](../../gym/tasks/19/19-02_test_graph_behavior_fix/task.md): Fix test graph behavior: Include boolean cents in invalid-input coverage.
 - [19-03 — predict, easy](../../gym/tasks/19/19-03_test_graph_behavior_predict/task.md): Predict test graph behavior across the declared cases
-- [19-04 — trace, medium](../../gym/tasks/19/19-04_test_graph_behavior_trace/task.md): Trace test graph behavior: Include boolean cents in invalid-input coverage.
-- [19-05 — extend, hard](../../gym/tasks/19/19-05_test_graph_behavior_extend/task.md): Extend test graph behavior: Keep exactly 500000 cents in the standard route.
-- [19-06 — refactor, hard](../../gym/tasks/19/19-06_test_graph_behavior_refactor/task.md): Refactor test graph behavior: Require both implementations to match the independent expected route.
+- [19-04 — trace, medium](../../gym/tasks/19/19-04_test_graph_behavior_trace/task.md): Diagnose test graph behavior from execution evidence
+- [19-05 — extend, hard](../../gym/tasks/19/19-05_test_graph_behavior_extend/task.md): Extend test graph behavior: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [19-06 — refactor, hard](../../gym/tasks/19/19-06_test_graph_behavior_refactor/task.md): Refactor test graph behavior: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [19-07 — build, easy](../../gym/tasks/19/19-07_test_durable_execution_build/task.md): Build test durable execution: Test rejection as well as approval on resume.
 - [19-08 — fix, medium](../../gym/tasks/19/19-08_test_durable_execution_fix/task.md): Fix test durable execution: Capture the pre-resume pending state before it changes.
 - [19-09 — predict, easy](../../gym/tasks/19/19-09_test_durable_execution_predict/task.md): Predict test durable execution across the declared cases
-- [19-10 — trace, medium](../../gym/tasks/19/19-10_test_durable_execution_trace/task.md): Trace test durable execution: Capture the pre-resume pending state before it changes.
-- [19-11 — extend, hard](../../gym/tasks/19/19-11_test_durable_execution_extend/task.md): Extend test durable execution: Include every update group when checking reducer behavior.
-- [19-12 — refactor, hard](../../gym/tasks/19/19-12_test_durable_execution_refactor/task.md): Refactor test durable execution: Read the completed snapshot after resumption.
+- [19-10 — trace, medium](../../gym/tasks/19/19-10_test_durable_execution_trace/task.md): Diagnose test durable execution from execution evidence
+- [19-11 — extend, hard](../../gym/tasks/19/19-11_test_durable_execution_extend/task.md): Extend test durable execution: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [19-12 — refactor, hard](../../gym/tasks/19/19-12_test_durable_execution_refactor/task.md): Refactor test durable execution: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [19-13 — build, easy](../../gym/tasks/19/19-13_trajectory_evals_build/task.md): Build trajectory evals: Respect strict ordering when the evaluation contract requests it.
 - [19-14 — fix, medium](../../gym/tasks/19/19-14_trajectory_evals_fix/task.md): Fix trajectory evals: Check the policy arguments, not only tool names.
 - [19-15 — predict, easy](../../gym/tasks/19/19-15_trajectory_evals_predict/task.md): Predict trajectory evals across the declared cases
-- [19-16 — trace, medium](../../gym/tasks/19/19-16_trajectory_evals_trace/task.md): Trace trajectory evals: Check the policy arguments, not only tool names.
-- [19-17 — extend, hard](../../gym/tasks/19/19-17_trajectory_evals_extend/task.md): Extend trajectory evals: Evaluate the actual requested policy instead of replacing it with the reference.
+- [19-16 — trace, medium](../../gym/tasks/19/19-16_trajectory_evals_trace/task.md): Diagnose trajectory evals from execution evidence
+- [19-17 — extend, hard](../../gym/tasks/19/19-17_trajectory_evals_extend/task.md): Extend trajectory evals: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [19-18 — design, hard](../../gym/tasks/19/19-18_trajectory_evals_design/task.md): Design trajectory evals and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

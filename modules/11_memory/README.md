@@ -12,6 +12,10 @@ Complete [Prebuilt agents and when to drop down a level](../10_prebuilt_agents/R
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
+After the deterministic lesson, use [the optional provider lab](../../docs/LIVE_MODEL_LAB.md) to try real extraction, scoped tool calls, and conversation memory with your configured provider. Graded results remain fake and offline.
+
 ## Learning objectives
 
 - Implement and explain Thread checkpoints as short-term memory; context windows; trim_messages; summarization nodes.
@@ -73,7 +77,7 @@ A catalog search locates related folders; shredding a catalog card does not shre
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/11_memory/examples/01_short_term_memory.py
+uv run --no-sync python modules/11_memory/examples/01_short_term_memory.py
 ```
 
 **Predict, then run:** for {"max_messages": 2, "second_text": "An estimate is now attached."}, write the resulting fields and any expected error. Then test the boundary cases in tests/short_term_memory.json.
@@ -99,7 +103,7 @@ Checkpoint history and model context are different collections. Trimming chooses
 </details>
 
 ```text
-uv run python modules/11_memory/examples/02_store_namespaces.py
+uv run --no-sync python modules/11_memory/examples/02_store_namespaces.py
 ```
 
 **Predict, then run:** for {"customer_id": "CUS-0001", "preference": "email"}, write the resulting fields and any expected error. Then test the boundary cases in tests/store_namespaces.json.
@@ -128,7 +132,7 @@ The Store holds cross-thread memories under tuple namespaces. Semantic memory st
 </details>
 
 ```text
-uv run python modules/11_memory/examples/03_semantic_and_privacy.py
+uv run --no-sync python modules/11_memory/examples/03_semantic_and_privacy.py
 ```
 
 **Predict, then run:** for {"query": "water leak", "customer_id": "CUS-0001"}, write the resulting fields and any expected error. Then test the boundary cases in tests/semantic_and_privacy.json.
@@ -194,32 +198,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"saved_messages": 4, "model_context_sizes": [1, 4], "summary": "A pipe burst. &#124; An estimate is now attached."}}`. Bound the messages sent to the model. | Restore `max_tokens=max_messages` and check the boundary cases. | [11-01](../../gym/tasks/11/11-01_short_term_memory_build/task.md) · [Related Fix 11-02](../../gym/tasks/11/11-02_short_term_memory_fix/task.md) |
-| Observed `{"value": {"saved_messages": 3, "model_context_sizes": [1, 1], "summary": "An estimate is now attached."}}`. Use a new message ID for a new turn instead of overwriting the previous turn. | Restore `id="human-2"` and check the boundary cases. | [11-02](../../gym/tasks/11/11-02_short_term_memory_fix/task.md) |
-| Observed `{"error": "AttributeError"}`. Store each customer's facts in a distinct namespace. | Restore `runtime.context.customer_id, "semantic"` and check the boundary cases. | [11-07](../../gym/tasks/11/11-07_store_namespaces_build/task.md) · [Related Fix 11-08](../../gym/tasks/11/11-08_store_namespaces_fix/task.md) |
-| Observed `{"value": {"found": [{"preference": "email"}], "deleted": false, "other": {"preference": "phone"}}}`. Delete the actual memory key. | Restore `store.delete(namespace, "contact")` and check the boundary cases. | [11-08](../../gym/tasks/11/11-08_store_namespaces_fix/task.md) |
-| Observed `{"value": {"ranking": ["private", "water"], "remaining": ["theft"], "other_customer_visible": true, "checkpoint_retains_fact_after_store_delete": true, "checkpoint_deleted_separately": true}}`. Scope semantic search to the authenticated customer. | Restore `store.search(namespace, query=case["query"], limit=2)` and check the boundary cases. | [11-13](../../gym/tasks/11/11-13_semantic_and_privacy_build/task.md) · [Related Fix 11-14](../../gym/tasks/11/11-14_semantic_and_privacy_fix/task.md) |
-| Observed `{"value": {"ranking": ["water", "theft"], "remaining": ["theft"], "other_customer_visible": false, "checkpoint_retains_fact_after_store_delete": true, "checkpoint_deleted_separately": false}}`. Delete checkpoint history separately from Store records. | Restore `saver.delete_thread("retention-demo")` and check the boundary cases. | [11-14](../../gym/tasks/11/11-14_semantic_and_privacy_fix/task.md) |
+| Observed `{"value": {"saved_messages": 4, "model_context_sizes": [1, 4], "summary": "A pipe burst. &#124; An estimate is now attached."}}`. Bound the messages sent to the model. | Restore `max_tokens=max_messages` and check the boundary cases. | [11-01](../../gym/tasks/11/11-01_short_term_memory_build/task.md) · Related Fix: [11-02](../../gym/tasks/11/11-02_short_term_memory_fix/task.md) |
+| Observed `{"value": {"saved_messages": 3, "model_context_sizes": [1, 1], "summary": "An estimate is now attached."}}`. Use a new message ID for a new turn instead of overwriting the previous turn. | Restore `id="human-2"` and check the boundary cases. | [11-02](../../gym/tasks/11/11-02_short_term_memory_fix/task.md) · Related Fix: [11-02](../../gym/tasks/11/11-02_short_term_memory_fix/task.md) |
+| Observed `{"error": "AttributeError"}`. Store each customer's facts in a distinct namespace. | Restore `runtime.context.customer_id, "semantic"` and check the boundary cases. | [11-07](../../gym/tasks/11/11-07_store_namespaces_build/task.md) · Related Fix: [11-08](../../gym/tasks/11/11-08_store_namespaces_fix/task.md) |
+| Observed `{"value": {"found": [{"preference": "email"}], "deleted": false, "other": {"preference": "phone"}}}`. Delete the actual memory key. | Restore `store.delete(namespace, "contact")` and check the boundary cases. | [11-08](../../gym/tasks/11/11-08_store_namespaces_fix/task.md) · Related Fix: [11-08](../../gym/tasks/11/11-08_store_namespaces_fix/task.md) |
+| Observed `{"value": {"ranking": ["private", "water"], "remaining": ["theft"], "other_customer_visible": true, "checkpoint_retains_fact_after_store_delete": true, "checkpoint_deleted_separately": true}}`. Scope semantic search to the authenticated customer. | Restore `store.search(namespace, query=case["query"], limit=2)` and check the boundary cases. | [11-13](../../gym/tasks/11/11-13_semantic_and_privacy_build/task.md) · Related Fix: [11-14](../../gym/tasks/11/11-14_semantic_and_privacy_fix/task.md) |
+| Observed `{"value": {"ranking": ["water", "theft"], "remaining": ["theft"], "other_customer_visible": false, "checkpoint_retains_fact_after_store_delete": true, "checkpoint_deleted_separately": false}}`. Delete checkpoint history separately from Store records. | Restore `saver.delete_thread("retention-demo")` and check the boundary cases. | [11-14](../../gym/tasks/11/11-14_semantic_and_privacy_fix/task.md) · Related Fix: [11-14](../../gym/tasks/11/11-14_semantic_and_privacy_fix/task.md) |
 
 ## Practice
 
 - [11-01 — build, easy](../../gym/tasks/11/11-01_short_term_memory_build/task.md): Build short term memory: Bound the messages sent to the model.
 - [11-02 — fix, medium](../../gym/tasks/11/11-02_short_term_memory_fix/task.md): Fix short term memory: Use a new message ID for a new turn instead of overwriting the previous turn.
 - [11-03 — predict, easy](../../gym/tasks/11/11-03_short_term_memory_predict/task.md): Predict short term memory across the declared cases
-- [11-04 — trace, medium](../../gym/tasks/11/11-04_short_term_memory_trace/task.md): Trace short term memory: Use a new message ID for a new turn instead of overwriting the previous turn.
-- [11-05 — extend, hard](../../gym/tasks/11/11-05_short_term_memory_extend/task.md): Extend short term memory: Include newly supplied evidence in the summary.
-- [11-06 — refactor, hard](../../gym/tasks/11/11-06_short_term_memory_refactor/task.md): Refactor short term memory: Retain the summarization step after responding.
+- [11-04 — trace, medium](../../gym/tasks/11/11-04_short_term_memory_trace/task.md): Diagnose short term memory from execution evidence
+- [11-05 — extend, hard](../../gym/tasks/11/11-05_short_term_memory_extend/task.md): Extend short term memory: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [11-06 — refactor, hard](../../gym/tasks/11/11-06_short_term_memory_refactor/task.md): Refactor short term memory: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [11-07 — build, easy](../../gym/tasks/11/11-07_store_namespaces_build/task.md): Build store namespaces: Store each customer's facts in a distinct namespace.
 - [11-08 — fix, medium](../../gym/tasks/11/11-08_store_namespaces_fix/task.md): Fix store namespaces: Delete the actual memory key.
 - [11-09 — predict, easy](../../gym/tasks/11/11-09_store_namespaces_predict/task.md): Predict store namespaces across the declared cases
-- [11-10 — trace, medium](../../gym/tasks/11/11-10_store_namespaces_trace/task.md): Trace store namespaces: Delete the actual memory key.
-- [11-11 — extend, hard](../../gym/tasks/11/11-11_store_namespaces_extend/task.md): Extend store namespaces: Remember the supplied contact preference.
-- [11-12 — refactor, hard](../../gym/tasks/11/11-12_store_namespaces_refactor/task.md): Refactor store namespaces: Keep another customer's update outside this customer's namespace.
+- [11-10 — trace, medium](../../gym/tasks/11/11-10_store_namespaces_trace/task.md): Diagnose store namespaces from execution evidence
+- [11-11 — extend, hard](../../gym/tasks/11/11-11_store_namespaces_extend/task.md): Extend store namespaces: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [11-12 — refactor, hard](../../gym/tasks/11/11-12_store_namespaces_refactor/task.md): Refactor store namespaces: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [11-13 — build, easy](../../gym/tasks/11/11-13_semantic_and_privacy_build/task.md): Build semantic and privacy: Scope semantic search to the authenticated customer.
 - [11-14 — fix, medium](../../gym/tasks/11/11-14_semantic_and_privacy_fix/task.md): Fix semantic and privacy: Delete checkpoint history separately from Store records.
 - [11-15 — predict, easy](../../gym/tasks/11/11-15_semantic_and_privacy_predict/task.md): Predict semantic and privacy across the declared cases
-- [11-16 — trace, medium](../../gym/tasks/11/11-16_semantic_and_privacy_trace/task.md): Trace semantic and privacy: Delete checkpoint history separately from Store records.
-- [11-17 — extend, hard](../../gym/tasks/11/11-17_semantic_and_privacy_extend/task.md): Extend semantic and privacy: Delete the requested memory while preserving unrelated evidence.
+- [11-16 — trace, medium](../../gym/tasks/11/11-16_semantic_and_privacy_trace/task.md): Diagnose semantic and privacy from execution evidence
+- [11-17 — extend, hard](../../gym/tasks/11/11-17_semantic_and_privacy_extend/task.md): Extend semantic and privacy: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [11-18 — design, hard](../../gym/tasks/11/11-18_semantic_and_privacy_design/task.md): Design semantic and privacy and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

@@ -1,4 +1,4 @@
-"""Refactor mini reducers: Report conformance only when both observed contracts match.. Run this file with Python. No live model or network."""
+"""Refactor mini reducers: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -20,8 +20,15 @@ class Overwrite(TypedDict):
     findings: list[str]
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     mini = MiniGraph(
         {
             "policy": lambda state, resume: {"findings": ["policy"]},

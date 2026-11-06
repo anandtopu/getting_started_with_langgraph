@@ -24,7 +24,7 @@ def build_fraud_graph():
         flags = list(claim.get("fraud_indicators", []))
         if not claim.get("documents"):
             flags.append("missing_evidence")
-        if claim["amount_cents"] > 500000:
+        if type(claim.get("amount_cents")) is int and claim["amount_cents"] > 500000:
             flags.append("high_value")
         return {"risk_flags": sorted(set(flags))}
 

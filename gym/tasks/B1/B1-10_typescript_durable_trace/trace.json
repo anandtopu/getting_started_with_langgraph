@@ -1,0 +1,28 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "documents": [
+          "estimate",
+          "receipt"
+        ],
+        "approved": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "error": "TypeScriptError"
+      }
+    },
+    {
+      "input": {
+        "documents": [],
+        "approved": true
+      },
+      "node_updates": [],
+      "observed_result": {
+        "error": "TypeScriptError"
+      }
+    }
+  ]
+}

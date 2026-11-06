@@ -12,6 +12,8 @@ Complete [LangGraph.js](../B1_langgraph_js/README.md). Read dictionary keys, fun
 
 Optional installation requirements are listed in [the setup guide](../../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain create_deep_agent; explicit TodoListMiddleware; planning tools; task progress; current defaults.
@@ -24,7 +26,25 @@ Plan a larger claim investigation using explicit planning and bounded subagents.
 
 ## How it works
 
-Generated from the actual planning agent before invocation.
+### Deep Agent Planning
+
+create_deep_agent supplies an agent harness, but current defaults should be inspected rather than remembered from older tutorials. This pinned release uses explicit TodoListMiddleware for planning. The write_todos tool updates declared task state; marking an item completed is not evidence that the underlying investigation actually happened.
+
+A visible investigation checklist helps organize work, but checked boxes still need supporting records.
+
+### Virtual Filesystem
+
+StateBackend stores a virtual filesystem in graph state instead of writing host files. Typed FilesystemPermission rules restrict writes to the claim directory, and checkpoints retain the resulting artifact. Tool success is checked separately from the final model sentence: a scripted acknowledgment cannot prove a denied write happened.
+
+A virtual filing tray is part of the case record, not unrestricted access to the building's cabinets.
+
+### Deep Subagents
+
+A deep-agent specialist has an explicit name, scoped tools, and isolated context. Delegation itself is gated by human approval and the parent has a model-call budget. The specialist receives a narrow policy question rather than the whole customer file. A rejected delegation must not execute the specialist task.
+
+The lead adjuster needs approval to commission a specialist and sends only the relevant question.
+
+The checked-in diagram was generated from the executable lesson or cumulative Copilot graph. Edges describe possible work; inspect the runtime trace to see what ran.
 
 ```mermaid
 ---
@@ -54,24 +74,6 @@ graph TD;
 
 ```
 
-### Deep Agent Planning
-
-create_deep_agent supplies an agent harness, but current defaults should be inspected rather than remembered from older tutorials. This pinned release uses explicit TodoListMiddleware for planning. The write_todos tool updates declared task state; marking an item completed is not evidence that the underlying investigation actually happened.
-
-A visible investigation checklist helps organize work, but checked boxes still need supporting records.
-
-### Virtual Filesystem
-
-StateBackend stores a virtual filesystem in graph state instead of writing host files. Typed FilesystemPermission rules restrict writes to the claim directory, and checkpoints retain the resulting artifact. Tool success is checked separately from the final model sentence: a scripted acknowledgment cannot prove a denied write happened.
-
-A virtual filing tray is part of the case record, not unrestricted access to the building's cabinets.
-
-### Deep Subagents
-
-A deep-agent specialist has an explicit name, scoped tools, and isolated context. Delegation itself is gated by human approval and the parent has a model-call budget. The specialist receives a narrow policy question rather than the whole customer file. A rejected delegation must not execute the specialist task.
-
-The lead adjuster needs approval to commission a specialist and sends only the relevant question.
-
 ## Key APIs at a glance
 
 | API / executable example | What it does | When to use it |
@@ -85,7 +87,7 @@ The lead adjuster needs approval to commission a specialist and sends only the r
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/bonus/B2_deep_agents/examples/01_deep_agent_planning.py
+uv run --no-sync python modules/bonus/B2_deep_agents/examples/01_deep_agent_planning.py
 ```
 
 **Predict, then run:** for {"first_status": "in_progress", "include_planning": true}, write the resulting fields and any expected error. Then test the boundary cases in tests/deep_agent_planning.json.
@@ -119,7 +121,7 @@ create_deep_agent supplies an agent harness, but current defaults should be insp
 </details>
 
 ```text
-uv run python modules/bonus/B2_deep_agents/examples/02_virtual_filesystem.py
+uv run --no-sync python modules/bonus/B2_deep_agents/examples/02_virtual_filesystem.py
 ```
 
 **Predict, then run:** for {"path": "/claims/review.txt", "content": "Synthetic estimate requires review."}, write the resulting fields and any expected error. Then test the boundary cases in tests/virtual_filesystem.json.
@@ -148,7 +150,7 @@ StateBackend stores a virtual filesystem in graph state instead of writing host 
 </details>
 
 ```text
-uv run python modules/bonus/B2_deep_agents/examples/03_deep_subagents.py
+uv run --no-sync python modules/bonus/B2_deep_agents/examples/03_deep_subagents.py
 ```
 
 **Predict, then run:** for {"decision": "approve", "specialist": "policy_expert"}, write the resulting fields and any expected error. Then test the boundary cases in tests/deep_subagents.json.
@@ -204,32 +206,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"error": "ValueError"}`. Install the explicit planning middleware when requested. | Restore `[TodoListMiddleware()] if case["include_planning"] else []` and check the boundary cases. | [B2-01](../../../gym/tasks/B2/B2-01_deep_agent_planning_build/task.md) · [Related Fix B2-02](../../../gym/tasks/B2/B2-02_deep_agent_planning_fix/task.md) |
-| Observed `{"value": {"todos": [{"content": "Read the policy deductible", "status": "completed"}, {"content": "Review the contractor estimate", "status": "pending"}], "tool_statuses": ["success"], "final": "The policy and document `. Keep task progress consistent with the supplied status. | Restore `"status": case["first_status"]` and check the boundary cases. | [B2-02](../../../gym/tasks/B2/B2-02_deep_agent_planning_fix/task.md) |
-| Observed `{"value": {"paths": [], "contents": {}, "tool_statuses": ["error"]}}`. Allow the explicitly scoped claim artifact path. | Restore `paths=["/claims/**"], mode="allow"` and check the boundary cases. | [B2-07](../../../gym/tasks/B2/B2-07_virtual_filesystem_build/task.md) · [Related Fix B2-08](../../../gym/tasks/B2/B2-08_virtual_filesystem_fix/task.md) |
-| Observed `{"value": {"paths": ["/claims/review.txt"], "contents": {"/claims/review.txt": "Synthetic estimate requires review."}, "tool_statuses": ["success"]}}`. Deny writes outside the permitted virtual directory. | Restore `paths=["/**"], mode="deny"` and check the boundary cases. | [B2-08](../../../gym/tasks/B2/B2-08_virtual_filesystem_fix/task.md) |
-| Observed `{"value": {"paused": 1, "tool_results": ["We cannot invoke subagent missing_specialist because it does not exist, the only allowed types are `general-purpose`, `policy_expert`"], "final": "The delegation request is compl`. Delegate to the explicitly registered specialist. | Restore `"subagent_type": case["specialist"]` and check the boundary cases. | [B2-13](../../../gym/tasks/B2/B2-13_deep_subagents_build/task.md) · [Related Fix B2-14](../../../gym/tasks/B2/B2-14_deep_subagents_fix/task.md) |
-| Observed `{"value": {"paused": 1, "tool_results": ["The synthetic deductible is 100000 cents."], "final": "The delegation request is complete."}}`. Preserve a human rejection of delegation. | Restore `decision = {"type": case["decision"]}` and check the boundary cases. | [B2-14](../../../gym/tasks/B2/B2-14_deep_subagents_fix/task.md) |
+| Observed `{"error": "ValueError"}`. Install the explicit planning middleware when requested. | Restore `[TodoListMiddleware()] if case["include_planning"] else []` and check the boundary cases. | [B2-01](../../../gym/tasks/B2/B2-01_deep_agent_planning_build/task.md) · Related Fix: [B2-02](../../../gym/tasks/B2/B2-02_deep_agent_planning_fix/task.md) |
+| Observed `{"value": {"todos": [{"content": "Read the policy deductible", "status": "completed"}, {"content": "Review the contractor estimate", "status": "pending"}], "tool_statuses": ["success"], "final": "The policy and document `. Keep task progress consistent with the supplied status. | Restore `"status": case["first_status"]` and check the boundary cases. | [B2-02](../../../gym/tasks/B2/B2-02_deep_agent_planning_fix/task.md) · Related Fix: [B2-02](../../../gym/tasks/B2/B2-02_deep_agent_planning_fix/task.md) |
+| Observed `{"value": {"paths": [], "contents": {}, "tool_statuses": ["error"]}}`. Allow the explicitly scoped claim artifact path. | Restore `paths=["/claims/**"], mode="allow"` and check the boundary cases. | [B2-07](../../../gym/tasks/B2/B2-07_virtual_filesystem_build/task.md) · Related Fix: [B2-08](../../../gym/tasks/B2/B2-08_virtual_filesystem_fix/task.md) |
+| Observed `{"value": {"paths": ["/claims/review.txt"], "contents": {"/claims/review.txt": "Synthetic estimate requires review."}, "tool_statuses": ["success"]}}`. Deny writes outside the permitted virtual directory. | Restore `paths=["/**"], mode="deny"` and check the boundary cases. | [B2-08](../../../gym/tasks/B2/B2-08_virtual_filesystem_fix/task.md) · Related Fix: [B2-08](../../../gym/tasks/B2/B2-08_virtual_filesystem_fix/task.md) |
+| Observed `{"value": {"paused": 1, "tool_results": ["We cannot invoke subagent missing_specialist because it does not exist, the only allowed types are `general-purpose`, `policy_expert`"], "final": "The delegation request is compl`. Delegate to the explicitly registered specialist. | Restore `"subagent_type": case["specialist"]` and check the boundary cases. | [B2-13](../../../gym/tasks/B2/B2-13_deep_subagents_build/task.md) · Related Fix: [B2-14](../../../gym/tasks/B2/B2-14_deep_subagents_fix/task.md) |
+| Observed `{"value": {"paused": 1, "tool_results": ["The synthetic deductible is 100000 cents."], "final": "The delegation request is complete."}}`. Preserve a human rejection of delegation. | Restore `decision = {"type": case["decision"]}` and check the boundary cases. | [B2-14](../../../gym/tasks/B2/B2-14_deep_subagents_fix/task.md) · Related Fix: [B2-14](../../../gym/tasks/B2/B2-14_deep_subagents_fix/task.md) |
 
 ## Practice
 
 - [B2-01 — build, easy](../../../gym/tasks/B2/B2-01_deep_agent_planning_build/task.md): Build deep agent planning: Install the explicit planning middleware when requested.
 - [B2-02 — fix, medium](../../../gym/tasks/B2/B2-02_deep_agent_planning_fix/task.md): Fix deep agent planning: Keep task progress consistent with the supplied status.
 - [B2-03 — predict, easy](../../../gym/tasks/B2/B2-03_deep_agent_planning_predict/task.md): Predict deep agent planning across the declared cases
-- [B2-04 — trace, medium](../../../gym/tasks/B2/B2-04_deep_agent_planning_trace/task.md): Trace deep agent planning: Keep task progress consistent with the supplied status.
-- [B2-05 — extend, hard](../../../gym/tasks/B2/B2-05_deep_agent_planning_extend/task.md): Extend deep agent planning: Do not mark unstarted document review as completed.
-- [B2-06 — refactor, hard](../../../gym/tasks/B2/B2-06_deep_agent_planning_refactor/task.md): Refactor deep agent planning: Call the registered planning capability.
+- [B2-04 — trace, medium](../../../gym/tasks/B2/B2-04_deep_agent_planning_trace/task.md): Diagnose deep agent planning from execution evidence
+- [B2-05 — extend, hard](../../../gym/tasks/B2/B2-05_deep_agent_planning_extend/task.md): Extend deep agent planning: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [B2-06 — refactor, hard](../../../gym/tasks/B2/B2-06_deep_agent_planning_refactor/task.md): Refactor deep agent planning: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [B2-07 — build, easy](../../../gym/tasks/B2/B2-07_virtual_filesystem_build/task.md): Build virtual filesystem: Allow the explicitly scoped claim artifact path.
 - [B2-08 — fix, medium](../../../gym/tasks/B2/B2-08_virtual_filesystem_fix/task.md): Fix virtual filesystem: Deny writes outside the permitted virtual directory.
 - [B2-09 — predict, easy](../../../gym/tasks/B2/B2-09_virtual_filesystem_predict/task.md): Predict virtual filesystem across the declared cases
-- [B2-10 — trace, medium](../../../gym/tasks/B2/B2-10_virtual_filesystem_trace/task.md): Trace virtual filesystem: Deny writes outside the permitted virtual directory.
-- [B2-11 — extend, hard](../../../gym/tasks/B2/B2-11_virtual_filesystem_extend/task.md): Extend virtual filesystem: Persist the supplied investigation note without substitution.
-- [B2-12 — refactor, hard](../../../gym/tasks/B2/B2-12_virtual_filesystem_refactor/task.md): Refactor virtual filesystem: Honor and validate the requested virtual artifact path.
+- [B2-10 — trace, medium](../../../gym/tasks/B2/B2-10_virtual_filesystem_trace/task.md): Diagnose virtual filesystem from execution evidence
+- [B2-11 — extend, hard](../../../gym/tasks/B2/B2-11_virtual_filesystem_extend/task.md): Extend virtual filesystem: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [B2-12 — refactor, hard](../../../gym/tasks/B2/B2-12_virtual_filesystem_refactor/task.md): Refactor virtual filesystem: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [B2-13 — build, easy](../../../gym/tasks/B2/B2-13_deep_subagents_build/task.md): Build deep subagents: Delegate to the explicitly registered specialist.
 - [B2-14 — fix, medium](../../../gym/tasks/B2/B2-14_deep_subagents_fix/task.md): Fix deep subagents: Preserve a human rejection of delegation.
 - [B2-15 — predict, easy](../../../gym/tasks/B2/B2-15_deep_subagents_predict/task.md): Predict deep subagents across the declared cases
-- [B2-16 — trace, medium](../../../gym/tasks/B2/B2-16_deep_subagents_trace/task.md): Trace deep subagents: Preserve a human rejection of delegation.
-- [B2-17 — extend, hard](../../../gym/tasks/B2/B2-17_deep_subagents_extend/task.md): Extend deep subagents: Keep the specialist's evidence answer tied to the policy fixture.
+- [B2-16 — trace, medium](../../../gym/tasks/B2/B2-16_deep_subagents_trace/task.md): Diagnose deep subagents from execution evidence
+- [B2-17 — extend, hard](../../../gym/tasks/B2/B2-17_deep_subagents_extend/task.md): Extend deep subagents: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [B2-18 — design, hard](../../../gym/tasks/B2/B2-18_deep_subagents_design/task.md): Design deep subagents and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

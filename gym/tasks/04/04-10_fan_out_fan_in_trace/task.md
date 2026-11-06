@@ -1,4 +1,4 @@
-# 04-10 — Trace fan out fan in: Parallel writes to an overwrite channel conflict.
+# 04-10 — Diagnose fan out fan in from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Send creates one worker invocation per item with its own input. Parallel workers
 
 ## Your task
 
-Parallel writes to an overwrite channel conflict. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose fan out fan in from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -31,6 +31,13 @@ Parallel writes to an overwrite channel conflict. Read trace.py before completin
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Each worker must contribute its own document evidence."
+- "Parallel writes to an overwrite channel conflict."
+- "The deeper police branch must finish before summary."
+- "Do not treat arrival order as the public result order."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

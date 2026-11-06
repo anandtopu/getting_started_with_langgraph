@@ -1,4 +1,4 @@
-"""Trace typed approvals: Respect rejection instead of coercing every decision to approval.. Run this file with Python. No live model or network."""
+"""Diagnose typed approvals from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain.agents.middleware import HumanInTheLoopMiddleware

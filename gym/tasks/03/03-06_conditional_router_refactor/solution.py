@@ -1,4 +1,4 @@
-"""Refactor conditional router: Refactoring must retain the missing-evidence route.. Run this file with Python. No live model or network."""
+"""Refactor conditional router: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -48,8 +48,16 @@ def build_graph():
     return builder.compile()
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    return build_graph().invoke(dict(DEFAULT_CASE if case is None else case), version="v2").value
+    case = prepare_case(case)
+    return build_graph().invoke(dict(case), version="v2").value
 
 
 def main() -> None:

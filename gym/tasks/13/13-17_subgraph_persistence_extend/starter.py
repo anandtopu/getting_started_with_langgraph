@@ -1,4 +1,4 @@
-"""Extend subgraph persistence: Include nested updates when streaming subgraphs.. Run this file with Python. No live model or network."""
+"""Extend subgraph persistence: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -45,7 +45,7 @@ def run(case: dict | None = None) -> dict:
             {"claim_id": case["claim_id"], "checks": 0},
             config,
             stream_mode="updates",
-            subgraphs=False,
+            subgraphs=True,
             version="v2",
         )
     )
@@ -59,6 +59,10 @@ def run(case: dict | None = None) -> dict:
         "approved": result.value["approved"],
         "checks": result.value["checks"],
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

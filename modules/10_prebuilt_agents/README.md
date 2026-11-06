@@ -12,6 +12,10 @@ Complete [Tools and the agent loop](../09_tools_and_agent_loop/README.md). Read 
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
+After the deterministic lesson, use [the optional provider lab](../../docs/LIVE_MODEL_LAB.md) to try real extraction, scoped tool calls, and conversation memory with your configured provider. Graded results remain fake and offline.
+
 ## Learning objectives
 
 - Implement and explain langchain.agents.create_agent; agent state; model and tools wiring; prebuilt versus custom graph.
@@ -96,7 +100,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/10_prebuilt_agents/examples/01_create_agent.py
+uv run --no-sync python modules/10_prebuilt_agents/examples/01_create_agent.py
 ```
 
 **Predict, then run:** for {"policy_id": "POL-0001"}, write the resulting fields and any expected error. Then test the boundary cases in tests/create_agent.json.
@@ -126,7 +130,7 @@ create_agent builds a standard model/tool loop on LangGraph. Start there for ord
 </details>
 
 ```text
-uv run python modules/10_prebuilt_agents/examples/02_middleware.py
+uv run --no-sync python modules/10_prebuilt_agents/examples/02_middleware.py
 ```
 
 **Predict, then run:** for {"model_limit": 3, "tool_limit": 1}, write the resulting fields and any expected error. Then test the boundary cases in tests/middleware.json.
@@ -160,7 +164,7 @@ Middleware hooks surround agent operations. before_model can update declared mid
 </details>
 
 ```text
-uv run python modules/10_prebuilt_agents/examples/03_agent_composition.py
+uv run --no-sync python modules/10_prebuilt_agents/examples/03_agent_composition.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "question": "What evidence is missing?"}, write the resulting fields and any expected error. Then test the boundary cases in tests/agent_composition.json.
@@ -219,33 +223,33 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"roles": ["human", "ai"], "tools": [], "final": ""}}`. Register the requested tool with the prebuilt agent. | Restore `tools=[lookup_policy]` and check the boundary cases. | [10-01](../../gym/tasks/10/10-01_create_agent_build/task.md) · [Related Fix 10-02](../../gym/tasks/10/10-02_create_agent_fix/task.md) |
-| Observed `{"error": "ValueError"}`. Reject unknown policy IDs, not the known fixture. | Restore `if policy_id != "POL-0001":` and check the boundary cases. | [10-02](../../gym/tasks/10/10-02_create_agent_fix/task.md) |
-| Observed `{"value": {"events": ["before_model", "wrap_enter", "wrap_exit", "after_model", "tool", "before_model"], "model_calls": 1, "tool_calls": 1, "final": "Model call limits exceeded: run limit (1/1)"}}`. Allow the configured number of model operations. | Restore `run_limit=model_limit` and check the boundary cases. | [10-07](../../gym/tasks/10/10-07_middleware_build/task.md) · [Related Fix 10-08](../../gym/tasks/10/10-08_middleware_fix/task.md) |
-| Observed `{"value": {"events": ["before_model", "wrap_enter", "wrap_exit", "after_model", "tool", "before_model", "wrap_enter", "wrap_exit", "after_model"], "model_calls": 2, "tool_calls": 1, "final": "Policy fact checked."}}`. Enforce the independent tool budget. | Restore `run_limit=tool_limit` and check the boundary cases. | [10-08](../../gym/tasks/10/10-08_middleware_fix/task.md) |
-| Observed `{"value": {"fields": ["claim_id", "question", "status"], "claim_id": "CLM-0001", "question": "What evidence is missing?", "status": "awaiting_evidence"}}`. Map the specialist answer into the parent explanation field. | Restore `return {"explanation": result.value["messages"][-1].content}` and check the boundary cases. | [10-13](../../gym/tasks/10/10-13_agent_composition_build/task.md) · [Related Fix 10-14](../../gym/tasks/10/10-14_agent_composition_fix/task.md) |
-| Observed `{"value": {"fields": ["claim_id", "explanation", "question", "status"], "claim_id": "CLM-0001", "question": "What evidence is missing?", "explanation": "Please attach a dated repair estimate.", "status": "approved"}}`. Do not turn an explanation into payment approval. | Restore `"awaiting_evidence"` and check the boundary cases. | [10-14](../../gym/tasks/10/10-14_agent_composition_fix/task.md) |
+| Observed `{"value": {"roles": ["human", "ai"], "tools": [], "final": ""}}`. Register the requested tool with the prebuilt agent. | Restore `tools=[lookup_policy]` and check the boundary cases. | [10-01](../../gym/tasks/10/10-01_create_agent_build/task.md) · Related Fix: [10-02](../../gym/tasks/10/10-02_create_agent_fix/task.md) |
+| Observed `{"error": "ValueError"}`. Reject unknown policy IDs, not the known fixture. | Restore `if policy_id != "POL-0001":` and check the boundary cases. | [10-02](../../gym/tasks/10/10-02_create_agent_fix/task.md) · Related Fix: [10-02](../../gym/tasks/10/10-02_create_agent_fix/task.md) |
+| Observed `{"value": {"events": ["before_model", "wrap_enter", "wrap_exit", "after_model", "tool", "before_model"], "model_calls": 1, "tool_calls": 1, "final": "Model call limits exceeded: run limit (1/1)"}}`. Allow the configured number of model operations. | Restore `run_limit=model_limit` and check the boundary cases. | [10-07](../../gym/tasks/10/10-07_middleware_build/task.md) · Related Fix: [10-08](../../gym/tasks/10/10-08_middleware_fix/task.md) |
+| Observed `{"value": {"events": ["before_model", "wrap_enter", "wrap_exit", "after_model", "tool", "before_model", "wrap_enter", "wrap_exit", "after_model"], "model_calls": 2, "tool_calls": 1, "final": "Policy fact checked."}}`. Enforce the independent tool budget. | Restore `run_limit=tool_limit` and check the boundary cases. | [10-08](../../gym/tasks/10/10-08_middleware_fix/task.md) · Related Fix: [10-08](../../gym/tasks/10/10-08_middleware_fix/task.md) |
+| Observed `{"value": {"fields": ["claim_id", "question", "status"], "claim_id": "CLM-0001", "question": "What evidence is missing?", "status": "awaiting_evidence"}}`. Map the specialist answer into the parent explanation field. | Restore `return {"explanation": result.value["messages"][-1].content}` and check the boundary cases. | [10-13](../../gym/tasks/10/10-13_agent_composition_build/task.md) · Related Fix: [10-14](../../gym/tasks/10/10-14_agent_composition_fix/task.md) |
+| Observed `{"value": {"fields": ["claim_id", "explanation", "question", "status"], "claim_id": "CLM-0001", "question": "What evidence is missing?", "explanation": "Please attach a dated repair estimate.", "status": "approved"}}`. Do not turn an explanation into payment approval. | Restore `"awaiting_evidence"` and check the boundary cases. | [10-14](../../gym/tasks/10/10-14_agent_composition_fix/task.md) · Related Fix: [10-14](../../gym/tasks/10/10-14_agent_composition_fix/task.md) |
 
 ## Practice
 
 - [10-01 — build, easy](../../gym/tasks/10/10-01_create_agent_build/task.md): Build create agent: Register the requested tool with the prebuilt agent.
 - [10-02 — fix, medium](../../gym/tasks/10/10-02_create_agent_fix/task.md): Fix create agent: Reject unknown policy IDs, not the known fixture.
 - [10-03 — predict, easy](../../gym/tasks/10/10-03_create_agent_predict/task.md): Predict create agent across the declared cases
-- [10-04 — trace, medium](../../gym/tasks/10/10-04_create_agent_trace/task.md): Trace create agent: Reject unknown policy IDs, not the known fixture.
-- [10-05 — extend, hard](../../gym/tasks/10/10-05_create_agent_extend/task.md): Extend create agent: Pass through the requested policy instead of silently substituting another.
-- [10-06 — refactor, hard](../../gym/tasks/10/10-06_create_agent_refactor/task.md): Refactor create agent: Expose the final agent answer rather than the original question.
+- [10-04 — trace, medium](../../gym/tasks/10/10-04_create_agent_trace/task.md): Diagnose create agent from execution evidence
+- [10-05 — extend, hard](../../gym/tasks/10/10-05_create_agent_extend/task.md): Extend create agent: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [10-06 — refactor, hard](../../gym/tasks/10/10-06_create_agent_refactor/task.md): Refactor create agent: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [10-07 — build, easy](../../gym/tasks/10/10-07_middleware_build/task.md): Build middleware: Allow the configured number of model operations.
 - [10-08 — fix, medium](../../gym/tasks/10/10-08_middleware_fix/task.md): Fix middleware: Enforce the independent tool budget.
 - [10-09 — predict, easy](../../gym/tasks/10/10-09_middleware_predict/task.md): Predict middleware across the declared cases
-- [10-10 — trace, medium](../../gym/tasks/10/10-10_middleware_trace/task.md): Trace middleware: Enforce the independent tool budget.
-- [10-11 — extend, hard](../../gym/tasks/10/10-11_middleware_extend/task.md): Extend middleware: Distinguish the after hook from the before hook in lifecycle records.
+- [10-10 — trace, medium](../../gym/tasks/10/10-10_middleware_trace/task.md): Diagnose middleware from execution evidence
+- [10-11 — extend, hard](../../gym/tasks/10/10-11_middleware_extend/task.md): Extend middleware: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [10-12 — design, hard](../../gym/tasks/10/10-12_middleware_design/task.md): Design middleware and justify the boundary policies
 - [10-13 — build, easy](../../gym/tasks/10/10-13_agent_composition_build/task.md): Build agent composition: Map the specialist answer into the parent explanation field.
 - [10-14 — fix, medium](../../gym/tasks/10/10-14_agent_composition_fix/task.md): Fix agent composition: Do not turn an explanation into payment approval.
 - [10-15 — predict, easy](../../gym/tasks/10/10-15_agent_composition_predict/task.md): Predict agent composition across the declared cases
-- [10-16 — trace, medium](../../gym/tasks/10/10-16_agent_composition_trace/task.md): Trace agent composition: Do not turn an explanation into payment approval.
-- [10-17 — extend, hard](../../gym/tasks/10/10-17_agent_composition_extend/task.md): Extend agent composition: Select the specialist answer rather than its input question.
-- [10-18 — refactor, hard](../../gym/tasks/10/10-18_agent_composition_refactor/task.md): Refactor agent composition: Preserve the parent finalization step when refactoring the adapter.
+- [10-16 — trace, medium](../../gym/tasks/10/10-16_agent_composition_trace/task.md): Diagnose agent composition from execution evidence
+- [10-17 — extend, hard](../../gym/tasks/10/10-17_agent_composition_extend/task.md): Extend agent composition: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [10-18 — refactor, hard](../../gym/tasks/10/10-18_agent_composition_refactor/task.md): Refactor agent composition: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.
 

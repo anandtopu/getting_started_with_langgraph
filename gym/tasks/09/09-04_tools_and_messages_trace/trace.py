@@ -1,4 +1,4 @@
-"""Trace tools and messages: Return a correlated tool error for an unknown policy.. Run this file with Python. No live model or network."""
+"""Diagnose tools and messages from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage
 from langchain_core.tools import tool

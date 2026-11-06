@@ -1,4 +1,3 @@
-// YOUR CODE HERE: repair the task contract.
 /** Send, SQLite checkpoints, interrupts, and JavaScript streams. No LLM.
  * Run: node modules/bonus/B1_langgraph_js/examples/02_typescript_durable.ts
  * Expected: parallel findings, a saved approval pause, and an explicit human decision.
@@ -10,7 +9,7 @@ import { z } from "zod";
 export const DEFAULT_CASE = { documents: ["estimate", "receipt"], approved: false };
 const State = new StateSchema({
   documents: z.array(z.string()), document: z.string().default(""),
-  findings: new ReducedValue(z.array(z.string()).default([]), { reducer: (old, update) => update }),
+  findings: new ReducedValue(z.array(z.string()).default([]), { reducer: (old, update) => old.concat(update) }),
   approved: z.boolean().default(false),
 });
 

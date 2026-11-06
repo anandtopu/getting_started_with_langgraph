@@ -1,0 +1,36 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "policy_id": "POL-0001",
+        "recursion_limit": 12
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "roles": [
+            "human",
+            "ai",
+            "tool",
+            "ai"
+          ],
+          "tool_results": [
+            "100000 cents"
+          ],
+          "final": "Use the tool result as evidence; this is not payment approval."
+        }
+      }
+    },
+    {
+      "input": {
+        "policy_id": "MISSING",
+        "recursion_limit": 12
+      },
+      "node_updates": [],
+      "observed_result": {
+        "error": "ValueError"
+      }
+    }
+  ]
+}

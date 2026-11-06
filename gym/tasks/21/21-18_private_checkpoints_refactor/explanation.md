@@ -1,9 +1,9 @@
-# Why the solution works
+# Why the refactor works
 
 EncryptedSerializer encrypts serialized checkpoint payloads using an externally supplied key. The example creates an ephemeral key and never returns it. Minimize PII before storage; encryption does not hide every database field or replace access control, key rotation, and retention. A wrong key fails authentication, and deleting a thread is separate from deleting Store memories and backups.
 
-Check exact restoration after successful authenticated decryption. The implementation preserves the claim identity and separates the tested concern from unrelated state. The cases include normal and boundary inputs, so replacing the result with a single constant is not a general repair.
+Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
-The deliberate fault changes 'restored["note"] == case["note"]' to 'restored["note"] != case["note"]'. Follow the data affected by that operation before inspecting later nodes. For predictions, distinguish returned values from error types. For traces, the observed failure is evidence of the first broken contract, not proof that the framework is unreliable.
+The starter is a working behavioral baseline. The reference changes its design, then runs the same case fixtures and a separate structural check. Inspect both test groups: matching one happy-path output does not prove equivalence. Preserve rejection/error behavior and input ownership as well as successful results.
 
-Run the task tests against your selected workspace file. Viewing this reference is assisted study; a written Design rationale still requires the rubric.
+Run the selected workspace file through gym check. Viewing the reference is recorded as assisted study.

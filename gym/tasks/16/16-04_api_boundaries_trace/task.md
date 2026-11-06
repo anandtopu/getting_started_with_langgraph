@@ -1,4 +1,4 @@
-# 16-04 — Trace api boundaries: Honor the bounded retry allowance after a lost acknowledgment.
+# 16-04 — Diagnose api boundaries from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ async def creates a coroutine; await lets other work proceed while a request wai
 
 ## Your task
 
-Honor the bounded retry allowance after a lost acknowledgment. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose api boundaries from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Honor the bounded retry allowance after a lost acknowledgment. Read trace.py bef
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Reuse the same idempotency key across a retry."
+- "Honor the bounded retry allowance after a lost acknowledgment."
+- "Raise only when the transient retry budget is exhausted."
+- "Return the actual service acknowledgment after a successful attempt."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

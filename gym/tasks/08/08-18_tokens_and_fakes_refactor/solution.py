@@ -1,4 +1,4 @@
-"""Refactor tokens and fakes: Preserve emission order while collecting token chunks.. Run this file with Python. No live model or network."""
+"""Refactor tokens and fakes: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.graph import END, START, MessagesState, StateGraph
@@ -23,8 +23,15 @@ def build_graph(text: str = DEFAULT_CASE["text"]):
     return graph.compile()
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     chunks, nodes = [], set()
     for part in build_graph(case["text"]).stream(
         {"messages": [HumanMessage(content="A pipe burst.")]}, stream_mode="messages", version="v2"

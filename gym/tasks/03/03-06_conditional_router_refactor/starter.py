@@ -1,4 +1,4 @@
-"""Refactor conditional router: Refactoring must retain the missing-evidence route.. Run this file with Python. No live model or network."""
+"""Refactor conditional router: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -20,7 +20,7 @@ def route_claim(state: State) -> str:
     amount = state["amount_cents"]
     if type(amount) is not int or amount < 0:
         return "invalid"
-    if False:
+    if state["missing"]:
         return "needs_information"
     if (
         state["claim_type"] not in {"water", "theft", "fire", "storm", "liability"}

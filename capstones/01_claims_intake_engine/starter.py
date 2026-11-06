@@ -35,13 +35,21 @@ def run(case=None):
                 graph.invoke(Command(resume={"approved": True}), config, version="v2")
             snapshot = graph.get_state(config)
             history = list(graph.get_state_history(config))
-            replay = graph.invoke(None, snapshot.config, version="v2").value
+            origin = next(item for item in reversed(history) if "normalize" in item.next)
+            replayed_nodes = []
+            for part in graph.stream(None, origin.config, stream_mode="updates", version="v2"):
+                replayed_nodes.extend(node for node in part["data"] if node != "__interrupt__")
+            # Replaying before a human decision asks again; a checkpoint is not authorization.
+            if graph.get_state(config).interrupts:
+                graph.invoke(Command(resume={"approved": case["approved"]}), config, version="v2")
+            replay = graph.get_state(config).values
             return {
                 "approved": snapshot.values["approved"],
                 "route": snapshot.values["route"],
                 "waited": waiting,
                 "checkpoints": len(history),
                 "replay_matches": replay == snapshot.values,
+                "replayed_nodes": replayed_nodes,
                 "findings": snapshot.values["findings"],
             }
 

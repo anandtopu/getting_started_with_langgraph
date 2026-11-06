@@ -1,0 +1,25 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "first_id": "CLM-0001",
+        "second_id": "CLM-0002"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "error": "ValueError"
+      }
+    },
+    {
+      "input": {
+        "first_id": "CLM-A",
+        "second_id": "CLM-B"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "error": "ValueError"
+      }
+    }
+  ]
+}

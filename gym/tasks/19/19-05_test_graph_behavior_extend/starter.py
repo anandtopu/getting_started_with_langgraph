@@ -1,4 +1,4 @@
-"""Extend test graph behavior: Keep exactly 500000 cents in the standard route.. Run this file with Python. No live model or network."""
+"""Extend test graph behavior: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from common.claims import route_claim
 from common.copilot import v01
@@ -20,7 +20,7 @@ def run(case: dict | None = None) -> dict:
             else "fast_track"
             if amount <= 100000
             else "standard"
-            if amount < 500000
+            if amount <= 500000
             else "specialist"
         )
         rows.append(
@@ -35,6 +35,10 @@ def run(case: dict | None = None) -> dict:
         "rows": rows,
         "passed": all(row["expected"] == row["rule"] == row["graph"] for row in rows),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

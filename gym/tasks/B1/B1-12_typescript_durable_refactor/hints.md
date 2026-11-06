@@ -6,8 +6,8 @@ The same waiting shelf works across languages, but each desk's form has its own 
 
 ## Hint 2
 
-Combine all parallel findings rather than retaining only the last write. Inspect the operation that owns this update or routing choice.
+Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: old.concat(update). Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

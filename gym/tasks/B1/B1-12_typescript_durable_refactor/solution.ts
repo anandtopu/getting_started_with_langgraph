@@ -13,10 +13,8 @@ const State = new StateSchema({
   approved: z.boolean().default(false),
 });
 
-export async function run(input = DEFAULT_CASE) {
-  const saver = SqliteSaver.fromConnString(":memory:");
-  try {
-    const graph = new StateGraph(State)
+export function buildGraph(saver: SqliteSaver) {
+  return new StateGraph(State)
       .addNode("review_document", (state) => ({ findings: ["reviewed:" + state.document] }))
       .addNode("approve", () => {
         const decision = interrupt({ question: "Approve the synthetic claim?" });
@@ -25,6 +23,12 @@ export async function run(input = DEFAULT_CASE) {
       })
       .addConditionalEdges(START, (state) => state.documents.length ? state.documents.map((document) => new Send("review_document", { document })) : ["approve"], ["review_document", "approve"])
       .addEdge("review_document", "approve").addEdge("approve", END).compile({ checkpointer: saver });
+}
+
+export async function run(input = DEFAULT_CASE) {
+  const saver = SqliteSaver.fromConnString(":memory:");
+  try {
+    const graph = buildGraph(saver);
     const config = { configurable: { thread_id: "js-claim" } };
     const updates = [];
     for await (const update of await graph.stream({ documents: input.documents, findings: [] }, { ...config, streamMode: "updates" })) updates.push(update);

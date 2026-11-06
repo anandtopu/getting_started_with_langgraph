@@ -1,0 +1,43 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "customer_id": "CUS-0001",
+        "preference": "email"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "saved": {
+            "value": "email"
+          },
+          "state_preference": "phone",
+          "tool_call_id": "save-1",
+          "model_visible_fields": [
+            "preference"
+          ]
+        }
+      }
+    },
+    {
+      "input": {
+        "customer_id": "CUS-0020",
+        "preference": "sms"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "saved": {
+            "value": "sms"
+          },
+          "state_preference": "phone",
+          "tool_call_id": "save-1",
+          "model_visible_fields": [
+            "preference"
+          ]
+        }
+      }
+    }
+  ]
+}

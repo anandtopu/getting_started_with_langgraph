@@ -1,4 +1,4 @@
-"""Trace inspect checkpoints: Continue the configuration returned by update_state, not an unrelated checkpoint.. Run this file with Python. No live model or network."""
+"""Diagnose inspect checkpoints from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

@@ -1,4 +1,3 @@
-// YOUR CODE HERE: repair the task contract.
 /** Compare a wired tool loop with createAgent using the same fake trajectory. No live model.
  * Run: node modules/bonus/B1_langgraph_js/examples/03_typescript_agents.ts
  * Expected: human -> AI request -> tool response -> AI conclusion in both implementations.
@@ -21,7 +20,7 @@ const State = new StateSchema({ messages: MessagesValue });
 export async function run(input = DEFAULT_CASE) {
   function model() {
     return getChatModel([
-      new AIMessage({ content: "", tool_calls: [{ name: "lookup_policy", args: { policy_id: input.policy_id }, id: "wrong-call", type: "tool_call" }] }),
+      new AIMessage({ content: "", tool_calls: [{ name: "lookup_policy", args: { policy_id: input.policy_id }, id: "lookup-1", type: "tool_call" }] }),
       new AIMessage("Policy evidence checked; no payment authorized."),
     ]);
   }

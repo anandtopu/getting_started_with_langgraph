@@ -1,4 +1,4 @@
-"""Extend compose stack: Do not mark a stack valid after detecting a deployment error.. Run this file with Python. No live model or network."""
+"""Extend compose stack: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import yaml
 
@@ -28,11 +28,15 @@ def run(case: dict | None = None) -> dict:
         errors.append("unexpected_public_port")
     return {
         "services": sorted(services),
-        "valid": True,
+        "valid": not errors,
         "errors": errors,
         "api_waits_for_database": services["api"]["depends_on"]["postgres"]["condition"]
         == "service_healthy",
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

@@ -1,4 +1,4 @@
-# 16-10 — Trace mcp server: Pass the requested synthetic claim through schema validation.
+# 16-10 — Diagnose mcp server from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ MCP describes tools with names and JSON schemas. The official SDK validates requ
 
 ## Your task
 
-Pass the requested synthetic claim through schema validation. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose mcp server from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Pass the requested synthetic claim through schema validation. Read trace.py befo
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Invoke a tool from the published MCP registry."
+- "Pass the requested synthetic claim through schema validation."
+- "Dispatch both registered tools rather than only read_claim."
+- "Publish the complete permitted capability list."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

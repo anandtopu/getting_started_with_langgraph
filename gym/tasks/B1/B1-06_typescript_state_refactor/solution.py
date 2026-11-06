@@ -1,4 +1,4 @@
-"""Refactor typescript state: Accumulate both audit labels across node updates.. Run this file with Python. No live model or network."""
+"""Refactor typescript state: Extract reusable graph construction into buildGraph; keep invocation, saver lifetime, stream counts, and all old behavior unchanged.. Run this file with Python. No live model or network."""
 
 from pathlib import Path
 

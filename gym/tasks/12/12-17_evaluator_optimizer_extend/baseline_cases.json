@@ -1,0 +1,120 @@
+[
+  {
+    "input": {
+      "drafts": [
+        "Your deductible is 90000 cents.",
+        "Thank you. Your deductible is 100000 cents."
+      ],
+      "budget": 3
+    },
+    "expected": {
+      "value": {
+        "accepted": true,
+        "attempts": 2,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": [
+              "deductible_fact",
+              "respectful_tone"
+            ]
+          },
+          {
+            "attempt": 2,
+            "feedback": []
+          }
+        ],
+        "stop_reason": "accepted"
+      }
+    }
+  },
+  {
+    "input": {
+      "drafts": [
+        "Your deductible is 90000 cents.",
+        "Thank you. Your deductible is 100000 cents."
+      ],
+      "budget": 1
+    },
+    "expected": {
+      "value": {
+        "accepted": false,
+        "attempts": 1,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": [
+              "deductible_fact",
+              "respectful_tone"
+            ]
+          }
+        ],
+        "stop_reason": "budget_exhausted"
+      }
+    }
+  },
+  {
+    "input": {
+      "drafts": [
+        "Wrong amount."
+      ],
+      "budget": 2
+    },
+    "expected": {
+      "value": {
+        "accepted": false,
+        "attempts": 2,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": [
+              "deductible_fact",
+              "respectful_tone"
+            ]
+          },
+          {
+            "attempt": 2,
+            "feedback": [
+              "deductible_fact",
+              "respectful_tone"
+            ]
+          }
+        ],
+        "stop_reason": "budget_exhausted"
+      }
+    }
+  },
+  {
+    "input": {
+      "drafts": [
+        "Thank you. Your deductible is 100000 cents."
+      ],
+      "budget": 3
+    },
+    "expected": {
+      "value": {
+        "accepted": true,
+        "attempts": 1,
+        "history": [
+          {
+            "attempt": 1,
+            "feedback": []
+          }
+        ],
+        "stop_reason": "accepted"
+      }
+    }
+  },
+  {
+    "input": {
+      "drafts": [
+        "Your deductible is 90000 cents.",
+        "Thank you. Your deductible is 100000 cents."
+      ],
+      "budget": 0
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

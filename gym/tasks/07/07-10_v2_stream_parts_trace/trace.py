@@ -1,4 +1,4 @@
-"""Trace v2 stream parts: The state payload is inside data, not at the envelope root.. Run this file with Python. No live model or network."""
+"""Diagnose v2 stream parts from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

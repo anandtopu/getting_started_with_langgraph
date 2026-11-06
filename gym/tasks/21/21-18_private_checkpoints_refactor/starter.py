@@ -1,4 +1,4 @@
-"""Refactor private checkpoints: Check exact restoration after successful authenticated decryption.. Run this file with Python. No live model or network."""
+"""Refactor private checkpoints: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import secrets
 from typing import TypedDict
@@ -43,7 +43,7 @@ def run(case: dict | None = None) -> dict:
         saver.delete_thread("private-claim")
     return {
         "plaintext_visible": case["note"].encode() in encoded[1],
-        "roundtrip": restored["note"] != case["note"],
+        "roundtrip": restored["note"] == case["note"],
         "checkpoint_plaintext_visible": checkpoint_plaintext,
         "retained": bool(graph.get_state(config).values),
         "key_logged": False,

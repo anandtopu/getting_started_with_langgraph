@@ -1,4 +1,4 @@
-"""Trace handoffs: Pair the handoff acknowledgment with its AI request.. Run this file with Python. No live model or network."""
+"""Diagnose handoffs from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from langgraph.graph import END, START, MessagesState, StateGraph

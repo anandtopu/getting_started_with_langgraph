@@ -1,4 +1,4 @@
-# 16-16 — Trace mcp adapter: Send the selected claim identifier to the MCP service.
+# 16-16 — Diagnose mcp adapter from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ MultiServerMCPClient loads tool definitions from a real local stdio subprocess. 
 
 ## Your task
 
-Send the selected claim identifier to the MCP service. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose mcp adapter from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -22,6 +22,13 @@ Send the selected claim identifier to the MCP service. Read trace.py before comp
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Load MCP tools before constructing the agent."
+- "Send the selected claim identifier to the MCP service."
+- "Preserve the declared request identity through the adapter."
+- "Invoke the evidence-reading capability rather than a different tool."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,0 +1,99 @@
+[
+  {
+    "input": {
+      "documents": [
+        {
+          "id": "DOC-001",
+          "kind": "estimate"
+        },
+        {
+          "id": "DOC-021",
+          "kind": "police"
+        }
+      ]
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          "DOC-001",
+          "DOC-021"
+        ],
+        "summaries": [
+          [
+            "DOC-001",
+            "DOC-021"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": []
+    },
+    "expected": {
+      "value": {
+        "findings": [],
+        "summaries": [
+          []
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": [
+        {
+          "id": "DOC-Z",
+          "kind": "estimate"
+        }
+      ]
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          "DOC-Z"
+        ],
+        "summaries": [
+          [
+            "DOC-Z"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "documents": [
+        {
+          "id": "DOC-Z",
+          "kind": "police"
+        },
+        {
+          "id": "DOC-A",
+          "kind": "receipt"
+        },
+        {
+          "id": "DOC-B",
+          "kind": "police"
+        }
+      ]
+    },
+    "expected": {
+      "value": {
+        "findings": [
+          "DOC-A",
+          "DOC-B",
+          "DOC-Z"
+        ],
+        "summaries": [
+          [
+            "DOC-A",
+            "DOC-B",
+            "DOC-Z"
+          ]
+        ]
+      }
+    }
+  }
+]

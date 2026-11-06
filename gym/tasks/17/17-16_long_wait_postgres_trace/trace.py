@@ -1,4 +1,4 @@
-"""Trace long wait postgres: Compute elapsed business time from explicit dates.. Run this file with Python. No live model or network."""
+"""Diagnose long wait postgres from execution evidence. Run this file with Python. No live model or network."""
 
 from datetime import date
 from pathlib import Path

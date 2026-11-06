@@ -1,4 +1,4 @@
-"""Trace evaluator optimizer: Require the authoritative deductible fact.. Run this file with Python. No live model or network."""
+"""Diagnose evaluator optimizer from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict

@@ -51,6 +51,8 @@ class MiniGraph:
         self.checkpoints.setdefault(thread_id, []).append(deepcopy(snapshot))
 
     def run(self, values: dict | None, *, thread_id="claim", resume=None, limit=20) -> Snapshot:
+        if type(limit) is not int or limit < 1:
+            raise ValueError("The superstep limit must be a positive integer")
         if values is None:
             current = self.latest(thread_id)
         else:
@@ -93,4 +95,6 @@ class MiniGraph:
             current = Snapshot(after, sorted(set(following)), current.step + 1)
             self.save(thread_id, current)
             resume = None
+        if not current.pending:
+            return deepcopy(current)
         raise RuntimeError("Teaching superstep budget exhausted")

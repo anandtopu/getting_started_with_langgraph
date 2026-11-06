@@ -1,0 +1,50 @@
+[
+  {
+    "input": {
+      "corrected_cents": 50000
+    },
+    "expected": {
+      "value": {
+        "original_route": "specialist",
+        "forked_route": "fast_track",
+        "fork_pending": [
+          "route"
+        ],
+        "history_retained": true,
+        "remote_tracing": false
+      }
+    }
+  },
+  {
+    "input": {
+      "corrected_cents": 600000
+    },
+    "expected": {
+      "value": {
+        "original_route": "specialist",
+        "forked_route": "specialist",
+        "fork_pending": [
+          "route"
+        ],
+        "history_retained": true,
+        "remote_tracing": false
+      }
+    }
+  },
+  {
+    "input": {
+      "corrected_cents": 100001
+    },
+    "expected": {
+      "value": {
+        "original_route": "specialist",
+        "forked_route": "standard",
+        "fork_pending": [
+          "route"
+        ],
+        "history_retained": true,
+        "remote_tracing": false
+      }
+    }
+  }
+]

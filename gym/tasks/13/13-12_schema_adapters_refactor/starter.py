@@ -1,4 +1,4 @@
-"""Refactor schema adapters: Preserve the parent claim identity across the adapter.. Run this file with Python. No live model or network."""
+"""Refactor schema adapters: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -40,7 +40,7 @@ def build_graph():
             {"case_number": state["claim_id"], "value": state["amount_cents"]}, version="v2"
         )
         # KEY IDEA: only the reviewed finding crosses the child output boundary.
-        return {"risk": result.value["finding"], "claim_id": "lost"}
+        return {"risk": result.value["finding"]}
 
     parent = StateGraph(Claim)
     parent.add_node("fraud_adapter", adapt)

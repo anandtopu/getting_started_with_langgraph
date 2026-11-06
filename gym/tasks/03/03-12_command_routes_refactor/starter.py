@@ -1,4 +1,4 @@
-"""Refactor command routes: Equivalent control flow must not duplicate work.. Run this file with Python. No live model or network."""
+"""Refactor command routes: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, Literal, TypedDict
@@ -26,7 +26,7 @@ def triage(state: State) -> Command[Literal["review", "acknowledge"]]:
 
 
 def review(state: State) -> dict:
-    return {"visited": ["review", "review"]}
+    return {"visited": ["review"]}
 
 
 def acknowledge(state: State) -> dict:

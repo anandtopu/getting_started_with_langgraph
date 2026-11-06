@@ -1,4 +1,4 @@
-# 05-10 — Trace sqlite lifetime: A compiled graph cannot use a saver whose connection has closed.
+# 05-10 — Diagnose sqlite lifetime from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Memory persistence ends with its process. A SQLite saver stores checkpoints on d
 
 ## Your task
 
-A compiled graph cannot use a saver whose connection has closed. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose sqlite lifetime from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -22,6 +22,13 @@ A compiled graph cannot use a saver whose connection has closed. Read trace.py b
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "A restarted process must merge the new note with stored notes."
+- "A compiled graph cannot use a saver whose connection has closed."
+- "Both processes must reopen the same logical claim thread."
+- "Resource-lifetime refactoring must preserve continuation input."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -12,6 +12,8 @@ Complete [Build a mini-LangGraph](../B3_mini_langgraph/README.md). Read dictiona
 
 Optional installation requirements are listed in [the setup guide](../../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain Beta v3 event streaming; typed projections; lifecycle and subgraphs; tool-call deltas; version distinctions.
@@ -91,7 +93,7 @@ Each numbered work order carries its own approval form with only the choices tha
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/bonus/B4_whats_new/examples/01_event_streaming_beta.py
+uv run --no-sync python modules/bonus/B4_whats_new/examples/01_event_streaming_beta.py
 ```
 
 **Predict, then run:** for {"text": "Synthetic claim review is complete."}, write the resulting fields and any expected error. Then test the boundary cases in tests/event_streaming_beta.json.
@@ -126,7 +128,7 @@ Beta v3 event streaming exposes typed message, subgraph, value, and output proje
 </details>
 
 ```text
-uv run python modules/bonus/B4_whats_new/examples/02_delta_channels_beta.py
+uv run --no-sync python modules/bonus/B4_whats_new/examples/02_delta_channels_beta.py
 ```
 
 **Predict, then run:** for {"notes": ["intake", "policy", "estimate"], "snapshot_frequency": 2}, write the resulting fields and any expected error. Then test the boundary cases in tests/delta_channels_beta.json.
@@ -153,7 +155,7 @@ Beta DeltaChannel stores incremental writes and reconstructs channel state throu
 </details>
 
 ```text
-uv run python modules/bonus/B4_whats_new/examples/03_typed_approvals.py
+uv run --no-sync python modules/bonus/B4_whats_new/examples/03_typed_approvals.py
 ```
 
 **Predict, then run:** for {"decision": "approve", "amount_cents": 50000}, write the resulting fields and any expected error. Then test the boundary cases in tests/typed_approvals.json.
@@ -209,32 +211,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"texts": [], "final": "Synthetic claim review is complete.", "tool_arguments": {"policy_id": "POL-0001"}, "tool_delta_count": 2, "channels": ["lifecycle", "messages", "values"], "nested": true, "beta": true}}`. Read child model messages through their subgraph projection. | Restore `for child in stream.subgraphs for message in child.messages` and check the boundary cases. | [B4-01](../../../gym/tasks/B4/B4-01_event_streaming_beta_build/task.md) · [Related Fix B4-02](../../../gym/tasks/B4/B4-02_event_streaming_beta_fix/task.md) |
-| Observed `{"value": {"texts": ["Synthetic claim review is complete."], "final": "Update this claim.", "tool_arguments": {"policy_id": "POL-0001"}, "tool_delta_count": 2, "channels": ["lifecycle", "messages", "values"], "nested": t`. Read the final model message from the completed output projection. | Restore `output["messages"][-1].text` and check the boundary cases. | [B4-02](../../../gym/tasks/B4/B4-02_event_streaming_beta_fix/task.md) |
-| Observed `{"value": {"notes": ["estimate"], "reconstructed": false, "beta": true}}`. Retain earlier delta writes when applying a new batch. | Restore `result.extend(write)` and check the boundary cases. | [B4-07](../../../gym/tasks/B4/B4-07_delta_channels_beta_build/task.md) · [Related Fix B4-08](../../../gym/tasks/B4/B4-08_delta_channels_beta_fix/task.md) |
-| Observed `{"value": {"notes": ["intake", "policy", "estimate"], "reconstructed": true, "beta": true}}`. Honor and validate the requested snapshot cadence. | Restore `snapshot_frequency=frequency` and check the boundary cases. | [B4-08](../../../gym/tasks/B4/B4-08_delta_channels_beta_fix/task.md) |
-| Observed `{"error": "KeyError"}`. Use per-call requests when resuming individual interrupt IDs. | Restore `interrupt_mode="per_call"` and check the boundary cases. | [B4-13](../../../gym/tasks/B4/B4-13_typed_approvals_build/task.md) · [Related Fix B4-14](../../../gym/tasks/B4/B4-14_typed_approvals_fix/task.md) |
-| Observed `{"value": {"schema_present": true, "effects": [50000], "interrupt_type": "tool_approval"}}`. Respect rejection instead of coercing every decision to approval. | Restore `decision = {"type": case["decision"]}` and check the boundary cases. | [B4-14](../../../gym/tasks/B4/B4-14_typed_approvals_fix/task.md) |
+| Observed `{"value": {"texts": [], "final": "Synthetic claim review is complete.", "tool_arguments": {"policy_id": "POL-0001"}, "tool_delta_count": 2, "channels": ["lifecycle", "messages", "values"], "nested": true, "beta": true}}`. Read child model messages through their subgraph projection. | Restore `for child in stream.subgraphs for message in child.messages` and check the boundary cases. | [B4-01](../../../gym/tasks/B4/B4-01_event_streaming_beta_build/task.md) · Related Fix: [B4-02](../../../gym/tasks/B4/B4-02_event_streaming_beta_fix/task.md) |
+| Observed `{"value": {"texts": ["Synthetic claim review is complete."], "final": "Update this claim.", "tool_arguments": {"policy_id": "POL-0001"}, "tool_delta_count": 2, "channels": ["lifecycle", "messages", "values"], "nested": t`. Read the final model message from the completed output projection. | Restore `output["messages"][-1].text` and check the boundary cases. | [B4-02](../../../gym/tasks/B4/B4-02_event_streaming_beta_fix/task.md) · Related Fix: [B4-02](../../../gym/tasks/B4/B4-02_event_streaming_beta_fix/task.md) |
+| Observed `{"value": {"notes": ["estimate"], "reconstructed": false, "beta": true}}`. Retain earlier delta writes when applying a new batch. | Restore `result.extend(write)` and check the boundary cases. | [B4-07](../../../gym/tasks/B4/B4-07_delta_channels_beta_build/task.md) · Related Fix: [B4-08](../../../gym/tasks/B4/B4-08_delta_channels_beta_fix/task.md) |
+| Observed `{"value": {"notes": ["intake", "policy", "estimate"], "reconstructed": true, "beta": true}}`. Honor and validate the requested snapshot cadence. | Restore `snapshot_frequency=frequency` and check the boundary cases. | [B4-08](../../../gym/tasks/B4/B4-08_delta_channels_beta_fix/task.md) · Related Fix: [B4-08](../../../gym/tasks/B4/B4-08_delta_channels_beta_fix/task.md) |
+| Observed `{"error": "KeyError"}`. Use per-call requests when resuming individual interrupt IDs. | Restore `interrupt_mode="per_call"` and check the boundary cases. | [B4-13](../../../gym/tasks/B4/B4-13_typed_approvals_build/task.md) · Related Fix: [B4-14](../../../gym/tasks/B4/B4-14_typed_approvals_fix/task.md) |
+| Observed `{"value": {"schema_present": true, "effects": [50000], "interrupt_type": "tool_approval"}}`. Respect rejection instead of coercing every decision to approval. | Restore `decision = {"type": case["decision"]}` and check the boundary cases. | [B4-14](../../../gym/tasks/B4/B4-14_typed_approvals_fix/task.md) · Related Fix: [B4-14](../../../gym/tasks/B4/B4-14_typed_approvals_fix/task.md) |
 
 ## Practice
 
 - [B4-01 — build, easy](../../../gym/tasks/B4/B4-01_event_streaming_beta_build/task.md): Build event streaming beta: Read child model messages through their subgraph projection.
 - [B4-02 — fix, medium](../../../gym/tasks/B4/B4-02_event_streaming_beta_fix/task.md): Fix event streaming beta: Read the final model message from the completed output projection.
 - [B4-03 — predict, easy](../../../gym/tasks/B4/B4-03_event_streaming_beta_predict/task.md): Predict event streaming beta across the declared cases
-- [B4-04 — trace, medium](../../../gym/tasks/B4/B4-04_event_streaming_beta_trace/task.md): Trace event streaming beta: Read the final model message from the completed output projection.
-- [B4-05 — extend, hard](../../../gym/tasks/B4/B4-05_event_streaming_beta_extend/task.md): Extend event streaming beta: Consume the raw protocol when inspecting lifecycle channels.
-- [B4-06 — refactor, hard](../../../gym/tasks/B4/B4-06_event_streaming_beta_refactor/task.md): Refactor event streaming beta: Use the v3 protocol namespace location rather than a guessed field.
+- [B4-04 — trace, medium](../../../gym/tasks/B4/B4-04_event_streaming_beta_trace/task.md): Diagnose event streaming beta from execution evidence
+- [B4-05 — extend, hard](../../../gym/tasks/B4/B4-05_event_streaming_beta_extend/task.md): Extend event streaming beta: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [B4-06 — refactor, hard](../../../gym/tasks/B4/B4-06_event_streaming_beta_refactor/task.md): Refactor event streaming beta: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [B4-07 — build, easy](../../../gym/tasks/B4/B4-07_delta_channels_beta_build/task.md): Build delta channels beta: Retain earlier delta writes when applying a new batch.
 - [B4-08 — fix, medium](../../../gym/tasks/B4/B4-08_delta_channels_beta_fix/task.md): Fix delta channels beta: Honor and validate the requested snapshot cadence.
 - [B4-09 — predict, easy](../../../gym/tasks/B4/B4-09_delta_channels_beta_predict/task.md): Predict delta channels beta across the declared cases
-- [B4-10 — trace, medium](../../../gym/tasks/B4/B4-10_delta_channels_beta_trace/task.md): Trace delta channels beta: Honor and validate the requested snapshot cadence.
-- [B4-11 — extend, hard](../../../gym/tasks/B4/B4-11_delta_channels_beta_extend/task.md): Extend delta channels beta: Checkpoint every supplied note before reconstruction.
+- [B4-10 — trace, medium](../../../gym/tasks/B4/B4-10_delta_channels_beta_trace/task.md): Diagnose delta channels beta from execution evidence
+- [B4-11 — extend, hard](../../../gym/tasks/B4/B4-11_delta_channels_beta_extend/task.md): Extend delta channels beta: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [B4-12 — design, hard](../../../gym/tasks/B4/B4-12_delta_channels_beta_design/task.md): Design delta channels beta and justify the boundary policies
 - [B4-13 — build, easy](../../../gym/tasks/B4/B4-13_typed_approvals_build/task.md): Build typed approvals: Use per-call requests when resuming individual interrupt IDs.
 - [B4-14 — fix, medium](../../../gym/tasks/B4/B4-14_typed_approvals_fix/task.md): Fix typed approvals: Respect rejection instead of coercing every decision to approval.
 - [B4-15 — predict, easy](../../../gym/tasks/B4/B4-15_typed_approvals_predict/task.md): Predict typed approvals across the declared cases
-- [B4-16 — trace, medium](../../../gym/tasks/B4/B4-16_typed_approvals_trace/task.md): Trace typed approvals: Respect rejection instead of coercing every decision to approval.
-- [B4-17 — extend, hard](../../../gym/tasks/B4/B4-17_typed_approvals_extend/task.md): Extend typed approvals: Bind the proposal to its requested amount.
+- [B4-16 — trace, medium](../../../gym/tasks/B4/B4-16_typed_approvals_trace/task.md): Diagnose typed approvals from execution evidence
+- [B4-17 — extend, hard](../../../gym/tasks/B4/B4-17_typed_approvals_extend/task.md): Extend typed approvals: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [B4-18 — design, hard](../../../gym/tasks/B4/B4-18_typed_approvals_design/task.md): Design typed approvals and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

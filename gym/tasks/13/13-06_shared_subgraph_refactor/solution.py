@@ -1,4 +1,4 @@
-"""Refactor shared subgraph: Do not confuse an intake milestone with a risk flag.. Run this file with Python. No live model or network."""
+"""Refactor shared subgraph: Extract parallel fraud checks into a reusable subgraph; keep both workflow outputs and rejection cases unchanged.. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 

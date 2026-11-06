@@ -1,4 +1,4 @@
-"""Extend bounded rechecks: The business budget needs an explicit exhausted outcome.. Run this file with Python. No live model or network."""
+"""Extend bounded rechecks: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -21,7 +21,7 @@ class State(TypedDict):
 def check_documents(state: State) -> dict:
     index = state["attempts"]
     received = index < len(state["history"]) and state["history"][index]
-    exhausted = False
+    exhausted = index + 1 >= state["budget"]
     status = "ready" if received else "exhausted" if exhausted else "waiting"
     return {
         "attempts": index + 1,
@@ -55,6 +55,10 @@ def run(case: dict | None = None) -> dict:
         .invoke({**values, "attempts": 0, "trace": []}, {"recursion_limit": limit}, version="v2")
         .value
     )
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

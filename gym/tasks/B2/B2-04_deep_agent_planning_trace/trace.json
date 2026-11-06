@@ -1,0 +1,55 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "first_status": "in_progress",
+        "include_planning": true
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "todos": [
+            {
+              "content": "Read the policy deductible",
+              "status": "completed"
+            },
+            {
+              "content": "Review the contractor estimate",
+              "status": "pending"
+            }
+          ],
+          "tool_statuses": [
+            "success"
+          ],
+          "final": "The policy and document investigation plan is recorded."
+        }
+      }
+    },
+    {
+      "input": {
+        "first_status": "completed",
+        "include_planning": true
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "todos": [
+            {
+              "content": "Read the policy deductible",
+              "status": "completed"
+            },
+            {
+              "content": "Review the contractor estimate",
+              "status": "pending"
+            }
+          ],
+          "tool_statuses": [
+            "success"
+          ],
+          "final": "The policy and document investigation plan is recorded."
+        }
+      }
+    }
+  ]
+}

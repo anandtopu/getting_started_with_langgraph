@@ -1,4 +1,4 @@
-# 03-04 — Trace conditional router: Path-map values must match each intended destination.
+# 03-04 — Diagnose conditional router from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A routing function chooses a label from current state. A path map connects that 
 
 ## Your task
 
-Path-map values must match each intended destination. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose conditional router from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Path-map values must match each intended destination. Read trace.py before compl
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "The exact fast-track threshold is inclusive."
+- "Path-map values must match each intended destination."
+- "High-value claims require specialist review."
+- "Refactoring must retain the missing-evidence route."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

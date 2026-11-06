@@ -1,4 +1,4 @@
-"""Extend team tradeoffs: Count every specialist operation against the budget.. Run this file with Python. No live model or network."""
+"""Extend team tradeoffs: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -37,7 +37,7 @@ def build_graph():
                 goto=next_role,
                 update={
                     "active_agent": role,
-                    "calls": state["calls"],
+                    "calls": state["calls"] + 1,
                     "reports": [report],
                     "complete": next_role == END,
                 },
@@ -83,6 +83,10 @@ def run(case: dict | None = None) -> dict:
         "single_calls": 1,
         "single_mentions_all_roles": all(role in single.content for role in ROLES),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

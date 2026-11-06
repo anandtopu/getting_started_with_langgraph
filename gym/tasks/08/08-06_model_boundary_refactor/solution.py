@@ -1,4 +1,4 @@
-"""Refactor model boundary: Preserve the validated amount across the model boundary.. Run this file with Python. No live model or network."""
+"""Refactor model boundary: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 from typing import TypedDict
@@ -48,7 +48,15 @@ def build_graph(payload: dict | None = None):
     return graph.compile()
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
+    case = prepare_case(case)
     result = (
         build_graph(case).invoke({"text": "A pipe burst; repairs cost $1,250."}, version="v2").value
     )

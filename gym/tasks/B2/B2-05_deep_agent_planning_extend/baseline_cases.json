@@ -1,0 +1,74 @@
+[
+  {
+    "input": {
+      "first_status": "in_progress",
+      "include_planning": true
+    },
+    "expected": {
+      "value": {
+        "todos": [
+          {
+            "content": "Read the policy deductible",
+            "status": "in_progress"
+          },
+          {
+            "content": "Review the contractor estimate",
+            "status": "pending"
+          }
+        ],
+        "tool_statuses": [
+          "success"
+        ],
+        "final": "The policy and document investigation plan is recorded."
+      }
+    }
+  },
+  {
+    "input": {
+      "first_status": "completed",
+      "include_planning": true
+    },
+    "expected": {
+      "value": {
+        "todos": [
+          {
+            "content": "Read the policy deductible",
+            "status": "completed"
+          },
+          {
+            "content": "Review the contractor estimate",
+            "status": "pending"
+          }
+        ],
+        "tool_statuses": [
+          "success"
+        ],
+        "final": "The policy and document investigation plan is recorded."
+      }
+    }
+  },
+  {
+    "input": {
+      "first_status": "in_progress",
+      "include_planning": false
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  },
+  {
+    "input": {
+      "first_status": "invalid",
+      "include_planning": true
+    },
+    "expected": {
+      "value": {
+        "todos": [],
+        "tool_statuses": [
+          "error"
+        ],
+        "final": "The policy and document investigation plan is recorded."
+      }
+    }
+  }
+]

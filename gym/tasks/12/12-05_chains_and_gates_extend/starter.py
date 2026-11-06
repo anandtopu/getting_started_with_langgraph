@@ -1,7 +1,7 @@
-"""Extend chains and gates: Validate the routing category against an explicit allowlist.. Run this file with Python. No live model or network."""
+"""Extend chains and gates: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
-from typing import TypedDict
+from typing import Literal, TypedDict
 
 from langchain_core.messages import AIMessage
 from langgraph.graph import END, START, StateGraph
@@ -14,7 +14,7 @@ DEFAULT_CASE = {"category": "policy", "policy_deductible": 100000, "extracted_de
 
 
 class Classification(BaseModel):
-    category: str
+    category: Literal["policy", "documents"]
     deductible_cents: StrictInt = Field(ge=0)
 
 
@@ -85,6 +85,10 @@ def build_graph(case: dict | None = None):
 # YOUR CODE HERE: repair the contract described in task.md.
 def run(case: dict | None = None) -> dict:
     return build_graph(case).invoke({}, version="v2").value
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

@@ -1,0 +1,55 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "text": "Synthetic claim review is complete."
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "texts": [
+            "Synthetic claim review is complete."
+          ],
+          "final": "Update this claim.",
+          "tool_arguments": {
+            "policy_id": "POL-0001"
+          },
+          "tool_delta_count": 2,
+          "channels": [
+            "lifecycle",
+            "messages",
+            "values"
+          ],
+          "nested": true,
+          "beta": true
+        }
+      }
+    },
+    {
+      "input": {
+        "text": "Estimate accepted for review."
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "texts": [
+            "Estimate accepted for review."
+          ],
+          "final": "Update this claim.",
+          "tool_arguments": {
+            "policy_id": "POL-0001"
+          },
+          "tool_delta_count": 2,
+          "channels": [
+            "lifecycle",
+            "messages",
+            "values"
+          ],
+          "nested": true,
+          "beta": true
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-"""Trace model boundary: Include exactly 100000 cents in fast-track routing.. Run this file with Python. No live model or network."""
+"""Diagnose model boundary from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 from typing import TypedDict

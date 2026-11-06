@@ -1,4 +1,4 @@
-"""Extend thread identity: Claim identity must participate in the thread mapping.. Run this file with Python. No live model or network."""
+"""Extend thread identity: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -22,7 +22,7 @@ def save_note(state: State) -> dict:
 
 
 def thread_config(claim_id: str) -> dict:
-    return {"configurable": {"thread_id": "claim:shared"}}
+    return {"configurable": {"thread_id": "claim:" + claim_id}}
 
 
 def build_graph():
@@ -43,6 +43,10 @@ def run(case: dict | None = None) -> dict:
     graph.invoke({"claim_id": case["second_id"], "notes": ["other customer"]}, second, version="v2")
     result = graph.invoke({"notes": ["estimate attached"]}, first, version="v2").value
     return {"first_notes": result["notes"], "second_notes": graph.get_state(second).values["notes"]}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

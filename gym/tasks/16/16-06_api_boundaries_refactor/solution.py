@@ -1,4 +1,4 @@
-"""Refactor api boundaries: Return the actual service acknowledgment after a successful attempt.. Run this file with Python. No live model or network."""
+"""Refactor api boundaries: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import asyncio
 import json
@@ -58,8 +58,16 @@ async def arun(case: dict) -> dict:
     }
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    return asyncio.run(arun(dict(DEFAULT_CASE if case is None else case)))
+    case = prepare_case(case)
+    return asyncio.run(arun(dict(case)))
 
 
 def main() -> None:

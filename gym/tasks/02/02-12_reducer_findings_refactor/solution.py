@@ -1,4 +1,4 @@
-"""Refactor reducer findings: Canonical presentation must not depend on arrival order.. Run this file with Python. No live model or network."""
+"""Refactor reducer findings: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -50,14 +50,16 @@ def build_graph():
     return builder.compile()
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    result = (
-        build_graph()
-        .invoke(
-            {**(DEFAULT_CASE if case is None else case), "findings": [], "log": []}, version="v2"
-        )
-        .value
-    )
+    case = prepare_case(case)
+    result = build_graph().invoke({**(case), "findings": [], "log": []}, version="v2").value
     return {key: result[key] for key in ("findings", "log", "last")}
 
 

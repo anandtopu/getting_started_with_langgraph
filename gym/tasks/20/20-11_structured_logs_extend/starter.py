@@ -1,4 +1,4 @@
-"""Extend structured logs: Retain the caller's thread correlation identifier.. Run this file with Python. No live model or network."""
+"""Extend structured logs: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -18,21 +18,17 @@ def run(case: dict | None = None) -> dict:
     case = DEFAULT_CASE if case is None else case
     records = []
     for node in ["normalize", "route", "approve_claim"]:
-        record = log_record(
-            {
-                **case,
-                "thread_id": "wrong-thread",
-                "event": "node_finished",
-                "node": node,
-                "status": "ok",
-            }
-        )
+        record = log_record({**case, "event": "node_finished", "node": node, "status": "ok"})
         records.append(json.loads(record))
     return {
         "records": records,
         "raw_text_logged": any(case["description"] in json.dumps(row) for row in records),
         "credential_logged": any(case["api_key"] in json.dumps(row) for row in records),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

@@ -1,4 +1,4 @@
-"""Extend virtual filesystem: Persist the supplied investigation note without substitution.. Run this file with Python. No live model or network."""
+"""Extend virtual filesystem: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.checkpoint.memory import InMemorySaver
@@ -23,7 +23,7 @@ def run(case: dict | None = None) -> dict:
                 tool_calls=[
                     {
                         "name": "write_file",
-                        "args": {"file_path": case["path"], "content": "replaced"},
+                        "args": {"file_path": case["path"], "content": case["content"]},
                         "id": "file-1",
                     }
                 ],
@@ -57,6 +57,10 @@ def run(case: dict | None = None) -> dict:
             message.status for message in result["messages"] if message.type == "tool"
         ],
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

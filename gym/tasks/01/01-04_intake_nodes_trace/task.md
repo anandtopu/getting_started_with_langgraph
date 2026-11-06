@@ -1,4 +1,4 @@
-# 01-04 — Trace intake nodes: A graph node must return a mapping of state updates.
+# 01-04 — Diagnose intake nodes from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ State is the information available to a graph. TypedDict documents its keys. A n
 
 ## Your task
 
-A graph node must return a mapping of state updates. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose intake nodes from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ A graph node must return a mapping of state updates. Read trace.py before comple
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Normalize the description while preserving unrelated state."
+- "A graph node must return a mapping of state updates."
+- "An amount update must not erase the claim identifier."
+- "Refactor mutation into a pure partial update."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

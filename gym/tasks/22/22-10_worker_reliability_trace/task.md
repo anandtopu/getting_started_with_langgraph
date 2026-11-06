@@ -1,4 +1,4 @@
-# 22-10 — Trace worker reliability: Report that a competing run was excluded.
+# 22-10 — Diagnose worker reliability from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Stateless workers share durable checkpoints, ownership records, and effect keys.
 
 ## Your task
 
-Report that a competing run was excluded. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose worker reliability from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Report that a competing run was excluded. Read trace.py before completing the an
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Use the same business effect identity after worker replacement."
+- "Report that a competing run was excluded."
+- "Exercise and reject idempotency-key reuse with a changed payload."
+- "Read the persisted effect count from the restarted worker's ledger."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

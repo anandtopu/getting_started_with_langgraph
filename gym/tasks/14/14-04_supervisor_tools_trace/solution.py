@@ -1,4 +1,4 @@
-"""Trace supervisor tools: Keep specialist roles attached to the evidence they reviewed.. Run this file with Python. No live model or network."""
+"""Diagnose supervisor tools from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage

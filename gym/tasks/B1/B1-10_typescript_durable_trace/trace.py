@@ -1,4 +1,4 @@
-"""Trace typescript durable: Accept explicit boolean decisions and reject strings at the interrupt boundary.. Run this file with Python. No live model or network."""
+"""Diagnose typescript durable from execution evidence. Run this file with Python. No live model or network."""
 
 from pathlib import Path
 

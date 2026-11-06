@@ -1,4 +1,4 @@
-"""Trace optional tracing: Fork at the intended pre-routing boundary.. Run this file with Python. No live model or network."""
+"""Diagnose optional tracing from execution evidence. Run this file with Python. No live model or network."""
 
 from langsmith import tracing_context
 

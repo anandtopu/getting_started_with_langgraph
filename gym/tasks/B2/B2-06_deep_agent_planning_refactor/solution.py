@@ -1,4 +1,4 @@
-"""Refactor deep agent planning: Call the registered planning capability.. Run this file with Python. No live model or network."""
+"""Refactor deep agent planning: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 
@@ -8,12 +8,19 @@ from common.pretty import print_state
 DEFAULT_CASE = {"first_status": "in_progress", "include_planning": True}
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
+    case = prepare_case(case)
     from deepagents import create_deep_agent
     from deepagents.backends import StateBackend
     from langchain.agents.middleware import TodoListMiddleware
 
-    case = DEFAULT_CASE if case is None else case
     todos = [
         {"content": "Read the policy deductible", "status": case["first_status"]},
         {"content": "Review the contractor estimate", "status": "pending"},

@@ -1,4 +1,4 @@
-"""Extend intake nodes: An amount update must not erase the claim identifier.. Run this file with Python. No live model or network."""
+"""Extend intake nodes: Add a contact-normalization node without erasing claim identity.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

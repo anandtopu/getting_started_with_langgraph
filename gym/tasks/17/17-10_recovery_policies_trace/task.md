@@ -1,4 +1,4 @@
-# 17-10 — Trace recovery policies: Do not label an exhausted or timed-out request as successful.
+# 17-10 — Diagnose recovery policies from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ RetryPolicy repeats selected transient failures; TimeoutPolicy bounds asynchrono
 
 ## Your task
 
-Do not label an exhausted or timed-out request as successful. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose recovery policies from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Do not label an exhausted or timed-out request as successful. Read trace.py befo
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Retry the recoverable first failure before routing to manual review."
+- "Do not label an exhausted or timed-out request as successful."
+- "Honor the cooperative shutdown request at the next boundary."
+- "Finish the recovery path after success or error handling."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,4 +1,4 @@
-# 14-10 — Trace handoffs: Pair the handoff acknowledgment with its AI request.
+# 14-10 — Diagnose handoffs from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Command.PARENT transfers control from a child graph to a node in its parent. The
 
 ## Your task
 
-Pair the handoff acknowledgment with its AI request. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose handoffs from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Pair the handoff acknowledgment with its AI request. Read trace.py before comple
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Address the parent graph when handing off to its specialist."
+- "Pair the handoff acknowledgment with its AI request."
+- "Update ownership together with the handoff."
+- "Forward the complete handoff pair."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

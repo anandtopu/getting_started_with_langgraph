@@ -1,4 +1,4 @@
-"""Trace entrypoints tasks: Match the Graph API fast-track boundary.. Run this file with Python. No live model or network."""
+"""Diagnose entrypoints tasks from execution evidence. Run this file with Python. No live model or network."""
 
 from langgraph.func import entrypoint, task
 

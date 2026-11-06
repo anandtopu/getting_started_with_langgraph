@@ -6,8 +6,8 @@ Two service-desk layouts must produce the same numbered work orders and final ex
 
 ## Hint 2
 
-Register the same evidence tool in the prebuilt implementation. Inspect the operation that owns this update or routing choice.
+Replace the manual model/tool loop with createAgent, keeping message roles, call IDs, errors, and final text unchanged. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: tools: [lookup] }).invoke. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the original behavioral contract. Check every boundary input after the repair; a default-case pass alone is insufficient.

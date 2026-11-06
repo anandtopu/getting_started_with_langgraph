@@ -1,4 +1,4 @@
-"""Refactor event streaming beta: Use the v3 protocol namespace location rather than a guessed field.. Run this file with Python. No live model or network."""
+"""Refactor event streaming beta: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -72,7 +72,7 @@ def run(case: dict | None = None) -> dict:
         "tool_arguments": json.loads(arguments),
         "tool_delta_count": len(deltas),
         "channels": sorted({event["method"] for event in events}),
-        "nested": any(event["params"]["missing_namespace"] for event in events),
+        "nested": any(event["params"]["namespace"] for event in events),
         "beta": True,
     }
 

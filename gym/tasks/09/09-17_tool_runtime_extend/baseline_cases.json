@@ -1,0 +1,54 @@
+[
+  {
+    "input": {
+      "customer_id": "CUS-0001",
+      "preference": "email"
+    },
+    "expected": {
+      "value": {
+        "saved": {
+          "value": "email"
+        },
+        "state_preference": "email",
+        "tool_call_id": "save-1",
+        "model_visible_fields": [
+          "preference"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "customer_id": "CUS-0020",
+      "preference": "sms"
+    },
+    "expected": {
+      "value": {
+        "saved": {
+          "value": "sms"
+        },
+        "state_preference": "sms",
+        "tool_call_id": "save-1",
+        "model_visible_fields": [
+          "preference"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "customer_id": "CUS-0001",
+      "preference": "fax"
+    },
+    "expected": {
+      "value": {
+        "saved": null,
+        "state_preference": null,
+        "tool_call_id": "save-1",
+        "model_visible_fields": [
+          "preference"
+        ]
+      }
+    }
+  }
+]

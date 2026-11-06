@@ -1,4 +1,4 @@
-"""Extend message identity: Make retention conditional on the requested minimization policy.. Run this file with Python. No live model or network."""
+"""Extend message identity: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, RemoveMessage, ToolMessage
 from langgraph.graph import END, START, MessagesState, StateGraph
@@ -15,7 +15,7 @@ def build_graph(case: dict | None = None):
         return {"messages": [HumanMessage(content=case["text"], id="customer-1")]}
 
     def minimize(state: MessagesState) -> dict:
-        return {"messages": [RemoveMessage(id="customer-1")]} if True else {}
+        return {"messages": [RemoveMessage(id="customer-1")]} if case["remove_customer"] else {}
 
     graph = StateGraph(MessagesState)
     graph.add_node("correct", correct)
@@ -44,6 +44,10 @@ def run(case: dict | None = None) -> dict:
         ],
         "paired": output["messages"][-1].tool_call_id == "call-1",
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

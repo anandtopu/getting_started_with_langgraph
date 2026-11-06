@@ -13,11 +13,13 @@ from common.sse import decode_events
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("stage", choices=["start", "resume"])
+    parser.add_argument("--base-url", default="http://127.0.0.1:8000")
+    parser.add_argument("--state-file", type=Path, default=Path("tmp/deployment-thread.json"))
     args = parser.parse_args()
     headers = {"Authorization": "Bearer " + os.environ["LARKSPUR_ADJUSTER_TOKEN"]}
-    saved = Path("tmp/deployment-thread.json")
-    saved.parent.mkdir(exist_ok=True)
-    with httpx.Client(base_url="http://127.0.0.1:8000", headers=headers, timeout=120) as client:
+    saved = args.state_file
+    saved.parent.mkdir(parents=True, exist_ok=True)
+    with httpx.Client(base_url=args.base_url, headers=headers, timeout=120) as client:
         assert client.get("/health").status_code == 200
         if args.stage == "start":
             created = client.post("/threads", json={"thread_id": "restart-check", "submission": 1})

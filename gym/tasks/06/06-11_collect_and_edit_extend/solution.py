@@ -1,4 +1,4 @@
-"""Extend collect and edit: Python booleans must not pass an integer money check.. Run this file with Python. No live model or network."""
+"""Extend collect and edit: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from datetime import date
 from typing import TypedDict
@@ -49,6 +49,25 @@ def run(case: dict | None = None) -> dict:
     responses = {item.id: case[item.value["kind"]] for item in paused.interrupts}
     result = graph.invoke(Command(resume=responses), config, version="v2").value
     return {"prompts": sorted(item.value["kind"] for item in paused.interrupts), "result": result}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    """Preview independent claims in order; one rejected input must not lose its siblings.
+
+    This sequential interface favors isolation over throughput. It is not a shared
+    checkpoint thread or a promise of transaction atomicity.
+    """
+    from copy import deepcopy
+
+    from common.pretty import safe_value
+
+    results = []
+    for case in cases:
+        try:
+            results.append({"value": safe_value(run(deepcopy(case)))})
+        except Exception as error:
+            results.append({"error": type(error).__name__})
+    return results
 
 
 def main() -> None:

@@ -1,4 +1,4 @@
-"""Extend v2 stream parts: Values events must retain interrupt information.. Run this file with Python. No live model or network."""
+"""Extend v2 stream parts: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -45,7 +45,7 @@ def summarize_part(part: dict) -> dict:
         result["nodes"] = sorted(part["data"])
     elif part["type"] == "values":
         result["status"] = part["data"].get("status", "input")
-        result["interrupts"] = 0
+        result["interrupts"] = len(part.get("interrupts", ()))
     elif part["type"] == "custom":
         result["phase"] = part["data"]["phase"]
     else:
@@ -62,6 +62,10 @@ def run(case: dict | None = None) -> dict:
         version="v2",
     )
     return {"parts": [summarize_part(part) for part in parts]}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

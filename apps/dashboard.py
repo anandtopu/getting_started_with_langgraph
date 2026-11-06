@@ -1,5 +1,6 @@
 """Streamlit adjuster dashboard: streamlit run apps/dashboard.py."""
 
+import hashlib
 import os
 import uuid
 
@@ -15,8 +16,17 @@ def main():
     st.caption("Synthetic training claims. Every recorded payment is a local demonstration.")
     base_url = os.environ.get("LARKSPUR_API_URL", "http://127.0.0.1:8000")
     token = st.sidebar.text_input("Adjuster access token", type="password")
-    thread_id = st.sidebar.text_input("Claim thread", value=st.session_state.get("thread_id", ""))
+    if "next_thread_id" in st.session_state:
+        st.session_state["thread_input"] = st.session_state.pop("next_thread_id")
+    elif "thread_input" not in st.session_state:
+        st.session_state["thread_input"] = st.session_state.get("thread_id", "")
+    thread_id = st.sidebar.text_input("Claim thread", key="thread_input")
     submission = st.sidebar.number_input("Synthetic submission", min_value=1, max_value=60, value=1)
+    # A session can switch claims or credentials; never reuse another view's streamed text.
+    scope = hashlib.sha256((base_url + "\0" + token + "\0" + thread_id).encode()).hexdigest()
+    if st.session_state.get("view_scope") != scope:
+        st.session_state.pop("view", None)
+        st.session_state["view_scope"] = scope
     if not token:
         st.info("Enter your local adjuster token to open a claim.")
         return
@@ -46,6 +56,9 @@ def main():
                         render(state)
                     frame = ""
         st.session_state["view"] = state
+        st.session_state["view_scope"] = hashlib.sha256(
+            (base_url + "\0" + token + "\0" + thread_id).encode()
+        ).hexdigest()
 
     try:
         if st.sidebar.button("Open new claim"):
@@ -55,6 +68,7 @@ def main():
             )
             response.raise_for_status()
             st.session_state["thread_id"] = thread_id
+            st.session_state["next_thread_id"] = thread_id
             stream(f"/threads/{thread_id}/run")
             st.rerun()
         if not thread_id:

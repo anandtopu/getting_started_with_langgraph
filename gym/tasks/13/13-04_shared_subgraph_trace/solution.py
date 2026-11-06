@@ -1,4 +1,4 @@
-"""Trace shared subgraph: Apply the high-value risk boundary inside the reusable child.. Run this file with Python. No live model or network."""
+"""Diagnose shared subgraph from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 

@@ -1,0 +1,39 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "max_messages": 2,
+        "second_text": "An estimate is now attached."
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "saved_messages": 3,
+          "model_context_sizes": [
+            1,
+            1
+          ],
+          "summary": "An estimate is now attached."
+        }
+      }
+    },
+    {
+      "input": {
+        "max_messages": 4,
+        "second_text": "An estimate is now attached."
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "saved_messages": 3,
+          "model_context_sizes": [
+            1,
+            3
+          ],
+          "summary": "An estimate is now attached."
+        }
+      }
+    }
+  ]
+}

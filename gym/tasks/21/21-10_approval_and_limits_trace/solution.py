@@ -1,4 +1,4 @@
-"""Trace approval and limits: Reject an operation above the token admission budget.. Run this file with Python. No live model or network."""
+"""Diagnose approval and limits from execution evidence. Run this file with Python. No live model or network."""
 
 from common.app_demo import run_demo
 from common.pretty import print_state

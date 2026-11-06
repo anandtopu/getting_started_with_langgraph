@@ -1,4 +1,4 @@
-"""Refactor short term memory: Retain the summarization step after responding.. Run this file with Python. No live model or network."""
+"""Refactor short term memory: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, trim_messages
 from langgraph.checkpoint.memory import InMemorySaver
@@ -51,8 +51,15 @@ def build_graph(seen: list[int], max_messages: int = 2):
     return graph.compile(checkpointer=InMemorySaver())
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     seen = []
     graph = build_graph(seen, case["max_messages"])
     config = {"configurable": {"thread_id": "claim-memory"}}

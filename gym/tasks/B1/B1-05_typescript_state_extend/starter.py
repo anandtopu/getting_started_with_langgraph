@@ -1,4 +1,4 @@
-"""Extend typescript state: Handle an empty normalized description as missing information.. Run this file with Python. No live model or network."""
+"""Extend typescript state: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from pathlib import Path
 
@@ -13,6 +13,10 @@ def run(case: dict | None = None) -> dict:
     return run_typescript(
         Path(__file__).with_suffix(".ts"), dict(DEFAULT_CASE if case is None else case)
     )
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

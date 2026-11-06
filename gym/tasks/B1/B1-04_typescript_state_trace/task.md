@@ -1,4 +1,4 @@
-# B1-04 — Trace typescript state: Preserve Python's inclusive fast-track boundary.
+# B1-04 — Diagnose typescript state from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ TypeScript adds static types to JavaScript; StateSchema uses Zod schemas for gra
 
 ## Your task
 
-Preserve Python's inclusive fast-track boundary. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose typescript state from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Preserve Python's inclusive fast-track boundary. Read trace.py before completing
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Trim the input description before testing completeness."
+- "Preserve Python's inclusive fast-track boundary."
+- "Handle an empty normalized description as missing information."
+- "Accumulate both audit labels across node updates."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,4 +1,4 @@
-"""Refactor channels and steps: Compute the summary from the merged findings.. Run this file with Python. No live model or network."""
+"""Refactor channels and steps: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from common.mini_graph import MiniGraph
 from common.pretty import print_state
@@ -19,7 +19,7 @@ def run(case: dict | None = None) -> dict:
         return inspect
 
     nodes = {name: worker(name) for name in case["documents"]}
-    nodes["summary"] = lambda state, resume: {"count": 0}
+    nodes["summary"] = lambda state, resume: {"count": len(state["findings"])}
     graph = MiniGraph(
         nodes,
         {name: ["summary"] for name in case["documents"]},

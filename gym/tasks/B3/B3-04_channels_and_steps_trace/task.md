@@ -1,4 +1,4 @@
-# B3-04 — Trace channels and steps: Report the previous-boundary view seen by each worker.
+# B3-04 — Diagnose channels and steps from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ The educational runner snapshots state before a superstep, collects writes from 
 
 ## Your task
 
-Report the previous-boundary view seen by each worker. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose channels and steps from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -25,6 +25,13 @@ Report the previous-boundary view seen by each worker. Read trace.py before comp
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Merge all sibling findings at the barrier."
+- "Report the previous-boundary view seen by each worker."
+- "Run the summary even when the document fan-out is empty."
+- "Compute the summary from the merged findings."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

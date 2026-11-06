@@ -1,4 +1,4 @@
-"""Trace local visual debugging: Debug the supplied claim amount rather than a substituted value.. Run this file with Python. No live model or network."""
+"""Diagnose local visual debugging from execution evidence. Run this file with Python. No live model or network."""
 
 import json
 

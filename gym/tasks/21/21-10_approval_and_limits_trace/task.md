@@ -1,4 +1,4 @@
-# 21-10 — Trace approval and limits: Reject an operation above the token admission budget.
+# 21-10 — Diagnose approval and limits from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Admission checks reject a planned operation that exceeds the configured call or 
 
 ## Your task
 
-Reject an operation above the token admission budget. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose approval and limits from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -30,6 +30,13 @@ Reject an operation above the token admission budget. Read trace.py before compl
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Enforce the separate planned-call budget."
+- "Reject an operation above the token admission budget."
+- "Keep a human rejection from creating an effect."
+- "Reject boolean values masquerading as numeric budgets."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,4 +1,4 @@
-"""Refactor bounded rechecks: Equivalent loops must preserve the exact attempt budget.. Run this file with Python. No live model or network."""
+"""Refactor bounded rechecks: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -21,7 +21,7 @@ class State(TypedDict):
 def check_documents(state: State) -> dict:
     index = state["attempts"]
     received = index < len(state["history"]) and state["history"][index]
-    exhausted = index >= state["budget"]
+    exhausted = index + 1 >= state["budget"]
     status = "ready" if received else "exhausted" if exhausted else "waiting"
     return {
         "attempts": index + 1,

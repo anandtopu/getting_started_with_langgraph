@@ -1,4 +1,4 @@
-"""Trace manual react: Let the agent observe a policy lookup failure.. Run this file with Python. No live model or network."""
+"""Diagnose manual react from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.tools import tool

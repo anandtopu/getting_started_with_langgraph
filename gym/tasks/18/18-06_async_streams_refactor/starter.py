@@ -1,4 +1,4 @@
-"""Refactor async streams: Record cleanup after the waiting node receives cancellation.. Run this file with Python. No live model or network."""
+"""Refactor async streams: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import asyncio
 
@@ -48,7 +48,7 @@ async def arun(case):
             started.set()
             await asyncio.Event().wait()
         finally:
-            cleaned.clear()
+            cleaned.append("closed")
 
     if case["cancel"]:
         graph = (

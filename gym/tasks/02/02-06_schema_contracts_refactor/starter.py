@@ -1,6 +1,6 @@
-"""Refactor schema contracts: Converting schema styles must preserve valid values.. Run this file with Python. No live model or network."""
+"""Refactor schema contracts: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import TypedDict
 
 from langgraph.graph import END, START, StateGraph
@@ -33,7 +33,7 @@ class ClaimModel(BaseModel):
 def as_mapping(state) -> dict:
     if isinstance(state, BaseModel):
         return state.model_dump()
-    return {} if isinstance(state, ClaimData) else dict(state)
+    return asdict(state) if isinstance(state, ClaimData) else dict(state)
 
 
 def validate_claim(state) -> dict:

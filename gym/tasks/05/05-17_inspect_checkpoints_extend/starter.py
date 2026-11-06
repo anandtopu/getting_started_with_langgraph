@@ -1,4 +1,4 @@
-"""Extend inspect checkpoints: The edit attribution determines the pending successor nodes.. Run this file with Python. No live model or network."""
+"""Extend inspect checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -43,7 +43,7 @@ def run(case: dict | None = None) -> dict:
     ).value
     history = list(graph.get_state_history(config))
     corrected = graph.update_state(
-        config, {"amount_cents": case["corrected_amount"]}, as_node="decide"
+        config, {"amount_cents": case["corrected_amount"]}, as_node="normalize"
     )
     snapshot = graph.get_state(corrected)
     result = graph.invoke(None, corrected, version="v2").value
@@ -54,6 +54,10 @@ def run(case: dict | None = None) -> dict:
         "parent_exists": snapshot.parent_config is not None,
         "saved_steps": sorted(item.metadata["step"] for item in history),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

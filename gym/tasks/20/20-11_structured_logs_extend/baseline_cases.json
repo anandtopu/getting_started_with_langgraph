@@ -1,0 +1,76 @@
+[
+  {
+    "input": {
+      "thread_id": "claim-thread",
+      "run_id": "review-1",
+      "description": "Synthetic contact: 555-0100",
+      "api_key": "synthetic-secret"
+    },
+    "expected": {
+      "value": {
+        "records": [
+          {
+            "event": "node_finished",
+            "node": "normalize",
+            "run_id": "review-1",
+            "status": "ok",
+            "thread_id": "claim-thread"
+          },
+          {
+            "event": "node_finished",
+            "node": "route",
+            "run_id": "review-1",
+            "status": "ok",
+            "thread_id": "claim-thread"
+          },
+          {
+            "event": "node_finished",
+            "node": "approve_claim",
+            "run_id": "review-1",
+            "status": "ok",
+            "thread_id": "claim-thread"
+          }
+        ],
+        "raw_text_logged": false,
+        "credential_logged": false
+      }
+    }
+  },
+  {
+    "input": {
+      "thread_id": "second-claim",
+      "run_id": "review-2",
+      "description": "Synthetic contact: 555-0100",
+      "api_key": "synthetic-secret"
+    },
+    "expected": {
+      "value": {
+        "records": [
+          {
+            "event": "node_finished",
+            "node": "normalize",
+            "run_id": "review-2",
+            "status": "ok",
+            "thread_id": "second-claim"
+          },
+          {
+            "event": "node_finished",
+            "node": "route",
+            "run_id": "review-2",
+            "status": "ok",
+            "thread_id": "second-claim"
+          },
+          {
+            "event": "node_finished",
+            "node": "approve_claim",
+            "run_id": "review-2",
+            "status": "ok",
+            "thread_id": "second-claim"
+          }
+        ],
+        "raw_text_logged": false,
+        "credential_logged": false
+      }
+    }
+  }
+]

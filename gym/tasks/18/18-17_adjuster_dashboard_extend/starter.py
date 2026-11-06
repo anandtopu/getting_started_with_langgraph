@@ -1,4 +1,4 @@
-"""Extend adjuster dashboard: Enable submission only for a currently pending interrupt.. Run this file with Python. No live model or network."""
+"""Extend adjuster dashboard: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from common.pretty import print_state
 from common.sse import update_dashboard
@@ -22,13 +22,17 @@ def run(case: dict | None = None) -> dict:
             },
         },
     )
-    allowed = True
+    allowed = case["submitted_id"] in {item["id"] for item in state["pending"]}
     return {
         "progress": state["progress"],
         "text": state.get("text", ""),
         "current_ids": [item["id"] for item in state["pending"]],
         "can_submit": allowed,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

@@ -1,4 +1,4 @@
-"""Refactor create agent: Expose the final agent answer rather than the original question.. Run this file with Python. No live model or network."""
+"""Refactor create agent: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage
@@ -37,8 +37,15 @@ def build_graph(policy_id: str = "POL-0001"):
     )
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     value = (
         build_graph(case["policy_id"])
         .invoke({"messages": [HumanMessage(content="Check my deductible.")]}, version="v2")

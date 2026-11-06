@@ -1,4 +1,4 @@
-"""Refactor reducer findings: Canonical presentation must not depend on arrival order.. Run this file with Python. No live model or network."""
+"""Refactor reducer findings: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -21,7 +21,7 @@ def merge_findings(left: list[dict], right: list[dict]) -> list[dict]:
             "id": key,
             "severity": max(indexed.get(key, {}).get("severity", 0), finding["severity"]),
         }
-    return [indexed[key] for key in indexed]
+    return [indexed[key] for key in sorted(indexed)]
 
 
 class State(TypedDict):

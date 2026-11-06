@@ -28,7 +28,12 @@ def await_estimate(state: DurableClaimState) -> dict:
             "requested_on": state["requested_on"],
         }
     )
-    if not isinstance(response, dict) or not response.get("document_id"):
+    if (
+        not isinstance(response, dict)
+        or not isinstance(response.get("document_id"), str)
+        or not response["document_id"].strip()
+        or not isinstance(response.get("received_on"), str)
+    ):
         raise ValueError("Resume with document_id and received_on")
     elapsed = (
         date.fromisoformat(response["received_on"]) - date.fromisoformat(state["requested_on"])

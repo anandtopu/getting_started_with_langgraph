@@ -1,4 +1,4 @@
-# 13-16 — Trace subgraph persistence: Reject a string masquerading as a human decision.
+# 13-16 — Diagnose subgraph persistence from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A parent checkpointer propagates into its child. A child compiled with the defau
 
 ## Your task
 
-Reject a string masquerading as a human decision. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose subgraph persistence from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Reject a string masquerading as a human decision. Read trace.py before completin
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Request nested snapshots when inspecting child state."
+- "Reject a string masquerading as a human decision."
+- "Include nested updates when streaming subgraphs."
+- "Carry the actual human approval through the child boundary."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

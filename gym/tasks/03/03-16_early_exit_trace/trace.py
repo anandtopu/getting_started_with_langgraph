@@ -1,4 +1,4 @@
-"""Trace early exit: Zero is a defined boundary, not an omitted case.. Run this file with Python. No live model or network."""
+"""Diagnose early exit from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

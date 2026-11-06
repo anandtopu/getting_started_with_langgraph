@@ -1,4 +1,4 @@
-"""Extend functional resume: Preserve a human rejection through entrypoint replay.. Run this file with Python. No live model or network."""
+"""Extend functional resume: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.func import entrypoint, task
@@ -22,7 +22,7 @@ def build_workflow(counts: dict):
         decision = interrupt({"evidence": evidence})
         if type(decision) is not bool:
             raise ValueError("Approval must be a boolean")
-        return {"claim_id": evidence["claim_id"], "approved": True}
+        return {"claim_id": evidence["claim_id"], "approved": decision}
 
     return review
 
@@ -36,6 +36,10 @@ def run(case: dict | None = None) -> dict:
     paused = workflow.invoke({"claim_id": case["claim_id"]}, config, version="v2")
     result = workflow.invoke(Command(resume=case["approved"]), config, version="v2")
     return {"interrupts": len(paused.interrupts), "result": result.value, "counts": counts}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

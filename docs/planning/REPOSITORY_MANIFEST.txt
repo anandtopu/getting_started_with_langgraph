@@ -1,4 +1,4 @@
-# Shipped file manifest; generated 2026-11-06. Runtime workspaces and environments are excluded.
+# Shipped file manifest; runtime workspaces and environments are excluded.
 .dockerignore
 .env.example
 .gitattributes
@@ -272,6 +272,7 @@ data/policies/jewelry_add_on.md
 data/policies/renters.md
 data/security/injected_claim.json
 docs/ACCEPTANCE_REPORT.md
+docs/BEGINNER_BRIDGE.md
 docs/BUILD_PROGRESS.md
 docs/CHOOSING_THE_RIGHT_DESIGN.md
 docs/COMMON_BUGS.md
@@ -280,6 +281,7 @@ docs/DEPLOYMENT.md
 docs/FEATURE_MAP.md
 docs/GLOSSARY.md
 docs/GYM_TASK_CATALOG.md
+docs/LIVE_MODEL_LAB.md
 docs/MENTAL_MODEL.md
 docs/MIGRATING_FROM_OLDER_VERSIONS.md
 docs/OPTIONAL_DEPENDENCIES.md
@@ -289,6 +291,10 @@ docs/VERIFICATION_NOTES.md
 docs/planning/PLAN_VALIDATION.json
 docs/planning/REPOSITORY_MANIFEST.txt
 docs/planning/course_catalog.json
+docs/reviews/2026-11-06/ACTION_PLAN.md
+docs/reviews/2026-11-06/INTEGRATION.md
+docs/reviews/2026-11-06/PER_FILE.md
+docs/reviews/2026-11-06/README.md
 docs/verification/final_ci.json
 docs/verification/mcp-compatible.json
 docs/verification/npm-metadata.json
@@ -375,7 +381,9 @@ gym/tasks/00/00-10_environment_trace/hints.md
 gym/tasks/00/00-10_environment_trace/solution.py
 gym/tasks/00/00-10_environment_trace/task.md
 gym/tasks/00/00-10_environment_trace/test_task.py
+gym/tasks/00/00-10_environment_trace/trace.json
 gym/tasks/00/00-10_environment_trace/trace.py
+gym/tasks/00/00-11_environment_extend/baseline_cases.json
 gym/tasks/00/00-11_environment_extend/cases.json
 gym/tasks/00/00-11_environment_extend/explanation.md
 gym/tasks/00/00-11_environment_extend/hints.md
@@ -418,7 +426,9 @@ gym/tasks/00/00-16_first_gym_trace/hints.md
 gym/tasks/00/00-16_first_gym_trace/solution.py
 gym/tasks/00/00-16_first_gym_trace/task.md
 gym/tasks/00/00-16_first_gym_trace/test_task.py
+gym/tasks/00/00-16_first_gym_trace/trace.json
 gym/tasks/00/00-16_first_gym_trace/trace.py
+gym/tasks/00/00-17_first_gym_extend/baseline_cases.json
 gym/tasks/00/00-17_first_gym_extend/cases.json
 gym/tasks/00/00-17_first_gym_extend/explanation.md
 gym/tasks/00/00-17_first_gym_extend/hints.md
@@ -464,7 +474,9 @@ gym/tasks/01/01-04_intake_nodes_trace/hints.md
 gym/tasks/01/01-04_intake_nodes_trace/solution.py
 gym/tasks/01/01-04_intake_nodes_trace/task.md
 gym/tasks/01/01-04_intake_nodes_trace/test_task.py
+gym/tasks/01/01-04_intake_nodes_trace/trace.json
 gym/tasks/01/01-04_intake_nodes_trace/trace.py
+gym/tasks/01/01-05_intake_nodes_extend/baseline_cases.json
 gym/tasks/01/01-05_intake_nodes_extend/cases.json
 gym/tasks/01/01-05_intake_nodes_extend/explanation.md
 gym/tasks/01/01-05_intake_nodes_extend/hints.md
@@ -507,7 +519,9 @@ gym/tasks/01/01-10_wire_pipeline_trace/hints.md
 gym/tasks/01/01-10_wire_pipeline_trace/solution.py
 gym/tasks/01/01-10_wire_pipeline_trace/task.md
 gym/tasks/01/01-10_wire_pipeline_trace/test_task.py
+gym/tasks/01/01-10_wire_pipeline_trace/trace.json
 gym/tasks/01/01-10_wire_pipeline_trace/trace.py
+gym/tasks/01/01-11_wire_pipeline_extend/baseline_cases.json
 gym/tasks/01/01-11_wire_pipeline_extend/cases.json
 gym/tasks/01/01-11_wire_pipeline_extend/explanation.md
 gym/tasks/01/01-11_wire_pipeline_extend/hints.md
@@ -550,7 +564,9 @@ gym/tasks/01/01-16_draw_and_explain_trace/hints.md
 gym/tasks/01/01-16_draw_and_explain_trace/solution.py
 gym/tasks/01/01-16_draw_and_explain_trace/task.md
 gym/tasks/01/01-16_draw_and_explain_trace/test_task.py
+gym/tasks/01/01-16_draw_and_explain_trace/trace.json
 gym/tasks/01/01-16_draw_and_explain_trace/trace.py
+gym/tasks/01/01-17_draw_and_explain_extend/baseline_cases.json
 gym/tasks/01/01-17_draw_and_explain_extend/cases.json
 gym/tasks/01/01-17_draw_and_explain_extend/explanation.md
 gym/tasks/01/01-17_draw_and_explain_extend/hints.md
@@ -596,7 +612,9 @@ gym/tasks/02/02-04_schema_contracts_trace/hints.md
 gym/tasks/02/02-04_schema_contracts_trace/solution.py
 gym/tasks/02/02-04_schema_contracts_trace/task.md
 gym/tasks/02/02-04_schema_contracts_trace/test_task.py
+gym/tasks/02/02-04_schema_contracts_trace/trace.json
 gym/tasks/02/02-04_schema_contracts_trace/trace.py
+gym/tasks/02/02-05_schema_contracts_extend/baseline_cases.json
 gym/tasks/02/02-05_schema_contracts_extend/cases.json
 gym/tasks/02/02-05_schema_contracts_extend/explanation.md
 gym/tasks/02/02-05_schema_contracts_extend/hints.md
@@ -639,7 +657,9 @@ gym/tasks/02/02-10_reducer_findings_trace/hints.md
 gym/tasks/02/02-10_reducer_findings_trace/solution.py
 gym/tasks/02/02-10_reducer_findings_trace/task.md
 gym/tasks/02/02-10_reducer_findings_trace/test_task.py
+gym/tasks/02/02-10_reducer_findings_trace/trace.json
 gym/tasks/02/02-10_reducer_findings_trace/trace.py
+gym/tasks/02/02-11_reducer_findings_extend/baseline_cases.json
 gym/tasks/02/02-11_reducer_findings_extend/cases.json
 gym/tasks/02/02-11_reducer_findings_extend/explanation.md
 gym/tasks/02/02-11_reducer_findings_extend/hints.md
@@ -682,7 +702,9 @@ gym/tasks/02/02-16_state_boundaries_trace/hints.md
 gym/tasks/02/02-16_state_boundaries_trace/solution.py
 gym/tasks/02/02-16_state_boundaries_trace/task.md
 gym/tasks/02/02-16_state_boundaries_trace/test_task.py
+gym/tasks/02/02-16_state_boundaries_trace/trace.json
 gym/tasks/02/02-16_state_boundaries_trace/trace.py
+gym/tasks/02/02-17_state_boundaries_extend/baseline_cases.json
 gym/tasks/02/02-17_state_boundaries_extend/cases.json
 gym/tasks/02/02-17_state_boundaries_extend/explanation.md
 gym/tasks/02/02-17_state_boundaries_extend/hints.md
@@ -725,7 +747,9 @@ gym/tasks/03/03-04_conditional_router_trace/hints.md
 gym/tasks/03/03-04_conditional_router_trace/solution.py
 gym/tasks/03/03-04_conditional_router_trace/task.md
 gym/tasks/03/03-04_conditional_router_trace/test_task.py
+gym/tasks/03/03-04_conditional_router_trace/trace.json
 gym/tasks/03/03-04_conditional_router_trace/trace.py
+gym/tasks/03/03-05_conditional_router_extend/baseline_cases.json
 gym/tasks/03/03-05_conditional_router_extend/cases.json
 gym/tasks/03/03-05_conditional_router_extend/explanation.md
 gym/tasks/03/03-05_conditional_router_extend/hints.md
@@ -768,7 +792,9 @@ gym/tasks/03/03-10_command_routes_trace/hints.md
 gym/tasks/03/03-10_command_routes_trace/solution.py
 gym/tasks/03/03-10_command_routes_trace/task.md
 gym/tasks/03/03-10_command_routes_trace/test_task.py
+gym/tasks/03/03-10_command_routes_trace/trace.json
 gym/tasks/03/03-10_command_routes_trace/trace.py
+gym/tasks/03/03-11_command_routes_extend/baseline_cases.json
 gym/tasks/03/03-11_command_routes_extend/cases.json
 gym/tasks/03/03-11_command_routes_extend/explanation.md
 gym/tasks/03/03-11_command_routes_extend/hints.md
@@ -811,7 +837,9 @@ gym/tasks/03/03-16_early_exit_trace/hints.md
 gym/tasks/03/03-16_early_exit_trace/solution.py
 gym/tasks/03/03-16_early_exit_trace/task.md
 gym/tasks/03/03-16_early_exit_trace/test_task.py
+gym/tasks/03/03-16_early_exit_trace/trace.json
 gym/tasks/03/03-16_early_exit_trace/trace.py
+gym/tasks/03/03-17_early_exit_extend/baseline_cases.json
 gym/tasks/03/03-17_early_exit_extend/cases.json
 gym/tasks/03/03-17_early_exit_extend/explanation.md
 gym/tasks/03/03-17_early_exit_extend/hints.md
@@ -857,7 +885,9 @@ gym/tasks/04/04-04_bounded_rechecks_trace/hints.md
 gym/tasks/04/04-04_bounded_rechecks_trace/solution.py
 gym/tasks/04/04-04_bounded_rechecks_trace/task.md
 gym/tasks/04/04-04_bounded_rechecks_trace/test_task.py
+gym/tasks/04/04-04_bounded_rechecks_trace/trace.json
 gym/tasks/04/04-04_bounded_rechecks_trace/trace.py
+gym/tasks/04/04-05_bounded_rechecks_extend/baseline_cases.json
 gym/tasks/04/04-05_bounded_rechecks_extend/cases.json
 gym/tasks/04/04-05_bounded_rechecks_extend/explanation.md
 gym/tasks/04/04-05_bounded_rechecks_extend/hints.md
@@ -900,7 +930,9 @@ gym/tasks/04/04-10_fan_out_fan_in_trace/hints.md
 gym/tasks/04/04-10_fan_out_fan_in_trace/solution.py
 gym/tasks/04/04-10_fan_out_fan_in_trace/task.md
 gym/tasks/04/04-10_fan_out_fan_in_trace/test_task.py
+gym/tasks/04/04-10_fan_out_fan_in_trace/trace.json
 gym/tasks/04/04-10_fan_out_fan_in_trace/trace.py
+gym/tasks/04/04-11_fan_out_fan_in_extend/baseline_cases.json
 gym/tasks/04/04-11_fan_out_fan_in_extend/cases.json
 gym/tasks/04/04-11_fan_out_fan_in_extend/explanation.md
 gym/tasks/04/04-11_fan_out_fan_in_extend/hints.md
@@ -943,7 +975,9 @@ gym/tasks/04/04-16_retry_and_cache_trace/hints.md
 gym/tasks/04/04-16_retry_and_cache_trace/solution.py
 gym/tasks/04/04-16_retry_and_cache_trace/task.md
 gym/tasks/04/04-16_retry_and_cache_trace/test_task.py
+gym/tasks/04/04-16_retry_and_cache_trace/trace.json
 gym/tasks/04/04-16_retry_and_cache_trace/trace.py
+gym/tasks/04/04-17_retry_and_cache_extend/baseline_cases.json
 gym/tasks/04/04-17_retry_and_cache_extend/cases.json
 gym/tasks/04/04-17_retry_and_cache_extend/explanation.md
 gym/tasks/04/04-17_retry_and_cache_extend/hints.md
@@ -989,7 +1023,9 @@ gym/tasks/05/05-04_thread_identity_trace/hints.md
 gym/tasks/05/05-04_thread_identity_trace/solution.py
 gym/tasks/05/05-04_thread_identity_trace/task.md
 gym/tasks/05/05-04_thread_identity_trace/test_task.py
+gym/tasks/05/05-04_thread_identity_trace/trace.json
 gym/tasks/05/05-04_thread_identity_trace/trace.py
+gym/tasks/05/05-05_thread_identity_extend/baseline_cases.json
 gym/tasks/05/05-05_thread_identity_extend/cases.json
 gym/tasks/05/05-05_thread_identity_extend/explanation.md
 gym/tasks/05/05-05_thread_identity_extend/hints.md
@@ -1032,7 +1068,9 @@ gym/tasks/05/05-10_sqlite_lifetime_trace/hints.md
 gym/tasks/05/05-10_sqlite_lifetime_trace/solution.py
 gym/tasks/05/05-10_sqlite_lifetime_trace/task.md
 gym/tasks/05/05-10_sqlite_lifetime_trace/test_task.py
+gym/tasks/05/05-10_sqlite_lifetime_trace/trace.json
 gym/tasks/05/05-10_sqlite_lifetime_trace/trace.py
+gym/tasks/05/05-11_sqlite_lifetime_extend/baseline_cases.json
 gym/tasks/05/05-11_sqlite_lifetime_extend/cases.json
 gym/tasks/05/05-11_sqlite_lifetime_extend/explanation.md
 gym/tasks/05/05-11_sqlite_lifetime_extend/hints.md
@@ -1075,7 +1113,9 @@ gym/tasks/05/05-16_inspect_checkpoints_trace/hints.md
 gym/tasks/05/05-16_inspect_checkpoints_trace/solution.py
 gym/tasks/05/05-16_inspect_checkpoints_trace/task.md
 gym/tasks/05/05-16_inspect_checkpoints_trace/test_task.py
+gym/tasks/05/05-16_inspect_checkpoints_trace/trace.json
 gym/tasks/05/05-16_inspect_checkpoints_trace/trace.py
+gym/tasks/05/05-17_inspect_checkpoints_extend/baseline_cases.json
 gym/tasks/05/05-17_inspect_checkpoints_extend/cases.json
 gym/tasks/05/05-17_inspect_checkpoints_extend/explanation.md
 gym/tasks/05/05-17_inspect_checkpoints_extend/hints.md
@@ -1121,7 +1161,9 @@ gym/tasks/06/06-04_approve_or_reject_trace/hints.md
 gym/tasks/06/06-04_approve_or_reject_trace/solution.py
 gym/tasks/06/06-04_approve_or_reject_trace/task.md
 gym/tasks/06/06-04_approve_or_reject_trace/test_task.py
+gym/tasks/06/06-04_approve_or_reject_trace/trace.json
 gym/tasks/06/06-04_approve_or_reject_trace/trace.py
+gym/tasks/06/06-05_approve_or_reject_extend/baseline_cases.json
 gym/tasks/06/06-05_approve_or_reject_extend/cases.json
 gym/tasks/06/06-05_approve_or_reject_extend/explanation.md
 gym/tasks/06/06-05_approve_or_reject_extend/hints.md
@@ -1164,7 +1206,9 @@ gym/tasks/06/06-10_collect_and_edit_trace/hints.md
 gym/tasks/06/06-10_collect_and_edit_trace/solution.py
 gym/tasks/06/06-10_collect_and_edit_trace/task.md
 gym/tasks/06/06-10_collect_and_edit_trace/test_task.py
+gym/tasks/06/06-10_collect_and_edit_trace/trace.json
 gym/tasks/06/06-10_collect_and_edit_trace/trace.py
+gym/tasks/06/06-11_collect_and_edit_extend/baseline_cases.json
 gym/tasks/06/06-11_collect_and_edit_extend/cases.json
 gym/tasks/06/06-11_collect_and_edit_extend/explanation.md
 gym/tasks/06/06-11_collect_and_edit_extend/hints.md
@@ -1210,7 +1254,9 @@ gym/tasks/06/06-16_safe_reentry_trace/hints.md
 gym/tasks/06/06-16_safe_reentry_trace/solution.py
 gym/tasks/06/06-16_safe_reentry_trace/task.md
 gym/tasks/06/06-16_safe_reentry_trace/test_task.py
+gym/tasks/06/06-16_safe_reentry_trace/trace.json
 gym/tasks/06/06-16_safe_reentry_trace/trace.py
+gym/tasks/06/06-17_safe_reentry_extend/baseline_cases.json
 gym/tasks/06/06-17_safe_reentry_extend/cases.json
 gym/tasks/06/06-17_safe_reentry_extend/explanation.md
 gym/tasks/06/06-17_safe_reentry_extend/hints.md
@@ -1253,7 +1299,9 @@ gym/tasks/07/07-04_replay_and_fork_trace/hints.md
 gym/tasks/07/07-04_replay_and_fork_trace/solution.py
 gym/tasks/07/07-04_replay_and_fork_trace/task.md
 gym/tasks/07/07-04_replay_and_fork_trace/test_task.py
+gym/tasks/07/07-04_replay_and_fork_trace/trace.json
 gym/tasks/07/07-04_replay_and_fork_trace/trace.py
+gym/tasks/07/07-05_replay_and_fork_extend/baseline_cases.json
 gym/tasks/07/07-05_replay_and_fork_extend/cases.json
 gym/tasks/07/07-05_replay_and_fork_extend/explanation.md
 gym/tasks/07/07-05_replay_and_fork_extend/hints.md
@@ -1296,7 +1344,9 @@ gym/tasks/07/07-10_v2_stream_parts_trace/hints.md
 gym/tasks/07/07-10_v2_stream_parts_trace/solution.py
 gym/tasks/07/07-10_v2_stream_parts_trace/task.md
 gym/tasks/07/07-10_v2_stream_parts_trace/test_task.py
+gym/tasks/07/07-10_v2_stream_parts_trace/trace.json
 gym/tasks/07/07-10_v2_stream_parts_trace/trace.py
+gym/tasks/07/07-11_v2_stream_parts_extend/baseline_cases.json
 gym/tasks/07/07-11_v2_stream_parts_extend/cases.json
 gym/tasks/07/07-11_v2_stream_parts_extend/explanation.md
 gym/tasks/07/07-11_v2_stream_parts_extend/hints.md
@@ -1339,7 +1389,9 @@ gym/tasks/07/07-16_namespaces_and_errors_trace/hints.md
 gym/tasks/07/07-16_namespaces_and_errors_trace/solution.py
 gym/tasks/07/07-16_namespaces_and_errors_trace/task.md
 gym/tasks/07/07-16_namespaces_and_errors_trace/test_task.py
+gym/tasks/07/07-16_namespaces_and_errors_trace/trace.json
 gym/tasks/07/07-16_namespaces_and_errors_trace/trace.py
+gym/tasks/07/07-17_namespaces_and_errors_extend/baseline_cases.json
 gym/tasks/07/07-17_namespaces_and_errors_extend/cases.json
 gym/tasks/07/07-17_namespaces_and_errors_extend/explanation.md
 gym/tasks/07/07-17_namespaces_and_errors_extend/hints.md
@@ -1385,7 +1437,9 @@ gym/tasks/08/08-04_model_boundary_trace/hints.md
 gym/tasks/08/08-04_model_boundary_trace/solution.py
 gym/tasks/08/08-04_model_boundary_trace/task.md
 gym/tasks/08/08-04_model_boundary_trace/test_task.py
+gym/tasks/08/08-04_model_boundary_trace/trace.json
 gym/tasks/08/08-04_model_boundary_trace/trace.py
+gym/tasks/08/08-05_model_boundary_extend/baseline_cases.json
 gym/tasks/08/08-05_model_boundary_extend/cases.json
 gym/tasks/08/08-05_model_boundary_extend/explanation.md
 gym/tasks/08/08-05_model_boundary_extend/hints.md
@@ -1428,7 +1482,9 @@ gym/tasks/08/08-10_message_identity_trace/hints.md
 gym/tasks/08/08-10_message_identity_trace/solution.py
 gym/tasks/08/08-10_message_identity_trace/task.md
 gym/tasks/08/08-10_message_identity_trace/test_task.py
+gym/tasks/08/08-10_message_identity_trace/trace.json
 gym/tasks/08/08-10_message_identity_trace/trace.py
+gym/tasks/08/08-11_message_identity_extend/baseline_cases.json
 gym/tasks/08/08-11_message_identity_extend/cases.json
 gym/tasks/08/08-11_message_identity_extend/explanation.md
 gym/tasks/08/08-11_message_identity_extend/hints.md
@@ -1471,7 +1527,9 @@ gym/tasks/08/08-16_tokens_and_fakes_trace/hints.md
 gym/tasks/08/08-16_tokens_and_fakes_trace/solution.py
 gym/tasks/08/08-16_tokens_and_fakes_trace/task.md
 gym/tasks/08/08-16_tokens_and_fakes_trace/test_task.py
+gym/tasks/08/08-16_tokens_and_fakes_trace/trace.json
 gym/tasks/08/08-16_tokens_and_fakes_trace/trace.py
+gym/tasks/08/08-17_tokens_and_fakes_extend/baseline_cases.json
 gym/tasks/08/08-17_tokens_and_fakes_extend/cases.json
 gym/tasks/08/08-17_tokens_and_fakes_extend/explanation.md
 gym/tasks/08/08-17_tokens_and_fakes_extend/hints.md
@@ -1514,7 +1572,9 @@ gym/tasks/09/09-04_tools_and_messages_trace/hints.md
 gym/tasks/09/09-04_tools_and_messages_trace/solution.py
 gym/tasks/09/09-04_tools_and_messages_trace/task.md
 gym/tasks/09/09-04_tools_and_messages_trace/test_task.py
+gym/tasks/09/09-04_tools_and_messages_trace/trace.json
 gym/tasks/09/09-04_tools_and_messages_trace/trace.py
+gym/tasks/09/09-05_tools_and_messages_extend/baseline_cases.json
 gym/tasks/09/09-05_tools_and_messages_extend/cases.json
 gym/tasks/09/09-05_tools_and_messages_extend/explanation.md
 gym/tasks/09/09-05_tools_and_messages_extend/hints.md
@@ -1557,7 +1617,9 @@ gym/tasks/09/09-10_manual_react_trace/hints.md
 gym/tasks/09/09-10_manual_react_trace/solution.py
 gym/tasks/09/09-10_manual_react_trace/task.md
 gym/tasks/09/09-10_manual_react_trace/test_task.py
+gym/tasks/09/09-10_manual_react_trace/trace.json
 gym/tasks/09/09-10_manual_react_trace/trace.py
+gym/tasks/09/09-11_manual_react_extend/baseline_cases.json
 gym/tasks/09/09-11_manual_react_extend/cases.json
 gym/tasks/09/09-11_manual_react_extend/explanation.md
 gym/tasks/09/09-11_manual_react_extend/hints.md
@@ -1600,7 +1662,9 @@ gym/tasks/09/09-16_tool_runtime_trace/hints.md
 gym/tasks/09/09-16_tool_runtime_trace/solution.py
 gym/tasks/09/09-16_tool_runtime_trace/task.md
 gym/tasks/09/09-16_tool_runtime_trace/test_task.py
+gym/tasks/09/09-16_tool_runtime_trace/trace.json
 gym/tasks/09/09-16_tool_runtime_trace/trace.py
+gym/tasks/09/09-17_tool_runtime_extend/baseline_cases.json
 gym/tasks/09/09-17_tool_runtime_extend/cases.json
 gym/tasks/09/09-17_tool_runtime_extend/explanation.md
 gym/tasks/09/09-17_tool_runtime_extend/hints.md
@@ -1646,7 +1710,9 @@ gym/tasks/10/10-04_create_agent_trace/hints.md
 gym/tasks/10/10-04_create_agent_trace/solution.py
 gym/tasks/10/10-04_create_agent_trace/task.md
 gym/tasks/10/10-04_create_agent_trace/test_task.py
+gym/tasks/10/10-04_create_agent_trace/trace.json
 gym/tasks/10/10-04_create_agent_trace/trace.py
+gym/tasks/10/10-05_create_agent_extend/baseline_cases.json
 gym/tasks/10/10-05_create_agent_extend/cases.json
 gym/tasks/10/10-05_create_agent_extend/explanation.md
 gym/tasks/10/10-05_create_agent_extend/hints.md
@@ -1689,7 +1755,9 @@ gym/tasks/10/10-10_middleware_trace/hints.md
 gym/tasks/10/10-10_middleware_trace/solution.py
 gym/tasks/10/10-10_middleware_trace/task.md
 gym/tasks/10/10-10_middleware_trace/test_task.py
+gym/tasks/10/10-10_middleware_trace/trace.json
 gym/tasks/10/10-10_middleware_trace/trace.py
+gym/tasks/10/10-11_middleware_extend/baseline_cases.json
 gym/tasks/10/10-11_middleware_extend/cases.json
 gym/tasks/10/10-11_middleware_extend/explanation.md
 gym/tasks/10/10-11_middleware_extend/hints.md
@@ -1735,7 +1803,9 @@ gym/tasks/10/10-16_agent_composition_trace/hints.md
 gym/tasks/10/10-16_agent_composition_trace/solution.py
 gym/tasks/10/10-16_agent_composition_trace/task.md
 gym/tasks/10/10-16_agent_composition_trace/test_task.py
+gym/tasks/10/10-16_agent_composition_trace/trace.json
 gym/tasks/10/10-16_agent_composition_trace/trace.py
+gym/tasks/10/10-17_agent_composition_extend/baseline_cases.json
 gym/tasks/10/10-17_agent_composition_extend/cases.json
 gym/tasks/10/10-17_agent_composition_extend/explanation.md
 gym/tasks/10/10-17_agent_composition_extend/hints.md
@@ -1778,7 +1848,9 @@ gym/tasks/11/11-04_short_term_memory_trace/hints.md
 gym/tasks/11/11-04_short_term_memory_trace/solution.py
 gym/tasks/11/11-04_short_term_memory_trace/task.md
 gym/tasks/11/11-04_short_term_memory_trace/test_task.py
+gym/tasks/11/11-04_short_term_memory_trace/trace.json
 gym/tasks/11/11-04_short_term_memory_trace/trace.py
+gym/tasks/11/11-05_short_term_memory_extend/baseline_cases.json
 gym/tasks/11/11-05_short_term_memory_extend/cases.json
 gym/tasks/11/11-05_short_term_memory_extend/explanation.md
 gym/tasks/11/11-05_short_term_memory_extend/hints.md
@@ -1821,7 +1893,9 @@ gym/tasks/11/11-10_store_namespaces_trace/hints.md
 gym/tasks/11/11-10_store_namespaces_trace/solution.py
 gym/tasks/11/11-10_store_namespaces_trace/task.md
 gym/tasks/11/11-10_store_namespaces_trace/test_task.py
+gym/tasks/11/11-10_store_namespaces_trace/trace.json
 gym/tasks/11/11-10_store_namespaces_trace/trace.py
+gym/tasks/11/11-11_store_namespaces_extend/baseline_cases.json
 gym/tasks/11/11-11_store_namespaces_extend/cases.json
 gym/tasks/11/11-11_store_namespaces_extend/explanation.md
 gym/tasks/11/11-11_store_namespaces_extend/hints.md
@@ -1864,7 +1938,9 @@ gym/tasks/11/11-16_semantic_and_privacy_trace/hints.md
 gym/tasks/11/11-16_semantic_and_privacy_trace/solution.py
 gym/tasks/11/11-16_semantic_and_privacy_trace/task.md
 gym/tasks/11/11-16_semantic_and_privacy_trace/test_task.py
+gym/tasks/11/11-16_semantic_and_privacy_trace/trace.json
 gym/tasks/11/11-16_semantic_and_privacy_trace/trace.py
+gym/tasks/11/11-17_semantic_and_privacy_extend/baseline_cases.json
 gym/tasks/11/11-17_semantic_and_privacy_extend/cases.json
 gym/tasks/11/11-17_semantic_and_privacy_extend/explanation.md
 gym/tasks/11/11-17_semantic_and_privacy_extend/hints.md
@@ -1910,7 +1986,9 @@ gym/tasks/12/12-04_chains_and_gates_trace/hints.md
 gym/tasks/12/12-04_chains_and_gates_trace/solution.py
 gym/tasks/12/12-04_chains_and_gates_trace/task.md
 gym/tasks/12/12-04_chains_and_gates_trace/test_task.py
+gym/tasks/12/12-04_chains_and_gates_trace/trace.json
 gym/tasks/12/12-04_chains_and_gates_trace/trace.py
+gym/tasks/12/12-05_chains_and_gates_extend/baseline_cases.json
 gym/tasks/12/12-05_chains_and_gates_extend/cases.json
 gym/tasks/12/12-05_chains_and_gates_extend/explanation.md
 gym/tasks/12/12-05_chains_and_gates_extend/hints.md
@@ -1956,7 +2034,9 @@ gym/tasks/12/12-10_orchestrator_workers_trace/hints.md
 gym/tasks/12/12-10_orchestrator_workers_trace/solution.py
 gym/tasks/12/12-10_orchestrator_workers_trace/task.md
 gym/tasks/12/12-10_orchestrator_workers_trace/test_task.py
+gym/tasks/12/12-10_orchestrator_workers_trace/trace.json
 gym/tasks/12/12-10_orchestrator_workers_trace/trace.py
+gym/tasks/12/12-11_orchestrator_workers_extend/baseline_cases.json
 gym/tasks/12/12-11_orchestrator_workers_extend/cases.json
 gym/tasks/12/12-11_orchestrator_workers_extend/explanation.md
 gym/tasks/12/12-11_orchestrator_workers_extend/hints.md
@@ -1999,7 +2079,9 @@ gym/tasks/12/12-16_evaluator_optimizer_trace/hints.md
 gym/tasks/12/12-16_evaluator_optimizer_trace/solution.py
 gym/tasks/12/12-16_evaluator_optimizer_trace/task.md
 gym/tasks/12/12-16_evaluator_optimizer_trace/test_task.py
+gym/tasks/12/12-16_evaluator_optimizer_trace/trace.json
 gym/tasks/12/12-16_evaluator_optimizer_trace/trace.py
+gym/tasks/12/12-17_evaluator_optimizer_extend/baseline_cases.json
 gym/tasks/12/12-17_evaluator_optimizer_extend/cases.json
 gym/tasks/12/12-17_evaluator_optimizer_extend/explanation.md
 gym/tasks/12/12-17_evaluator_optimizer_extend/hints.md
@@ -2042,7 +2124,9 @@ gym/tasks/13/13-04_shared_subgraph_trace/hints.md
 gym/tasks/13/13-04_shared_subgraph_trace/solution.py
 gym/tasks/13/13-04_shared_subgraph_trace/task.md
 gym/tasks/13/13-04_shared_subgraph_trace/test_task.py
+gym/tasks/13/13-04_shared_subgraph_trace/trace.json
 gym/tasks/13/13-04_shared_subgraph_trace/trace.py
+gym/tasks/13/13-05_shared_subgraph_extend/baseline_cases.json
 gym/tasks/13/13-05_shared_subgraph_extend/cases.json
 gym/tasks/13/13-05_shared_subgraph_extend/explanation.md
 gym/tasks/13/13-05_shared_subgraph_extend/hints.md
@@ -2085,7 +2169,9 @@ gym/tasks/13/13-10_schema_adapters_trace/hints.md
 gym/tasks/13/13-10_schema_adapters_trace/solution.py
 gym/tasks/13/13-10_schema_adapters_trace/task.md
 gym/tasks/13/13-10_schema_adapters_trace/test_task.py
+gym/tasks/13/13-10_schema_adapters_trace/trace.json
 gym/tasks/13/13-10_schema_adapters_trace/trace.py
+gym/tasks/13/13-11_schema_adapters_extend/baseline_cases.json
 gym/tasks/13/13-11_schema_adapters_extend/cases.json
 gym/tasks/13/13-11_schema_adapters_extend/explanation.md
 gym/tasks/13/13-11_schema_adapters_extend/hints.md
@@ -2128,7 +2214,9 @@ gym/tasks/13/13-16_subgraph_persistence_trace/hints.md
 gym/tasks/13/13-16_subgraph_persistence_trace/solution.py
 gym/tasks/13/13-16_subgraph_persistence_trace/task.md
 gym/tasks/13/13-16_subgraph_persistence_trace/test_task.py
+gym/tasks/13/13-16_subgraph_persistence_trace/trace.json
 gym/tasks/13/13-16_subgraph_persistence_trace/trace.py
+gym/tasks/13/13-17_subgraph_persistence_extend/baseline_cases.json
 gym/tasks/13/13-17_subgraph_persistence_extend/cases.json
 gym/tasks/13/13-17_subgraph_persistence_extend/explanation.md
 gym/tasks/13/13-17_subgraph_persistence_extend/hints.md
@@ -2174,7 +2262,9 @@ gym/tasks/14/14-04_supervisor_tools_trace/hints.md
 gym/tasks/14/14-04_supervisor_tools_trace/solution.py
 gym/tasks/14/14-04_supervisor_tools_trace/task.md
 gym/tasks/14/14-04_supervisor_tools_trace/test_task.py
+gym/tasks/14/14-04_supervisor_tools_trace/trace.json
 gym/tasks/14/14-04_supervisor_tools_trace/trace.py
+gym/tasks/14/14-05_supervisor_tools_extend/baseline_cases.json
 gym/tasks/14/14-05_supervisor_tools_extend/cases.json
 gym/tasks/14/14-05_supervisor_tools_extend/explanation.md
 gym/tasks/14/14-05_supervisor_tools_extend/hints.md
@@ -2217,7 +2307,9 @@ gym/tasks/14/14-10_handoffs_trace/hints.md
 gym/tasks/14/14-10_handoffs_trace/solution.py
 gym/tasks/14/14-10_handoffs_trace/task.md
 gym/tasks/14/14-10_handoffs_trace/test_task.py
+gym/tasks/14/14-10_handoffs_trace/trace.json
 gym/tasks/14/14-10_handoffs_trace/trace.py
+gym/tasks/14/14-11_handoffs_extend/baseline_cases.json
 gym/tasks/14/14-11_handoffs_extend/cases.json
 gym/tasks/14/14-11_handoffs_extend/explanation.md
 gym/tasks/14/14-11_handoffs_extend/hints.md
@@ -2260,7 +2352,9 @@ gym/tasks/14/14-16_team_tradeoffs_trace/hints.md
 gym/tasks/14/14-16_team_tradeoffs_trace/solution.py
 gym/tasks/14/14-16_team_tradeoffs_trace/task.md
 gym/tasks/14/14-16_team_tradeoffs_trace/test_task.py
+gym/tasks/14/14-16_team_tradeoffs_trace/trace.json
 gym/tasks/14/14-16_team_tradeoffs_trace/trace.py
+gym/tasks/14/14-17_team_tradeoffs_extend/baseline_cases.json
 gym/tasks/14/14-17_team_tradeoffs_extend/cases.json
 gym/tasks/14/14-17_team_tradeoffs_extend/explanation.md
 gym/tasks/14/14-17_team_tradeoffs_extend/hints.md
@@ -2306,7 +2400,9 @@ gym/tasks/15/15-04_entrypoints_tasks_trace/hints.md
 gym/tasks/15/15-04_entrypoints_tasks_trace/solution.py
 gym/tasks/15/15-04_entrypoints_tasks_trace/task.md
 gym/tasks/15/15-04_entrypoints_tasks_trace/test_task.py
+gym/tasks/15/15-04_entrypoints_tasks_trace/trace.json
 gym/tasks/15/15-04_entrypoints_tasks_trace/trace.py
+gym/tasks/15/15-05_entrypoints_tasks_extend/baseline_cases.json
 gym/tasks/15/15-05_entrypoints_tasks_extend/cases.json
 gym/tasks/15/15-05_entrypoints_tasks_extend/explanation.md
 gym/tasks/15/15-05_entrypoints_tasks_extend/hints.md
@@ -2349,7 +2445,9 @@ gym/tasks/15/15-10_parallel_futures_trace/hints.md
 gym/tasks/15/15-10_parallel_futures_trace/solution.py
 gym/tasks/15/15-10_parallel_futures_trace/task.md
 gym/tasks/15/15-10_parallel_futures_trace/test_task.py
+gym/tasks/15/15-10_parallel_futures_trace/trace.json
 gym/tasks/15/15-10_parallel_futures_trace/trace.py
+gym/tasks/15/15-11_parallel_futures_extend/baseline_cases.json
 gym/tasks/15/15-11_parallel_futures_extend/cases.json
 gym/tasks/15/15-11_parallel_futures_extend/explanation.md
 gym/tasks/15/15-11_parallel_futures_extend/hints.md
@@ -2392,7 +2490,9 @@ gym/tasks/15/15-16_functional_resume_trace/hints.md
 gym/tasks/15/15-16_functional_resume_trace/solution.py
 gym/tasks/15/15-16_functional_resume_trace/task.md
 gym/tasks/15/15-16_functional_resume_trace/test_task.py
+gym/tasks/15/15-16_functional_resume_trace/trace.json
 gym/tasks/15/15-16_functional_resume_trace/trace.py
+gym/tasks/15/15-17_functional_resume_extend/baseline_cases.json
 gym/tasks/15/15-17_functional_resume_extend/cases.json
 gym/tasks/15/15-17_functional_resume_extend/explanation.md
 gym/tasks/15/15-17_functional_resume_extend/hints.md
@@ -2438,7 +2538,9 @@ gym/tasks/16/16-04_api_boundaries_trace/hints.md
 gym/tasks/16/16-04_api_boundaries_trace/solution.py
 gym/tasks/16/16-04_api_boundaries_trace/task.md
 gym/tasks/16/16-04_api_boundaries_trace/test_task.py
+gym/tasks/16/16-04_api_boundaries_trace/trace.json
 gym/tasks/16/16-04_api_boundaries_trace/trace.py
+gym/tasks/16/16-05_api_boundaries_extend/baseline_cases.json
 gym/tasks/16/16-05_api_boundaries_extend/cases.json
 gym/tasks/16/16-05_api_boundaries_extend/explanation.md
 gym/tasks/16/16-05_api_boundaries_extend/hints.md
@@ -2481,7 +2583,9 @@ gym/tasks/16/16-10_mcp_server_trace/hints.md
 gym/tasks/16/16-10_mcp_server_trace/solution.py
 gym/tasks/16/16-10_mcp_server_trace/task.md
 gym/tasks/16/16-10_mcp_server_trace/test_task.py
+gym/tasks/16/16-10_mcp_server_trace/trace.json
 gym/tasks/16/16-10_mcp_server_trace/trace.py
+gym/tasks/16/16-11_mcp_server_extend/baseline_cases.json
 gym/tasks/16/16-11_mcp_server_extend/cases.json
 gym/tasks/16/16-11_mcp_server_extend/explanation.md
 gym/tasks/16/16-11_mcp_server_extend/hints.md
@@ -2524,7 +2628,9 @@ gym/tasks/16/16-16_mcp_adapter_trace/hints.md
 gym/tasks/16/16-16_mcp_adapter_trace/solution.py
 gym/tasks/16/16-16_mcp_adapter_trace/task.md
 gym/tasks/16/16-16_mcp_adapter_trace/test_task.py
+gym/tasks/16/16-16_mcp_adapter_trace/trace.json
 gym/tasks/16/16-16_mcp_adapter_trace/trace.py
+gym/tasks/16/16-17_mcp_adapter_extend/baseline_cases.json
 gym/tasks/16/16-17_mcp_adapter_extend/cases.json
 gym/tasks/16/16-17_mcp_adapter_extend/explanation.md
 gym/tasks/16/16-17_mcp_adapter_extend/hints.md
@@ -2570,7 +2676,9 @@ gym/tasks/17/17-04_durable_side_effects_trace/hints.md
 gym/tasks/17/17-04_durable_side_effects_trace/solution.py
 gym/tasks/17/17-04_durable_side_effects_trace/task.md
 gym/tasks/17/17-04_durable_side_effects_trace/test_task.py
+gym/tasks/17/17-04_durable_side_effects_trace/trace.json
 gym/tasks/17/17-04_durable_side_effects_trace/trace.py
+gym/tasks/17/17-05_durable_side_effects_extend/baseline_cases.json
 gym/tasks/17/17-05_durable_side_effects_extend/cases.json
 gym/tasks/17/17-05_durable_side_effects_extend/explanation.md
 gym/tasks/17/17-05_durable_side_effects_extend/hints.md
@@ -2613,7 +2721,9 @@ gym/tasks/17/17-10_recovery_policies_trace/hints.md
 gym/tasks/17/17-10_recovery_policies_trace/solution.py
 gym/tasks/17/17-10_recovery_policies_trace/task.md
 gym/tasks/17/17-10_recovery_policies_trace/test_task.py
+gym/tasks/17/17-10_recovery_policies_trace/trace.json
 gym/tasks/17/17-10_recovery_policies_trace/trace.py
+gym/tasks/17/17-11_recovery_policies_extend/baseline_cases.json
 gym/tasks/17/17-11_recovery_policies_extend/cases.json
 gym/tasks/17/17-11_recovery_policies_extend/explanation.md
 gym/tasks/17/17-11_recovery_policies_extend/hints.md
@@ -2659,7 +2769,9 @@ gym/tasks/17/17-16_long_wait_postgres_trace/hints.md
 gym/tasks/17/17-16_long_wait_postgres_trace/solution.py
 gym/tasks/17/17-16_long_wait_postgres_trace/task.md
 gym/tasks/17/17-16_long_wait_postgres_trace/test_task.py
+gym/tasks/17/17-16_long_wait_postgres_trace/trace.json
 gym/tasks/17/17-16_long_wait_postgres_trace/trace.py
+gym/tasks/17/17-17_long_wait_postgres_extend/baseline_cases.json
 gym/tasks/17/17-17_long_wait_postgres_extend/cases.json
 gym/tasks/17/17-17_long_wait_postgres_extend/explanation.md
 gym/tasks/17/17-17_long_wait_postgres_extend/hints.md
@@ -2702,7 +2814,9 @@ gym/tasks/18/18-04_async_streams_trace/hints.md
 gym/tasks/18/18-04_async_streams_trace/solution.py
 gym/tasks/18/18-04_async_streams_trace/task.md
 gym/tasks/18/18-04_async_streams_trace/test_task.py
+gym/tasks/18/18-04_async_streams_trace/trace.json
 gym/tasks/18/18-04_async_streams_trace/trace.py
+gym/tasks/18/18-05_async_streams_extend/baseline_cases.json
 gym/tasks/18/18-05_async_streams_extend/cases.json
 gym/tasks/18/18-05_async_streams_extend/explanation.md
 gym/tasks/18/18-05_async_streams_extend/hints.md
@@ -2745,7 +2859,9 @@ gym/tasks/18/18-10_sse_api_trace/hints.md
 gym/tasks/18/18-10_sse_api_trace/solution.py
 gym/tasks/18/18-10_sse_api_trace/task.md
 gym/tasks/18/18-10_sse_api_trace/test_task.py
+gym/tasks/18/18-10_sse_api_trace/trace.json
 gym/tasks/18/18-10_sse_api_trace/trace.py
+gym/tasks/18/18-11_sse_api_extend/baseline_cases.json
 gym/tasks/18/18-11_sse_api_extend/cases.json
 gym/tasks/18/18-11_sse_api_extend/explanation.md
 gym/tasks/18/18-11_sse_api_extend/hints.md
@@ -2788,7 +2904,9 @@ gym/tasks/18/18-16_adjuster_dashboard_trace/hints.md
 gym/tasks/18/18-16_adjuster_dashboard_trace/solution.py
 gym/tasks/18/18-16_adjuster_dashboard_trace/task.md
 gym/tasks/18/18-16_adjuster_dashboard_trace/test_task.py
+gym/tasks/18/18-16_adjuster_dashboard_trace/trace.json
 gym/tasks/18/18-16_adjuster_dashboard_trace/trace.py
+gym/tasks/18/18-17_adjuster_dashboard_extend/baseline_cases.json
 gym/tasks/18/18-17_adjuster_dashboard_extend/cases.json
 gym/tasks/18/18-17_adjuster_dashboard_extend/explanation.md
 gym/tasks/18/18-17_adjuster_dashboard_extend/hints.md
@@ -2834,7 +2952,9 @@ gym/tasks/19/19-04_test_graph_behavior_trace/hints.md
 gym/tasks/19/19-04_test_graph_behavior_trace/solution.py
 gym/tasks/19/19-04_test_graph_behavior_trace/task.md
 gym/tasks/19/19-04_test_graph_behavior_trace/test_task.py
+gym/tasks/19/19-04_test_graph_behavior_trace/trace.json
 gym/tasks/19/19-04_test_graph_behavior_trace/trace.py
+gym/tasks/19/19-05_test_graph_behavior_extend/baseline_cases.json
 gym/tasks/19/19-05_test_graph_behavior_extend/cases.json
 gym/tasks/19/19-05_test_graph_behavior_extend/explanation.md
 gym/tasks/19/19-05_test_graph_behavior_extend/hints.md
@@ -2877,7 +2997,9 @@ gym/tasks/19/19-10_test_durable_execution_trace/hints.md
 gym/tasks/19/19-10_test_durable_execution_trace/solution.py
 gym/tasks/19/19-10_test_durable_execution_trace/task.md
 gym/tasks/19/19-10_test_durable_execution_trace/test_task.py
+gym/tasks/19/19-10_test_durable_execution_trace/trace.json
 gym/tasks/19/19-10_test_durable_execution_trace/trace.py
+gym/tasks/19/19-11_test_durable_execution_extend/baseline_cases.json
 gym/tasks/19/19-11_test_durable_execution_extend/cases.json
 gym/tasks/19/19-11_test_durable_execution_extend/explanation.md
 gym/tasks/19/19-11_test_durable_execution_extend/hints.md
@@ -2920,7 +3042,9 @@ gym/tasks/19/19-16_trajectory_evals_trace/hints.md
 gym/tasks/19/19-16_trajectory_evals_trace/solution.py
 gym/tasks/19/19-16_trajectory_evals_trace/task.md
 gym/tasks/19/19-16_trajectory_evals_trace/test_task.py
+gym/tasks/19/19-16_trajectory_evals_trace/trace.json
 gym/tasks/19/19-16_trajectory_evals_trace/trace.py
+gym/tasks/19/19-17_trajectory_evals_extend/baseline_cases.json
 gym/tasks/19/19-17_trajectory_evals_extend/cases.json
 gym/tasks/19/19-17_trajectory_evals_extend/explanation.md
 gym/tasks/19/19-17_trajectory_evals_extend/hints.md
@@ -2966,7 +3090,9 @@ gym/tasks/20/20-04_local_visual_debugging_trace/hints.md
 gym/tasks/20/20-04_local_visual_debugging_trace/solution.py
 gym/tasks/20/20-04_local_visual_debugging_trace/task.md
 gym/tasks/20/20-04_local_visual_debugging_trace/test_task.py
+gym/tasks/20/20-04_local_visual_debugging_trace/trace.json
 gym/tasks/20/20-04_local_visual_debugging_trace/trace.py
+gym/tasks/20/20-05_local_visual_debugging_extend/baseline_cases.json
 gym/tasks/20/20-05_local_visual_debugging_extend/cases.json
 gym/tasks/20/20-05_local_visual_debugging_extend/explanation.md
 gym/tasks/20/20-05_local_visual_debugging_extend/hints.md
@@ -3009,7 +3135,9 @@ gym/tasks/20/20-10_structured_logs_trace/hints.md
 gym/tasks/20/20-10_structured_logs_trace/solution.py
 gym/tasks/20/20-10_structured_logs_trace/task.md
 gym/tasks/20/20-10_structured_logs_trace/test_task.py
+gym/tasks/20/20-10_structured_logs_trace/trace.json
 gym/tasks/20/20-10_structured_logs_trace/trace.py
+gym/tasks/20/20-11_structured_logs_extend/baseline_cases.json
 gym/tasks/20/20-11_structured_logs_extend/cases.json
 gym/tasks/20/20-11_structured_logs_extend/explanation.md
 gym/tasks/20/20-11_structured_logs_extend/hints.md
@@ -3052,7 +3180,9 @@ gym/tasks/20/20-16_optional_tracing_trace/hints.md
 gym/tasks/20/20-16_optional_tracing_trace/solution.py
 gym/tasks/20/20-16_optional_tracing_trace/task.md
 gym/tasks/20/20-16_optional_tracing_trace/test_task.py
+gym/tasks/20/20-16_optional_tracing_trace/trace.json
 gym/tasks/20/20-16_optional_tracing_trace/trace.py
+gym/tasks/20/20-17_optional_tracing_extend/baseline_cases.json
 gym/tasks/20/20-17_optional_tracing_extend/cases.json
 gym/tasks/20/20-17_optional_tracing_extend/explanation.md
 gym/tasks/20/20-17_optional_tracing_extend/hints.md
@@ -3098,7 +3228,9 @@ gym/tasks/21/21-04_untrusted_input_trace/hints.md
 gym/tasks/21/21-04_untrusted_input_trace/solution.py
 gym/tasks/21/21-04_untrusted_input_trace/task.md
 gym/tasks/21/21-04_untrusted_input_trace/test_task.py
+gym/tasks/21/21-04_untrusted_input_trace/trace.json
 gym/tasks/21/21-04_untrusted_input_trace/trace.py
+gym/tasks/21/21-05_untrusted_input_extend/baseline_cases.json
 gym/tasks/21/21-05_untrusted_input_extend/cases.json
 gym/tasks/21/21-05_untrusted_input_extend/explanation.md
 gym/tasks/21/21-05_untrusted_input_extend/hints.md
@@ -3141,7 +3273,9 @@ gym/tasks/21/21-10_approval_and_limits_trace/hints.md
 gym/tasks/21/21-10_approval_and_limits_trace/solution.py
 gym/tasks/21/21-10_approval_and_limits_trace/task.md
 gym/tasks/21/21-10_approval_and_limits_trace/test_task.py
+gym/tasks/21/21-10_approval_and_limits_trace/trace.json
 gym/tasks/21/21-10_approval_and_limits_trace/trace.py
+gym/tasks/21/21-11_approval_and_limits_extend/baseline_cases.json
 gym/tasks/21/21-11_approval_and_limits_extend/cases.json
 gym/tasks/21/21-11_approval_and_limits_extend/explanation.md
 gym/tasks/21/21-11_approval_and_limits_extend/hints.md
@@ -3187,7 +3321,9 @@ gym/tasks/21/21-16_private_checkpoints_trace/hints.md
 gym/tasks/21/21-16_private_checkpoints_trace/solution.py
 gym/tasks/21/21-16_private_checkpoints_trace/task.md
 gym/tasks/21/21-16_private_checkpoints_trace/test_task.py
+gym/tasks/21/21-16_private_checkpoints_trace/trace.json
 gym/tasks/21/21-16_private_checkpoints_trace/trace.py
+gym/tasks/21/21-17_private_checkpoints_extend/baseline_cases.json
 gym/tasks/21/21-17_private_checkpoints_extend/cases.json
 gym/tasks/21/21-17_private_checkpoints_extend/explanation.md
 gym/tasks/21/21-17_private_checkpoints_extend/hints.md
@@ -3230,7 +3366,9 @@ gym/tasks/22/22-04_compose_stack_trace/hints.md
 gym/tasks/22/22-04_compose_stack_trace/solution.py
 gym/tasks/22/22-04_compose_stack_trace/task.md
 gym/tasks/22/22-04_compose_stack_trace/test_task.py
+gym/tasks/22/22-04_compose_stack_trace/trace.json
 gym/tasks/22/22-04_compose_stack_trace/trace.py
+gym/tasks/22/22-05_compose_stack_extend/baseline_cases.json
 gym/tasks/22/22-05_compose_stack_extend/cases.json
 gym/tasks/22/22-05_compose_stack_extend/explanation.md
 gym/tasks/22/22-05_compose_stack_extend/hints.md
@@ -3273,7 +3411,9 @@ gym/tasks/22/22-10_worker_reliability_trace/hints.md
 gym/tasks/22/22-10_worker_reliability_trace/solution.py
 gym/tasks/22/22-10_worker_reliability_trace/task.md
 gym/tasks/22/22-10_worker_reliability_trace/test_task.py
+gym/tasks/22/22-10_worker_reliability_trace/trace.json
 gym/tasks/22/22-10_worker_reliability_trace/trace.py
+gym/tasks/22/22-11_worker_reliability_extend/baseline_cases.json
 gym/tasks/22/22-11_worker_reliability_extend/cases.json
 gym/tasks/22/22-11_worker_reliability_extend/explanation.md
 gym/tasks/22/22-11_worker_reliability_extend/hints.md
@@ -3319,7 +3459,9 @@ gym/tasks/22/22-16_managed_deployment_trace/hints.md
 gym/tasks/22/22-16_managed_deployment_trace/solution.py
 gym/tasks/22/22-16_managed_deployment_trace/task.md
 gym/tasks/22/22-16_managed_deployment_trace/test_task.py
+gym/tasks/22/22-16_managed_deployment_trace/trace.json
 gym/tasks/22/22-16_managed_deployment_trace/trace.py
+gym/tasks/22/22-17_managed_deployment_extend/baseline_cases.json
 gym/tasks/22/22-17_managed_deployment_extend/cases.json
 gym/tasks/22/22-17_managed_deployment_extend/explanation.md
 gym/tasks/22/22-17_managed_deployment_extend/hints.md
@@ -3373,8 +3515,10 @@ gym/tasks/B1/B1-04_typescript_state_trace/solution.ts
 gym/tasks/B1/B1-04_typescript_state_trace/starter.ts
 gym/tasks/B1/B1-04_typescript_state_trace/task.md
 gym/tasks/B1/B1-04_typescript_state_trace/test_task.py
+gym/tasks/B1/B1-04_typescript_state_trace/trace.json
 gym/tasks/B1/B1-04_typescript_state_trace/trace.py
 gym/tasks/B1/B1-04_typescript_state_trace/trace.ts
+gym/tasks/B1/B1-05_typescript_state_extend/baseline_cases.json
 gym/tasks/B1/B1-05_typescript_state_extend/cases.json
 gym/tasks/B1/B1-05_typescript_state_extend/explanation.md
 gym/tasks/B1/B1-05_typescript_state_extend/hints.md
@@ -3429,8 +3573,10 @@ gym/tasks/B1/B1-10_typescript_durable_trace/solution.ts
 gym/tasks/B1/B1-10_typescript_durable_trace/starter.ts
 gym/tasks/B1/B1-10_typescript_durable_trace/task.md
 gym/tasks/B1/B1-10_typescript_durable_trace/test_task.py
+gym/tasks/B1/B1-10_typescript_durable_trace/trace.json
 gym/tasks/B1/B1-10_typescript_durable_trace/trace.py
 gym/tasks/B1/B1-10_typescript_durable_trace/trace.ts
+gym/tasks/B1/B1-11_typescript_durable_extend/baseline_cases.json
 gym/tasks/B1/B1-11_typescript_durable_extend/cases.json
 gym/tasks/B1/B1-11_typescript_durable_extend/explanation.md
 gym/tasks/B1/B1-11_typescript_durable_extend/hints.md
@@ -3485,8 +3631,10 @@ gym/tasks/B1/B1-16_typescript_agents_trace/solution.ts
 gym/tasks/B1/B1-16_typescript_agents_trace/starter.ts
 gym/tasks/B1/B1-16_typescript_agents_trace/task.md
 gym/tasks/B1/B1-16_typescript_agents_trace/test_task.py
+gym/tasks/B1/B1-16_typescript_agents_trace/trace.json
 gym/tasks/B1/B1-16_typescript_agents_trace/trace.py
 gym/tasks/B1/B1-16_typescript_agents_trace/trace.ts
+gym/tasks/B1/B1-17_typescript_agents_extend/baseline_cases.json
 gym/tasks/B1/B1-17_typescript_agents_extend/cases.json
 gym/tasks/B1/B1-17_typescript_agents_extend/explanation.md
 gym/tasks/B1/B1-17_typescript_agents_extend/hints.md
@@ -3533,7 +3681,9 @@ gym/tasks/B2/B2-04_deep_agent_planning_trace/hints.md
 gym/tasks/B2/B2-04_deep_agent_planning_trace/solution.py
 gym/tasks/B2/B2-04_deep_agent_planning_trace/task.md
 gym/tasks/B2/B2-04_deep_agent_planning_trace/test_task.py
+gym/tasks/B2/B2-04_deep_agent_planning_trace/trace.json
 gym/tasks/B2/B2-04_deep_agent_planning_trace/trace.py
+gym/tasks/B2/B2-05_deep_agent_planning_extend/baseline_cases.json
 gym/tasks/B2/B2-05_deep_agent_planning_extend/cases.json
 gym/tasks/B2/B2-05_deep_agent_planning_extend/explanation.md
 gym/tasks/B2/B2-05_deep_agent_planning_extend/hints.md
@@ -3576,7 +3726,9 @@ gym/tasks/B2/B2-10_virtual_filesystem_trace/hints.md
 gym/tasks/B2/B2-10_virtual_filesystem_trace/solution.py
 gym/tasks/B2/B2-10_virtual_filesystem_trace/task.md
 gym/tasks/B2/B2-10_virtual_filesystem_trace/test_task.py
+gym/tasks/B2/B2-10_virtual_filesystem_trace/trace.json
 gym/tasks/B2/B2-10_virtual_filesystem_trace/trace.py
+gym/tasks/B2/B2-11_virtual_filesystem_extend/baseline_cases.json
 gym/tasks/B2/B2-11_virtual_filesystem_extend/cases.json
 gym/tasks/B2/B2-11_virtual_filesystem_extend/explanation.md
 gym/tasks/B2/B2-11_virtual_filesystem_extend/hints.md
@@ -3619,7 +3771,9 @@ gym/tasks/B2/B2-16_deep_subagents_trace/hints.md
 gym/tasks/B2/B2-16_deep_subagents_trace/solution.py
 gym/tasks/B2/B2-16_deep_subagents_trace/task.md
 gym/tasks/B2/B2-16_deep_subagents_trace/test_task.py
+gym/tasks/B2/B2-16_deep_subagents_trace/trace.json
 gym/tasks/B2/B2-16_deep_subagents_trace/trace.py
+gym/tasks/B2/B2-17_deep_subagents_extend/baseline_cases.json
 gym/tasks/B2/B2-17_deep_subagents_extend/cases.json
 gym/tasks/B2/B2-17_deep_subagents_extend/explanation.md
 gym/tasks/B2/B2-17_deep_subagents_extend/hints.md
@@ -3665,7 +3819,9 @@ gym/tasks/B3/B3-04_channels_and_steps_trace/hints.md
 gym/tasks/B3/B3-04_channels_and_steps_trace/solution.py
 gym/tasks/B3/B3-04_channels_and_steps_trace/task.md
 gym/tasks/B3/B3-04_channels_and_steps_trace/test_task.py
+gym/tasks/B3/B3-04_channels_and_steps_trace/trace.json
 gym/tasks/B3/B3-04_channels_and_steps_trace/trace.py
+gym/tasks/B3/B3-05_channels_and_steps_extend/baseline_cases.json
 gym/tasks/B3/B3-05_channels_and_steps_extend/cases.json
 gym/tasks/B3/B3-05_channels_and_steps_extend/explanation.md
 gym/tasks/B3/B3-05_channels_and_steps_extend/hints.md
@@ -3708,7 +3864,9 @@ gym/tasks/B3/B3-10_mini_reducers_trace/hints.md
 gym/tasks/B3/B3-10_mini_reducers_trace/solution.py
 gym/tasks/B3/B3-10_mini_reducers_trace/task.md
 gym/tasks/B3/B3-10_mini_reducers_trace/test_task.py
+gym/tasks/B3/B3-10_mini_reducers_trace/trace.json
 gym/tasks/B3/B3-10_mini_reducers_trace/trace.py
+gym/tasks/B3/B3-11_mini_reducers_extend/baseline_cases.json
 gym/tasks/B3/B3-11_mini_reducers_extend/cases.json
 gym/tasks/B3/B3-11_mini_reducers_extend/explanation.md
 gym/tasks/B3/B3-11_mini_reducers_extend/hints.md
@@ -3751,7 +3909,9 @@ gym/tasks/B3/B3-16_mini_checkpoints_trace/hints.md
 gym/tasks/B3/B3-16_mini_checkpoints_trace/solution.py
 gym/tasks/B3/B3-16_mini_checkpoints_trace/task.md
 gym/tasks/B3/B3-16_mini_checkpoints_trace/test_task.py
+gym/tasks/B3/B3-16_mini_checkpoints_trace/trace.json
 gym/tasks/B3/B3-16_mini_checkpoints_trace/trace.py
+gym/tasks/B3/B3-17_mini_checkpoints_extend/baseline_cases.json
 gym/tasks/B3/B3-17_mini_checkpoints_extend/cases.json
 gym/tasks/B3/B3-17_mini_checkpoints_extend/explanation.md
 gym/tasks/B3/B3-17_mini_checkpoints_extend/hints.md
@@ -3797,7 +3957,9 @@ gym/tasks/B4/B4-04_event_streaming_beta_trace/hints.md
 gym/tasks/B4/B4-04_event_streaming_beta_trace/solution.py
 gym/tasks/B4/B4-04_event_streaming_beta_trace/task.md
 gym/tasks/B4/B4-04_event_streaming_beta_trace/test_task.py
+gym/tasks/B4/B4-04_event_streaming_beta_trace/trace.json
 gym/tasks/B4/B4-04_event_streaming_beta_trace/trace.py
+gym/tasks/B4/B4-05_event_streaming_beta_extend/baseline_cases.json
 gym/tasks/B4/B4-05_event_streaming_beta_extend/cases.json
 gym/tasks/B4/B4-05_event_streaming_beta_extend/explanation.md
 gym/tasks/B4/B4-05_event_streaming_beta_extend/hints.md
@@ -3840,7 +4002,9 @@ gym/tasks/B4/B4-10_delta_channels_beta_trace/hints.md
 gym/tasks/B4/B4-10_delta_channels_beta_trace/solution.py
 gym/tasks/B4/B4-10_delta_channels_beta_trace/task.md
 gym/tasks/B4/B4-10_delta_channels_beta_trace/test_task.py
+gym/tasks/B4/B4-10_delta_channels_beta_trace/trace.json
 gym/tasks/B4/B4-10_delta_channels_beta_trace/trace.py
+gym/tasks/B4/B4-11_delta_channels_beta_extend/baseline_cases.json
 gym/tasks/B4/B4-11_delta_channels_beta_extend/cases.json
 gym/tasks/B4/B4-11_delta_channels_beta_extend/explanation.md
 gym/tasks/B4/B4-11_delta_channels_beta_extend/hints.md
@@ -3886,7 +4050,9 @@ gym/tasks/B4/B4-16_typed_approvals_trace/hints.md
 gym/tasks/B4/B4-16_typed_approvals_trace/solution.py
 gym/tasks/B4/B4-16_typed_approvals_trace/task.md
 gym/tasks/B4/B4-16_typed_approvals_trace/test_task.py
+gym/tasks/B4/B4-16_typed_approvals_trace/trace.json
 gym/tasks/B4/B4-16_typed_approvals_trace/trace.py
+gym/tasks/B4/B4-17_typed_approvals_extend/baseline_cases.json
 gym/tasks/B4/B4-17_typed_approvals_extend/cases.json
 gym/tasks/B4/B4-17_typed_approvals_extend/explanation.md
 gym/tasks/B4/B4-17_typed_approvals_extend/hints.md
@@ -4280,6 +4446,7 @@ scripts/authoring/README.md
 scripts/authoring/__init__.py
 scripts/authoring/bonuses.py
 scripts/authoring/extensions.py
+scripts/authoring/refactors.py
 scripts/authoring/sources/00/01_plain_checklist.py.in
 scripts/authoring/sources/00/02_environment.py.in
 scripts/authoring/sources/00/03_first_gym.py.in
@@ -4369,9 +4536,12 @@ scripts/authoring/tier1_durable.py
 scripts/authoring/tier2.py
 scripts/authoring/tier3.py
 scripts/authoring/tier4.py
+scripts/authoring/traces.py
 scripts/build_capstones.py
 scripts/build_course.py
 scripts/build_data.py
+scripts/build_diagrams.py
+scripts/build_indexes.py
 scripts/build_reference_docs.py
 scripts/check_capstone.py
 scripts/check_coverage.py
@@ -4379,6 +4549,7 @@ scripts/check_deployment.py
 scripts/check_env.py
 scripts/check_legacy_apis.py
 scripts/check_links.py
+scripts/check_local_server.py
 scripts/check_notebooks.py
 scripts/check_postgres.py
 scripts/check_providers.py
@@ -4386,19 +4557,30 @@ scripts/check_quickstart.py
 scripts/evaluate.py
 scripts/fake_model_demo.py
 scripts/first_graph.py
+scripts/live_claim_lab.py
 scripts/run_all_examples.py
 scripts/validate_capstones.py
 scripts/validate_gym.py
 scripts/verify_apis.py
+tests/test_api_boundaries.py
+tests/test_capstone_grader.py
 tests/test_content.py
 tests/test_copilot_progression.py
+tests/test_dashboard.py
 tests/test_data.py
+tests/test_deployment_contract.py
+tests/test_extension_contracts.py
 tests/test_fakes.py
 tests/test_graph_contracts.py
 tests/test_gym_cli.py
 tests/test_gym_progress.py
 tests/test_gym_runner.py
+tests/test_live_claim_lab.py
+tests/test_mini_graph.py
 tests/test_models.py
+tests/test_qa_identity.py
 tests/test_service_security.py
+tests/test_sse.py
+tests/test_typescript_workspace.py
 tsconfig.json
 uv.lock

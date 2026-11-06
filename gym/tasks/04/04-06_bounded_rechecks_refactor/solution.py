@@ -1,4 +1,4 @@
-"""Refactor bounded rechecks: Equivalent loops must preserve the exact attempt budget.. Run this file with Python. No live model or network."""
+"""Refactor bounded rechecks: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -44,8 +44,16 @@ def build_graph():
     return graph.compile()
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    values = dict(DEFAULT_CASE if case is None else case)
+    case = prepare_case(case)
+    values = dict(case)
     limit = values.pop("recursion_limit", 30)
     if type(values["budget"]) is not int or values["budget"] < 1:
         raise ValueError("A recheck budget must be a positive integer")

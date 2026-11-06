@@ -1,4 +1,4 @@
-"""Trace agent composition: Do not turn an explanation into payment approval.. Run this file with Python. No live model or network."""
+"""Diagnose agent composition from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

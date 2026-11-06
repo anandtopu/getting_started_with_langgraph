@@ -1,4 +1,4 @@
-"""Refactor environment: Use the supplied interpreter version; do not assume the recommended version is installed.. Run this file with Python. No live model or network."""
+"""Refactor environment: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import importlib.metadata
 import sys
@@ -33,8 +33,16 @@ def inspect_environment() -> dict:
     }
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = dict(DEFAULT_CASE if case is None else case)
+    case = prepare_case(case)
+    case = dict(case)
     errors = []
     if not (3, 11) <= tuple(case["python"]) < (3, 15):
         errors.append("Use Python 3.11–3.14")

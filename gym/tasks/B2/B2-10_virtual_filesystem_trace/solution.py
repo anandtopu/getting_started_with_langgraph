@@ -1,4 +1,4 @@
-"""Trace virtual filesystem: Deny writes outside the permitted virtual directory.. Run this file with Python. No live model or network."""
+"""Diagnose virtual filesystem from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.checkpoint.memory import InMemorySaver

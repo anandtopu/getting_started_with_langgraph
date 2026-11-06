@@ -12,6 +12,8 @@ Complete [Loops, parallel branches, and map-reduce](../04_loops_parallel_map_red
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain InMemorySaver; checkpointer compilation; thread_id; config; continuing versus resuming.
@@ -93,7 +95,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/05_persistence_and_threads/examples/01_thread_identity.py
+uv run --no-sync python modules/05_persistence_and_threads/examples/01_thread_identity.py
 ```
 
 **Predict, then run:** for {"first_id": "CLM-0001", "second_id": "CLM-0002"}, write the resulting fields and any expected error. Then test the boundary cases in tests/thread_identity.json.
@@ -120,7 +122,7 @@ A checkpointer saves graph state under a thread ID. New input on that thread sta
 </details>
 
 ```text
-uv run python modules/05_persistence_and_threads/examples/02_sqlite_lifetime.py
+uv run --no-sync python modules/05_persistence_and_threads/examples/02_sqlite_lifetime.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001"}, write the resulting fields and any expected error. Then test the boundary cases in tests/sqlite_lifetime.json.
@@ -148,7 +150,7 @@ Memory persistence ends with its process. A SQLite saver stores checkpoints on d
 </details>
 
 ```text
-uv run python modules/05_persistence_and_threads/examples/03_inspect_checkpoints.py
+uv run --no-sync python modules/05_persistence_and_threads/examples/03_inspect_checkpoints.py
 ```
 
 **Predict, then run:** for {"amount_cents": 100000, "corrected_amount": 200000, "durability": "sync"}, write the resulting fields and any expected error. Then test the boundary cases in tests/inspect_checkpoints.json.
@@ -212,32 +214,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"error": "ValueError"}`. Saved notes must survive a second invocation on the same graph. | Restore `checkpointer=InMemorySaver()` and check the boundary cases. | [05-01](../../gym/tasks/05/05-01_thread_identity_build/task.md) · [Related Fix 05-02](../../gym/tasks/05/05-02_thread_identity_fix/task.md) |
-| Observed `{"error": "ValueError"}`. A persisted invocation needs an explicit thread identifier. | Restore `{"thread_id": "claim:" + claim_id}` and check the boundary cases. | [05-02](../../gym/tasks/05/05-02_thread_identity_fix/task.md) |
-| Observed `{"value": {"first_notes": ["received"], "second_notes": ["estimate attached"], "closed": true}}`. A restarted process must merge the new note with stored notes. | Restore `notes: Annotated[list[str], operator.add]` and check the boundary cases. | [05-07](../../gym/tasks/05/05-07_sqlite_lifetime_build/task.md) · [Related Fix 05-08](../../gym/tasks/05/05-08_sqlite_lifetime_fix/task.md) |
-| Observed `{"error": "JSONDecodeError"}`. A compiled graph cannot use a saver whose connection has closed. | Restore `with SqliteSaver.from_conn_string(database) as saver:         result = build_graph(saver).invoke(payload, config, version="v2").value` and check the boundary cases. | [05-08](../../gym/tasks/05/05-08_sqlite_lifetime_fix/task.md) |
-| Observed `{"value": {"original": "fast_track", "corrected": "fast_track", "pending_after_edit": ["decide"], "parent_exists": true, "saved_steps": [-1, 0, 1, 2]}}`. The corrected checkpoint must contain the replacement evidence. | Restore `case["corrected_amount"]` and check the boundary cases. | [05-13](../../gym/tasks/05/05-13_inspect_checkpoints_build/task.md) · [Related Fix 05-14](../../gym/tasks/05/05-14_inspect_checkpoints_fix/task.md) |
-| Observed `{"value": {"original": "fast_track", "corrected": "fast_track", "pending_after_edit": ["decide"], "parent_exists": true, "saved_steps": [-1, 0, 1, 2]}}`. Continue the configuration returned by update_state, not an unrelated checkpoint. | Restore `graph.invoke(None, corrected, version="v2")` and check the boundary cases. | [05-14](../../gym/tasks/05/05-14_inspect_checkpoints_fix/task.md) |
+| Observed `{"error": "ValueError"}`. Saved notes must survive a second invocation on the same graph. | Restore `checkpointer=InMemorySaver()` and check the boundary cases. | [05-01](../../gym/tasks/05/05-01_thread_identity_build/task.md) · Related Fix: [05-02](../../gym/tasks/05/05-02_thread_identity_fix/task.md) |
+| Observed `{"error": "ValueError"}`. A persisted invocation needs an explicit thread identifier. | Restore `{"thread_id": "claim:" + claim_id}` and check the boundary cases. | [05-02](../../gym/tasks/05/05-02_thread_identity_fix/task.md) · Related Fix: [05-02](../../gym/tasks/05/05-02_thread_identity_fix/task.md) |
+| Observed `{"value": {"first_notes": ["received"], "second_notes": ["estimate attached"], "closed": true}}`. A restarted process must merge the new note with stored notes. | Restore `notes: Annotated[list[str], operator.add]` and check the boundary cases. | [05-07](../../gym/tasks/05/05-07_sqlite_lifetime_build/task.md) · Related Fix: [05-08](../../gym/tasks/05/05-08_sqlite_lifetime_fix/task.md) |
+| Observed `{"error": "JSONDecodeError"}`. A compiled graph cannot use a saver whose connection has closed. | Restore `with SqliteSaver.from_conn_string(database) as saver:         result = build_graph(saver).invoke(payload, config, version="v2").value` and check the boundary cases. | [05-08](../../gym/tasks/05/05-08_sqlite_lifetime_fix/task.md) · Related Fix: [05-08](../../gym/tasks/05/05-08_sqlite_lifetime_fix/task.md) |
+| Observed `{"value": {"original": "fast_track", "corrected": "fast_track", "pending_after_edit": ["decide"], "parent_exists": true, "saved_steps": [-1, 0, 1, 2]}}`. The corrected checkpoint must contain the replacement evidence. | Restore `case["corrected_amount"]` and check the boundary cases. | [05-13](../../gym/tasks/05/05-13_inspect_checkpoints_build/task.md) · Related Fix: [05-14](../../gym/tasks/05/05-14_inspect_checkpoints_fix/task.md) |
+| Observed `{"value": {"original": "fast_track", "corrected": "fast_track", "pending_after_edit": ["decide"], "parent_exists": true, "saved_steps": [-1, 0, 1, 2]}}`. Continue the configuration returned by update_state, not an unrelated checkpoint. | Restore `graph.invoke(None, corrected, version="v2")` and check the boundary cases. | [05-14](../../gym/tasks/05/05-14_inspect_checkpoints_fix/task.md) · Related Fix: [05-14](../../gym/tasks/05/05-14_inspect_checkpoints_fix/task.md) |
 
 ## Practice
 
 - [05-01 — build, easy](../../gym/tasks/05/05-01_thread_identity_build/task.md): Build thread identity: Saved notes must survive a second invocation on the same graph.
 - [05-02 — fix, medium](../../gym/tasks/05/05-02_thread_identity_fix/task.md): Fix thread identity: A persisted invocation needs an explicit thread identifier.
 - [05-03 — predict, easy](../../gym/tasks/05/05-03_thread_identity_predict/task.md): Predict thread identity across the declared cases
-- [05-04 — trace, medium](../../gym/tasks/05/05-04_thread_identity_trace/task.md): Trace thread identity: A persisted invocation needs an explicit thread identifier.
-- [05-05 — extend, hard](../../gym/tasks/05/05-05_thread_identity_extend/task.md): Extend thread identity: Claim identity must participate in the thread mapping.
-- [05-06 — refactor, hard](../../gym/tasks/05/05-06_thread_identity_refactor/task.md): Refactor thread identity: Continuing a session must not discard earlier notes.
+- [05-04 — trace, medium](../../gym/tasks/05/05-04_thread_identity_trace/task.md): Diagnose thread identity from execution evidence
+- [05-05 — extend, hard](../../gym/tasks/05/05-05_thread_identity_extend/task.md): Extend thread identity: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [05-06 — refactor, hard](../../gym/tasks/05/05-06_thread_identity_refactor/task.md): Refactor thread identity: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [05-07 — build, easy](../../gym/tasks/05/05-07_sqlite_lifetime_build/task.md): Build sqlite lifetime: A restarted process must merge the new note with stored notes.
 - [05-08 — fix, medium](../../gym/tasks/05/05-08_sqlite_lifetime_fix/task.md): Fix sqlite lifetime: A compiled graph cannot use a saver whose connection has closed.
 - [05-09 — predict, easy](../../gym/tasks/05/05-09_sqlite_lifetime_predict/task.md): Predict sqlite lifetime across the declared cases
-- [05-10 — trace, medium](../../gym/tasks/05/05-10_sqlite_lifetime_trace/task.md): Trace sqlite lifetime: A compiled graph cannot use a saver whose connection has closed.
-- [05-11 — extend, hard](../../gym/tasks/05/05-11_sqlite_lifetime_extend/task.md): Extend sqlite lifetime: Both processes must reopen the same logical claim thread.
-- [05-12 — refactor, hard](../../gym/tasks/05/05-12_sqlite_lifetime_refactor/task.md): Refactor sqlite lifetime: Resource-lifetime refactoring must preserve continuation input.
+- [05-10 — trace, medium](../../gym/tasks/05/05-10_sqlite_lifetime_trace/task.md): Diagnose sqlite lifetime from execution evidence
+- [05-11 — extend, hard](../../gym/tasks/05/05-11_sqlite_lifetime_extend/task.md): Extend sqlite lifetime: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [05-12 — refactor, hard](../../gym/tasks/05/05-12_sqlite_lifetime_refactor/task.md): Refactor sqlite lifetime: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [05-13 — build, easy](../../gym/tasks/05/05-13_inspect_checkpoints_build/task.md): Build inspect checkpoints: The corrected checkpoint must contain the replacement evidence.
 - [05-14 — fix, medium](../../gym/tasks/05/05-14_inspect_checkpoints_fix/task.md): Fix inspect checkpoints: Continue the configuration returned by update_state, not an unrelated checkpoint.
 - [05-15 — predict, easy](../../gym/tasks/05/05-15_inspect_checkpoints_predict/task.md): Predict inspect checkpoints across the declared cases
-- [05-16 — trace, medium](../../gym/tasks/05/05-16_inspect_checkpoints_trace/task.md): Trace inspect checkpoints: Continue the configuration returned by update_state, not an unrelated checkpoint.
-- [05-17 — extend, hard](../../gym/tasks/05/05-17_inspect_checkpoints_extend/task.md): Extend inspect checkpoints: The edit attribution determines the pending successor nodes.
+- [05-16 — trace, medium](../../gym/tasks/05/05-16_inspect_checkpoints_trace/task.md): Diagnose inspect checkpoints from execution evidence
+- [05-17 — extend, hard](../../gym/tasks/05/05-17_inspect_checkpoints_extend/task.md): Extend inspect checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [05-18 — design, hard](../../gym/tasks/05/05-18_inspect_checkpoints_design/task.md): Design inspect checkpoints and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

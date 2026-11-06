@@ -1,4 +1,4 @@
-"""Refactor safe reentry: Separate checkpointed work still needs an idempotent effect contract.. Run this file with Python. No live model or network."""
+"""Refactor safe reentry: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -29,7 +29,6 @@ def build_graph(entries: list[str], notifications: dict[str, str]):
         key = state["claim_id"] + ":approval:v1"
         if state["approved"]:
             notifications.setdefault(key, "Synthetic approval notification")
-            notifications[key + ":duplicate"] = "Duplicate"
         return {"notification_key": key}
 
     graph = StateGraph(State)

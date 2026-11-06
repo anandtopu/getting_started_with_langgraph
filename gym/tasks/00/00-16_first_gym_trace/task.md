@@ -1,4 +1,4 @@
-# 00-16 — Trace first gym: Labels need case normalization before comparison.
+# 00-16 — Diagnose first gym from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ An assertion compares an observed result with an explicit requirement. A failing
 
 ## Your task
 
-Labels need case normalization before comparison. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose first gym from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Labels need case normalization before comparison. Read trace.py before completin
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Unknown claim categories need an explicit label."
+- "Labels need case normalization before comparison."
+- "Leading and trailing spaces are not claim categories."
+- "The output must retain the input claim identity."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

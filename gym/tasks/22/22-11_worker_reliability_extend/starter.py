@@ -1,4 +1,4 @@
-"""Extend worker reliability: Exercise and reject idempotency-key reuse with a changed payload.. Run this file with Python. No live model or network."""
+"""Extend worker reliability: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import asyncio
 from pathlib import Path
@@ -28,7 +28,8 @@ async def arun(case):
             )
         restarted = EffectLedger(path)
         replayed = restarted.record(
-            "payment:" + case["claim_id"], {"amount_cents": case["amount_cents"] + 0}
+            "payment:" + case["claim_id"],
+            {"amount_cents": case["amount_cents"] + int(case["changed_payload"])},
         )
         return {
             "competing_worker_busy": busy,
@@ -41,6 +42,10 @@ async def arun(case):
 # YOUR CODE HERE: repair the contract described in task.md.
 def run(case: dict | None = None) -> dict:
     return asyncio.run(arun(dict(DEFAULT_CASE if case is None else case)))
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

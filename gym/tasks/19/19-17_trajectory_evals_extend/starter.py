@@ -1,4 +1,4 @@
-"""Extend trajectory evals: Evaluate the actual requested policy instead of replacing it with the reference.. Run this file with Python. No live model or network."""
+"""Extend trajectory evals: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage
 
@@ -30,10 +30,14 @@ def run(case: dict | None = None) -> dict:
         trajectory_match_mode=case["mode"], tool_args_match_mode="exact"
     )
     result = evaluator(
-        outputs=messages(case["tools"], "POL-0001"),
+        outputs=messages(case["tools"], case["policy_id"]),
         reference_outputs=messages(["lookup_policy", "check_coverage"], "POL-0001"),
     )
     return {"score": result["score"], "key": result["key"]}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

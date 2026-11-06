@@ -1,4 +1,4 @@
-# 19-04 — Trace test graph behavior: Include boolean cents in invalid-input coverage.
+# 19-04 — Diagnose test graph behavior from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A pytest test is a function whose assertions express requirements. Parametrized 
 
 ## Your task
 
-Include boolean cents in invalid-input coverage. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose test graph behavior from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -31,6 +31,13 @@ Include boolean cents in invalid-input coverage. Read trace.py before completing
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Specify the inclusive fast-track boundary in the test oracle."
+- "Include boolean cents in invalid-input coverage."
+- "Keep exactly 500000 cents in the standard route."
+- "Require both implementations to match the independent expected route."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

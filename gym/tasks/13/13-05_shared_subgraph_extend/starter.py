@@ -1,4 +1,4 @@
-"""Extend shared subgraph: Flag missing supporting documents.. Run this file with Python. No live model or network."""
+"""Extend shared subgraph: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 
@@ -26,7 +26,7 @@ def build_fraud_graph():
         return {"flags": ["high_value"] if state["amount_cents"] > 500000 else []}
 
     def check_evidence(state: State) -> dict:
-        return {"flags": [] if state["documents"] else []}
+        return {"flags": [] if state["documents"] else ["missing_evidence"]}
 
     graph = StateGraph(State)
     graph.add_node("check_amount", check_amount)
@@ -64,6 +64,10 @@ def run(case: dict | None = None) -> dict:
         )
         .value
     )
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

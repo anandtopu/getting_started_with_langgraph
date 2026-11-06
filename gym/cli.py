@@ -267,6 +267,8 @@ def execute(arguments: argparse.Namespace, catalog: Catalog) -> int:
         store.update(task.id, solution_viewed=True)
         for name in ("expected_answer.json",) if task.answer_task else ("solution.py",):
             print((task.folder / name).read_text("utf-8"))
+        if task.module == "B1" and not task.answer_task:
+            print((task.folder / "solution.ts").read_text("utf-8"))
         if task.type == "design":
             print((task.folder / "solution_design.md").read_text("utf-8"))
         print((task.folder / "explanation.md").read_text("utf-8"))

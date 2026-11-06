@@ -1,4 +1,4 @@
-# 10-10 — Trace middleware: Enforce the independent tool budget.
+# 10-10 — Diagnose middleware from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ Middleware hooks surround agent operations. before_model can update declared mid
 
 ## Your task
 
-Enforce the independent tool budget. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose middleware from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Enforce the independent tool budget. Read trace.py before completing the answer 
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Allow the configured number of model operations."
+- "Enforce the independent tool budget."
+- "Distinguish the after hook from the before hook in lifecycle records."
+- "Record exactly one wrapper entry for each model call."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

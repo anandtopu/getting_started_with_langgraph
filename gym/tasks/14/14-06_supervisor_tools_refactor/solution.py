@@ -1,4 +1,4 @@
-"""Refactor supervisor tools: Return the specialist conclusion instead of its input prompt.. Run this file with Python. No live model or network."""
+"""Refactor supervisor tools: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage
@@ -54,8 +54,15 @@ def build_graph(seen: list[dict]):
     return create_agent(model=model, tools=[policy_expert, fraud_analyst])
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     seen = []
     # Private notes are intentionally not forwarded to either specialist.
     result = (

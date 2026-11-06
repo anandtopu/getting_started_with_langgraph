@@ -1,4 +1,4 @@
-# 10-16 — Trace agent composition: Do not turn an explanation into payment approval.
+# 10-16 — Diagnose agent composition from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ An adapter node converts a business question into private agent messages and ret
 
 ## Your task
 
-Do not turn an explanation into payment approval. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose agent composition from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Do not turn an explanation into payment approval. Read trace.py before completin
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Map the specialist answer into the parent explanation field."
+- "Do not turn an explanation into payment approval."
+- "Select the specialist answer rather than its input question."
+- "Preserve the parent finalization step when refactoring the adapter."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

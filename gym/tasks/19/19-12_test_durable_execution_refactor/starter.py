@@ -1,4 +1,4 @@
-"""Refactor test durable execution: Read the completed snapshot after resumption.. Run this file with Python. No live model or network."""
+"""Refactor test durable execution: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langgraph.types import Command
 
@@ -23,7 +23,7 @@ def run(case: dict | None = None) -> dict:
     return {
         "paused": len(paused.interrupts) == 1,
         "pending_before": list(before.next),
-        "pending_after": list(before.next),
+        "pending_after": list(graph.get_state(config).next),
         "approved": resumed.value["approved"],
         "associative": merge_findings(merge_findings(a, b), c)
         == merge_findings(a, merge_findings(b, c)),

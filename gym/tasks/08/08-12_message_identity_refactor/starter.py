@@ -1,4 +1,4 @@
-"""Refactor message identity: Keep the corrected text when replacing a message.. Run this file with Python. No live model or network."""
+"""Refactor message identity: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, RemoveMessage, ToolMessage
 from langgraph.graph import END, START, MessagesState, StateGraph
@@ -12,7 +12,7 @@ def build_graph(case: dict | None = None):
     case = DEFAULT_CASE if case is None else case
 
     def correct(state: MessagesState) -> dict:
-        return {"messages": [HumanMessage(content="Original claim", id="customer-1")]}
+        return {"messages": [HumanMessage(content=case["text"], id="customer-1")]}
 
     def minimize(state: MessagesState) -> dict:
         return {"messages": [RemoveMessage(id="customer-1")]} if case["remove_customer"] else {}

@@ -1,4 +1,4 @@
-"""Extend early exit: Duplicate submissions need an explicit terminal reason.. Run this file with Python. No live model or network."""
+"""Extend early exit: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -20,7 +20,7 @@ class State(TypedDict):
 def screen(state: State) -> dict:
     amount = state["amount_cents"]
     reason = (
-        "eligible"
+        "duplicate"
         if state["duplicate_of"]
         else "invalid"
         if type(amount) is not int or amount < 0
@@ -50,6 +50,10 @@ def build_graph():
 # YOUR CODE HERE: repair the contract described in task.md.
 def run(case: dict | None = None) -> dict:
     return build_graph().invoke(dict(DEFAULT_CASE if case is None else case), version="v2").value
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

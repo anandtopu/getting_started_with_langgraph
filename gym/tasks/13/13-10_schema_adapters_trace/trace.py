@@ -1,4 +1,4 @@
-"""Trace schema adapters: Preserve the exact review threshold.. Run this file with Python. No live model or network."""
+"""Diagnose schema adapters from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

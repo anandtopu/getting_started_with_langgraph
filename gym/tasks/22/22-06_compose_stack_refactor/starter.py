@@ -1,4 +1,4 @@
-"""Refactor compose stack: Distinguish service readiness from process startup.. Run this file with Python. No live model or network."""
+"""Refactor compose stack: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import yaml
 
@@ -31,7 +31,7 @@ def run(case: dict | None = None) -> dict:
         "valid": not errors,
         "errors": errors,
         "api_waits_for_database": services["api"]["depends_on"]["postgres"]["condition"]
-        == "service_started",
+        == "service_healthy",
     }
 
 

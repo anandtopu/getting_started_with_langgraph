@@ -1,4 +1,4 @@
-"""Trace bounded rechecks: Without a changing retry counter, the graph reaches its recursion limit.. Run this file with Python. No live model or network."""
+"""Diagnose bounded rechecks from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict

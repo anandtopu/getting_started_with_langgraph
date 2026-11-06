@@ -1,4 +1,4 @@
-# 11-10 — Trace store namespaces: Delete the actual memory key.
+# 11-10 — Diagnose store namespaces from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ The Store holds cross-thread memories under tuple namespaces. Semantic memory st
 
 ## Your task
 
-Delete the actual memory key. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose store namespaces from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Delete the actual memory key. Read trace.py before completing the answer JSON. E
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Store each customer's facts in a distinct namespace."
+- "Delete the actual memory key."
+- "Remember the supplied contact preference."
+- "Keep another customer's update outside this customer's namespace."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

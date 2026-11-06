@@ -1,4 +1,4 @@
-"""Trace private checkpoints: Apply the requested thread-retention deletion.. Run this file with Python. No live model or network."""
+"""Diagnose private checkpoints from execution evidence. Run this file with Python. No live model or network."""
 
 import secrets
 from typing import TypedDict

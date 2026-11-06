@@ -68,6 +68,16 @@ def validate(*, release: bool = False, identifier: str | None = None, jobs: int 
                     errors.append(f"{task.id}: committed answer differs from actual oracle output.")
             else:
                 starter = check_task(task, task.folder / "starter.py")
+                if task.type == "refactor":
+                    behavior = [
+                        row
+                        for row in starter.tests
+                        if "::test_behavior[" in row["nodeid"] and row["when"] == "call"
+                    ]
+                    if not behavior or any(row["outcome"] != "passed" for row in behavior):
+                        errors.append(
+                            f"{task.id}: a Refactor starter must already pass all original behavior cases"
+                        )
                 if (
                     starter.passed
                     or starter.returncode != 1

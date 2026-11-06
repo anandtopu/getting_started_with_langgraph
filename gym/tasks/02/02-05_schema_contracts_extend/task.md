@@ -1,4 +1,4 @@
-# 02-05 — Extend schema contracts: The positive-amount contract excludes zero.
+# 02-05 — Extend schema contracts: Preserve an optional loss date and its None default across all three schema styles.
 
 Type: extend. Difficulty: hard. No live model, key, or network is required.
 
@@ -58,6 +58,8 @@ Preserve an optional loss date and its None default across all three schema styl
   }
 ]
 ```
+
+The new capability is checked in addition to the original cases. For run_batch, edit the Python orchestration interface (including in the TypeScript bonus); leave run(case) behavior intact. A batch is sequential and each case owns a new workflow invocation, not a shared durable thread.
 
 cases.json declares the expected output or expected exception type for every input. Exceptions are observed by the grader; import errors are setup failures. The starter's demo prints a known runtime error when appropriate, so you can inspect it without losing the exercise context.
 

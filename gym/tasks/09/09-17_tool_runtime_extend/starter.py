@@ -1,4 +1,4 @@
-"""Extend tool runtime: Support the declared SMS contact preference.. Run this file with Python. No live model or network."""
+"""Extend tool runtime: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from dataclasses import dataclass
 
@@ -26,7 +26,7 @@ class State(MessagesState):
 @tool
 def save_preference(preference: str, runtime: ToolRuntime[Context]) -> Command:
     """Save an allowed contact preference for the authenticated customer."""
-    if preference not in {"email", "phone"}:
+    if preference not in {"email", "sms", "phone"}:
         raise ValueError("Unsupported preference")
     namespace = ("customers", runtime.context.customer_id, "preferences")
     runtime.store.put(namespace, "contact", {"value": preference})
@@ -69,6 +69,10 @@ def run(case: dict | None = None) -> dict:
         "tool_call_id": result["messages"][-1].tool_call_id,
         "model_visible_fields": sorted(save_preference.tool_call_schema.model_fields),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

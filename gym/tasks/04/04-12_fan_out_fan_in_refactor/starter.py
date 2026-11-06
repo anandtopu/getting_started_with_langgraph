@@ -1,4 +1,4 @@
-"""Refactor fan out fan in: Do not treat arrival order as the public result order.. Run this file with Python. No live model or network."""
+"""Refactor fan out fan in: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict
@@ -44,7 +44,7 @@ def review_police(state: State) -> dict:
 
 
 def summarize(state: State) -> dict:
-    return {"summaries": [state["findings"]]}
+    return {"summaries": [sorted(state["findings"])]}
 
 
 def build_graph():

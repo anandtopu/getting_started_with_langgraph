@@ -1,0 +1,67 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "question": "Review policy and fraud evidence.",
+        "private_note": "Synthetic phone: 555-0100"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "specialists": [
+            {
+              "role": "policy",
+              "input": "Contractor estimate is missing"
+            },
+            {
+              "role": "policy",
+              "input": "Deductible: 100000 cents"
+            }
+          ],
+          "tool_names": [
+            "fraud_analyst",
+            "policy_expert"
+          ],
+          "reports": [
+            "policy: evidence requires review",
+            "policy: evidence requires review"
+          ],
+          "final": "Request the missing estimate before final policy review.",
+          "private_note_leaked": false
+        }
+      }
+    },
+    {
+      "input": {
+        "question": "Which document is missing?",
+        "private_note": "Synthetic address withheld"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "specialists": [
+            {
+              "role": "policy",
+              "input": "Contractor estimate is missing"
+            },
+            {
+              "role": "policy",
+              "input": "Deductible: 100000 cents"
+            }
+          ],
+          "tool_names": [
+            "fraud_analyst",
+            "policy_expert"
+          ],
+          "reports": [
+            "policy: evidence requires review",
+            "policy: evidence requires review"
+          ],
+          "final": "Request the missing estimate before final policy review.",
+          "private_note_leaked": false
+        }
+      }
+    }
+  ]
+}

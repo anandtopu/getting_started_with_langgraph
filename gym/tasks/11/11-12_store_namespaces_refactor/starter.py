@@ -1,4 +1,4 @@
-"""Refactor store namespaces: Keep another customer's update outside this customer's namespace.. Run this file with Python. No live model or network."""
+"""Refactor store namespaces: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from dataclasses import dataclass
 from typing import TypedDict
@@ -45,7 +45,7 @@ def run(case: dict | None = None) -> dict:
     graph.invoke(
         {"preference": case["preference"]}, context=Context(case["customer_id"]), version="v2"
     )
-    graph.invoke({"preference": "phone"}, context=Context(case["customer_id"]), version="v2")
+    graph.invoke({"preference": "phone"}, context=Context("CUS-OTHER"), version="v2")
     namespace = ("customers", case["customer_id"], "semantic")
     found = store.search(namespace)
     store.delete(namespace, "contact")

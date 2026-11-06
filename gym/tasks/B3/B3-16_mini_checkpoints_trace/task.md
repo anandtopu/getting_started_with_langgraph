@@ -1,4 +1,4 @@
-# B3-16 — Trace mini checkpoints: Validate the resumed decision before updating approval state.
+# B3-16 — Diagnose mini checkpoints from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A checkpoint stores state and the next scheduled work for one thread. The mini r
 
 ## Your task
 
-Validate the resumed decision before updating approval state. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose mini checkpoints from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Validate the resumed decision before updating approval state. Read trace.py befo
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Preserve rejection when resuming the waiting teaching thread."
+- "Validate the resumed decision before updating approval state."
+- "Read the archived snapshot rather than an externally modified copy."
+- "Inspect the other thread independently after completing the first."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

@@ -1,4 +1,4 @@
-"""Refactor orchestrator workers: Run every approved worker in the plan.. Run this file with Python. No live model or network."""
+"""Refactor orchestrator workers: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 import operator
@@ -85,8 +85,15 @@ def build_graph(sections: list[str] | None = None):
     return graph.compile()
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     result = build_graph(case["sections"]).invoke({"reports": []}, version="v2").value
     return {
         "sections": sorted(item["section"] for item in result["reports"]),

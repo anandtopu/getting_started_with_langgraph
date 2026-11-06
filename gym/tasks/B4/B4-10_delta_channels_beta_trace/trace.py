@@ -1,4 +1,4 @@
-"""Trace delta channels beta: Honor and validate the requested snapshot cadence.. Run this file with Python. No live model or network."""
+"""Diagnose delta channels beta from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 

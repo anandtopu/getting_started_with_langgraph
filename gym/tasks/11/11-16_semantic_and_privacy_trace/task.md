@@ -1,4 +1,4 @@
-# 11-16 — Trace semantic and privacy: Delete checkpoint history separately from Store records.
+# 11-16 — Diagnose semantic and privacy from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ An embedding maps text into numbers so the Store can rank similarity within a na
 
 ## Your task
 
-Delete checkpoint history separately from Store records. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose semantic and privacy from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Delete checkpoint history separately from Store records. Read trace.py before co
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Scope semantic search to the authenticated customer."
+- "Delete checkpoint history separately from Store records."
+- "Delete the requested memory while preserving unrelated evidence."
+- "Rank the highest similarity first with a stable tie-breaker."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

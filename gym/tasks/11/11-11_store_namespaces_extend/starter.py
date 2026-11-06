@@ -1,4 +1,4 @@
-"""Extend store namespaces: Remember the supplied contact preference.. Run this file with Python. No live model or network."""
+"""Extend store namespaces: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from dataclasses import dataclass
 from typing import TypedDict
@@ -24,7 +24,7 @@ class State(TypedDict):
 
 def remember(state: State, runtime: Runtime[Context]) -> dict:
     namespace = ("customers", runtime.context.customer_id, "semantic")
-    runtime.store.put(namespace, "contact", {"preference": "phone"})
+    runtime.store.put(namespace, "contact", {"preference": state["preference"]})
     item = runtime.store.get(namespace, "contact")
     return {"remembered": item.value["preference"]}
 
@@ -55,6 +55,10 @@ def run(case: dict | None = None) -> dict:
         "deleted": store.get(namespace, "contact") is None,
         "other": other.value,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

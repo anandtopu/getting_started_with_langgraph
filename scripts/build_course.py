@@ -18,11 +18,13 @@ from common.exercises import observe, read_path
 from common.loading import load_module
 from scripts.authoring.bonuses import LABS as BONUSES
 from scripts.authoring.extensions import extend
+from scripts.authoring.refactors import refactor, typescript_refactor
 from scripts.authoring.tier1 import LABS as INTRO
 from scripts.authoring.tier1_durable import LABS as DURABLE
 from scripts.authoring.tier2 import LABS as MODELS
 from scripts.authoring.tier3 import LABS as COMPOSITION
 from scripts.authoring.tier4 import LABS as PRODUCTION
+from scripts.authoring.traces import capture
 
 FENCE = chr(96) * 3
 LABS = {**INTRO, **DURABLE, **MODELS, **COMPOSITION, **PRODUCTION, **BONUSES}
@@ -84,7 +86,14 @@ def answer_source(source: str, cases: list[dict], cause: str | None) -> str:
     return source + '\n\nif __name__ == "__main__":\n    main()\n'
 
 
-def task_tests(folder: Path, *, answer: bool = False, purity: str | None = None) -> None:
+def task_tests(
+    folder: Path,
+    *,
+    answer: bool = False,
+    purity: str | None = None,
+    structural: str = "",
+    batch: bool = False,
+) -> None:
     if answer:
         content = '''
 """Compare the learner's written prediction with the checked execution."""
@@ -119,7 +128,20 @@ def test_node_returns_a_partial_update_without_mutation(candidate):
     assert state == before, "LARKSPUR: a node must not mutate its input"
     assert set(update) == {{"description"}}, "LARKSPUR: return only the changed field"
 """
-    write(folder / "test_task.py", textwrap.dedent(content).strip())
+    if batch:
+        content += """
+def test_batch_preserves_order_errors_and_input_ownership(candidate):
+    from copy import deepcopy
+    batch = getattr(candidate, "run_batch", None)
+    assert callable(batch), "LARKSPUR: implement the batch extension"
+    selected = [CASES[0], CASES[-1], CASES[0]]
+    inputs = [deepcopy(row["input"]) for row in selected]
+    before = deepcopy(inputs)
+    assert batch([]) == [], "LARKSPUR: an empty batch has no observations"
+    assert batch(inputs) == [row["expected"] for row in selected], "LARKSPUR: preserve order and isolate each claim"
+    assert inputs == before, "LARKSPUR: do not mutate the caller's batch"
+"""
+    write(folder / "test_task.py", textwrap.dedent(content).strip() + "\n" + structural)
 
 
 def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
@@ -157,6 +179,8 @@ def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
             if kind == "predict"
             else f"Design {group['slug'].replace('_', ' ')} and justify the boundary policies"
             if kind == "design"
+            else f"Diagnose {group['slug'].replace('_', ' ')} from execution evidence"
+            if kind == "trace"
             else f"{kind.title()} {group['slug'].replace('_', ' ')}: {reason}"
         )
         if old not in implementation:
@@ -174,6 +198,15 @@ def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
             if kind == "trace":
                 write(folder / "trace.ts", broken_implementation)
         task_cases, task_expected, solution_source = cases, expected, source
+        structural = ""
+        if kind == "refactor" and group["id"] != "01-A":
+            if typescript:
+                ts_solution, structural, reason = typescript_refactor(group["id"], implementation)
+                write(folder / "solution.ts", ts_solution)
+                write(folder / "starter.ts", implementation)
+                broken = source
+            else:
+                solution_source, broken, structural, reason = refactor(group["id"], source)
         extension = extend(group["id"], source) if kind == "extend" else None
         if extension is not None:
             solution_source, broken, extras, reason = extension
@@ -186,6 +219,25 @@ def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
                 "the new node or boundary contract described above",
                 "the deliberately incomplete extension",
             )
+            if typescript:
+                write(folder / "starter.ts", implementation)
+            write_json(
+                folder / "baseline_cases.json",
+                [
+                    {"input": case, "expected": result}
+                    for case, result in zip(cases, expected, strict=True)
+                ],
+            )
+            structural += """
+@pytest.mark.parametrize("case", json.loads(Path(__file__).with_name("baseline_cases.json").read_text("utf-8")))
+def test_original_contract_survives_extension(candidate, case):
+    from common.exercises import preserves_original
+    assert preserves_original(case["expected"], observe(candidate, case["input"])), "LARKSPUR: retain the original fields, list prefix, and errors when adding a feature"
+"""
+        if kind in {"extend", "refactor"}:
+            task["description"] = f"{kind.title()} {group['slug'].replace('_', ' ')}: {reason}"
+        if kind == "refactor" and group["id"] != "01-A":
+            old, new = "the original behavioral contract", "an unextracted design boundary"
         if kind in {"predict", "trace"}:
             trace = kind == "trace"
             oracle = answer_source(
@@ -199,6 +251,9 @@ def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
             write_json(folder / "answer.json", {"observations": [], "cause": None})
             if trace:
                 write(folder / "trace.py", task_source(broken, task["description"]))
+                write_json(
+                    folder / "trace.json", capture(load_module(folder / "trace.py"), cases[:2])
+                )
             task_tests(folder, answer=True)
         elif kind == "design":
             plan = spec["design"]
@@ -258,6 +313,8 @@ def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
             )
             task_tests(
                 folder,
+                structural=structural,
+                batch=kind == "extend" and "def run_batch(" in solution_source,
                 purity="normalize_description"
                 if group["id"] == "01-A" and kind == "refactor"
                 else None,
@@ -265,9 +322,9 @@ def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
         package_input = cases[:2] if kind == "trace" else task_cases
         guide = f"# {task['id']} — {task['description']}\n\nType: {kind}. Difficulty: {task['level']}. No live model, key, or network is required.\n\n"
         guide += f"## The claim scenario\n\n{spec['idea']}\n\n"
-        guide += f"## Your task\n\n{reason if kind not in {'predict', 'design'} else task['description']} "
+        guide += f"## Your task\n\n{reason if kind not in {'predict', 'design', 'trace'} else task['description']} "
         guide += (
-            "Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom."
+            "Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom."
             if kind == "trace"
             else "Predict each result before running the example. Keep the observations in the listed input order."
             if kind == "predict"
@@ -276,6 +333,16 @@ def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
             else "Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture."
         )
         guide += f"\n\n## Inputs and acceptance\n\n{FENCE}json\n{json.dumps(package_input, indent=2)}\n{FENCE}\n\n"
+        if kind == "trace":
+            guide += (
+                "Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:\n\n"
+                + "\n".join("- " + json.dumps(fault[2]) for fault in spec["faults"])
+                + "\n\n"
+            )
+        if kind == "refactor":
+            guide += "The starter already satisfies the original behavior cases. It fails the separate structural requirement. Keep those original tests green while changing the design; a renamed function alone does not establish the required boundary.\n\n"
+        if kind == "extend":
+            guide += "The new capability is checked in addition to the original cases. For run_batch, edit the Python orchestration interface (including in the TypeScript bonus); leave run(case) behavior intact. A batch is sequential and each case owns a new workflow invocation, not a shared durable thread.\n\n"
         if kind not in {"predict", "trace", "design"}:
             guide += "cases.json declares the expected output or expected exception type for every input. Exceptions are observed by the grader; import errors are setup failures. The starter's demo prints a known runtime error when appropriate, so you can inspect it without losing the exercise context.\n\n"
         guide += "The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.\n\n"
@@ -290,6 +357,11 @@ def build_group(module: dict, group: dict, spec: dict, manifest: dict) -> None:
             folder / "explanation.md",
             f"# Why the solution works\n\n{spec['idea']}\n\n{reason} The implementation preserves the claim identity and separates the tested concern from unrelated state. The cases include normal and boundary inputs, so replacing the result with a single constant is not a general repair.\n\nThe deliberate fault changes {old!r} to {new!r}. Follow the data affected by that operation before inspecting later nodes. For predictions, distinguish returned values from error types. For traces, the observed failure is evidence of the first broken contract, not proof that the framework is unreliable.\n\nRun the task tests against your selected workspace file. Viewing this reference is assisted study; a written Design rationale still requires the rubric.",
         )
+        if kind == "refactor":
+            write(
+                folder / "explanation.md",
+                f"# Why the refactor works\n\n{spec['idea']}\n\n{reason}\n\nThe starter is a working behavioral baseline. The reference changes its design, then runs the same case fixtures and a separate structural check. Inspect both test groups: matching one happy-path output does not prove equivalence. Preserve rejection/error behavior and input ownership as well as successful results.\n\nRun the selected workspace file through gym check. Viewing the reference is recorded as assisted study.",
+            )
         manifest["tasks"][task["id"]] = {
             "prerequisites": [],
             "timeout": 120 if group["id"] in {"05-B", "17-A", "16-C"} else 45,
@@ -319,6 +391,9 @@ def build_module(module: dict, modules: list[dict]) -> None:
     text = f"# {module['id']} — {module['title']}\n\n> After this module you can {module['use_case'][0].lower() + module['use_case'][1:]}\n\n**Time:** {module['lesson_minutes']} minutes · **Level:** {level} · **LLM needed:** No live model · **Cost:** $0 with the included fakes.\n\n**Larkspur Claims Copilot v{module['copilot_version']:02d}** · Practice takes additional time.\n\n"
     text += f"## Prerequisites\n\nComplete {prerequisite}. Read dictionary keys, functions, and Python type hints comfortably. Run uv sync from the repository root.\n\n"
     text += f"Optional installation requirements are listed in [the setup guide]({root_prefix}docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.\n\n"
+    text += f"New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge]({root_prefix}docs/BEGINNER_BRIDGE.md) when that concept first appears.\n\n"
+    if module["id"] in {"08", "09", "10", "11", "12"}:
+        text += f"After the deterministic lesson, use [the optional provider lab]({root_prefix}docs/LIVE_MODEL_LAB.md) to try real extraction, scoped tool calls, and conversation memory with your configured provider. Graded results remain fake and offline.\n\n"
     text += (
         "## Learning objectives\n\n"
         + "\n".join(
@@ -345,6 +420,16 @@ def build_module(module: dict, modules: list[dict]) -> None:
         ):
             diagram = builder().get_graph().draw_mermaid()
             text += f"{FENCE}mermaid\n{diagram}\n{FENCE}\n\n"
+    if FENCE + "mermaid" not in text and (directory / "diagram.mmd").is_file():
+        text += (
+            "The checked-in diagram was generated from the executable lesson or cumulative Copilot graph. Edges describe possible work; inspect the runtime trace to see what ran.\n\n"
+            + FENCE
+            + "mermaid\n"
+            + (directory / "diagram.mmd").read_text("utf-8")
+            + "\n"
+            + FENCE
+            + "\n\n"
+        )
     text += "## Key APIs at a glance\n\n| API / executable example | What it does | When to use it |\n| --- | --- | --- |\n"
     for group in module["groups"]:
         source_tree = ast.parse(
@@ -363,7 +448,7 @@ def build_module(module: dict, modules: list[dict]) -> None:
         text += f"| {', '.join(apis[:4]) or 'run(case)'} — [{group['example']}](examples/{group['example']}) | {'; '.join(group['features'])} | {idea.split('. ')[0]}. |\n"
     text += "\n## Walkthrough\n\nRun commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.\n\n"
     for group in module["groups"]:
-        command = "node" if group["example"].endswith(".ts") else "uv run python"
+        command = "node" if group["example"].endswith(".ts") else "uv run --no-sync python"
         text += f"{FENCE}text\n{command} {module['path']}/examples/{group['example']}\n{FENCE}\n\n"
         if group["id"] in LABS:
             spec = LABS[group["id"]]
@@ -382,7 +467,8 @@ def build_module(module: dict, modules: list[dict]) -> None:
             symptom = observe(load_module(faulty), spec["inputs"][0])
             displayed = json.dumps(symptom, ensure_ascii=False)[:220].replace("|", "&#124;")
             repair = fault[0].replace("|", "&#124;").replace("\n", " ")
-            text += f"| Observed `{displayed}`. {fault[2]} | Restore `{repair}` and check the boundary cases. | [{task['id']}]({root_prefix}{task['folder']}/task.md) |\n"
+            fix = next(item for item in group["tasks"] if item["type"] == "fix")
+            text += f"| Observed `{displayed}`. {fault[2]} | Restore `{repair}` and check the boundary cases. | [{task['id']}]({root_prefix}{task['folder']}/task.md) · Related Fix: [{fix['id']}]({root_prefix}{fix['folder']}/task.md) |\n"
     text += "\n## Practice\n\n" + "\n".join(
         f"- [{task['id']} — {task['type']}, {task['level']}]({root_prefix}{task['folder']}/task.md): {task['description']}"
         for group in module["groups"]
@@ -601,16 +687,19 @@ def main() -> None:
             module["id"] + "-" + suffix for suffix in ("01", "02", "09", "10", "17", "18")
         ]
         print(f"Built {module['id']} teaching package.", flush=True)
-    manifest["phase"] = (
-        7
-        if arguments.bonuses
-        else 6
-        if arguments.through >= 18
-        else 5
-        if arguments.through >= 13
-        else 4
-        if arguments.through >= 8
-        else 3
+    manifest["phase"] = max(
+        manifest["phase"],
+        (
+            7
+            if arguments.bonuses
+            else 6
+            if arguments.through >= 18
+            else 5
+            if arguments.through >= 13
+            else 4
+            if arguments.through >= 8
+            else 3
+        ),
     )
     manifest["milestone_note"] = "Complete guided milestones are active for released modules."
     write_json(ROOT / "gym/manifest.json", manifest)
@@ -619,7 +708,7 @@ def main() -> None:
     subprocess.run(
         [sys.executable, "-m", "ruff", "check", "modules", "gym/tasks", "--fix"],
         cwd=ROOT,
-        check=False,
+        check=True,
     )
     subprocess.run(
         [sys.executable, "-m", "ruff", "format", "modules", "gym/tasks"], cwd=ROOT, check=True

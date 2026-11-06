@@ -1,4 +1,4 @@
-"""Trace namespaces and errors: Keep parent and child scopes distinct.. Run this file with Python. No live model or network."""
+"""Diagnose namespaces and errors from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict

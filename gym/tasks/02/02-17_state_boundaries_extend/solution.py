@@ -1,4 +1,4 @@
-"""Extend state boundaries: Customer-facing correction must normalize text.. Run this file with Python. No live model or network."""
+"""Extend state boundaries: Append a customer-safe explanation without exposing internal notes or duplicating the original message.. Run this file with Python. No live model or network."""
 
 from typing import Annotated, TypedDict
 

@@ -24,15 +24,7 @@ export async function run(input = DEFAULT_CASE) {
       new AIMessage("Policy evidence checked; no payment authorized."),
     ]);
   }
-  const fake = model().bindTools([lookup]);
-  const manual = new StateGraph(State)
-    .addNode("model", async (state) => ({ messages: [await fake.invoke(state.messages)] }))
-    .addNode("tools", new ToolNode([lookup]))
-    .addEdge(START, "model")
-    .addConditionalEdges("model", (state) => {
-      const last = state.messages.at(-1);
-      return AIMessage.isInstance(last) && last.tool_calls?.length ? "tools" : END;
-    }, ["tools", END]).addEdge("tools", "model").compile();
+  const manual = createAgent({ model: model(), tools: [lookup] });
   const inputState = { messages: [new HumanMessage("Check the deductible.")] };
   const config = { recursionLimit: input.recursion_limit };
   const first = await manual.invoke(inputState, config);

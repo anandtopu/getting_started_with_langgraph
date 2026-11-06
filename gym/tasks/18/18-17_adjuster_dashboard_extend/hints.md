@@ -6,8 +6,8 @@ Replace an outdated approval form when the desk sends a corrected one instead of
 
 ## Hint 2
 
-Enable submission only for a currently pending interrupt. Inspect the operation that owns this update or routing choice.
+Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: case["submitted_id"] in {item["id"] for item in state["pending"]}. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the new node or boundary contract described above. Check every boundary input after the repair; a default-case pass alone is insufficient.

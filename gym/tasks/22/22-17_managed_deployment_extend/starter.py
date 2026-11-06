@@ -1,5 +1,6 @@
-"""Extend managed deployment: Reject an obviously malformed schedule before proposing a hosted job.. Run this file with Python. No live model or network."""
+"""Extend managed deployment: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
+from common.data import load_submission
 from common.pretty import print_state
 
 DEFAULT_CASE = {
@@ -13,12 +14,15 @@ DEFAULT_CASE = {
 def request_plan(case: dict) -> dict:
     if not case["assistant_id"] or not case["thread_id"]:
         raise ValueError("Assistant and thread identifiers are required")
-    if False:
+    if len(case["schedule"].split()) != 5:
         raise ValueError("This teaching plan requires a five-field cron expression")
     return {
         "assistant": {"graph_id": case["assistant_id"]},
         "thread": {"thread_id": case["thread_id"]},
-        "run": {"assistant_id": case["assistant_id"], "input": {"claim_id": "CLM-0001"}},
+        "run": {
+            "assistant_id": case["assistant_id"],
+            "input": {"claim": load_submission(1), "audit": [], "findings": []},
+        },
         "mode": "background" if case["background"] else "wait",
         "schedule": case["schedule"],
     }
@@ -29,9 +33,30 @@ async def submit_background(client, thread_id: str, assistant_id: str, input_sta
     return await client.runs.create(thread_id, assistant_id, input=input_state)
 
 
+async def submit_wait(client, thread_id: str, assistant_id: str, input_state: dict):
+    """Wait for completion on a persistent thread; the caller owns authentication."""
+    return await client.runs.wait(thread_id, assistant_id, input=input_state)
+
+
+async def submit_ephemeral(client, assistant_id: str, input_state: dict):
+    """Use only for work that needs no durable human-response thread."""
+    return await client.runs.wait(None, assistant_id, input=input_state)
+
+
+async def schedule_run(client, thread_id: str, assistant_id: str, input_state: dict, schedule: str):
+    """Explicit live action: schedule repeated input. Retain its cron_id for deletion."""
+    return await client.crons.create_for_thread(
+        thread_id, assistant_id, input=input_state, schedule=schedule
+    )
+
+
 # YOUR CODE HERE: repair the contract described in task.md.
 def run(case: dict | None = None) -> dict:
     return request_plan(dict(DEFAULT_CASE if case is None else case))
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

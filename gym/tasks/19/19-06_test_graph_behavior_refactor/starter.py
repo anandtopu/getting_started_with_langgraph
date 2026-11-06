@@ -1,4 +1,4 @@
-"""Refactor test graph behavior: Require both implementations to match the independent expected route.. Run this file with Python. No live model or network."""
+"""Refactor test graph behavior: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from common.claims import route_claim
 from common.copilot import v01
@@ -33,7 +33,7 @@ def run(case: dict | None = None) -> dict:
         )
     return {
         "rows": rows,
-        "passed": all(row["expected"] != row["rule"] == row["graph"] for row in rows),
+        "passed": all(row["expected"] == row["rule"] == row["graph"] for row in rows),
     }
 
 

@@ -1,4 +1,4 @@
-"""Refactor v2 stream parts: A unified dispatcher must preserve custom progress payloads.. Run this file with Python. No live model or network."""
+"""Refactor v2 stream parts: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -47,7 +47,7 @@ def summarize_part(part: dict) -> dict:
         result["status"] = part["data"].get("status", "input")
         result["interrupts"] = len(part.get("interrupts", ()))
     elif part["type"] == "custom":
-        result["phase"] = "unknown"
+        result["phase"] = part["data"]["phase"]
     else:
         result["event"] = part["data"]["type"]
     return result

@@ -1,4 +1,4 @@
-"""Extend orchestrator workers: Assemble reports by stable section identity.. Run this file with Python. No live model or network."""
+"""Extend orchestrator workers: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 import operator
@@ -70,7 +70,7 @@ def build_graph(sections: list[str] | None = None):
     def assemble(state: State) -> dict:
         return {
             "report": "\n".join(
-                item["text"] for item in sorted(state["reports"], key=lambda item: item["text"])
+                item["text"] for item in sorted(state["reports"], key=lambda item: item["section"])
             )
         }
 
@@ -94,6 +94,10 @@ def run(case: dict | None = None) -> dict:
         "report": result["report"],
         "model_calls": 1 + len(result["reports"]),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

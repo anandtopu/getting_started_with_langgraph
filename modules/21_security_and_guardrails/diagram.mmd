@@ -19,14 +19,16 @@ graph TD;
 	review\3adurable_review\3areview_claim\3aconsult_specialists --> review\3acomplete_review;
 	subgraph durable_review
 	review\3adurable_review\3aawait_estimate(await_estimate)
-	review\3adurable_review\3aawait_estimate --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
+	review\3adurable_review\3aawait_estimate --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer;
 	subgraph review_claim
 	review\3adurable_review\3areview_claim\3aconsult_specialists(consult_specialists)
 	review\3adurable_review\3areview_claim\3afraud_review\3ainspect_evidence --> review\3adurable_review\3areview_claim\3aconsult_specialists;
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter --> review\3adurable_review\3areview_claim\3afraud_review\3ainspect_evidence;
 	subgraph intake_policy_memory
+	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer(authorize_customer)
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember(remember)
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter(draft_letter)
+	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember;
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter;
 	subgraph intake_and_evidence

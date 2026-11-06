@@ -1,4 +1,4 @@
-# 18-16 — Trace adjuster dashboard: Replace the stale approval identity with the current snapshot.
+# 18-16 — Diagnose adjuster dashboard from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ The dashboard is a projection of server events: append progress and text, replac
 
 ## Your task
 
-Replace the stale approval identity with the current snapshot. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose adjuster dashboard from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -30,6 +30,13 @@ Replace the stale approval identity with the current snapshot. Read trace.py bef
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Render every received text chunk in order."
+- "Replace the stale approval identity with the current snapshot."
+- "Enable submission only for a currently pending interrupt."
+- "Attribute displayed progress to the node that emitted it."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

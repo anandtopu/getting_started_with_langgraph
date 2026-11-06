@@ -1,4 +1,4 @@
-"""Trace trajectory evals: Check the policy arguments, not only tool names.. Run this file with Python. No live model or network."""
+"""Diagnose trajectory evals from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage
 

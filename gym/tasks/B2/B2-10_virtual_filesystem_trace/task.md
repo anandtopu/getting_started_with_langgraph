@@ -1,4 +1,4 @@
-# B2-10 — Trace virtual filesystem: Deny writes outside the permitted virtual directory.
+# B2-10 — Diagnose virtual filesystem from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ StateBackend stores a virtual filesystem in graph state instead of writing host 
 
 ## Your task
 
-Deny writes outside the permitted virtual directory. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose virtual filesystem from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Deny writes outside the permitted virtual directory. Read trace.py before comple
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Allow the explicitly scoped claim artifact path."
+- "Deny writes outside the permitted virtual directory."
+- "Persist the supplied investigation note without substitution."
+- "Honor and validate the requested virtual artifact path."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

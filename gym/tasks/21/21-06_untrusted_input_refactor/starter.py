@@ -1,4 +1,4 @@
-"""Refactor untrusted input: Keep model-visible tool capabilities read-only.. Run this file with Python. No live model or network."""
+"""Refactor untrusted input: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -36,7 +36,7 @@ def run(case: dict | None = None) -> dict:
         "route": route_claim(normalized),
         "payment_authorized": False,
         "model_fields": sorted(facts.model_dump()),
-        "tool_permissions": ["read_synthetic_policy", "issue_payment"],
+        "tool_permissions": ["read_synthetic_policy"],
     }
 
 

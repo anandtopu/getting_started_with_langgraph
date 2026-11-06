@@ -1,4 +1,4 @@
-"""Refactor test durable execution: Read the completed snapshot after resumption.. Run this file with Python. No live model or network."""
+"""Refactor test durable execution: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langgraph.types import Command
 
@@ -10,8 +10,15 @@ from common.pretty import print_state
 DEFAULT_CASE = {"approved": False, "groups": [["receipt"], ["estimate", "receipt"], ["policy"]]}
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     graph = v03.build_graph()
     config = {"configurable": {"thread_id": "durable-test"}}
     claim = {**load_submission(1), "amount_cents": 600000}

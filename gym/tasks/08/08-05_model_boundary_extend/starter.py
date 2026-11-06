@@ -1,4 +1,4 @@
-"""Extend model boundary: Route an unknown category to review even with high confidence.. Run this file with Python. No live model or network."""
+"""Extend model boundary: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 from typing import TypedDict
@@ -32,7 +32,7 @@ def build_graph(payload: dict | None = None):
         facts = ClaimExtraction.model_validate(state["facts"])
         destination = (
             "review"
-            if facts.confidence < 0.8
+            if facts.confidence < 0.8 or facts.claim_type == "unknown"
             else "fast_track"
             if facts.amount_cents <= 100000
             else "standard"
@@ -54,6 +54,10 @@ def run(case: dict | None = None) -> dict:
         build_graph(case).invoke({"text": "A pipe burst; repairs cost $1,250."}, version="v2").value
     )
     return {"facts": result["facts"], "route": result["route"]}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

@@ -1,4 +1,4 @@
-"""Extend untrusted input: Expose and reject an unexpected authority field instead of silently hiding it from validation.. Run this file with Python. No live model or network."""
+"""Extend untrusted input: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -18,7 +18,7 @@ def run(case: dict | None = None) -> dict:
     case = DEFAULT_CASE if case is None else case
     claim = json.loads(data_path("security/injected_claim.json").read_text("utf-8"))
     payload = {"claim_type": "water", "amount_cents": case["amount_cents"], "confidence": 0.95}
-    if False:
+    if case["extra_authority"]:
         payload["approved"] = True
     model = get_chat_model(responses=[AIMessage(content=json.dumps(payload))])
     facts = model.with_structured_output(ClaimExtraction).invoke(
@@ -38,6 +38,10 @@ def run(case: dict | None = None) -> dict:
         "model_fields": sorted(facts.model_dump()),
         "tool_permissions": ["read_synthetic_policy"],
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

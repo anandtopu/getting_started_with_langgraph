@@ -1,4 +1,4 @@
-"""Trace worker reliability: Report that a competing run was excluded.. Run this file with Python. No live model or network."""
+"""Diagnose worker reliability from execution evidence. Run this file with Python. No live model or network."""
 
 import asyncio
 from pathlib import Path

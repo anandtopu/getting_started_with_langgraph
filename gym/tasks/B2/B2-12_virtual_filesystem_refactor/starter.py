@@ -1,4 +1,4 @@
-"""Refactor virtual filesystem: Honor and validate the requested virtual artifact path.. Run this file with Python. No live model or network."""
+"""Refactor virtual filesystem: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.checkpoint.memory import InMemorySaver
@@ -23,7 +23,7 @@ def run(case: dict | None = None) -> dict:
                 tool_calls=[
                     {
                         "name": "write_file",
-                        "args": {"file_path": "/claims/review.txt", "content": case["content"]},
+                        "args": {"file_path": case["path"], "content": case["content"]},
                         "id": "file-1",
                     }
                 ],

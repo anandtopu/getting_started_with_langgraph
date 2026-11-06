@@ -1,4 +1,4 @@
-# 00-12 — Refactor environment: Use the supplied interpreter version; do not assume the recommended version is installed.
+# 00-12 — Refactor environment: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
 Type: refactor. Difficulty: hard. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ An environment is the interpreter and packages used by one command. A package in
 
 ## Your task
 
-Use the supplied interpreter version; do not assume the recommended version is installed. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
+Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
 
 ## Inputs and acceptance
 
@@ -78,6 +78,8 @@ Use the supplied interpreter version; do not assume the recommended version is i
   }
 ]
 ```
+
+The starter already satisfies the original behavior cases. It fails the separate structural requirement. Keep those original tests green while changing the design; a renamed function alone does not establish the required boundary.
 
 cases.json declares the expected output or expected exception type for every input. Exceptions are observed by the grader; import errors are setup failures. The starter's demo prints a known runtime error when appropriate, so you can inspect it without losing the exercise context.
 

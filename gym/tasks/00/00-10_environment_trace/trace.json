@@ -1,0 +1,55 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "python": [
+          3,
+          12
+        ],
+        "packages": [
+          "langgraph",
+          "pytest"
+        ],
+        "data_present": true,
+        "live": false,
+        "provider_ready": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "ready": false,
+          "errors": [
+            "Optional live provider is not configured"
+          ],
+          "mode": "offline"
+        }
+      }
+    },
+    {
+      "input": {
+        "python": [
+          3,
+          12
+        ],
+        "packages": [
+          "langgraph",
+          "pytest"
+        ],
+        "data_present": true,
+        "live": true,
+        "provider_ready": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "ready": false,
+          "errors": [
+            "Optional live provider is not configured"
+          ],
+          "mode": "live"
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# 20-16 — Trace optional tracing: Fork at the intended pre-routing boundary.
+# 20-16 — Diagnose optional tracing from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ LangSmith tracing is optional and independent of checkpoint persistence. A local
 
 ## Your task
 
-Fork at the intended pre-routing boundary. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose optional tracing from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -22,6 +22,13 @@ Fork at the intended pre-routing boundary. Read trace.py before completing the a
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Apply the corrected amount to the fork before resuming routing."
+- "Fork at the intended pre-routing boundary."
+- "Keep the original route distinct from the corrected branch."
+- "Verify that branching retains and extends checkpoint history."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

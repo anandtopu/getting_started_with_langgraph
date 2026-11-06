@@ -1,0 +1,39 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "note": "Synthetic customer phone 555-0100",
+        "delete": true,
+        "wrong_key": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "plaintext_visible": false,
+          "roundtrip": true,
+          "checkpoint_plaintext_visible": false,
+          "retained": true,
+          "key_logged": false
+        }
+      }
+    },
+    {
+      "input": {
+        "note": "Synthetic customer phone 555-0100",
+        "delete": false,
+        "wrong_key": false
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "plaintext_visible": false,
+          "roundtrip": true,
+          "checkpoint_plaintext_visible": false,
+          "retained": true,
+          "key_logged": false
+        }
+      }
+    }
+  ]
+}

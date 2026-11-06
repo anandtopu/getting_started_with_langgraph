@@ -1,4 +1,4 @@
-# 13-04 — Trace shared subgraph: Apply the high-value risk boundary inside the reusable child.
+# 13-04 — Diagnose shared subgraph from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A compiled subgraph can be a parent node when their state keys agree. Its update
 
 ## Your task
 
-Apply the high-value risk boundary inside the reusable child. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose shared subgraph from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -28,6 +28,13 @@ Apply the high-value risk boundary inside the reusable child. Read trace.py befo
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Keep evidence already recorded by the parent."
+- "Apply the high-value risk boundary inside the reusable child."
+- "Flag missing supporting documents."
+- "Do not confuse an intake milestone with a risk flag."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

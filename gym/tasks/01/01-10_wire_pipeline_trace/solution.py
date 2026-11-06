@@ -1,4 +1,4 @@
-"""Trace wire pipeline: Validation must occur before acknowledging the claim.. Run this file with Python. No live model or network."""
+"""Diagnose wire pipeline from execution evidence. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 

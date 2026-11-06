@@ -1,4 +1,4 @@
-"""Extend semantic and privacy: Delete the requested memory while preserving unrelated evidence.. Run this file with Python. No live model or network."""
+"""Extend semantic and privacy: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from typing import TypedDict
 
@@ -51,7 +51,7 @@ def run(case: dict | None = None) -> dict:
     graph = builder.compile(checkpointer=saver)
     config = {"configurable": {"thread_id": "retention-demo"}}
     graph.invoke({"note": "water receipt"}, config, version="v2")
-    store.delete(namespace, "theft")
+    store.delete(namespace, "water")
     checkpoint_retains_fact = bool(graph.get_state(config).values)
     saver.delete_thread("retention-demo")
     return {
@@ -61,6 +61,10 @@ def run(case: dict | None = None) -> dict:
         "checkpoint_retains_fact_after_store_delete": checkpoint_retains_fact,
         "checkpoint_deleted_separately": not graph.get_state(config).values,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

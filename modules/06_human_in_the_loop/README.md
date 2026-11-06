@@ -12,6 +12,8 @@ Complete [Persistence and threads](../05_persistence_and_threads/README.md). Rea
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain interrupt(); Command(resume=...); checkpointer requirement; v2 interrupt output.
@@ -94,7 +96,7 @@ A clerk rereads the form after approval; rereading must not send a second paymen
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/06_human_in_the_loop/examples/01_approve_or_reject.py
+uv run --no-sync python modules/06_human_in_the_loop/examples/01_approve_or_reject.py
 ```
 
 **Predict, then run:** for {"amount_cents": 600000, "decision": {"approved": true}}, write the resulting fields and any expected error. Then test the boundary cases in tests/approve_or_reject.json.
@@ -122,7 +124,7 @@ interrupt pauses graph work and returns a request to the caller. A checkpointer 
 </details>
 
 ```text
-uv run python modules/06_human_in_the_loop/examples/02_collect_and_edit.py
+uv run --no-sync python modules/06_human_in_the_loop/examples/02_collect_and_edit.py
 ```
 
 **Predict, then run:** for {"loss_date": "2026-01-01", "approved_cents": 125000}, write the resulting fields and any expected error. Then test the boundary cases in tests/collect_and_edit.json.
@@ -151,7 +153,7 @@ Parallel pauses can be answered with an interrupt-ID-to-response map. IDs identi
 </details>
 
 ```text
-uv run python modules/06_human_in_the_loop/examples/03_safe_reentry.py
+uv run --no-sync python modules/06_human_in_the_loop/examples/03_safe_reentry.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "approved": true}, write the resulting fields and any expected error. Then test the boundary cases in tests/safe_reentry.json.
@@ -203,33 +205,33 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"prompts": [{"kind": "payout_review", "amount_cents": 600000}], "status": "approved", "remaining": 0}}`. A rejected proposal must not become an approved result. | Restore `"approved" if response["approved"] else "rejected"` and check the boundary cases. | [06-01](../../gym/tasks/06/06-01_approve_or_reject_build/task.md) · [Related Fix 06-02](../../gym/tasks/06/06-02_approve_or_reject_fix/task.md) |
-| Observed `{"error": "RuntimeError"}`. An interrupt needs persistence to resume the saved task. | Restore `checkpointer=InMemorySaver()` and check the boundary cases. | [06-02](../../gym/tasks/06/06-02_approve_or_reject_fix/task.md) |
-| Observed `{"value": {"prompts": ["approved_cents", "loss_date"], "result": {"claim_id": "CLM-0001", "loss_date": "2026-01-01", "approved_cents": 125000}}}`. A zero approved amount is a valid edited decision. | Restore `0 <= response <= 500000` and check the boundary cases. | [06-07](../../gym/tasks/06/06-07_collect_and_edit_build/task.md) · [Related Fix 06-08](../../gym/tasks/06/06-08_collect_and_edit_fix/task.md) |
-| Observed `{"error": "ValueError"}`. Each interrupt must receive the response for its own request kind. | Restore `case[item.value["kind"]]` and check the boundary cases. | [06-08](../../gym/tasks/06/06-08_collect_and_edit_fix/task.md) |
-| Observed `{"value": {"entries": 2, "before_approval": 0, "notifications": 1, "approved": true}}`. Rejection must not trigger the synthetic notification. | Restore `if state["approved"]:` and check the boundary cases. | [06-13](../../gym/tasks/06/06-13_safe_reentry_build/task.md) · [Related Fix 06-14](../../gym/tasks/06/06-14_safe_reentry_fix/task.md) |
-| Observed `{"value": {"entries": 2, "before_approval": 1, "notifications": 3, "approved": true}}`. Effects before interrupt repeat when the node restarts. | Restore `entries.append("review")` and check the boundary cases. | [06-14](../../gym/tasks/06/06-14_safe_reentry_fix/task.md) |
+| Observed `{"value": {"prompts": [{"kind": "payout_review", "amount_cents": 600000}], "status": "approved", "remaining": 0}}`. A rejected proposal must not become an approved result. | Restore `"approved" if response["approved"] else "rejected"` and check the boundary cases. | [06-01](../../gym/tasks/06/06-01_approve_or_reject_build/task.md) · Related Fix: [06-02](../../gym/tasks/06/06-02_approve_or_reject_fix/task.md) |
+| Observed `{"error": "RuntimeError"}`. An interrupt needs persistence to resume the saved task. | Restore `checkpointer=InMemorySaver()` and check the boundary cases. | [06-02](../../gym/tasks/06/06-02_approve_or_reject_fix/task.md) · Related Fix: [06-02](../../gym/tasks/06/06-02_approve_or_reject_fix/task.md) |
+| Observed `{"value": {"prompts": ["approved_cents", "loss_date"], "result": {"claim_id": "CLM-0001", "loss_date": "2026-01-01", "approved_cents": 125000}}}`. A zero approved amount is a valid edited decision. | Restore `0 <= response <= 500000` and check the boundary cases. | [06-07](../../gym/tasks/06/06-07_collect_and_edit_build/task.md) · Related Fix: [06-08](../../gym/tasks/06/06-08_collect_and_edit_fix/task.md) |
+| Observed `{"error": "ValueError"}`. Each interrupt must receive the response for its own request kind. | Restore `case[item.value["kind"]]` and check the boundary cases. | [06-08](../../gym/tasks/06/06-08_collect_and_edit_fix/task.md) · Related Fix: [06-08](../../gym/tasks/06/06-08_collect_and_edit_fix/task.md) |
+| Observed `{"value": {"entries": 2, "before_approval": 0, "notifications": 1, "approved": true}}`. Rejection must not trigger the synthetic notification. | Restore `if state["approved"]:` and check the boundary cases. | [06-13](../../gym/tasks/06/06-13_safe_reentry_build/task.md) · Related Fix: [06-14](../../gym/tasks/06/06-14_safe_reentry_fix/task.md) |
+| Observed `{"value": {"entries": 2, "before_approval": 1, "notifications": 3, "approved": true}}`. Effects before interrupt repeat when the node restarts. | Restore `entries.append("review")` and check the boundary cases. | [06-14](../../gym/tasks/06/06-14_safe_reentry_fix/task.md) · Related Fix: [06-14](../../gym/tasks/06/06-14_safe_reentry_fix/task.md) |
 
 ## Practice
 
 - [06-01 — build, easy](../../gym/tasks/06/06-01_approve_or_reject_build/task.md): Build approve or reject: A rejected proposal must not become an approved result.
 - [06-02 — fix, medium](../../gym/tasks/06/06-02_approve_or_reject_fix/task.md): Fix approve or reject: An interrupt needs persistence to resume the saved task.
 - [06-03 — predict, easy](../../gym/tasks/06/06-03_approve_or_reject_predict/task.md): Predict approve or reject across the declared cases
-- [06-04 — trace, medium](../../gym/tasks/06/06-04_approve_or_reject_trace/task.md): Trace approve or reject: An interrupt needs persistence to resume the saved task.
-- [06-05 — extend, hard](../../gym/tasks/06/06-05_approve_or_reject_extend/task.md): Extend approve or reject: Only a validated boolean authorizes this synthetic decision.
-- [06-06 — refactor, hard](../../gym/tasks/06/06-06_approve_or_reject_refactor/task.md): Refactor approve or reject: Replacing a callback must preserve the actual human response.
+- [06-04 — trace, medium](../../gym/tasks/06/06-04_approve_or_reject_trace/task.md): Diagnose approve or reject from execution evidence
+- [06-05 — extend, hard](../../gym/tasks/06/06-05_approve_or_reject_extend/task.md): Extend approve or reject: Validate adjuster identity from the trusted invocation configuration, independently of the response payload.
+- [06-06 — refactor, hard](../../gym/tasks/06/06-06_approve_or_reject_refactor/task.md): Refactor approve or reject: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [06-07 — build, easy](../../gym/tasks/06/06-07_collect_and_edit_build/task.md): Build collect and edit: A zero approved amount is a valid edited decision.
 - [06-08 — fix, medium](../../gym/tasks/06/06-08_collect_and_edit_fix/task.md): Fix collect and edit: Each interrupt must receive the response for its own request kind.
 - [06-09 — predict, easy](../../gym/tasks/06/06-09_collect_and_edit_predict/task.md): Predict collect and edit across the declared cases
-- [06-10 — trace, medium](../../gym/tasks/06/06-10_collect_and_edit_trace/task.md): Trace collect and edit: Each interrupt must receive the response for its own request kind.
-- [06-11 — extend, hard](../../gym/tasks/06/06-11_collect_and_edit_extend/task.md): Extend collect and edit: Python booleans must not pass an integer money check.
+- [06-10 — trace, medium](../../gym/tasks/06/06-10_collect_and_edit_trace/task.md): Diagnose collect and edit from execution evidence
+- [06-11 — extend, hard](../../gym/tasks/06/06-11_collect_and_edit_extend/task.md): Extend collect and edit: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [06-12 — design, hard](../../gym/tasks/06/06-12_collect_and_edit_design/task.md): Design collect and edit and justify the boundary policies
 - [06-13 — build, easy](../../gym/tasks/06/06-13_safe_reentry_build/task.md): Build safe reentry: Rejection must not trigger the synthetic notification.
 - [06-14 — fix, medium](../../gym/tasks/06/06-14_safe_reentry_fix/task.md): Fix safe reentry: Effects before interrupt repeat when the node restarts.
 - [06-15 — predict, easy](../../gym/tasks/06/06-15_safe_reentry_predict/task.md): Predict safe reentry across the declared cases
-- [06-16 — trace, medium](../../gym/tasks/06/06-16_safe_reentry_trace/task.md): Trace safe reentry: Effects before interrupt repeat when the node restarts.
-- [06-17 — extend, hard](../../gym/tasks/06/06-17_safe_reentry_extend/task.md): Extend safe reentry: Truthiness is not validated approval.
-- [06-18 — refactor, hard](../../gym/tasks/06/06-18_safe_reentry_refactor/task.md): Refactor safe reentry: Separate checkpointed work still needs an idempotent effect contract.
+- [06-16 — trace, medium](../../gym/tasks/06/06-16_safe_reentry_trace/task.md): Diagnose safe reentry from execution evidence
+- [06-17 — extend, hard](../../gym/tasks/06/06-17_safe_reentry_extend/task.md): Extend safe reentry: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [06-18 — refactor, hard](../../gym/tasks/06/06-18_safe_reentry_refactor/task.md): Refactor safe reentry: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.
 

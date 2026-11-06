@@ -1,4 +1,4 @@
-"""Trace reducer findings: Return new evidence only; the reducer already has previous values.. Run this file with Python. No live model or network."""
+"""Diagnose reducer findings from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict

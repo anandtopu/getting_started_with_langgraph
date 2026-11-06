@@ -1,4 +1,4 @@
-# 18-04 — Trace async streams: Request the intended seven stream projections.
+# 18-04 — Diagnose async streams from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ ainvoke awaits one result; astream yields intermediate parts. Pass RunnableConfi
 
 ## Your task
 
-Request the intended seven stream projections. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose async streams from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -24,6 +24,13 @@ Request the intended seven stream projections. Read trace.py before completing t
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Accumulate chunks instead of replacing the previous text."
+- "Request the intended seven stream projections."
+- "Cancel and await the pending async graph when requested."
+- "Record cleanup after the waiting node receives cancellation."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

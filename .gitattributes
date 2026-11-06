@@ -1,4 +1,5 @@
 * text=auto
+.gitattributes text eol=lf
 *.py text eol=lf
 *.md text eol=lf
 *.json text eol=lf
@@ -7,6 +8,11 @@
 *.yaml text eol=lf
 *.eml text eol=lf
 *.txt text eol=lf
+*.ts text eol=lf
+*.mjs text eol=lf
+*.mmd text eol=lf
+*.in text eol=lf
+*.ipynb text eol=lf
 *.pdf binary
 *.db binary
 uv.lock text eol=lf

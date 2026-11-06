@@ -1,4 +1,4 @@
-"""Trace mini reducers: Retain the overwrite-conflict case in the real runtime comparison.. Run this file with Python. No live model or network."""
+"""Diagnose mini reducers from execution evidence. Run this file with Python. No live model or network."""
 
 import operator
 from typing import Annotated, TypedDict

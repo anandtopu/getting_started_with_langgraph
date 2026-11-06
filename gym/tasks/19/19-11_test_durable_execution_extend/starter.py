@@ -1,4 +1,4 @@
-"""Extend test durable execution: Include every update group when checking reducer behavior.. Run this file with Python. No live model or network."""
+"""Extend test durable execution: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langgraph.types import Command
 
@@ -25,9 +25,14 @@ def run(case: dict | None = None) -> dict:
         "pending_before": list(before.next),
         "pending_after": list(graph.get_state(config).next),
         "approved": resumed.value["approved"],
-        "associative": merge_findings(a, b) == merge_findings(a, merge_findings(b, c)),
+        "associative": merge_findings(merge_findings(a, b), c)
+        == merge_findings(a, merge_findings(b, c)),
         "merged": merge_findings(merge_findings(a, b), c),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

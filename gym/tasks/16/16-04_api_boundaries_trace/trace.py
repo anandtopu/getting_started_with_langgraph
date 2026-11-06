@@ -1,4 +1,4 @@
-"""Trace api boundaries: Honor the bounded retry allowance after a lost acknowledgment.. Run this file with Python. No live model or network."""
+"""Diagnose api boundaries from execution evidence. Run this file with Python. No live model or network."""
 
 import asyncio
 import json

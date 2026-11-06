@@ -1,4 +1,4 @@
-"""Trace test graph behavior: Include boolean cents in invalid-input coverage.. Run this file with Python. No live model or network."""
+"""Diagnose test graph behavior from execution evidence. Run this file with Python. No live model or network."""
 
 from common.claims import route_claim
 from common.copilot import v01

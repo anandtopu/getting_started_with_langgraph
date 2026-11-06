@@ -19,6 +19,12 @@ class AgentClaimState(v04.ExtractedState):
 
 
 def policy_agent(state: AgentClaimState) -> dict:
+    if state["route"] in {"needs_information", "invalid", "duplicate"}:
+        return {
+            "policy_evidence": [],
+            "agent_explanation": "Intake requires correction or duplicate review before policy analysis.",
+            "audit": ["policy_analysis_deferred"],
+        }
     claim = state["claim"]
     with claims_connection() as connection:
         row = connection.execute(

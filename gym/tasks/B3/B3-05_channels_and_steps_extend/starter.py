@@ -1,4 +1,4 @@
-"""Extend channels and steps: Run the summary even when the document fan-out is empty.. Run this file with Python. No live model or network."""
+"""Extend channels and steps: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from common.mini_graph import MiniGraph
 from common.pretty import print_state
@@ -23,7 +23,7 @@ def run(case: dict | None = None) -> dict:
     graph = MiniGraph(
         nodes,
         {name: ["summary"] for name in case["documents"]},
-        case["documents"],
+        case["documents"] or ["summary"],
         {"findings": lambda old, new: (old or []) + new},
     )
     result = graph.run({"findings": []})
@@ -33,6 +33,10 @@ def run(case: dict | None = None) -> dict:
         "count": result.values["count"],
         "steps": result.step,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

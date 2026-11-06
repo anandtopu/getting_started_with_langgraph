@@ -1,4 +1,4 @@
-"""Extend long wait postgres: Require the missing document before ending the durable wait.. Run this file with Python. No live model or network."""
+"""Extend long wait postgres: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from datetime import date
 from pathlib import Path
@@ -25,7 +25,7 @@ class State(TypedDict):
 def build_graph(checkpointer):
     def wait_for_document(state: State) -> dict:
         response = interrupt({"claim_id": state["claim_id"], "need": "contractor_estimate"})
-        if not isinstance(response, dict):
+        if not isinstance(response, dict) or not response.get("document_id"):
             raise ValueError("An estimate document ID is required")
         elapsed = (
             date.fromisoformat(response["received_on"]) - date.fromisoformat(state["requested_on"])
@@ -85,6 +85,10 @@ def run(case: dict | None = None) -> dict:
         with SqliteSaver.from_conn_string(path) as saver:
             result = build_graph(saver).invoke(Command(resume=case), config, version="v2")
         return {"interrupts": len(paused.interrupts), **result.value}
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

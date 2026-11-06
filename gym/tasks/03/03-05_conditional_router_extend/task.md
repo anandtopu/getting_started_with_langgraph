@@ -1,4 +1,4 @@
-# 03-05 — Extend conditional router: High-value claims require specialist review.
+# 03-05 — Extend conditional router: Add an opt-in jewelry-specialist path selected by specialize_jewelry=True. Preserve legacy routing when absent, and keep invalid-amount, high-value, and missing-evidence guards ahead of specialization.
 
 Type: extend. Difficulty: hard. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A routing function chooses a label from current state. A path map connects that 
 
 ## Your task
 
-Add a distinct jewelry-specialist path while preserving amount and missing-evidence guards. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
+Add an opt-in jewelry-specialist path selected by specialize_jewelry=True. Preserve legacy routing when absent, and keep invalid-amount, high-value, and missing-evidence guards ahead of specialization. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
 
 ## Inputs and acceptance
 
@@ -49,10 +49,27 @@ Add a distinct jewelry-specialist path while preserving amount and missing-evide
   {
     "claim_type": "jewelry",
     "amount_cents": 50000,
-    "missing": []
+    "missing": [],
+    "specialize_jewelry": true
+  },
+  {
+    "claim_type": "jewelry",
+    "amount_cents": 500001,
+    "missing": [],
+    "specialize_jewelry": true
+  },
+  {
+    "claim_type": "jewelry",
+    "amount_cents": 100000,
+    "missing": [
+      "estimate"
+    ],
+    "specialize_jewelry": true
   }
 ]
 ```
+
+The new capability is checked in addition to the original cases. For run_batch, edit the Python orchestration interface (including in the TypeScript bonus); leave run(case) behavior intact. A batch is sequential and each case owns a new workflow invocation, not a shared durable thread.
 
 cases.json declares the expected output or expected exception type for every input. Exceptions are observed by the grader; import errors are setup failures. The starter's demo prints a known runtime error when appropriate, so you can inspect it without losing the exercise context.
 

@@ -1,0 +1,53 @@
+[
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "approved": true
+    },
+    "expected": {
+      "value": {
+        "entries": 2,
+        "before_approval": 0,
+        "notifications": 1,
+        "approved": true
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "approved": false
+    },
+    "expected": {
+      "value": {
+        "entries": 2,
+        "before_approval": 0,
+        "notifications": 0,
+        "approved": false
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0041",
+      "approved": true
+    },
+    "expected": {
+      "value": {
+        "entries": 2,
+        "before_approval": 0,
+        "notifications": 1,
+        "approved": true
+      }
+    }
+  },
+  {
+    "input": {
+      "claim_id": "CLM-0001",
+      "approved": "yes"
+    },
+    "expected": {
+      "error": "ValueError"
+    }
+  }
+]

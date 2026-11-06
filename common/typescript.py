@@ -2,6 +2,7 @@
 
 import json
 import shutil
+import tempfile
 from pathlib import Path
 
 from common.config import ROOT
@@ -16,6 +17,15 @@ def run_typescript(path: Path, case: dict) -> dict:
     node = shutil.which("node")
     if node is None or not (ROOT / "node_modules/@langchain/langgraph").exists():
         raise RuntimeError("Install Node 24 and run npm ci before the optional B1 exercises")
+    if not path.resolve().is_relative_to(ROOT):
+        # Node resolves ESM packages from the script location, not cwd. An external
+        # --workspace still grades the exact selected single-file TS attempt.
+        staging = ROOT / "tmp"
+        staging.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix="typescript-attempt-", dir=staging) as directory:
+            selected = Path(directory) / "attempt.ts"
+            shutil.copyfile(path, selected)
+            return run_typescript(selected, case)
     result = run_process(
         [
             node,

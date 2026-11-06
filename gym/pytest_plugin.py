@@ -40,7 +40,7 @@ def answer(candidate_path: Path) -> Any:
 
 
 def pytest_runtest_logreport(report: Any) -> None:
-    if report.when == "call" or report.failed:
+    if report.when == "call" or report.failed or report.skipped:
         _RESULTS.append(
             {
                 "nodeid": report.nodeid,

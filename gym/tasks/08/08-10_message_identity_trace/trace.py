@@ -1,4 +1,4 @@
-"""Trace message identity: Correct an existing message without appending another customer message.. Run this file with Python. No live model or network."""
+"""Diagnose message identity from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain_core.messages import AIMessage, HumanMessage, RemoveMessage, ToolMessage
 from langgraph.graph import END, START, MessagesState, StateGraph

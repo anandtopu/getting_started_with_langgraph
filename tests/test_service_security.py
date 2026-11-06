@@ -30,6 +30,7 @@ async def test_only_one_run_per_thread_and_lease_released_on_error(tmp_path):
             raise RuntimeError("Synthetic cancellation")
     async with registry.guard("claim"):
         assert registry.locks["claim"].locked()
+    assert registry.locks == {}
 
 
 async def test_registry_does_not_allow_claim_ownership_substitution(tmp_path):

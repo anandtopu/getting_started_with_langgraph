@@ -1,4 +1,4 @@
-"""Trace create agent: Reject unknown policy IDs, not the known fixture.. Run this file with Python. No live model or network."""
+"""Diagnose create agent from execution evidence. Run this file with Python. No live model or network."""
 
 from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage

@@ -1,4 +1,4 @@
-"""Extend mcp adapter: Preserve the declared request identity through the adapter.. Run this file with Python. No live model or network."""
+"""Extend mcp adapter: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import asyncio
 import json
@@ -41,7 +41,7 @@ async def arun(case: dict) -> dict:
                         {
                             "name": "read_claim",
                             "args": {"claim_id": case["claim_id"]},
-                            "id": "changed-call",
+                            "id": "mcp-1",
                         }
                     ],
                 ),
@@ -70,6 +70,10 @@ async def arun(case: dict) -> dict:
 # YOUR CODE HERE: repair the contract described in task.md.
 def run(case: dict | None = None) -> dict:
     return asyncio.run(arun(dict(DEFAULT_CASE if case is None else case)))
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

@@ -1,0 +1,37 @@
+{
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "cases": [
+    {
+      "input": {
+        "decision": "approve",
+        "specialist": "policy_expert"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "paused": 1,
+          "tool_results": [
+            "The synthetic deductible is 100000 cents."
+          ],
+          "final": "The delegation request is complete."
+        }
+      }
+    },
+    {
+      "input": {
+        "decision": "reject",
+        "specialist": "policy_expert"
+      },
+      "node_updates": [],
+      "observed_result": {
+        "value": {
+          "paused": 1,
+          "tool_results": [
+            "The synthetic deductible is 100000 cents."
+          ],
+          "final": "The delegation request is complete."
+        }
+      }
+    }
+  ]
+}

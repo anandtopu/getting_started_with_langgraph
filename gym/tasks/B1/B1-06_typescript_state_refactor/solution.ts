@@ -11,11 +11,15 @@ const State = new StateSchema({
   audit: new ReducedValue(z.array(z.string()).default([]), { reducer: (old, update) => old.concat(update) }),
 });
 
-export async function run(input = DEFAULT_CASE) {
-  const graph = new StateGraph(State)
+export function buildGraph() {
+  return new StateGraph(State)
     .addNode("normalize", (state) => ({ description: state.description.trim(), audit: ["normalized"] }))
     .addNode("assign_route", (state) => ({ route: !state.description ? "needs_information" : state.amount_cents <= 100000 ? "fast_track" : "standard", audit: ["routed"] }))
     .addEdge(START, "normalize").addEdge("normalize", "assign_route").addEdge("assign_route", END).compile();
+}
+
+export async function run(input = DEFAULT_CASE) {
+  const graph = buildGraph();
   return await graph.invoke({ ...input, audit: [] });
 }
 

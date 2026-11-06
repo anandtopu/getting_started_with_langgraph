@@ -1,4 +1,4 @@
-"""Refactor untrusted input: Keep model-visible tool capabilities read-only.. Run this file with Python. No live model or network."""
+"""Refactor untrusted input: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -13,8 +13,15 @@ from common.schemas import ClaimExtraction
 DEFAULT_CASE = {"extra_authority": False, "amount_cents": 600000}
 
 
+def prepare_case(case: dict | None = None) -> dict:
+    """Own a fresh input snapshot; do not mutate the caller or shared defaults."""
+    from copy import deepcopy
+
+    return deepcopy(DEFAULT_CASE if case is None else case)
+
+
 def run(case: dict | None = None) -> dict:
-    case = DEFAULT_CASE if case is None else case
+    case = prepare_case(case)
     claim = json.loads(data_path("security/injected_claim.json").read_text("utf-8"))
     payload = {"claim_type": "water", "amount_cents": case["amount_cents"], "confidence": 0.95}
     if case["extra_authority"]:

@@ -1,4 +1,4 @@
-"""Extend middleware: Distinguish the after hook from the before hook in lifecycle records.. Run this file with Python. No live model or network."""
+"""Extend middleware: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 from langchain.agents import AgentState, create_agent
 from langchain.agents.middleware import (
@@ -36,7 +36,7 @@ class AuditMiddleware(AgentMiddleware):
         return response
 
     def after_model(self, state, runtime):
-        self.events.append("before_model")
+        self.events.append("after_model")
 
 
 def build_graph(events: list[str], model_limit: int = 3, tool_limit: int = 1):
@@ -77,6 +77,10 @@ def run(case: dict | None = None) -> dict:
         "tool_calls": events.count("tool"),
         "final": output["messages"][-1].content,
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

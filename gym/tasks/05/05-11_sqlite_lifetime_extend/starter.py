@@ -1,4 +1,4 @@
-"""Extend sqlite lifetime: Both processes must reopen the same logical claim thread.. Run this file with Python. No live model or network."""
+"""Extend sqlite lifetime: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 import operator
@@ -36,7 +36,7 @@ def build_graph(saver):
 
 
 def session(database: str, phase: str, claim_id: str) -> dict:
-    config = {"configurable": {"thread_id": claim_id + phase}}
+    config = {"configurable": {"thread_id": claim_id}}
     payload = {
         "claim_id": claim_id,
         "notes": ["received" if phase == "start" else "estimate attached"],
@@ -77,6 +77,10 @@ def run(case: dict | None = None) -> dict:
             "second_notes": outputs[1]["notes"],
             "closed": True,
         }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

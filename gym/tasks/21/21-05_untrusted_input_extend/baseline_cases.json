@@ -1,0 +1,62 @@
+[
+  {
+    "input": {
+      "extra_authority": false,
+      "amount_cents": 600000
+    },
+    "expected": {
+      "value": {
+        "route": "specialist",
+        "payment_authorized": false,
+        "model_fields": [
+          "amount_cents",
+          "claim_type",
+          "confidence",
+          "loss_date"
+        ],
+        "tool_permissions": [
+          "read_synthetic_policy"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "extra_authority": true,
+      "amount_cents": 600000
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  },
+  {
+    "input": {
+      "extra_authority": false,
+      "amount_cents": 100000
+    },
+    "expected": {
+      "value": {
+        "route": "fast_track",
+        "payment_authorized": false,
+        "model_fields": [
+          "amount_cents",
+          "claim_type",
+          "confidence",
+          "loss_date"
+        ],
+        "tool_permissions": [
+          "read_synthetic_policy"
+        ]
+      }
+    }
+  },
+  {
+    "input": {
+      "extra_authority": false,
+      "amount_cents": -1
+    },
+    "expected": {
+      "error": "ValidationError"
+    }
+  }
+]

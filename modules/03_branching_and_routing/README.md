@@ -12,6 +12,8 @@ Complete [State and reducers](../02_state_and_reducers/README.md). Read dictiona
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain Conditional edges; routing functions; path maps; state-based routing.
@@ -129,7 +131,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/03_branching_and_routing/examples/01_conditional_router.py
+uv run --no-sync python modules/03_branching_and_routing/examples/01_conditional_router.py
 ```
 
 **Predict, then run:** for {"claim_type": "water", "amount_cents": 100000, "missing": []}, write the resulting fields and any expected error. Then test the boundary cases in tests/conditional_router.json.
@@ -153,7 +155,7 @@ A routing function chooses a label from current state. A path map connects that 
 </details>
 
 ```text
-uv run python modules/03_branching_and_routing/examples/02_command_routes.py
+uv run --no-sync python modules/03_branching_and_routing/examples/02_command_routes.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "suspicious": true}, write the resulting fields and any expected error. Then test the boundary cases in tests/command_routes.json.
@@ -179,7 +181,7 @@ Command combines state updates with a routing instruction. Its destination annot
 </details>
 
 ```text
-uv run python modules/03_branching_and_routing/examples/03_early_exit.py
+uv run --no-sync python modules/03_branching_and_routing/examples/03_early_exit.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "amount_cents": 0, "duplicate_of": null}, write the resulting fields and any expected error. Then test the boundary cases in tests/early_exit.json.
@@ -233,32 +235,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"claim_type": "water", "amount_cents": 100000, "missing": [], "route": "standard"}}`. The exact fast-track threshold is inclusive. | Restore `amount <= 100000` and check the boundary cases. | [03-01](../../gym/tasks/03/03-01_conditional_router_build/task.md) · [Related Fix 03-02](../../gym/tasks/03/03-02_conditional_router_fix/task.md) |
-| Observed `{"value": {"claim_type": "water", "amount_cents": 100000, "missing": [], "route": "specialist"}}`. Path-map values must match each intended destination. | Restore `{label: label for label in destinations}` and check the boundary cases. | [03-02](../../gym/tasks/03/03-02_conditional_router_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "suspicious": true, "reason": "indicator", "visited": ["acknowledge"]}}`. Suspicious evidence must affect the selected destination. | Restore `"review" if state["suspicious"] else "acknowledge"` and check the boundary cases. | [03-07](../../gym/tasks/03/03-07_command_routes_build/task.md) · [Related Fix 03-08](../../gym/tasks/03/03-08_command_routes_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "suspicious": true, "reason": "indicator", "visited": ["acknowledge", "review"]}}`. A competing static edge schedules an extra acknowledgment. | Restore `graph.add_edge(START, "triage")` and check the boundary cases. | [03-08](../../gym/tasks/03/03-08_command_routes_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "amount_cents": 0, "duplicate_of": null, "reason": "eligible", "assigned": true}}`. Rejected claims must stop before assignment. | Restore `"assign" if state["reason"] == "eligible" else END` and check the boundary cases. | [03-13](../../gym/tasks/03/03-13_early_exit_build/task.md) · [Related Fix 03-14](../../gym/tasks/03/03-14_early_exit_fix/task.md) |
-| Observed `{"value": {"claim_id": "CLM-0001", "amount_cents": 0, "duplicate_of": null, "reason": "invalid", "assigned": false}}`. Zero is a defined boundary, not an omitted case. | Restore `amount < 0` and check the boundary cases. | [03-14](../../gym/tasks/03/03-14_early_exit_fix/task.md) |
+| Observed `{"value": {"claim_type": "water", "amount_cents": 100000, "missing": [], "route": "standard"}}`. The exact fast-track threshold is inclusive. | Restore `amount <= 100000` and check the boundary cases. | [03-01](../../gym/tasks/03/03-01_conditional_router_build/task.md) · Related Fix: [03-02](../../gym/tasks/03/03-02_conditional_router_fix/task.md) |
+| Observed `{"value": {"claim_type": "water", "amount_cents": 100000, "missing": [], "route": "specialist"}}`. Path-map values must match each intended destination. | Restore `{label: label for label in destinations}` and check the boundary cases. | [03-02](../../gym/tasks/03/03-02_conditional_router_fix/task.md) · Related Fix: [03-02](../../gym/tasks/03/03-02_conditional_router_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "suspicious": true, "reason": "indicator", "visited": ["acknowledge"]}}`. Suspicious evidence must affect the selected destination. | Restore `"review" if state["suspicious"] else "acknowledge"` and check the boundary cases. | [03-07](../../gym/tasks/03/03-07_command_routes_build/task.md) · Related Fix: [03-08](../../gym/tasks/03/03-08_command_routes_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "suspicious": true, "reason": "indicator", "visited": ["acknowledge", "review"]}}`. A competing static edge schedules an extra acknowledgment. | Restore `graph.add_edge(START, "triage")` and check the boundary cases. | [03-08](../../gym/tasks/03/03-08_command_routes_fix/task.md) · Related Fix: [03-08](../../gym/tasks/03/03-08_command_routes_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "amount_cents": 0, "duplicate_of": null, "reason": "eligible", "assigned": true}}`. Rejected claims must stop before assignment. | Restore `"assign" if state["reason"] == "eligible" else END` and check the boundary cases. | [03-13](../../gym/tasks/03/03-13_early_exit_build/task.md) · Related Fix: [03-14](../../gym/tasks/03/03-14_early_exit_fix/task.md) |
+| Observed `{"value": {"claim_id": "CLM-0001", "amount_cents": 0, "duplicate_of": null, "reason": "invalid", "assigned": false}}`. Zero is a defined boundary, not an omitted case. | Restore `amount < 0` and check the boundary cases. | [03-14](../../gym/tasks/03/03-14_early_exit_fix/task.md) · Related Fix: [03-14](../../gym/tasks/03/03-14_early_exit_fix/task.md) |
 
 ## Practice
 
 - [03-01 — build, easy](../../gym/tasks/03/03-01_conditional_router_build/task.md): Build conditional router: The exact fast-track threshold is inclusive.
 - [03-02 — fix, medium](../../gym/tasks/03/03-02_conditional_router_fix/task.md): Fix conditional router: Path-map values must match each intended destination.
 - [03-03 — predict, easy](../../gym/tasks/03/03-03_conditional_router_predict/task.md): Predict conditional router across the declared cases
-- [03-04 — trace, medium](../../gym/tasks/03/03-04_conditional_router_trace/task.md): Trace conditional router: Path-map values must match each intended destination.
-- [03-05 — extend, hard](../../gym/tasks/03/03-05_conditional_router_extend/task.md): Extend conditional router: High-value claims require specialist review.
-- [03-06 — refactor, hard](../../gym/tasks/03/03-06_conditional_router_refactor/task.md): Refactor conditional router: Refactoring must retain the missing-evidence route.
+- [03-04 — trace, medium](../../gym/tasks/03/03-04_conditional_router_trace/task.md): Diagnose conditional router from execution evidence
+- [03-05 — extend, hard](../../gym/tasks/03/03-05_conditional_router_extend/task.md): Extend conditional router: Add an opt-in jewelry-specialist path selected by specialize_jewelry=True. Preserve legacy routing when absent, and keep invalid-amount, high-value, and missing-evidence guards ahead of specialization.
+- [03-06 — refactor, hard](../../gym/tasks/03/03-06_conditional_router_refactor/task.md): Refactor conditional router: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [03-07 — build, easy](../../gym/tasks/03/03-07_command_routes_build/task.md): Build command routes: Suspicious evidence must affect the selected destination.
 - [03-08 — fix, medium](../../gym/tasks/03/03-08_command_routes_fix/task.md): Fix command routes: A competing static edge schedules an extra acknowledgment.
 - [03-09 — predict, easy](../../gym/tasks/03/03-09_command_routes_predict/task.md): Predict command routes across the declared cases
-- [03-10 — trace, medium](../../gym/tasks/03/03-10_command_routes_trace/task.md): Trace command routes: A competing static edge schedules an extra acknowledgment.
-- [03-11 — extend, hard](../../gym/tasks/03/03-11_command_routes_extend/task.md): Extend command routes: The recorded reason must explain the actual decision.
-- [03-12 — refactor, hard](../../gym/tasks/03/03-12_command_routes_refactor/task.md): Refactor command routes: Equivalent control flow must not duplicate work.
+- [03-10 — trace, medium](../../gym/tasks/03/03-10_command_routes_trace/task.md): Diagnose command routes from execution evidence
+- [03-11 — extend, hard](../../gym/tasks/03/03-11_command_routes_extend/task.md): Extend command routes: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [03-12 — refactor, hard](../../gym/tasks/03/03-12_command_routes_refactor/task.md): Refactor command routes: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [03-13 — build, easy](../../gym/tasks/03/03-13_early_exit_build/task.md): Build early exit: Rejected claims must stop before assignment.
 - [03-14 — fix, medium](../../gym/tasks/03/03-14_early_exit_fix/task.md): Fix early exit: Zero is a defined boundary, not an omitted case.
 - [03-15 — predict, easy](../../gym/tasks/03/03-15_early_exit_predict/task.md): Predict early exit across the declared cases
-- [03-16 — trace, medium](../../gym/tasks/03/03-16_early_exit_trace/task.md): Trace early exit: Zero is a defined boundary, not an omitted case.
-- [03-17 — extend, hard](../../gym/tasks/03/03-17_early_exit_extend/task.md): Extend early exit: Duplicate submissions need an explicit terminal reason.
+- [03-16 — trace, medium](../../gym/tasks/03/03-16_early_exit_trace/task.md): Diagnose early exit from execution evidence
+- [03-17 — extend, hard](../../gym/tasks/03/03-17_early_exit_extend/task.md): Extend early exit: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [03-18 — design, hard](../../gym/tasks/03/03-18_early_exit_design/task.md): Design early exit and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

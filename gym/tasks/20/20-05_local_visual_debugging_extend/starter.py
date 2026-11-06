@@ -1,4 +1,4 @@
-"""Extend local visual debugging: Report a discrepancy only when observed and reported routes differ.. Run this file with Python. No live model or network."""
+"""Extend local visual debugging: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.. Run this file with Python. No live model or network."""
 
 import json
 
@@ -31,9 +31,13 @@ def run(case: dict | None = None) -> dict:
         "symbol": symbol,
         "diagram_has_approval": "approve_claim" in diagram,
         "actual_route": result.value["route"],
-        "misrouted": result.value["route"] == case["reported_route"],
+        "misrouted": result.value["route"] != case["reported_route"],
         "paused": bool(result.interrupts),
     }
+
+
+def run_batch(cases: list[dict]) -> list[dict]:
+    return []
 
 
 def main() -> None:

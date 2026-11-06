@@ -12,6 +12,8 @@ Complete [Subgraphs](../13_subgraphs/README.md). Read dictionary keys, functions
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain Supervisor pattern; agents as tools; private histories; context engineering; direct patterns versus helper packages.
@@ -117,7 +119,7 @@ graph TD;
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/14_multi_agent_systems/examples/01_supervisor_tools.py
+uv run --no-sync python modules/14_multi_agent_systems/examples/01_supervisor_tools.py
 ```
 
 **Predict, then run:** for {"question": "Review policy and fraud evidence.", "private_note": "Synthetic phone: 555-0100"}, write the resulting fields and any expected error. Then test the boundary cases in tests/supervisor_tools.json.
@@ -157,7 +159,7 @@ A supervisor may call specialists as tools. Each specialist gets a narrow eviden
 </details>
 
 ```text
-uv run python modules/14_multi_agent_systems/examples/02_handoffs.py
+uv run --no-sync python modules/14_multi_agent_systems/examples/02_handoffs.py
 ```
 
 **Predict, then run:** for {"claim_id": "CLM-0001", "question": "Explain the deductible."}, write the resulting fields and any expected error. Then test the boundary cases in tests/handoffs.json.
@@ -187,7 +189,7 @@ Command.PARENT transfers control from a child graph to a node in its parent. The
 </details>
 
 ```text
-uv run python modules/14_multi_agent_systems/examples/03_team_tradeoffs.py
+uv run --no-sync python modules/14_multi_agent_systems/examples/03_team_tradeoffs.py
 ```
 
 **Predict, then run:** for {"budget": 4, "start_agent": "intake"}, write the resulting fields and any expected error. Then test the boundary cases in tests/team_tradeoffs.json.
@@ -254,32 +256,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"error": "ValueError"}`. Register both specialist capabilities with the supervisor. | Restore `tools=[policy_expert, fraud_analyst]` and check the boundary cases. | [14-01](../../gym/tasks/14/14-01_supervisor_tools_build/task.md) · [Related Fix 14-02](../../gym/tasks/14/14-02_supervisor_tools_fix/task.md) |
-| Observed `{"value": {"specialists": [{"role": "policy", "input": "Contractor estimate is missing"}, {"role": "policy", "input": "Deductible: 100000 cents"}], "tool_names": ["fraud_analyst", "policy_expert"], "reports": ["policy: e`. Keep specialist roles attached to the evidence they reviewed. | Restore `return specialist("fraud", "Contractor estimate is missing")` and check the boundary cases. | [14-02](../../gym/tasks/14/14-02_supervisor_tools_fix/task.md) |
-| Observed `{"value": {"active_agent": "policy", "claim_id": "CLM-0001", "paired": true, "roles": ["human", "ai", "tool"], "answer": "Transferred to policy"}}`. Address the parent graph when handing off to its specialist. | Restore `graph=Command.PARENT` and check the boundary cases. | [14-07](../../gym/tasks/14/14-07_handoffs_build/task.md) · [Related Fix 14-08](../../gym/tasks/14/14-08_handoffs_fix/task.md) |
-| Observed `{"value": {"active_agent": "policy", "claim_id": "CLM-0001", "paired": false, "roles": ["human", "ai", "tool", "ai"], "answer": "The deductible is 100000 cents."}}`. Pair the handoff acknowledgment with its AI request. | Restore `tool_call_id="handoff-1"` and check the boundary cases. | [14-08](../../gym/tasks/14/14-08_handoffs_fix/task.md) |
-| Observed `{"value": {"team_calls": 4, "team_complete": true, "reports": ["intake checked", "policy checked", "fraud checked", "communication checked"], "single_calls": 1, "single_mentions_all_roles": true}}`. Stop delegation when the business call budget is exhausted. | Restore `state["calls"] >= state["budget"]` and check the boundary cases. | [14-13](../../gym/tasks/14/14-13_team_tradeoffs_build/task.md) · [Related Fix 14-14](../../gym/tasks/14/14-14_team_tradeoffs_fix/task.md) |
-| Observed `{"value": {"team_calls": 4, "team_complete": false, "reports": ["intake checked", "intake checked", "intake checked", "intake checked"], "single_calls": 1, "single_mentions_all_roles": true}}`. Advance to the next specialist instead of handing work back to itself. | Restore `ROLES[index + 1]` and check the boundary cases. | [14-14](../../gym/tasks/14/14-14_team_tradeoffs_fix/task.md) |
+| Observed `{"error": "ValueError"}`. Register both specialist capabilities with the supervisor. | Restore `tools=[policy_expert, fraud_analyst]` and check the boundary cases. | [14-01](../../gym/tasks/14/14-01_supervisor_tools_build/task.md) · Related Fix: [14-02](../../gym/tasks/14/14-02_supervisor_tools_fix/task.md) |
+| Observed `{"value": {"specialists": [{"role": "policy", "input": "Contractor estimate is missing"}, {"role": "policy", "input": "Deductible: 100000 cents"}], "tool_names": ["fraud_analyst", "policy_expert"], "reports": ["policy: e`. Keep specialist roles attached to the evidence they reviewed. | Restore `return specialist("fraud", "Contractor estimate is missing")` and check the boundary cases. | [14-02](../../gym/tasks/14/14-02_supervisor_tools_fix/task.md) · Related Fix: [14-02](../../gym/tasks/14/14-02_supervisor_tools_fix/task.md) |
+| Observed `{"value": {"active_agent": "policy", "claim_id": "CLM-0001", "paired": true, "roles": ["human", "ai", "tool"], "answer": "Transferred to policy"}}`. Address the parent graph when handing off to its specialist. | Restore `graph=Command.PARENT` and check the boundary cases. | [14-07](../../gym/tasks/14/14-07_handoffs_build/task.md) · Related Fix: [14-08](../../gym/tasks/14/14-08_handoffs_fix/task.md) |
+| Observed `{"value": {"active_agent": "policy", "claim_id": "CLM-0001", "paired": false, "roles": ["human", "ai", "tool", "ai"], "answer": "The deductible is 100000 cents."}}`. Pair the handoff acknowledgment with its AI request. | Restore `tool_call_id="handoff-1"` and check the boundary cases. | [14-08](../../gym/tasks/14/14-08_handoffs_fix/task.md) · Related Fix: [14-08](../../gym/tasks/14/14-08_handoffs_fix/task.md) |
+| Observed `{"value": {"team_calls": 4, "team_complete": true, "reports": ["intake checked", "policy checked", "fraud checked", "communication checked"], "single_calls": 1, "single_mentions_all_roles": true}}`. Stop delegation when the business call budget is exhausted. | Restore `state["calls"] >= state["budget"]` and check the boundary cases. | [14-13](../../gym/tasks/14/14-13_team_tradeoffs_build/task.md) · Related Fix: [14-14](../../gym/tasks/14/14-14_team_tradeoffs_fix/task.md) |
+| Observed `{"value": {"team_calls": 4, "team_complete": false, "reports": ["intake checked", "intake checked", "intake checked", "intake checked"], "single_calls": 1, "single_mentions_all_roles": true}}`. Advance to the next specialist instead of handing work back to itself. | Restore `ROLES[index + 1]` and check the boundary cases. | [14-14](../../gym/tasks/14/14-14_team_tradeoffs_fix/task.md) · Related Fix: [14-14](../../gym/tasks/14/14-14_team_tradeoffs_fix/task.md) |
 
 ## Practice
 
 - [14-01 — build, easy](../../gym/tasks/14/14-01_supervisor_tools_build/task.md): Build supervisor tools: Register both specialist capabilities with the supervisor.
 - [14-02 — fix, medium](../../gym/tasks/14/14-02_supervisor_tools_fix/task.md): Fix supervisor tools: Keep specialist roles attached to the evidence they reviewed.
 - [14-03 — predict, easy](../../gym/tasks/14/14-03_supervisor_tools_predict/task.md): Predict supervisor tools across the declared cases
-- [14-04 — trace, medium](../../gym/tasks/14/14-04_supervisor_tools_trace/task.md): Trace supervisor tools: Keep specialist roles attached to the evidence they reviewed.
-- [14-05 — extend, hard](../../gym/tasks/14/14-05_supervisor_tools_extend/task.md): Extend supervisor tools: Give the policy specialist authoritative scoped evidence.
-- [14-06 — refactor, hard](../../gym/tasks/14/14-06_supervisor_tools_refactor/task.md): Refactor supervisor tools: Return the specialist conclusion instead of its input prompt.
+- [14-04 — trace, medium](../../gym/tasks/14/14-04_supervisor_tools_trace/task.md): Diagnose supervisor tools from execution evidence
+- [14-05 — extend, hard](../../gym/tasks/14/14-05_supervisor_tools_extend/task.md): Extend supervisor tools: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [14-06 — refactor, hard](../../gym/tasks/14/14-06_supervisor_tools_refactor/task.md): Refactor supervisor tools: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [14-07 — build, easy](../../gym/tasks/14/14-07_handoffs_build/task.md): Build handoffs: Address the parent graph when handing off to its specialist.
 - [14-08 — fix, medium](../../gym/tasks/14/14-08_handoffs_fix/task.md): Fix handoffs: Pair the handoff acknowledgment with its AI request.
 - [14-09 — predict, easy](../../gym/tasks/14/14-09_handoffs_predict/task.md): Predict handoffs across the declared cases
-- [14-10 — trace, medium](../../gym/tasks/14/14-10_handoffs_trace/task.md): Trace handoffs: Pair the handoff acknowledgment with its AI request.
-- [14-11 — extend, hard](../../gym/tasks/14/14-11_handoffs_extend/task.md): Extend handoffs: Update ownership together with the handoff.
-- [14-12 — refactor, hard](../../gym/tasks/14/14-12_handoffs_refactor/task.md): Refactor handoffs: Forward the complete handoff pair.
+- [14-10 — trace, medium](../../gym/tasks/14/14-10_handoffs_trace/task.md): Diagnose handoffs from execution evidence
+- [14-11 — extend, hard](../../gym/tasks/14/14-11_handoffs_extend/task.md): Extend handoffs: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [14-12 — refactor, hard](../../gym/tasks/14/14-12_handoffs_refactor/task.md): Refactor handoffs: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [14-13 — build, easy](../../gym/tasks/14/14-13_team_tradeoffs_build/task.md): Build team tradeoffs: Stop delegation when the business call budget is exhausted.
 - [14-14 — fix, medium](../../gym/tasks/14/14-14_team_tradeoffs_fix/task.md): Fix team tradeoffs: Advance to the next specialist instead of handing work back to itself.
 - [14-15 — predict, easy](../../gym/tasks/14/14-15_team_tradeoffs_predict/task.md): Predict team tradeoffs across the declared cases
-- [14-16 — trace, medium](../../gym/tasks/14/14-16_team_tradeoffs_trace/task.md): Trace team tradeoffs: Advance to the next specialist instead of handing work back to itself.
-- [14-17 — extend, hard](../../gym/tasks/14/14-17_team_tradeoffs_extend/task.md): Extend team tradeoffs: Count every specialist operation against the budget.
+- [14-16 — trace, medium](../../gym/tasks/14/14-16_team_tradeoffs_trace/task.md): Diagnose team tradeoffs from execution evidence
+- [14-17 — extend, hard](../../gym/tasks/14/14-17_team_tradeoffs_extend/task.md): Extend team tradeoffs: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [14-18 — design, hard](../../gym/tasks/14/14-18_team_tradeoffs_design/task.md): Design team tradeoffs and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

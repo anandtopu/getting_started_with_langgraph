@@ -12,6 +12,8 @@ Complete [Deep agents on LangGraph](../B2_deep_agents/README.md). Read dictionar
 
 Optional installation requirements are listed in [the setup guide](../../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain Educational superstep runner; channel snapshots; pending writes; barrier synchronization; deterministic scheduling.
@@ -24,7 +26,25 @@ Implement a small superstep runner to understand the real runtime. Predict the s
 
 ## How it works
 
-Generated from the real LangGraph side of the mini-runner conformance example. The educational runner executes the same two parallel inspections.
+### Channels And Steps
+
+The educational runner snapshots state before a superstep, collects writes from every sibling, then applies them at a barrier. Thus both workers see zero prior findings while the next-step summary sees both. This small runner explains visibility; it deliberately omits production concurrency, async execution, pending-write recovery, and serialization.
+
+Every inspector receives a photocopy from the same morning; their notes are combined only at the afternoon collection desk.
+
+### Mini Reducers
+
+An overwrite channel accepts one update per superstep; multiple writers need a reducer. This comparison runs the same policy and estimate findings in the mini runner and real LangGraph, normalizing their different exception classes to one conflict observation. Canonical output order is separate from the algebra used to merge writes.
+
+Two people cannot independently replace the same page without an agreed rule for combining their edits.
+
+### Mini Checkpoints
+
+A checkpoint stores state and the next scheduled work for one thread. The mini runner copies snapshots so external mutation cannot corrupt history. Its single-node pause records a request and resumes the same pending node with a checked decision; another thread remains independent. This is a teaching representation, not LangGraph's full interrupt protocol.
+
+Each customer has a separate waiting folder, and an inspection copy cannot alter the archived original.
+
+The checked-in diagram was generated from the executable lesson or cumulative Copilot graph. Edges describe possible work; inspect the runtime trace to see what ran.
 
 ```mermaid
 ---
@@ -47,24 +67,6 @@ graph TD;
 
 ```
 
-### Channels And Steps
-
-The educational runner snapshots state before a superstep, collects writes from every sibling, then applies them at a barrier. Thus both workers see zero prior findings while the next-step summary sees both. This small runner explains visibility; it deliberately omits production concurrency, async execution, pending-write recovery, and serialization.
-
-Every inspector receives a photocopy from the same morning; their notes are combined only at the afternoon collection desk.
-
-### Mini Reducers
-
-An overwrite channel accepts one update per superstep; multiple writers need a reducer. This comparison runs the same policy and estimate findings in the mini runner and real LangGraph, normalizing their different exception classes to one conflict observation. Canonical output order is separate from the algebra used to merge writes.
-
-Two people cannot independently replace the same page without an agreed rule for combining their edits.
-
-### Mini Checkpoints
-
-A checkpoint stores state and the next scheduled work for one thread. The mini runner copies snapshots so external mutation cannot corrupt history. Its single-node pause records a request and resumes the same pending node with a checked decision; another thread remains independent. This is a teaching representation, not LangGraph's full interrupt protocol.
-
-Each customer has a separate waiting folder, and an inspection copy cannot alter the archived original.
-
 ## Key APIs at a glance
 
 | API / executable example | What it does | When to use it |
@@ -78,7 +80,7 @@ Each customer has a separate waiting folder, and an inspection copy cannot alter
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/bonus/B3_mini_langgraph/examples/01_channels_and_steps.py
+uv run --no-sync python modules/bonus/B3_mini_langgraph/examples/01_channels_and_steps.py
 ```
 
 **Predict, then run:** for {"documents": ["estimate", "receipt"]}, write the resulting fields and any expected error. Then test the boundary cases in tests/channels_and_steps.json.
@@ -108,7 +110,7 @@ The educational runner snapshots state before a superstep, collects writes from 
 </details>
 
 ```text
-uv run python modules/bonus/B3_mini_langgraph/examples/02_mini_reducers.py
+uv run --no-sync python modules/bonus/B3_mini_langgraph/examples/02_mini_reducers.py
 ```
 
 **Predict, then run:** for {"use_reducer": true}, write the resulting fields and any expected error. Then test the boundary cases in tests/mini_reducers.json.
@@ -141,7 +143,7 @@ An overwrite channel accepts one update per superstep; multiple writers need a r
 </details>
 
 ```text
-uv run python modules/bonus/B3_mini_langgraph/examples/03_mini_checkpoints.py
+uv run --no-sync python modules/bonus/B3_mini_langgraph/examples/03_mini_checkpoints.py
 ```
 
 **Predict, then run:** for {"approved": false, "claim_id": "CLM-0001"}, write the resulting fields and any expected error. Then test the boundary cases in tests/mini_checkpoints.json.
@@ -210,32 +212,32 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"worker_views": [0, 0], "findings": ["reviewed:receipt"], "count": 1, "steps": 2}}`. Merge all sibling findings at the barrier. | Restore `(old or []) + new` and check the boundary cases. | [B3-01](../../../gym/tasks/B3/B3-01_channels_and_steps_build/task.md) · [Related Fix B3-02](../../../gym/tasks/B3/B3-02_channels_and_steps_fix/task.md) |
-| Observed `{"value": {"worker_views": [1, 1], "findings": ["reviewed:estimate", "reviewed:receipt"], "count": 2, "steps": 2}}`. Report the previous-boundary view seen by each worker. | Restore `len(state["findings"])` and check the boundary cases. | [B3-02](../../../gym/tasks/B3/B3-02_channels_and_steps_fix/task.md) |
-| Observed `{"value": {"mini": {"conflict": true}, "langgraph": {"findings": ["estimate", "policy"]}, "equal": false}}`. Install the mini-runner reducer when parallel accumulation is required. | Restore `{"findings": operator.add} if case["use_reducer"] else {}` and check the boundary cases. | [B3-07](../../../gym/tasks/B3/B3-07_mini_reducers_build/task.md) · [Related Fix B3-08](../../../gym/tasks/B3/B3-08_mini_reducers_fix/task.md) |
-| Observed `{"value": {"mini": {"findings": ["estimate", "policy"]}, "langgraph": {"findings": ["estimate", "policy"]}, "equal": true}}`. Retain the overwrite-conflict case in the real runtime comparison. | Restore `StateGraph(Reduced if case["use_reducer"] else Overwrite)` and check the boundary cases. | [B3-08](../../../gym/tasks/B3/B3-08_mini_reducers_fix/task.md) |
-| Observed `{"value": {"request": {"claim_id": "CLM-0001", "question": "Approve?"}, "approved": true, "other_pending": ["review"], "original_id": "CLM-0001", "completed": true}}`. Preserve rejection when resuming the waiting teaching thread. | Restore `resume=case["approved"]` and check the boundary cases. | [B3-13](../../../gym/tasks/B3/B3-13_mini_checkpoints_build/task.md) · [Related Fix B3-14](../../../gym/tasks/B3/B3-14_mini_checkpoints_fix/task.md) |
-| Observed `{"value": {"request": {"claim_id": "CLM-0001", "question": "Approve?"}, "approved": false, "other_pending": ["review"], "original_id": "CLM-0001", "completed": true}}`. Validate the resumed decision before updating approval state. | Restore `type(resume) is not bool` and check the boundary cases. | [B3-14](../../../gym/tasks/B3/B3-14_mini_checkpoints_fix/task.md) |
+| Observed `{"value": {"worker_views": [0, 0], "findings": ["reviewed:receipt"], "count": 1, "steps": 2}}`. Merge all sibling findings at the barrier. | Restore `(old or []) + new` and check the boundary cases. | [B3-01](../../../gym/tasks/B3/B3-01_channels_and_steps_build/task.md) · Related Fix: [B3-02](../../../gym/tasks/B3/B3-02_channels_and_steps_fix/task.md) |
+| Observed `{"value": {"worker_views": [1, 1], "findings": ["reviewed:estimate", "reviewed:receipt"], "count": 2, "steps": 2}}`. Report the previous-boundary view seen by each worker. | Restore `len(state["findings"])` and check the boundary cases. | [B3-02](../../../gym/tasks/B3/B3-02_channels_and_steps_fix/task.md) · Related Fix: [B3-02](../../../gym/tasks/B3/B3-02_channels_and_steps_fix/task.md) |
+| Observed `{"value": {"mini": {"conflict": true}, "langgraph": {"findings": ["estimate", "policy"]}, "equal": false}}`. Install the mini-runner reducer when parallel accumulation is required. | Restore `{"findings": operator.add} if case["use_reducer"] else {}` and check the boundary cases. | [B3-07](../../../gym/tasks/B3/B3-07_mini_reducers_build/task.md) · Related Fix: [B3-08](../../../gym/tasks/B3/B3-08_mini_reducers_fix/task.md) |
+| Observed `{"value": {"mini": {"findings": ["estimate", "policy"]}, "langgraph": {"findings": ["estimate", "policy"]}, "equal": true}}`. Retain the overwrite-conflict case in the real runtime comparison. | Restore `StateGraph(Reduced if case["use_reducer"] else Overwrite)` and check the boundary cases. | [B3-08](../../../gym/tasks/B3/B3-08_mini_reducers_fix/task.md) · Related Fix: [B3-08](../../../gym/tasks/B3/B3-08_mini_reducers_fix/task.md) |
+| Observed `{"value": {"request": {"claim_id": "CLM-0001", "question": "Approve?"}, "approved": true, "other_pending": ["review"], "original_id": "CLM-0001", "completed": true}}`. Preserve rejection when resuming the waiting teaching thread. | Restore `resume=case["approved"]` and check the boundary cases. | [B3-13](../../../gym/tasks/B3/B3-13_mini_checkpoints_build/task.md) · Related Fix: [B3-14](../../../gym/tasks/B3/B3-14_mini_checkpoints_fix/task.md) |
+| Observed `{"value": {"request": {"claim_id": "CLM-0001", "question": "Approve?"}, "approved": false, "other_pending": ["review"], "original_id": "CLM-0001", "completed": true}}`. Validate the resumed decision before updating approval state. | Restore `type(resume) is not bool` and check the boundary cases. | [B3-14](../../../gym/tasks/B3/B3-14_mini_checkpoints_fix/task.md) · Related Fix: [B3-14](../../../gym/tasks/B3/B3-14_mini_checkpoints_fix/task.md) |
 
 ## Practice
 
 - [B3-01 — build, easy](../../../gym/tasks/B3/B3-01_channels_and_steps_build/task.md): Build channels and steps: Merge all sibling findings at the barrier.
 - [B3-02 — fix, medium](../../../gym/tasks/B3/B3-02_channels_and_steps_fix/task.md): Fix channels and steps: Report the previous-boundary view seen by each worker.
 - [B3-03 — predict, easy](../../../gym/tasks/B3/B3-03_channels_and_steps_predict/task.md): Predict channels and steps across the declared cases
-- [B3-04 — trace, medium](../../../gym/tasks/B3/B3-04_channels_and_steps_trace/task.md): Trace channels and steps: Report the previous-boundary view seen by each worker.
-- [B3-05 — extend, hard](../../../gym/tasks/B3/B3-05_channels_and_steps_extend/task.md): Extend channels and steps: Run the summary even when the document fan-out is empty.
-- [B3-06 — refactor, hard](../../../gym/tasks/B3/B3-06_channels_and_steps_refactor/task.md): Refactor channels and steps: Compute the summary from the merged findings.
+- [B3-04 — trace, medium](../../../gym/tasks/B3/B3-04_channels_and_steps_trace/task.md): Diagnose channels and steps from execution evidence
+- [B3-05 — extend, hard](../../../gym/tasks/B3/B3-05_channels_and_steps_extend/task.md): Extend channels and steps: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [B3-06 — refactor, hard](../../../gym/tasks/B3/B3-06_channels_and_steps_refactor/task.md): Refactor channels and steps: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [B3-07 — build, easy](../../../gym/tasks/B3/B3-07_mini_reducers_build/task.md): Build mini reducers: Install the mini-runner reducer when parallel accumulation is required.
 - [B3-08 — fix, medium](../../../gym/tasks/B3/B3-08_mini_reducers_fix/task.md): Fix mini reducers: Retain the overwrite-conflict case in the real runtime comparison.
 - [B3-09 — predict, easy](../../../gym/tasks/B3/B3-09_mini_reducers_predict/task.md): Predict mini reducers across the declared cases
-- [B3-10 — trace, medium](../../../gym/tasks/B3/B3-10_mini_reducers_trace/task.md): Trace mini reducers: Retain the overwrite-conflict case in the real runtime comparison.
-- [B3-11 — extend, hard](../../../gym/tasks/B3/B3-11_mini_reducers_extend/task.md): Extend mini reducers: Schedule both independent inspections in the teaching runner.
-- [B3-12 — refactor, hard](../../../gym/tasks/B3/B3-12_mini_reducers_refactor/task.md): Refactor mini reducers: Report conformance only when both observed contracts match.
+- [B3-10 — trace, medium](../../../gym/tasks/B3/B3-10_mini_reducers_trace/task.md): Diagnose mini reducers from execution evidence
+- [B3-11 — extend, hard](../../../gym/tasks/B3/B3-11_mini_reducers_extend/task.md): Extend mini reducers: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [B3-12 — refactor, hard](../../../gym/tasks/B3/B3-12_mini_reducers_refactor/task.md): Refactor mini reducers: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [B3-13 — build, easy](../../../gym/tasks/B3/B3-13_mini_checkpoints_build/task.md): Build mini checkpoints: Preserve rejection when resuming the waiting teaching thread.
 - [B3-14 — fix, medium](../../../gym/tasks/B3/B3-14_mini_checkpoints_fix/task.md): Fix mini checkpoints: Validate the resumed decision before updating approval state.
 - [B3-15 — predict, easy](../../../gym/tasks/B3/B3-15_mini_checkpoints_predict/task.md): Predict mini checkpoints across the declared cases
-- [B3-16 — trace, medium](../../../gym/tasks/B3/B3-16_mini_checkpoints_trace/task.md): Trace mini checkpoints: Validate the resumed decision before updating approval state.
-- [B3-17 — extend, hard](../../../gym/tasks/B3/B3-17_mini_checkpoints_extend/task.md): Extend mini checkpoints: Read the archived snapshot rather than an externally modified copy.
+- [B3-16 — trace, medium](../../../gym/tasks/B3/B3-16_mini_checkpoints_trace/task.md): Diagnose mini checkpoints from execution evidence
+- [B3-17 — extend, hard](../../../gym/tasks/B3/B3-17_mini_checkpoints_extend/task.md): Extend mini checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [B3-18 — design, hard](../../../gym/tasks/B3/B3-18_mini_checkpoints_design/task.md): Design mini checkpoints and justify the boundary policies
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.

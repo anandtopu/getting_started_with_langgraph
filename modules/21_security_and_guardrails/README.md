@@ -12,6 +12,8 @@ Complete [Observability and visual debugging](../20_observability_and_debugging/
 
 Optional installation requirements are listed in [the setup guide](../../docs/OPTIONAL_DEPENDENCIES.md). Use `uv run --no-sync` after installing extras so subsequent commands retain that environment.
 
+New to pytest, type validation, chat messages, tools, or async Python? Read the relevant section of [the beginner bridge](../../docs/BEGINNER_BRIDGE.md) when that concept first appears.
+
 ## Learning objectives
 
 - Implement and explain Prompt injection; deterministic authorization; validated structured output; allowlisted routes; least-privilege tools.
@@ -24,7 +26,25 @@ Keep injected claim text from authorizing payouts or crossing customer boundarie
 
 ## How it works
 
-Generated from this module's cumulative Claims Copilot graph. It shows component structure; only a runtime trace proves which nodes executed.
+### Untrusted Input
+
+Claim text and retrieved documents are untrusted data. A structured schema rejects extra authority fields and impossible amounts, while deterministic rules select routes. Neither a model's confidence nor a sentence saying 'approved' grants permission. Tool capabilities are independently restricted to the minimum required evidence reads.
+
+A customer's handwritten instruction cannot become an employee access badge.
+
+### Approval And Limits
+
+Admission checks reject a planned operation that exceeds the configured call or estimated-token budget. They supplement, rather than replace, runtime model/tool limits and recursion bounds. The API separately verifies role, current interrupt identity, and confirmed coverage before recording a payload-bound synthetic effect. Token estimates are conservative planning inputs, not a guaranteed hosted bill.
+
+A spending envelope limits the planned work, while an authorized signature is still required for the actual payment.
+
+### Private Checkpoints
+
+EncryptedSerializer encrypts serialized checkpoint payloads using an externally supplied key. The example creates an ephemeral key and never returns it. Minimize PII before storage; encryption does not hide every database field or replace access control, key rotation, and retention. A wrong key fails authentication, and deleting a thread is separate from deleting Store memories and backups.
+
+Lock the retained folder, keep its key outside the folder, and still follow a shredding schedule.
+
+The checked-in diagram was generated from the executable lesson or cumulative Copilot graph. Edges describe possible work; inspect the runtime trace to see what ran.
 
 ```mermaid
 ---
@@ -48,14 +68,16 @@ graph TD;
 	review\3adurable_review\3areview_claim\3aconsult_specialists --> review\3acomplete_review;
 	subgraph durable_review
 	review\3adurable_review\3aawait_estimate(await_estimate)
-	review\3adurable_review\3aawait_estimate --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
+	review\3adurable_review\3aawait_estimate --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer;
 	subgraph review_claim
 	review\3adurable_review\3areview_claim\3aconsult_specialists(consult_specialists)
 	review\3adurable_review\3areview_claim\3afraud_review\3ainspect_evidence --> review\3adurable_review\3areview_claim\3aconsult_specialists;
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter --> review\3adurable_review\3areview_claim\3afraud_review\3ainspect_evidence;
 	subgraph intake_policy_memory
+	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer(authorize_customer)
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember(remember)
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter(draft_letter)
+	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aauthorize_customer --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember;
 	review\3adurable_review\3areview_claim\3aintake_policy_memory\3aremember --> review\3adurable_review\3areview_claim\3aintake_policy_memory\3adraft_letter;
 	subgraph intake_and_evidence
@@ -88,24 +110,6 @@ graph TD;
 
 ```
 
-### Untrusted Input
-
-Claim text and retrieved documents are untrusted data. A structured schema rejects extra authority fields and impossible amounts, while deterministic rules select routes. Neither a model's confidence nor a sentence saying 'approved' grants permission. Tool capabilities are independently restricted to the minimum required evidence reads.
-
-A customer's handwritten instruction cannot become an employee access badge.
-
-### Approval And Limits
-
-Admission checks reject a planned operation that exceeds the configured call or estimated-token budget. They supplement, rather than replace, runtime model/tool limits and recursion bounds. The API separately verifies role, current interrupt identity, and confirmed coverage before recording a payload-bound synthetic effect. Token estimates are conservative planning inputs, not a guaranteed hosted bill.
-
-A spending envelope limits the planned work, while an authorized signature is still required for the actual payment.
-
-### Private Checkpoints
-
-EncryptedSerializer encrypts serialized checkpoint payloads using an externally supplied key. The example creates an ephemeral key and never returns it. Minimize PII before storage; encryption does not hide every database field or replace access control, key rotation, and retention. A wrong key fails authentication, and deleting a thread is separate from deleting Store memories and backups.
-
-Lock the retained folder, keep its key outside the folder, and still follow a shredding schedule.
-
 ## Key APIs at a glance
 
 | API / executable example | What it does | When to use it |
@@ -119,7 +123,7 @@ Lock the retained folder, keep its key outside the folder, and still follow a sh
 Run commands from the repository root; the same commands work in PowerShell, macOS, and Linux. Open the source alongside the output. Find the state declaration, node functions, graph connections, and invocation. For a failure, start with the earliest changed field or scheduled node.
 
 ```text
-uv run python modules/21_security_and_guardrails/examples/01_untrusted_input.py
+uv run --no-sync python modules/21_security_and_guardrails/examples/01_untrusted_input.py
 ```
 
 **Predict, then run:** for {"extra_authority": false, "amount_cents": 600000}, write the resulting fields and any expected error. Then test the boundary cases in tests/untrusted_input.json.
@@ -150,7 +154,7 @@ Claim text and retrieved documents are untrusted data. A structured schema rejec
 </details>
 
 ```text
-uv run python modules/21_security_and_guardrails/examples/02_approval_and_limits.py
+uv run --no-sync python modules/21_security_and_guardrails/examples/02_approval_and_limits.py
 ```
 
 **Predict, then run:** for {"approved": true, "planned_calls": 10, "call_budget": 12, "estimated_tokens": 1000, "token_budget": 2000}, write the resulting fields and any expected error. Then test the boundary cases in tests/approval_and_limits.json.
@@ -175,7 +179,7 @@ Admission checks reject a planned operation that exceeds the configured call or 
 </details>
 
 ```text
-uv run python modules/21_security_and_guardrails/examples/03_private_checkpoints.py
+uv run --no-sync python modules/21_security_and_guardrails/examples/03_private_checkpoints.py
 ```
 
 **Predict, then run:** for {"note": "Synthetic customer phone 555-0100", "delete": true, "wrong_key": false}, write the resulting fields and any expected error. Then test the boundary cases in tests/private_checkpoints.json.
@@ -244,33 +248,33 @@ A real team would connect this boundary to validated records and authenticated r
 
 | Symptom or broken contract | Cause and repair | Practice |
 | --- | --- | --- |
-| Observed `{"value": {"route": "specialist", "payment_authorized": true, "model_fields": ["amount_cents", "claim_type", "confidence", "loss_date"], "tool_permissions": ["read_synthetic_policy"]}}`. Do not let extracted text authorize a payment. | Restore `"payment_authorized": False` and check the boundary cases. | [21-01](../../gym/tasks/21/21-01_untrusted_input_build/task.md) · [Related Fix 21-02](../../gym/tasks/21/21-02_untrusted_input_fix/task.md) |
-| Observed `{"value": {"route": "fast_track", "payment_authorized": false, "model_fields": ["amount_cents", "claim_type", "confidence", "loss_date"], "tool_permissions": ["read_synthetic_policy"]}}`. Preserve validated amounts before applying deterministic routing. | Restore `"amount_cents": case["amount_cents"]` and check the boundary cases. | [21-02](../../gym/tasks/21/21-02_untrusted_input_fix/task.md) |
-| Observed `{"value": {"admitted": true, "effects": 1, "status": "recorded", "customer_approval_status": 403, "stale_status": 409}}`. Enforce the separate planned-call budget. | Restore `case["planned_calls"] > case["call_budget"]` and check the boundary cases. | [21-07](../../gym/tasks/21/21-07_approval_and_limits_build/task.md) · [Related Fix 21-08](../../gym/tasks/21/21-08_approval_and_limits_fix/task.md) |
-| Observed `{"value": {"admitted": true, "effects": 1, "status": "recorded", "customer_approval_status": 403, "stale_status": 409}}`. Reject an operation above the token admission budget. | Restore `case["estimated_tokens"] > case["token_budget"]` and check the boundary cases. | [21-08](../../gym/tasks/21/21-08_approval_and_limits_fix/task.md) |
-| Observed `{"value": {"plaintext_visible": false, "roundtrip": true, "checkpoint_plaintext_visible": true, "retained": false, "key_logged": false}}`. Install encryption on the actual checkpointer, not just a standalone serialization demo. | Restore `InMemorySaver(serde=serializer)` and check the boundary cases. | [21-13](../../gym/tasks/21/21-13_private_checkpoints_build/task.md) · [Related Fix 21-14](../../gym/tasks/21/21-14_private_checkpoints_fix/task.md) |
-| Observed `{"value": {"plaintext_visible": false, "roundtrip": true, "checkpoint_plaintext_visible": false, "retained": true, "key_logged": false}}`. Apply the requested thread-retention deletion. | Restore `if case["delete"]:` and check the boundary cases. | [21-14](../../gym/tasks/21/21-14_private_checkpoints_fix/task.md) |
+| Observed `{"value": {"route": "specialist", "payment_authorized": true, "model_fields": ["amount_cents", "claim_type", "confidence", "loss_date"], "tool_permissions": ["read_synthetic_policy"]}}`. Do not let extracted text authorize a payment. | Restore `"payment_authorized": False` and check the boundary cases. | [21-01](../../gym/tasks/21/21-01_untrusted_input_build/task.md) · Related Fix: [21-02](../../gym/tasks/21/21-02_untrusted_input_fix/task.md) |
+| Observed `{"value": {"route": "fast_track", "payment_authorized": false, "model_fields": ["amount_cents", "claim_type", "confidence", "loss_date"], "tool_permissions": ["read_synthetic_policy"]}}`. Preserve validated amounts before applying deterministic routing. | Restore `"amount_cents": case["amount_cents"]` and check the boundary cases. | [21-02](../../gym/tasks/21/21-02_untrusted_input_fix/task.md) · Related Fix: [21-02](../../gym/tasks/21/21-02_untrusted_input_fix/task.md) |
+| Observed `{"value": {"admitted": true, "effects": 1, "status": "recorded", "customer_approval_status": 403, "stale_status": 409}}`. Enforce the separate planned-call budget. | Restore `case["planned_calls"] > case["call_budget"]` and check the boundary cases. | [21-07](../../gym/tasks/21/21-07_approval_and_limits_build/task.md) · Related Fix: [21-08](../../gym/tasks/21/21-08_approval_and_limits_fix/task.md) |
+| Observed `{"value": {"admitted": true, "effects": 1, "status": "recorded", "customer_approval_status": 403, "stale_status": 409}}`. Reject an operation above the token admission budget. | Restore `case["estimated_tokens"] > case["token_budget"]` and check the boundary cases. | [21-08](../../gym/tasks/21/21-08_approval_and_limits_fix/task.md) · Related Fix: [21-08](../../gym/tasks/21/21-08_approval_and_limits_fix/task.md) |
+| Observed `{"value": {"plaintext_visible": false, "roundtrip": true, "checkpoint_plaintext_visible": true, "retained": false, "key_logged": false}}`. Install encryption on the actual checkpointer, not just a standalone serialization demo. | Restore `InMemorySaver(serde=serializer)` and check the boundary cases. | [21-13](../../gym/tasks/21/21-13_private_checkpoints_build/task.md) · Related Fix: [21-14](../../gym/tasks/21/21-14_private_checkpoints_fix/task.md) |
+| Observed `{"value": {"plaintext_visible": false, "roundtrip": true, "checkpoint_plaintext_visible": false, "retained": true, "key_logged": false}}`. Apply the requested thread-retention deletion. | Restore `if case["delete"]:` and check the boundary cases. | [21-14](../../gym/tasks/21/21-14_private_checkpoints_fix/task.md) · Related Fix: [21-14](../../gym/tasks/21/21-14_private_checkpoints_fix/task.md) |
 
 ## Practice
 
 - [21-01 — build, easy](../../gym/tasks/21/21-01_untrusted_input_build/task.md): Build untrusted input: Do not let extracted text authorize a payment.
 - [21-02 — fix, medium](../../gym/tasks/21/21-02_untrusted_input_fix/task.md): Fix untrusted input: Preserve validated amounts before applying deterministic routing.
 - [21-03 — predict, easy](../../gym/tasks/21/21-03_untrusted_input_predict/task.md): Predict untrusted input across the declared cases
-- [21-04 — trace, medium](../../gym/tasks/21/21-04_untrusted_input_trace/task.md): Trace untrusted input: Preserve validated amounts before applying deterministic routing.
-- [21-05 — extend, hard](../../gym/tasks/21/21-05_untrusted_input_extend/task.md): Extend untrusted input: Expose and reject an unexpected authority field instead of silently hiding it from validation.
-- [21-06 — refactor, hard](../../gym/tasks/21/21-06_untrusted_input_refactor/task.md): Refactor untrusted input: Keep model-visible tool capabilities read-only.
+- [21-04 — trace, medium](../../gym/tasks/21/21-04_untrusted_input_trace/task.md): Diagnose untrusted input from execution evidence
+- [21-05 — extend, hard](../../gym/tasks/21/21-05_untrusted_input_extend/task.md): Extend untrusted input: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [21-06 — refactor, hard](../../gym/tasks/21/21-06_untrusted_input_refactor/task.md): Refactor untrusted input: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 - [21-07 — build, easy](../../gym/tasks/21/21-07_approval_and_limits_build/task.md): Build approval and limits: Enforce the separate planned-call budget.
 - [21-08 — fix, medium](../../gym/tasks/21/21-08_approval_and_limits_fix/task.md): Fix approval and limits: Reject an operation above the token admission budget.
 - [21-09 — predict, easy](../../gym/tasks/21/21-09_approval_and_limits_predict/task.md): Predict approval and limits across the declared cases
-- [21-10 — trace, medium](../../gym/tasks/21/21-10_approval_and_limits_trace/task.md): Trace approval and limits: Reject an operation above the token admission budget.
-- [21-11 — extend, hard](../../gym/tasks/21/21-11_approval_and_limits_extend/task.md): Extend approval and limits: Keep a human rejection from creating an effect.
+- [21-10 — trace, medium](../../gym/tasks/21/21-10_approval_and_limits_trace/task.md): Diagnose approval and limits from execution evidence
+- [21-11 — extend, hard](../../gym/tasks/21/21-11_approval_and_limits_extend/task.md): Extend approval and limits: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
 - [21-12 — design, hard](../../gym/tasks/21/21-12_approval_and_limits_design/task.md): Design approval and limits and justify the boundary policies
 - [21-13 — build, easy](../../gym/tasks/21/21-13_private_checkpoints_build/task.md): Build private checkpoints: Install encryption on the actual checkpointer, not just a standalone serialization demo.
 - [21-14 — fix, medium](../../gym/tasks/21/21-14_private_checkpoints_fix/task.md): Fix private checkpoints: Apply the requested thread-retention deletion.
 - [21-15 — predict, easy](../../gym/tasks/21/21-15_private_checkpoints_predict/task.md): Predict private checkpoints across the declared cases
-- [21-16 — trace, medium](../../gym/tasks/21/21-16_private_checkpoints_trace/task.md): Trace private checkpoints: Apply the requested thread-retention deletion.
-- [21-17 — extend, hard](../../gym/tasks/21/21-17_private_checkpoints_extend/task.md): Extend private checkpoints: Verify that a wrong encryption key cannot restore the payload.
-- [21-18 — refactor, hard](../../gym/tasks/21/21-18_private_checkpoints_refactor/task.md): Refactor private checkpoints: Check exact restoration after successful authenticated decryption.
+- [21-16 — trace, medium](../../gym/tasks/21/21-16_private_checkpoints_trace/task.md): Diagnose private checkpoints from execution evidence
+- [21-17 — extend, hard](../../gym/tasks/21/21-17_private_checkpoints_extend/task.md): Extend private checkpoints: Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim.
+- [21-18 — refactor, hard](../../gym/tasks/21/21-18_private_checkpoints_refactor/task.md): Refactor private checkpoints: Separate input preparation from orchestration in prepare_case(case). Preserve all results/errors, distinguish None from {}, and copy nested inputs so caller data and shared defaults stay independent.
 
 Start with tasks 01, 02, 09, 10, 17, and 18 in this module. Finish the other tasks for full practice. Hints are progressive; solution exposure is recorded. Predict and Trace tasks use answer JSON, not a code starter.
 

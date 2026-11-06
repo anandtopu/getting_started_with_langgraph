@@ -1,4 +1,4 @@
-# 13-06 — Refactor shared subgraph: Do not confuse an intake milestone with a risk flag.
+# 13-06 — Refactor shared subgraph: Extract parallel fraud checks into a reusable subgraph; keep both workflow outputs and rejection cases unchanged.
 
 Type: refactor. Difficulty: hard. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ A compiled subgraph can be a parent node when their state keys agree. Its update
 
 ## Your task
 
-Do not confuse an intake milestone with a risk flag. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
+Extract parallel fraud checks into a reusable subgraph; keep both workflow outputs and rejection cases unchanged. Preserve run(case) and the existing public functions. Return a JSON-compatible result. Do not import the reference solution or hard-code one fixture.
 
 ## Inputs and acceptance
 
@@ -38,6 +38,8 @@ Do not confuse an intake milestone with a risk flag. Preserve run(case) and the 
   }
 ]
 ```
+
+The starter already satisfies the original behavior cases. It fails the separate structural requirement. Keep those original tests green while changing the design; a renamed function alone does not establish the required boundary.
 
 cases.json declares the expected output or expected exception type for every input. Exceptions are observed by the grader; import errors are setup failures. The starter's demo prints a known runtime error when appropriate, so you can inspect it without losing the exercise context.
 

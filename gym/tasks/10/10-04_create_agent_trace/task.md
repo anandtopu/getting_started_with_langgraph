@@ -1,4 +1,4 @@
-# 10-04 — Trace create agent: Reject unknown policy IDs, not the known fixture.
+# 10-04 — Diagnose create agent from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ create_agent builds a standard model/tool loop on LangGraph. Start there for ord
 
 ## Your task
 
-Reject unknown policy IDs, not the known fixture. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose create agent from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -22,6 +22,13 @@ Reject unknown policy IDs, not the known fixture. Read trace.py before completin
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Register the requested tool with the prebuilt agent."
+- "Reject unknown policy IDs, not the known fixture."
+- "Pass through the requested policy instead of silently substituting another."
+- "Expose the final agent answer rather than the original question."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

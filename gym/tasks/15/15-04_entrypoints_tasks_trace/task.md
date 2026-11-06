@@ -1,4 +1,4 @@
-# 15-04 — Trace entrypoints tasks: Match the Graph API fast-track boundary.
+# 15-04 — Diagnose entrypoints tasks from execution evidence
 
 Type: trace. Difficulty: medium. No live model, key, or network is required.
 
@@ -8,7 +8,7 @@ An entrypoint accepts one serializable input and uses ordinary Python branches. 
 
 ## Your task
 
-Match the Graph API fast-track boundary. Read trace.py before completing the answer JSON. Explain the first incorrect transition, not just the final symptom.
+Diagnose entrypoints tasks from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
 
 ## Inputs and acceptance
 
@@ -26,6 +26,13 @@ Match the Graph API fast-track boundary. Read trace.py before completing the ans
   }
 ]
 ```
+
+Choose the cause supported by the trace. Set `cause` to exactly one of these descriptions, and preserve the listed observation order:
+
+- "Resolve the normalization future before reading its fields."
+- "Match the Graph API fast-track boundary."
+- "Normalize whitespace before choosing the missing-information branch."
+- "Reject booleans even though Python considers them integer instances."
 
 The suite checks more than the default claim. Keep identities, boundary behavior, and isolation intact. A Design pass includes a separate self-review and is not an automatic architecture-quality judgment.
 

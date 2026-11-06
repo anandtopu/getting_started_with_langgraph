@@ -4,6 +4,8 @@ Build the fictional **Larkspur Claims Copilot** while learning to predict, test,
 
 **All phases complete.** The course includes **23 core modules, four bonus modules, 486 graded tasks, 27 notebooks, and five capstones**, culminating in a streaming claims application with durable approvals. Use the [acceptance report](docs/ACCEPTANCE_REPORT.md) for measured checks and remaining integration limits.
 
+The [repository review](docs/reviews/2026-11-06/README.md) records subsequent runtime, grading, and teaching corrections with regression evidence.
+
 ## Five-minute quick start
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and Git, then run these commands in Windows PowerShell, macOS, or Linux. uv supplies the requested Python environment:
@@ -26,6 +28,8 @@ The starter runs but produces the wrong answer on purpose. Edit `workspace/00-01
 A graph connects **nodes** (Python functions) using **edges** (the next steps). Nodes read **state**, return partial updates, and execute in batches called **supersteps**. Reducers combine updates. Persistence, interrupts, and replay add durable workflow behavior. Use plain Python for a small calculation; use a graph when stateful control flow helps.
 
 LangChain's `create_agent` builds an agent on LangGraph. LangSmith adds optional diagnostics and deployment services. All graded work in this repository stays local.
+
+Read the [beginner bridge](docs/BEGINNER_BRIDGE.md) when testing, schemas, messages, tools, or async Python first appear. After the model lessons, the [optional provider lab](docs/LIVE_MODEL_LAB.md) lets you compare scripted results with real extraction, tool use, and conversation memory.
 
 ```mermaid
 flowchart LR

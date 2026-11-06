@@ -6,8 +6,8 @@ A customer's handwritten instruction cannot become an employee access badge. Com
 
 ## Hint 2
 
-Expose and reject an unexpected authority field instead of silently hiding it from validation. Inspect the operation that owns this update or routing choice.
+Add run_batch(cases) to preview independent claims in input order. Preserve run(case), isolate mutable inputs, return value/error records, handle an empty batch, and continue after a rejected claim. Inspect the operation that owns this update or routing choice.
 
 ## Hint 3
 
-The reference contract uses this operation: if case["extra_authority"]:. Check every boundary input after the repair; a default-case pass alone is insufficient.
+The reference contract uses this operation: the new node or boundary contract described above. Check every boundary input after the repair; a default-case pass alone is insufficient.
