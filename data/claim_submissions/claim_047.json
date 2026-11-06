@@ -1,0 +1,12 @@
+{
+  "amount_cents": 1894386,
+  "claim_id": "CLM-0047",
+  "claim_type": "theft",
+  "customer_id": "CUS-0047",
+  "description": "A locked storage room was entered and listed synthetic belongings were stolen.",
+  "documents": [],
+  "duplicate_of": null,
+  "fraud_indicators": [],
+  "loss_date": "2026-02-16",
+  "policy_id": "POL-0047"
+}

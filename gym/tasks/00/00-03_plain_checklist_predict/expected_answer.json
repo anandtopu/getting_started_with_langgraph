@@ -1,0 +1,19 @@
+{
+  "statuses": [
+    "ready",
+    "needs_information",
+    "duplicate"
+  ],
+  "missing": [
+    [],
+    [
+      "loss_date"
+    ],
+    []
+  ],
+  "trace": [
+    "normalize_claim",
+    "check_required_fields",
+    "route_claim"
+  ]
+}

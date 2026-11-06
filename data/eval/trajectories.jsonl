@@ -1,0 +1,1 @@
+{"case_id": "policy_lookup", "expected_final_text": "The synthetic home policy has a $1,000 deductible.", "expected_tools": [{"args": {"policy_id": "POL-0001"}, "name": "lookup_policy"}]}

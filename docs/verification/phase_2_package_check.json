@@ -1,0 +1,310 @@
+[
+  {
+    "name": "langgraph",
+    "previous": "1.2.20",
+    "current": "1.2.20",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "langchain-core",
+    "previous": "1.7.6",
+    "current": "1.7.6",
+    "requires_python": "<4.0.0,>=3.10.0",
+    "yanked": false
+  },
+  {
+    "name": "langchain",
+    "previous": "1.4.9",
+    "current": "1.4.9",
+    "requires_python": "<4.0.0,>=3.10.0",
+    "yanked": false
+  },
+  {
+    "name": "langgraph-checkpoint",
+    "previous": "4.3.1",
+    "current": "4.3.1",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "langgraph-checkpoint-sqlite",
+    "previous": "3.1.3",
+    "current": "3.1.3",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "langgraph-checkpoint-postgres",
+    "previous": "3.2.0",
+    "current": "3.2.0",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "langgraph-prebuilt",
+    "previous": "1.1.1",
+    "current": "1.1.1",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "langchain-openai",
+    "previous": "1.7.4",
+    "current": "1.7.4",
+    "requires_python": "<4.0.0,>=3.10.0",
+    "yanked": false
+  },
+  {
+    "name": "langchain-anthropic",
+    "previous": "1.7.10",
+    "current": "1.7.10",
+    "requires_python": "<4.0.0,>=3.10.0",
+    "yanked": false
+  },
+  {
+    "name": "langchain-google-genai",
+    "previous": "4.4.3",
+    "current": "4.4.3",
+    "requires_python": "<4.0.0,>=3.10.0",
+    "yanked": false
+  },
+  {
+    "name": "langchain-ollama",
+    "previous": "1.1.0",
+    "current": "1.1.0",
+    "requires_python": "<4.0.0,>=3.10.0",
+    "yanked": false
+  },
+  {
+    "name": "langchain-mcp-adapters",
+    "previous": "0.3.2",
+    "current": "0.3.2",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "mcp",
+    "previous": "2.3.0",
+    "current": "2.3.0",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "langgraph-cli",
+    "previous": "0.4.42",
+    "current": "0.4.42",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "langgraph-sdk",
+    "previous": "0.4.14",
+    "current": "0.4.14",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "langgraph-api",
+    "previous": "0.17.1",
+    "current": "0.17.1",
+    "requires_python": ">=3.11",
+    "yanked": false
+  },
+  {
+    "name": "langgraph-runtime-inmem",
+    "previous": "0.37.1",
+    "current": "0.37.1",
+    "requires_python": ">=3.11.0",
+    "yanked": false
+  },
+  {
+    "name": "langsmith",
+    "previous": "0.14.17",
+    "current": "0.14.17",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "agentevals",
+    "previous": "0.0.9",
+    "current": "0.0.9",
+    "requires_python": ">=3.9",
+    "yanked": false
+  },
+  {
+    "name": "fastapi",
+    "previous": "0.162.0",
+    "current": "0.162.0",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "uvicorn",
+    "previous": "0.54.0",
+    "current": "0.54.0",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "streamlit",
+    "previous": "1.67.0",
+    "current": "1.67.0",
+    "requires_python": ">=3.11",
+    "yanked": false
+  },
+  {
+    "name": "pytest",
+    "previous": "9.2.0",
+    "current": "9.2.0",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "pytest-asyncio",
+    "previous": "1.4.1.post1",
+    "current": "1.4.1.post1",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "pytest-socket",
+    "previous": "0.8.1",
+    "current": "0.8.1",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "hypothesis",
+    "previous": "6.170.14",
+    "current": "6.170.14",
+    "requires_python": ">=3.11",
+    "yanked": false
+  },
+  {
+    "name": "ruff",
+    "previous": "0.17.4",
+    "current": "0.17.4",
+    "requires_python": ">=3.7",
+    "yanked": false
+  },
+  {
+    "name": "pre-commit",
+    "previous": "4.7.0",
+    "current": "4.7.0",
+    "requires_python": ">=3.11",
+    "yanked": false
+  },
+  {
+    "name": "nbstripout",
+    "previous": "0.9.1",
+    "current": "0.9.1",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "jupyter",
+    "previous": "1.1.1",
+    "current": "1.1.1",
+    "requires_python": null,
+    "yanked": false
+  },
+  {
+    "name": "nbformat",
+    "previous": "5.11.1",
+    "current": "5.11.1",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "nbclient",
+    "previous": "0.11.0",
+    "current": "0.11.0",
+    "requires_python": ">=3.10.0",
+    "yanked": false
+  },
+  {
+    "name": "rich",
+    "previous": "15.0.0",
+    "current": "15.0.0",
+    "requires_python": ">=3.9.0",
+    "yanked": false
+  },
+  {
+    "name": "pydantic",
+    "previous": "2.14.3",
+    "current": "2.14.3",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "python-dotenv",
+    "previous": "1.2.4",
+    "current": "1.2.4",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "PyYAML",
+    "previous": "6.0.3",
+    "current": "6.0.3",
+    "requires_python": ">=3.8",
+    "yanked": false
+  },
+  {
+    "name": "httpx",
+    "previous": "0.28.1",
+    "current": "0.28.1",
+    "requires_python": ">=3.8",
+    "yanked": false
+  },
+  {
+    "name": "psycopg",
+    "previous": "3.3.8",
+    "current": "3.3.8",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "reportlab",
+    "previous": "5.1.0",
+    "current": "5.1.0",
+    "requires_python": "<4,>=3.9",
+    "yanked": false
+  },
+  {
+    "name": "deepagents",
+    "previous": "0.7.34",
+    "current": "0.7.34",
+    "requires_python": "<4.0,>=3.11",
+    "yanked": false
+  },
+  {
+    "name": "uv",
+    "previous": "0.13.7",
+    "current": "0.13.7",
+    "requires_python": ">=3.8",
+    "yanked": false
+  },
+  {
+    "name": "hatchling",
+    "previous": "1.33.0",
+    "current": "1.33.0",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "fastmcp",
+    "previous": "4.1.6",
+    "current": "4.1.6",
+    "requires_python": ">=3.10",
+    "yanked": false
+  },
+  {
+    "name": "pycryptodome",
+    "previous": "4.3.0",
+    "current": "4.3.0",
+    "requires_python": ">=3.9",
+    "yanked": false
+  }
+]

@@ -1,0 +1,9 @@
+SYNTHETIC TRAINING DOCUMENT - NOT VALID FOR A REAL CLAIM
+Document ID: DOC-025
+Claim ID: CLM-0025
+Document type: police summary
+Issue date: 2026-04-01
+Educational amount: $1,335.00
+Issuer: Larkspur Fictional Records Office
+Summary: a fictional theft was reported; no real police agency is involved.
+The educational amount is the claimant's estimate, not a verified loss.

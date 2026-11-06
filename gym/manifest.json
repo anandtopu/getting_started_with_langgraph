@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "phase": 2,
+  "milestones": {
+    "00": [
+      "00-01",
+      "00-02",
+      "00-03",
+      "00-04",
+      "00-05",
+      "00-06"
+    ]
+  },
+  "milestone_note": "Phase 2 foundation milestone; the full module milestone is activated with Tier 1.",
+  "tasks": {
+    "00-01": {
+      "prerequisites": [],
+      "timeout": 30,
+      "expected_failure": "LARKSPUR"
+    },
+    "00-02": {
+      "prerequisites": [],
+      "timeout": 30,
+      "expected_failure": "LARKSPUR"
+    },
+    "00-03": {
+      "prerequisites": [],
+      "timeout": 30,
+      "expected_failure": "LARKSPUR"
+    },
+    "00-04": {
+      "prerequisites": [],
+      "timeout": 30,
+      "expected_failure": "LARKSPUR"
+    },
+    "00-05": {
+      "prerequisites": [],
+      "timeout": 30,
+      "expected_failure": "LARKSPUR"
+    },
+    "00-06": {
+      "prerequisites": [],
+      "timeout": 30,
+      "expected_failure": "LARKSPUR"
+    }
+  }
+}

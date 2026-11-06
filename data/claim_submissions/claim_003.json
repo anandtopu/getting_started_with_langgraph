@@ -1,0 +1,14 @@
+{
+  "amount_cents": 441644,
+  "claim_id": "CLM-0003",
+  "claim_type": "fire",
+  "customer_id": "CUS-0003",
+  "description": "A cooking accident damaged the synthetic kitchen cabinets.",
+  "documents": [
+    "DOC-003"
+  ],
+  "duplicate_of": null,
+  "fraud_indicators": [],
+  "loss_date": "2026-01-03",
+  "policy_id": "POL-0003"
+}

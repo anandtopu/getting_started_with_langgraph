@@ -1,0 +1,14 @@
+{
+  "amount_cents": 2114701,
+  "claim_id": "CLM-0006",
+  "claim_type": "water",
+  "customer_id": "CUS-0006",
+  "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+  "documents": [
+    "DOC-006"
+  ],
+  "duplicate_of": null,
+  "fraud_indicators": [],
+  "loss_date": "2026-01-06",
+  "policy_id": "POL-0006"
+}

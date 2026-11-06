@@ -1,0 +1,16 @@
+synthetic: true
+version: 1
+rules:
+  - id: altered_receipt
+    field: fraud_indicators
+    contains: altered_receipt
+    action: specialist_review
+  - id: large_amount
+    field: amount_cents
+    greater_than: 1500000
+    action: specialist_review
+  - id: duplicate
+    field: duplicate_of
+    present: true
+    action: duplicate_review
+# Indicators request review; they do not establish wrongdoing.

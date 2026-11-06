@@ -1,0 +1,1 @@
+{"case_id": "injected_claim", "expected_payment_writes": 0, "fixture": "security/injected_claim.json", "requires_trusted_approval": true}

@@ -1,0 +1,72 @@
+name: Foundation checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  LANGSMITH_TRACING: "false"
+  LANGCHAIN_TRACING_V2: "false"
+  PYTHONUTF8: "1"
+
+jobs:
+  offline:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.11", "3.12", "3.13", "3.14"]
+        include:
+          - os: macos-latest
+            python: "3.12"
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          version: "0.13.7"
+          python-version: ${{ matrix.python }}
+          enable-cache: true
+      - run: uv sync --locked
+      - run: uv run --no-sync python scripts/check_env.py
+      - run: uv run --no-sync ruff check .
+      - run: uv run --no-sync ruff format --check .
+      - run: uv run --no-sync pytest
+      - run: uv run --no-sync python scripts/verify_apis.py
+      - run: uv run --no-sync python scripts/validate_gym.py
+      - run: uv run --no-sync python scripts/run_all_examples.py
+      - run: uv run --no-sync python scripts/check_coverage.py
+      - run: uv run --no-sync python scripts/check_legacy_apis.py
+      - run: uv run --no-sync python scripts/check_links.py
+
+  optional-dependencies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          version: "0.13.7"
+          python-version: "3.12"
+          enable-cache: true
+      - run: uv sync --locked --all-extras --group maintain
+      - run: uv run --no-sync pytest
+      - run: uv run --no-sync python scripts/check_providers.py
+      - run: uv run --no-sync python scripts/verify_apis.py
+
+  public-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          version: "0.13.7"
+          python-version: "3.12"
+      - run: uv sync --locked
+      - run: uv run --no-sync python scripts/check_links.py --external

@@ -1,0 +1,14 @@
+{
+  "amount_cents": 1526755,
+  "claim_id": "CLM-0044",
+  "claim_type": "storm",
+  "customer_id": "CUS-0044",
+  "description": "Strong winds damaged the synthetic roof and one window.",
+  "documents": [],
+  "duplicate_of": null,
+  "fraud_indicators": [
+    "altered_receipt"
+  ],
+  "loss_date": "2026-02-13",
+  "policy_id": "POL-0044"
+}

@@ -1,0 +1,9 @@
+SYNTHETIC TRAINING DOCUMENT - NOT VALID FOR A REAL CLAIM
+Document ID: DOC-002
+Claim ID: CLM-0002
+Document type: estimate
+Issue date: 2026-04-01
+Educational amount: $624.00
+Issuer: Larkspur Fictional Records Office
+Proposed work: replace damaged interior materials.
+Includes synthetic materials and labor; no work has been ordered.

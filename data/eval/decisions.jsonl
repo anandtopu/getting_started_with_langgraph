@@ -1,0 +1,3 @@
+{"amount_cents": 50000, "case_id": "zero_after_deductible", "deductible_cents": 75000, "expected_payout_cents": 0, "limit_cents": 100000}
+{"amount_cents": 500000, "case_id": "payout_capped", "deductible_cents": 50000, "expected_payout_cents": 200000, "limit_cents": 200000}
+{"amount_cents": 125000, "case_id": "subtract_first", "deductible_cents": 100000, "expected_payout_cents": 25000, "limit_cents": 1000000}

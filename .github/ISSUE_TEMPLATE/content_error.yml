@@ -1,0 +1,16 @@
+name: Lesson or explanation correction
+description: Help a beginner follow the course accurately.
+body:
+  - type: input
+    id: location
+    attributes:
+      label: File, module, or task ID
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What is unclear or incorrect?
+      description: Describe a concrete correction and cite official documentation when relevant.
+    validations:
+      required: true

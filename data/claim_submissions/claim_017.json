@@ -1,0 +1,14 @@
+{
+  "amount_cents": 1087271,
+  "claim_id": "CLM-0017",
+  "claim_type": "theft",
+  "customer_id": "CUS-0017",
+  "description": "",
+  "documents": [
+    "DOC-017"
+  ],
+  "duplicate_of": null,
+  "fraud_indicators": [],
+  "loss_date": "2026-01-17",
+  "policy_id": "POL-0017"
+}

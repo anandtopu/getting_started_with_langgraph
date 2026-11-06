@@ -1,0 +1,14 @@
+{
+  "amount_cents": 1492067,
+  "claim_id": "CLM-0055",
+  "claim_type": "liability",
+  "customer_id": "CUS-0055",
+  "description": "A fictional visitor reported an injury on the synthetic front steps.",
+  "documents": [],
+  "duplicate_of": null,
+  "fraud_indicators": [
+    "altered_receipt"
+  ],
+  "loss_date": "2026-02-24",
+  "policy_id": "POL-0055"
+}

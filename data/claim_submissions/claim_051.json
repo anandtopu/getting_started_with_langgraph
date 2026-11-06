@@ -1,0 +1,12 @@
+{
+  "amount_cents": 2207322,
+  "claim_id": "CLM-0051",
+  "claim_type": "water",
+  "customer_id": "CUS-0051",
+  "description": "",
+  "documents": [],
+  "duplicate_of": null,
+  "fraud_indicators": [],
+  "loss_date": "2026-02-20",
+  "policy_id": "POL-0051"
+}

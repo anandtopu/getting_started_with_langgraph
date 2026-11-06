@@ -1,0 +1,12 @@
+{
+  "amount_cents": 1735626,
+  "claim_id": "CLM-0034",
+  "claim_type": "storm",
+  "customer_id": "CUS-0034",
+  "description": "",
+  "documents": [],
+  "duplicate_of": null,
+  "fraud_indicators": [],
+  "loss_date": "2026-02-03",
+  "policy_id": "POL-0034"
+}

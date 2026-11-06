@@ -1,0 +1,526 @@
+{
+  "status": "planning_checks_passed",
+  "checked_on": "2026-11-05",
+  "timezone": "America/Chicago",
+  "modules": 27,
+  "core_modules": 23,
+  "bonus_modules": 4,
+  "feature_groups": 81,
+  "feature_entries": 381,
+  "tasks": 486,
+  "core_tasks": 414,
+  "bonus_tasks": 72,
+  "planned_files": 3786,
+  "guided_lesson_hours": 46.0,
+  "module_distribution": [
+    {
+      "module": "00",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "design": 2,
+        "refactor": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "01",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "02",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 3
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "03",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "04",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "05",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "06",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "07",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "08",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 3
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "09",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "10",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "11",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "12",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "design": 1,
+        "refactor": 2
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "13",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "14",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "15",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "16",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "17",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "18",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "19",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "20",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "21",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "22",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 1,
+        "design": 2
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "B1",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 3
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "B2",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "B3",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 2,
+        "design": 1
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    {
+      "module": "B4",
+      "tasks": 18,
+      "types": {
+        "build": 3,
+        "fix": 3,
+        "predict": 3,
+        "trace": 3,
+        "extend": 3,
+        "refactor": 1,
+        "design": 2
+      },
+      "levels": {
+        "easy": 6,
+        "medium": 6,
+        "hard": 6
+      }
+    }
+  ],
+  "errors": [],
+  "verified": [
+    "Unique task IDs",
+    "At least six tasks per feature group",
+    "At least four task types per module",
+    "All three difficulty levels per module",
+    "Every example and required task leaf appears in the destination manifest",
+    "Complete 23-module and 4-bonus catalog",
+    "46-hour lesson total",
+    "Python dependency ranges resolved in universal mode",
+    "40 official feature-map URLs returned HTTP 200",
+    "Existing planning-document links and heading anchors resolve"
+  ],
+  "not_verified": [
+    "Runtime compatibility",
+    "Clean installs or uv.lock",
+    "Course tests and lint",
+    "Starter/solution behavior",
+    "Semantic six-task coverage of every individual feature",
+    "Notebook execution",
+    "PDF rendering",
+    "Docker/Postgres/live providers",
+    "Remote CI or GitHub publication"
+  ],
+  "internal_links_checked": 123,
+  "internal_link_errors": []
+}

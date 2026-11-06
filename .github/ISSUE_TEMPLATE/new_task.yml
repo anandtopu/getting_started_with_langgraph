@@ -1,0 +1,16 @@
+name: New practice task
+description: Propose a distinct graded Larkspur scenario.
+body:
+  - type: input
+    id: feature
+    attributes:
+      label: Feature group and task type
+    validations:
+      required: true
+  - type: textarea
+    id: specification
+    attributes:
+      label: Scenario and acceptance criteria
+      description: Explain the learner's work, offline grading method, and the bug or skill it practices.
+    validations:
+      required: true

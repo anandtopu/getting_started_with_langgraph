@@ -1,0 +1,9 @@
+SYNTHETIC TRAINING DOCUMENT - NOT VALID FOR A REAL CLAIM
+Document ID: DOC-013
+Claim ID: CLM-0013
+Document type: receipt
+Issue date: 2026-04-01
+Educational amount: $861.00
+Issuer: Larkspur Fictional Records Office
+Item: synthetic household replacement goods.
+This receipt records a fictional purchase and is not a payment request.

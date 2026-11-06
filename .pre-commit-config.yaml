@@ -1,0 +1,28 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: Ruff lint
+        entry: uv run ruff check
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: Ruff format
+        entry: uv run ruff format --check
+        language: system
+        types: [python]
+      - id: strip-notebook-output
+        name: Strip notebook outputs
+        entry: uv run --group maintain nbstripout
+        language: system
+        types: [jupyter]
+      - id: legacy-api-check
+        name: Check current teaching APIs
+        entry: uv run python scripts/check_legacy_apis.py
+        language: system
+        pass_filenames: false
+      - id: local-links
+        name: Check local documentation links
+        entry: uv run python scripts/check_links.py
+        language: system
+        pass_filenames: false

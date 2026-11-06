@@ -1,0 +1,5 @@
+{
+  "first_bad_step": "normalize_claim",
+  "lost_field": "claim_id",
+  "fix": "preserve_claim_id"
+}
