@@ -1,8 +1,12 @@
 """Capture local node-update evidence for Trace exercises, without hosted tracing."""
 
 import re
+from contextvars import ContextVar
+from threading import Lock
 
-from langchain_core.tracers.context import collect_runs
+from langchain_core.callbacks import BaseCallbackHandler
+from langchain_core.tracers.context import register_configure_hook
+from langgraph.errors import GraphInterrupt
 
 from common.exercises import observe
 from common.pretty import safe_value
@@ -25,31 +29,59 @@ def stable(value):
     return value
 
 
+class NodeRecorder(BaseCallbackHandler):
+    """Record callbacks directly: root run collectors need not retain child run trees."""
+
+    def __init__(self):
+        self.pending = {}
+        self.updates = []
+        self.lock = Lock()
+
+    def on_chain_start(self, serialized, inputs, *, run_id, name=None, metadata=None, **kwargs):
+        metadata = metadata or {}
+        if name and metadata.get("langgraph_node") == name:
+            with self.lock:
+                self.pending[run_id] = {"node": name, "superstep": metadata.get("langgraph_step")}
+
+    def finish(self, run_id, output, error=None):
+        with self.lock:
+            entry = self.pending.pop(run_id, None)
+            if entry is not None:
+                paused = isinstance(error, GraphInterrupt)
+                self.updates.append(
+                    {
+                        **entry,
+                        "update": stable(output),
+                        "failed": error is not None and not paused,
+                        "paused": paused,
+                        "error_type": type(error).__name__ if error is not None else None,
+                    }
+                )
+
+    def on_chain_end(self, outputs, *, run_id, **kwargs):
+        self.finish(run_id, outputs)
+
+    def on_chain_error(self, error, *, run_id, **kwargs):
+        self.finish(run_id, None, error)
+
+
+_RECORDER = ContextVar("course_node_recorder", default=None)
+register_configure_hook(_RECORDER, True)
+
+
 def capture(module, cases):
     evidence = []
     for case in cases:
-        with collect_runs() as collector:
+        recorder = NodeRecorder()
+        token = _RECORDER.set(recorder)
+        try:
             result = observe(module, case)
-        updates = []
-
-        def visit(run, updates=updates):
-            metadata = run.extra.get("metadata", {})
-            if metadata.get("langgraph_node") == run.name:
-                updates.append(
-                    {
-                        "node": run.name,
-                        "superstep": metadata.get("langgraph_step"),
-                        "update": stable(run.outputs),
-                        "failed": bool(run.error),
-                    }
-                )
-            for child in run.child_runs:
-                visit(child)
-
-        for run in collector.traced_runs:
-            visit(run)
-        evidence.append({"input": case, "node_updates": updates, "observed_result": result})
+        finally:
+            _RECORDER.reset(token)
+        evidence.append(
+            {"input": case, "node_updates": recorder.updates, "observed_result": result}
+        )
     return {
-        "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+        "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
         "cases": evidence,
     }

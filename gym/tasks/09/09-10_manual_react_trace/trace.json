@@ -1,12 +1,88 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "policy_id": "POL-0001",
         "recursion_limit": 12
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "call_model",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": "",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-1",
+                "tool_calls": [
+                  {
+                    "name": "policy_deductible",
+                    "args": {
+                      "policy_id": "POL-0001"
+                    },
+                    "id": "policy-1",
+                    "type": "tool_call"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "100000 cents",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "policy_deductible",
+                "id": null,
+                "tool_call_id": "policy-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "call_model",
+          "superstep": 3,
+          "update": {
+            "messages": [
+              {
+                "content": "Use the tool result as evidence; this is not payment approval.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-2",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "roles": [
@@ -27,7 +103,47 @@
         "policy_id": "MISSING",
         "recursion_limit": 12
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "call_model",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": "",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-1",
+                "tool_calls": [
+                  {
+                    "name": "policy_deductible",
+                    "args": {
+                      "policy_id": "MISSING"
+                    },
+                    "id": "policy-1",
+                    "type": "tool_call"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": null,
+          "failed": true,
+          "paused": false,
+          "error_type": "ValueError"
+        }
+      ],
       "observed_result": {
         "error": "ValueError"
       }

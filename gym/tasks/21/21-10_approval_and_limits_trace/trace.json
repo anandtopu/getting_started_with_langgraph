@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -9,7 +9,1429 @@
         "estimated_tokens": 1000,
         "token_budget": 2000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "authorize_intake",
+          "superstep": 1,
+          "update": {
+            "audit": [
+              "ownership_verified"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "announce",
+          "superstep": 1,
+          "update": {
+            "processing_status": "reviewing"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "await_estimate",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "durable_review",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "review",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "secure_claim",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "await_estimate",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "received_on": "2026-01-04",
+            "waited_days": 3,
+            "audit": [
+              "estimate_received"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "authorize_customer",
+          "superstep": 1,
+          "update": {},
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "extract",
+          "superstep": 1,
+          "update": {
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "audit": [
+              "extracted_and_validated"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "normalize",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "audit": [
+              "normalized"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "validate",
+          "superstep": 2,
+          "update": {
+            "missing": [],
+            "findings": [],
+            "audit": [
+              "validated"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_document",
+          "superstep": 3,
+          "update": {
+            "findings": [
+              "reviewed:DOC-001"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_document",
+          "superstep": 3,
+          "update": {
+            "findings": [
+              "reviewed:DOC-ESTIMATE"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 4,
+          "update": {
+            "route": "specialist",
+            "audit": [
+              "routed"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "approve_claim",
+          "superstep": 5,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "process_claim",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "intake",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "intake_and_evidence",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "intake_policy_memory",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "review_claim",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "durable_review",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "review",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "secure_claim",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "approve_claim",
+          "superstep": 5,
+          "update": {
+            "approved": true,
+            "approval_reason": "human_approved"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "process_claim",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "intake",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            }
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "lookup_policy",
+                        "args": {},
+                        "id": "evidence-0",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "get_claim_history",
+                        "args": {},
+                        "id": "evidence-1",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "check_coverage",
+                        "args": {},
+                        "id": "evidence-2",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "calculate_payout",
+                        "args": {},
+                        "id": "evidence-3",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "lookup_policy",
+                "id": "<runtime-id>",
+                "tool_call_id": "evidence-0",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "check_coverage",
+                "id": "<runtime-id>",
+                "tool_call_id": "evidence-2",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "1996759",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "calculate_payout",
+                "id": "<runtime-id>",
+                "tool_call_id": "evidence-3",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "get_claim_history",
+                "id": "<runtime-id>",
+                "tool_call_id": "evidence-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "policy_agent",
+          "superstep": 2,
+          "update": {
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "audit": [
+              "policy_evidence_collected"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "intake_and_evidence",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "remember",
+          "superstep": 3,
+          "update": {
+            "preference": "email",
+            "audit": [
+              "customer_memory_read"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "draft_letter",
+          "superstep": 4,
+          "update": {
+            "letter": "Thank you. Your claim is review completed. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "audit": [
+              "letter_reviewed"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "intake_policy_memory",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is review completed. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "inspect_evidence",
+          "superstep": 1,
+          "update": {
+            "risk_flags": [
+              "high_value"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "fraud_review",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is review completed. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "fraud_analyst",
+                        "args": {},
+                        "id": "team-0",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "communication_specialist",
+                        "args": {},
+                        "id": "team-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Rule flags require evidence review; they are not proof of fraud.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "Rule flags require evidence review; they are not proof of fraud.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "fraud_analyst",
+                "id": "<runtime-id>",
+                "tool_call_id": "team-0",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The letter is respectful and makes no payment promise.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "The letter is respectful and makes no payment promise.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "communication_specialist",
+                "id": "<runtime-id>",
+                "tool_call_id": "team-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Specialist review complete; existing authorization remains unchanged.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "consult_specialists",
+          "superstep": 3,
+          "update": {
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ],
+            "audit": [
+              "specialists_consulted"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_claim",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed",
+              "specialists_consulted"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is review completed. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ],
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "durable_review",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed",
+              "specialists_consulted"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is review completed. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ],
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ],
+            "requested_on": "2026-01-01",
+            "received_on": "2026-01-04",
+            "waited_days": 3
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "complete_review",
+          "superstep": 3,
+          "update": {
+            "processing_status": "review_complete"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed",
+              "specialists_consulted"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is review completed. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ],
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ],
+            "requested_on": "2026-01-01",
+            "received_on": "2026-01-04",
+            "waited_days": 3,
+            "processing_status": "review_complete"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "approve_payment",
+          "superstep": 3,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "secure_claim",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "approve_payment",
+          "superstep": 3,
+          "update": {
+            "payment_status": "recorded",
+            "proposed_cents": 1996759,
+            "effect_created": true,
+            "audit": [
+              "payment_authorized_and_recorded"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "secure_claim",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed",
+              "specialists_consulted",
+              "payment_authorized_and_recorded"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": true,
+            "approval_reason": "human_approved",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is review completed. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ],
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ],
+            "requested_on": "2026-01-01",
+            "received_on": "2026-01-04",
+            "waited_days": 3,
+            "processing_status": "review_complete",
+            "payment_status": "recorded",
+            "proposed_cents": 1996759,
+            "effect_created": true
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "publish_summary",
+          "superstep": 2,
+          "update": {
+            "public_summary": {
+              "claim_id": "CLM-0001",
+              "status": "recorded",
+              "letter": "Thank you. Your claim is review completed. No payment has been issued.",
+              "contact_preference": "email"
+            }
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "admitted": true,
@@ -28,7 +1450,1409 @@
         "estimated_tokens": 1000,
         "token_budget": 2000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "authorize_intake",
+          "superstep": 1,
+          "update": {
+            "audit": [
+              "ownership_verified"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "announce",
+          "superstep": 1,
+          "update": {
+            "processing_status": "reviewing"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "await_estimate",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "durable_review",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "review",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "secure_claim",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "await_estimate",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "received_on": "2026-01-04",
+            "waited_days": 3,
+            "audit": [
+              "estimate_received"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "authorize_customer",
+          "superstep": 1,
+          "update": {},
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "extract",
+          "superstep": 1,
+          "update": {
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "audit": [
+              "extracted_and_validated"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "normalize",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "audit": [
+              "normalized"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "validate",
+          "superstep": 2,
+          "update": {
+            "missing": [],
+            "findings": [],
+            "audit": [
+              "validated"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_document",
+          "superstep": 3,
+          "update": {
+            "findings": [
+              "reviewed:DOC-001"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_document",
+          "superstep": 3,
+          "update": {
+            "findings": [
+              "reviewed:DOC-ESTIMATE"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 4,
+          "update": {
+            "route": "specialist",
+            "audit": [
+              "routed"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "approve_claim",
+          "superstep": 5,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "process_claim",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "intake",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "intake_and_evidence",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "intake_policy_memory",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "review_claim",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "durable_review",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "review",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "secure_claim",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "approve_claim",
+          "superstep": 5,
+          "update": {
+            "approved": false,
+            "approval_reason": "human_rejected"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "process_claim",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "intake",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            }
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "lookup_policy",
+                        "args": {},
+                        "id": "evidence-0",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "get_claim_history",
+                        "args": {},
+                        "id": "evidence-1",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "check_coverage",
+                        "args": {},
+                        "id": "evidence-2",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "calculate_payout",
+                        "args": {},
+                        "id": "evidence-3",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "lookup_policy",
+                "id": "<runtime-id>",
+                "tool_call_id": "evidence-0",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "check_coverage",
+                "id": "<runtime-id>",
+                "tool_call_id": "evidence-2",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "1996759",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "calculate_payout",
+                "id": "<runtime-id>",
+                "tool_call_id": "evidence-3",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "get_claim_history",
+                "id": "<runtime-id>",
+                "tool_call_id": "evidence-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "policy_agent",
+          "superstep": 2,
+          "update": {
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "audit": [
+              "policy_evidence_collected"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "intake_and_evidence",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "remember",
+          "superstep": 3,
+          "update": {
+            "preference": "email",
+            "audit": [
+              "customer_memory_read"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "draft_letter",
+          "superstep": 4,
+          "update": {
+            "letter": "Thank you. Your claim is not approved. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "audit": [
+              "letter_reviewed"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "intake_policy_memory",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is not approved. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "inspect_evidence",
+          "superstep": 1,
+          "update": {
+            "risk_flags": [
+              "high_value"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "fraud_review",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is not approved. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "fraud_analyst",
+                        "args": {},
+                        "id": "team-0",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "communication_specialist",
+                        "args": {},
+                        "id": "team-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Rule flags require evidence review; they are not proof of fraud.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "Rule flags require evidence review; they are not proof of fraud.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "fraud_analyst",
+                "id": "<runtime-id>",
+                "tool_call_id": "team-0",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The letter is respectful and makes no payment promise.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "The letter is respectful and makes no payment promise.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "communication_specialist",
+                "id": "<runtime-id>",
+                "tool_call_id": "team-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Specialist review complete; existing authorization remains unchanged.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "consult_specialists",
+          "superstep": 3,
+          "update": {
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ],
+            "audit": [
+              "specialists_consulted"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_claim",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed",
+              "specialists_consulted"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is not approved. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ],
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "durable_review",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed",
+              "specialists_consulted"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is not approved. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ],
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ],
+            "requested_on": "2026-01-01",
+            "received_on": "2026-01-04",
+            "waited_days": 3
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "complete_review",
+          "superstep": 3,
+          "update": {
+            "processing_status": "review_complete"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed",
+              "specialists_consulted"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is not approved. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ],
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ],
+            "requested_on": "2026-01-01",
+            "received_on": "2026-01-04",
+            "waited_days": 3,
+            "processing_status": "review_complete"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "approve_payment",
+          "superstep": 3,
+          "update": {
+            "payment_status": "not_approved",
+            "proposed_cents": 0,
+            "effect_created": false
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "secure_claim",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 2096759,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001",
+                "DOC-ESTIMATE"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "missing": [],
+            "route": "specialist",
+            "audit": [
+              "ownership_verified",
+              "estimate_received",
+              "extracted_and_validated",
+              "normalized",
+              "validated",
+              "routed",
+              "policy_evidence_collected",
+              "customer_memory_read",
+              "letter_reviewed",
+              "specialists_consulted"
+            ],
+            "findings": [
+              "reviewed:DOC-001",
+              "reviewed:DOC-ESTIMATE"
+            ],
+            "approved": false,
+            "approval_reason": "human_rejected",
+            "extracted": {
+              "claim_type": "water",
+              "amount_cents": 2096759,
+              "loss_date": "2026-01-01",
+              "confidence": 0.95
+            },
+            "policy_evidence": [
+              {
+                "tool": "lookup_policy",
+                "result": "{\"policy_id\": \"POL-0001\", \"limit_cents\": 25000000, \"deductible_cents\": 100000}"
+              },
+              {
+                "tool": "get_claim_history",
+                "result": "[{\"claim_id\": \"CLM-0001\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0101\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0201\", \"route\": \"specialist\"}, {\"claim_id\": \"CLM-0301\", \"route\": \"needs_information\"}, {\"claim_id\": \"CLM-0401\", \"route\": \"specialist\"}]"
+              },
+              {
+                "tool": "check_coverage",
+                "result": "{\"claim_type\": \"water\", \"requires_policy_review\": true, \"note\": \"A deductible calculation alone does not establish coverage.\"}"
+              },
+              {
+                "tool": "calculate_payout",
+                "result": "1996759"
+              }
+            ],
+            "agent_explanation": "Policy evidence collected. An authorized adjuster must confirm coverage.",
+            "preference": "email",
+            "letter": "Thank you. Your claim is not approved. No payment has been issued.",
+            "letter_accepted": true,
+            "letter_attempts": 2,
+            "risk_flags": [
+              "high_value"
+            ],
+            "specialist_reports": [
+              {
+                "specialist": "fraud_analyst",
+                "report": "Rule flags require evidence review; they are not proof of fraud."
+              },
+              {
+                "specialist": "communication_specialist",
+                "report": "The letter is respectful and makes no payment promise."
+              }
+            ],
+            "requested_on": "2026-01-01",
+            "received_on": "2026-01-04",
+            "waited_days": 3,
+            "processing_status": "review_complete",
+            "payment_status": "not_approved",
+            "proposed_cents": 0,
+            "effect_created": false
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "publish_summary",
+          "superstep": 2,
+          "update": {
+            "public_summary": {
+              "claim_id": "CLM-0001",
+              "status": "not_approved",
+              "letter": "Thank you. Your claim is not approved. No payment has been issued.",
+              "contact_preference": "email"
+            }
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "admitted": true,

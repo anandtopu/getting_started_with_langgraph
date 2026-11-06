@@ -1,12 +1,77 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "max_messages": 2,
         "second_text": "An estimate is now attached."
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "respond",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": "Please attach an estimate.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-1",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "summarize",
+          "superstep": 2,
+          "update": {
+            "summary": "A pipe burst."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "respond",
+          "superstep": 5,
+          "update": {
+            "messages": [
+              {
+                "content": "Estimate received.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-2",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "summarize",
+          "superstep": 6,
+          "update": {
+            "summary": "An estimate is now attached."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "saved_messages": 3,
@@ -23,7 +88,72 @@
         "max_messages": 4,
         "second_text": "An estimate is now attached."
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "respond",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": "Please attach an estimate.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-1",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "summarize",
+          "superstep": 2,
+          "update": {
+            "summary": "A pipe burst."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "respond",
+          "superstep": 5,
+          "update": {
+            "messages": [
+              {
+                "content": "Estimate received.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-2",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "summarize",
+          "superstep": 6,
+          "update": {
+            "summary": "An estimate is now attached."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "saved_messages": 3,

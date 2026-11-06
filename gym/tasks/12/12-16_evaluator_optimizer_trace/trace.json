@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -9,7 +9,68 @@
         ],
         "budget": 3
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "write_letter",
+          "superstep": 1,
+          "update": {
+            "draft": "Your deductible is 90000 cents.",
+            "attempts": 1
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "evaluate",
+          "superstep": 2,
+          "update": {
+            "feedback": [
+              "respectful_tone"
+            ],
+            "accepted": false,
+            "history": [
+              {
+                "attempt": 1,
+                "feedback": [
+                  "respectful_tone"
+                ]
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "write_letter",
+          "superstep": 3,
+          "update": {
+            "draft": "Thank you. Your deductible is 100000 cents.",
+            "attempts": 2
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "evaluate",
+          "superstep": 4,
+          "update": {
+            "feedback": [],
+            "accepted": true,
+            "history": [
+              {
+                "attempt": 2,
+                "feedback": []
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "accepted": true,
@@ -38,7 +99,40 @@
         ],
         "budget": 1
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "write_letter",
+          "superstep": 1,
+          "update": {
+            "draft": "Your deductible is 90000 cents.",
+            "attempts": 1
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "evaluate",
+          "superstep": 2,
+          "update": {
+            "feedback": [
+              "respectful_tone"
+            ],
+            "accepted": false,
+            "history": [
+              {
+                "attempt": 1,
+                "feedback": [
+                  "respectful_tone"
+                ]
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "accepted": false,

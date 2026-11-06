@@ -1,12 +1,51 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "text": "Corrected: pipe burst",
         "remove_customer": true
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "correct",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": "Corrected: pipe burst",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "human",
+                "name": null,
+                "id": "customer-2"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "minimize",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "remove",
+                "name": null,
+                "id": "customer-1"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "error": "AttributeError"
       }
@@ -16,7 +55,35 @@
         "text": "Corrected: pipe burst",
         "remove_customer": false
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "correct",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": "Corrected: pipe burst",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "human",
+                "name": null,
+                "id": "customer-2"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "minimize",
+          "superstep": 2,
+          "update": {},
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "error": "AttributeError"
       }

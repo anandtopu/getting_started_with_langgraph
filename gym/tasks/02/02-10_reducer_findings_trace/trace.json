@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -12,7 +12,47 @@
           "severity": 3
         }
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "check_estimate",
+          "superstep": 1,
+          "update": {
+            "findings": [
+              {
+                "id": "receipt",
+                "severity": 1
+              }
+            ],
+            "log": [
+              "estimate"
+            ],
+            "last": "estimate"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_receipt",
+          "superstep": 2,
+          "update": {
+            "findings": [
+              {
+                "id": "receipt",
+                "severity": 3
+              }
+            ],
+            "log": [
+              "estimate",
+              "receipt"
+            ],
+            "last": "receipt"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "findings": [
@@ -41,7 +81,47 @@
           "severity": 2
         }
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "check_estimate",
+          "superstep": 1,
+          "update": {
+            "findings": [
+              {
+                "id": "receipt",
+                "severity": 1
+              }
+            ],
+            "log": [
+              "estimate"
+            ],
+            "last": "estimate"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_receipt",
+          "superstep": 2,
+          "update": {
+            "findings": [
+              {
+                "id": "estimate",
+                "severity": 2
+              }
+            ],
+            "log": [
+              "estimate",
+              "receipt"
+            ],
+            "last": "receipt"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "findings": [

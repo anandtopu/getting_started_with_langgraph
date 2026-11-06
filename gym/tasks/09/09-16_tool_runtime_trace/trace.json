@@ -1,12 +1,43 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "customer_id": "CUS-0001",
         "preference": "email"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "tools",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "saved_preference": "phone",
+                "messages": [
+                  {
+                    "content": "Preference saved",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "tool",
+                    "name": "save_preference",
+                    "id": null,
+                    "tool_call_id": "save-1",
+                    "artifact": null,
+                    "status": "success"
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "saved": {
@@ -25,7 +56,38 @@
         "customer_id": "CUS-0020",
         "preference": "sms"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "tools",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "saved_preference": "phone",
+                "messages": [
+                  {
+                    "content": "Preference saved",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "tool",
+                    "name": "save_preference",
+                    "id": null,
+                    "tool_call_id": "save-1",
+                    "artifact": null,
+                    "status": "success"
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "saved": {

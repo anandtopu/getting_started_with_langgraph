@@ -9,7 +9,7 @@ All confirmed findings R01–R22 have fixes. Completion requires the final full 
 | IDs | Priority | Owner | Action | Acceptance |
 | --- | --- | --- | --- | --- |
 | R01–R07 | P1/P2 | Runtime maintainer | Correct resume, identity, intake, and UI boundaries | Independent API, workflow, identity, and Streamlit regressions |
-| R08–R09, R18 | P2/P3 | Gym maintainer | Reject incomplete grading and invalidate stale evidence | Negative grader/CLI/progress tests |
+| R08–R09, R18, R22 | P2/P3 | Gym maintainer | Reject incomplete grading, invalidate stale evidence, and support external TypeScript workspaces | Negative grader/CLI/progress and external-workspace tests |
 | R10, R19–R21 | P2/P3 | Runtime maintainer | Correct budget, lease/key, and SSE edge behavior | Boundary tests and persistence acceptance |
 | R11–R14 | P2 | Course maintainer | Repair task semantics and introductory/live teaching | All 486 task packages; examples; notebook execution |
 | R15–R17 | P2 | Course maintainer | Demonstrate replay, align deployment input, preserve generation | Capstone acceptance, graph-input regression, regeneration/quality checks |
@@ -18,11 +18,12 @@ All confirmed findings R01–R22 have fixes. Completion requires the final full 
 
 | Check | Measured local result |
 | --- | --- |
-| Full pytest suite | 401 passed, 1 optional live test skipped; subsequent redaction, external-workspace, and compatibility regressions also passed targeted checks |
+| Full pytest suite | 407 passed, 1 optional live test skipped; two expected Beta streaming warnings |
 | Practice Gym | All 486 packages exercised; the expanded baseline sweep found three incompatible extensions, then all three passed targeted validators after correction |
 | Capstones | All five references pass, starters fail for their intended acceptance reason, standalone runs succeed |
 | Examples/use cases | 111 executed offline, no optional skips |
 | Notebooks | All 27 executed in real kernels; committed outputs remain cleared |
+| Trace evidence | All 80 generated traces recaptured and compared with grading answers; 61 contain in-process node callbacks, with failures and approval pauses distinguished |
 | Real SQLite API | Owned loopback server stopped and restarted; saved interrupt survives, role and stale-decision checks pass, exactly one synthetic effect |
 | Code/docs | Ruff lint/format, strict TypeScript, release coverage, prohibited-API scan, and 3,062 local/public links pass |
 

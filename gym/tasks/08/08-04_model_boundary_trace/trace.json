@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -7,7 +7,33 @@
         "amount_cents": 125000,
         "confidence": 0.9
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "extract",
+          "superstep": 1,
+          "update": {
+            "facts": {
+              "claim_type": "water",
+              "amount_cents": 125000,
+              "loss_date": null,
+              "confidence": 0.9
+            }
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 2,
+          "update": {
+            "route": "standard"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "facts": {
@@ -26,7 +52,33 @@
         "amount_cents": 100000,
         "confidence": 0.9
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "extract",
+          "superstep": 1,
+          "update": {
+            "facts": {
+              "claim_type": "water",
+              "amount_cents": 100000,
+              "loss_date": null,
+              "confidence": 0.9
+            }
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 2,
+          "update": {
+            "route": "standard"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "facts": {

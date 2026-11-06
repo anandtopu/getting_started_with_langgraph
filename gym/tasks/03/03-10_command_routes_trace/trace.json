@@ -1,12 +1,52 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "claim_id": "CLM-0001",
         "suspicious": true
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "triage",
+          "superstep": 1,
+          "update": {
+            "graph": null,
+            "update": {
+              "reason": "indicator"
+            },
+            "resume": null,
+            "goto": "review"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "acknowledge",
+          "superstep": 2,
+          "update": {
+            "visited": [
+              "acknowledge"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review",
+          "superstep": 2,
+          "update": {
+            "visited": [
+              "review"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "claim_id": "CLM-0001",
@@ -24,7 +64,35 @@
         "claim_id": "CLM-0001",
         "suspicious": false
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "triage",
+          "superstep": 1,
+          "update": {
+            "graph": null,
+            "update": {
+              "reason": "routine"
+            },
+            "resume": null,
+            "goto": "acknowledge"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "acknowledge",
+          "superstep": 2,
+          "update": {
+            "visited": [
+              "acknowledge"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "claim_id": "CLM-0001",

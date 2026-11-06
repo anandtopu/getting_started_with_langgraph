@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -9,7 +9,77 @@
           "exclusions"
         ]
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "plan",
+          "superstep": 1,
+          "update": {
+            "sections": [
+              "coverage",
+              "deductible",
+              "exclusions"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "write_section",
+          "superstep": 2,
+          "update": {
+            "reports": [
+              {
+                "section": "coverage",
+                "text": "Water damage is a synthetic covered cause."
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "write_section",
+          "superstep": 2,
+          "update": {
+            "reports": [
+              {
+                "section": "deductible",
+                "text": "The synthetic deductible is 100000 cents."
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "write_section",
+          "superstep": 2,
+          "update": {
+            "reports": [
+              {
+                "section": "exclusions",
+                "text": "Flood needs the separate add-on."
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "assemble",
+          "superstep": 3,
+          "update": {
+            "report": "Water damage is a synthetic covered cause.\nThe synthetic deductible is 100000 cents.\nFlood needs the separate add-on."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "sections": [
@@ -26,7 +96,28 @@
       "input": {
         "sections": []
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "plan",
+          "superstep": 1,
+          "update": {
+            "sections": []
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "assemble",
+          "superstep": 2,
+          "update": {
+            "report": ""
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "sections": [],

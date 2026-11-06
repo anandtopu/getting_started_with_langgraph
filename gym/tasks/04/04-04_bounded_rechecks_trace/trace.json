@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -10,7 +10,428 @@
         ],
         "budget": 3
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "check_documents",
+          "superstep": 1,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 2,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 3,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 4,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 5,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 6,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 7,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 8,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 9,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 10,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 11,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 12,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 13,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 14,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 15,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 16,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 17,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 18,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 19,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 20,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 21,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 22,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 23,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 24,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 25,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 26,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 27,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 28,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 29,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "check_documents",
+          "superstep": 30,
+          "update": {
+            "attempts": 0,
+            "status": "waiting",
+            "trace": [
+              "missing"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "error": "GraphRecursionError"
       }
@@ -22,7 +443,22 @@
         ],
         "budget": 3
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "check_documents",
+          "superstep": 1,
+          "update": {
+            "attempts": 0,
+            "status": "ready",
+            "trace": [
+              "received"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "history": [

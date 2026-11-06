@@ -1,12 +1,52 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "claim_id": "CLM-0001",
         "text": "  Pipe burst  "
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "receive",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": "  Pipe burst  ",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "human",
+                "name": null,
+                "id": "customer-1"
+              }
+            ],
+            "private_notes": "Internal review cue"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "correct_message",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "Pipe burst",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "human",
+                "name": null,
+                "id": "customer-2"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "fields": [
@@ -32,7 +72,47 @@
         "claim_id": "CLM-0022",
         "text": " theft "
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "receive",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": " theft ",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "human",
+                "name": null,
+                "id": "customer-1"
+              }
+            ],
+            "private_notes": "Internal review cue"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "correct_message",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "theft",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "human",
+                "name": null,
+                "id": "customer-2"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "fields": [

@@ -1,12 +1,126 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "decision": "approve",
         "amount_cents": 50000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "propose_payment",
+                        "args": {
+                          "amount_cents": 50000
+                        },
+                        "id": "proposal-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 3,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "tools",
+          "superstep": 3,
+          "update": {
+            "messages": [
+              {
+                "content": "Synthetic proposal recorded",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "propose_payment",
+                "id": "<runtime-id>",
+                "tool_call_id": "proposal-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 4,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The proposal review is complete.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 5,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "schema_present": true,
@@ -22,7 +136,121 @@
         "decision": "reject",
         "amount_cents": 50000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "propose_payment",
+                        "args": {
+                          "amount_cents": 50000
+                        },
+                        "id": "proposal-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 3,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "tools",
+          "superstep": 3,
+          "update": {
+            "messages": [
+              {
+                "content": "Synthetic proposal recorded",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "propose_payment",
+                "id": "<runtime-id>",
+                "tool_call_id": "proposal-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 4,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The proposal review is complete.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 5,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "schema_present": true,

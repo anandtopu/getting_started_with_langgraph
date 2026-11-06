@@ -1,12 +1,62 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "claim_id": "CLM-0001",
         "question": "What evidence is missing?"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Please attach a dated repair estimate.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "explain",
+          "superstep": 1,
+          "update": {
+            "explanation": "Please attach a dated repair estimate."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "finalize",
+          "superstep": 2,
+          "update": {
+            "status": "approved"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "fields": [
@@ -27,7 +77,57 @@
         "claim_id": "CLM-0099",
         "question": "Which estimate is needed?"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Please attach a dated repair estimate.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "explain",
+          "superstep": 1,
+          "update": {
+            "explanation": "Please attach a dated repair estimate."
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "finalize",
+          "superstep": 2,
+          "update": {
+            "status": "approved"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "fields": [

@@ -1,12 +1,186 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "question": "Review policy and fraud evidence.",
         "private_note": "Synthetic phone: 555-0100"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "policy_expert",
+                        "args": {},
+                        "id": "policy-1",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "fraud_analyst",
+                        "args": {},
+                        "id": "fraud-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "policy: evidence requires review",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "policy: evidence requires review",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "policy_expert",
+                "id": "<runtime-id>",
+                "tool_call_id": "policy-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "policy: evidence requires review",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "policy: evidence requires review",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "fraud_analyst",
+                "id": "<runtime-id>",
+                "tool_call_id": "fraud-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Request the missing estimate before final policy review.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "specialists": [
@@ -37,7 +211,181 @@
         "question": "Which document is missing?",
         "private_note": "Synthetic address withheld"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "policy_expert",
+                        "args": {},
+                        "id": "policy-1",
+                        "type": "tool_call"
+                      },
+                      {
+                        "name": "fraud_analyst",
+                        "args": {},
+                        "id": "fraud-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "policy: evidence requires review",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "policy: evidence requires review",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "policy_expert",
+                "id": "<runtime-id>",
+                "tool_call_id": "policy-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "policy: evidence requires review",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "policy: evidence requires review",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "fraud_analyst",
+                "id": "<runtime-id>",
+                "tool_call_id": "fraud-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Request the missing estimate before final policy review.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "specialists": [

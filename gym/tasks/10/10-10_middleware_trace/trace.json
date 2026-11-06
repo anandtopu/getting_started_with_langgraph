@@ -1,12 +1,197 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "model_limit": 3,
         "tool_limit": 1
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "AuditMiddleware.before_model",
+          "superstep": 1,
+          "update": {
+            "observed_calls": 1
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.before_model",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "read_policy",
+                        "args": {},
+                        "id": "read-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ToolCallLimitMiddleware.after_model",
+          "superstep": 4,
+          "update": {
+            "thread_tool_call_count": {
+              "__all__": 1
+            },
+            "run_tool_call_count": {
+              "__all__": 1
+            }
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.after_model",
+          "superstep": 5,
+          "update": {
+            "thread_model_call_count": 1,
+            "run_model_call_count": 1
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "AuditMiddleware.after_model",
+          "superstep": 6,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 7,
+          "update": {
+            "messages": [
+              {
+                "content": "Deductible: 100000 cents.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "read_policy",
+                "id": "<runtime-id>",
+                "tool_call_id": "read-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "AuditMiddleware.before_model",
+          "superstep": 8,
+          "update": {
+            "observed_calls": 2
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.before_model",
+          "superstep": 9,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 10,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Policy fact checked.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ToolCallLimitMiddleware.after_model",
+          "superstep": 11,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.after_model",
+          "superstep": 12,
+          "update": {
+            "thread_model_call_count": 2,
+            "run_model_call_count": 2
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "AuditMiddleware.after_model",
+          "superstep": 13,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "events": [
@@ -31,7 +216,151 @@
         "model_limit": 1,
         "tool_limit": 1
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "AuditMiddleware.before_model",
+          "superstep": 1,
+          "update": {
+            "observed_calls": 1
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.before_model",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "read_policy",
+                        "args": {},
+                        "id": "read-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ToolCallLimitMiddleware.after_model",
+          "superstep": 4,
+          "update": {
+            "thread_tool_call_count": {
+              "__all__": 1
+            },
+            "run_tool_call_count": {
+              "__all__": 1
+            }
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.after_model",
+          "superstep": 5,
+          "update": {
+            "thread_model_call_count": 1,
+            "run_model_call_count": 1
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "AuditMiddleware.after_model",
+          "superstep": 6,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 7,
+          "update": {
+            "messages": [
+              {
+                "content": "Deductible: 100000 cents.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "read_policy",
+                "id": "<runtime-id>",
+                "tool_call_id": "read-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "AuditMiddleware.before_model",
+          "superstep": 8,
+          "update": {
+            "observed_calls": 2
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.before_model",
+          "superstep": 9,
+          "update": {
+            "jump_to": "end",
+            "messages": [
+              {
+                "content": "Model call limits exceeded: run limit (1/1)",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "<runtime-id>",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "events": [

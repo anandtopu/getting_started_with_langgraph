@@ -8,7 +8,7 @@ ainvoke awaits one result; astream yields intermediate parts. Pass RunnableConfi
 
 ## Your task
 
-Diagnose async streams from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Use the observed result for plain-Python or child-process examples. Explain the first incorrect transition, not just the final symptom.
+Diagnose async streams from execution evidence Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Approval pauses are labeled separately from failures. If no node update was observed, use the recorded result and program to locate a pre-execution rejection or a plain-Python/child-process fault. Explain the first broken contract and how it causes the observed result.
 
 ## Inputs and acceptance
 

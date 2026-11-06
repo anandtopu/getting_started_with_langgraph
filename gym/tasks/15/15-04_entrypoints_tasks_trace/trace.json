@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -7,7 +7,41 @@
         "description": "  Pipe burst  ",
         "amount_cents": 125000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "normalize",
+          "superstep": 0,
+          "update": {
+            "claim_id": "CLM-0001",
+            "description": "Pipe burst",
+            "amount_cents": 125000
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 0,
+          "update": "standard",
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "intake",
+          "superstep": 0,
+          "update": {
+            "claim_id": "CLM-0001",
+            "description": "Pipe burst",
+            "amount_cents": 125000,
+            "route": "standard"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "claim_id": "CLM-0001",
@@ -23,7 +57,41 @@
         "description": "  Pipe burst  ",
         "amount_cents": 100000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "normalize",
+          "superstep": 0,
+          "update": {
+            "claim_id": "CLM-0001",
+            "description": "Pipe burst",
+            "amount_cents": 100000
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 0,
+          "update": "standard",
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "intake",
+          "superstep": 0,
+          "update": {
+            "claim_id": "CLM-0001",
+            "description": "Pipe burst",
+            "amount_cents": 100000,
+            "route": "standard"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "claim_id": "CLM-0001",

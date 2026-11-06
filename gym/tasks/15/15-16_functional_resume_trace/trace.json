@@ -1,12 +1,45 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "claim_id": "CLM-0001",
         "approved": true
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "collect_evidence",
+          "superstep": 0,
+          "update": {
+            "claim_id": "CLM-0001",
+            "documents": [
+              "estimate"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review",
+          "superstep": 0,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "review",
+          "superstep": 0,
+          "update": {
+            "claim_id": "CLM-0001",
+            "approved": true
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "interrupts": 1,
@@ -26,7 +59,40 @@
         "claim_id": "CLM-0001",
         "approved": false
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "collect_evidence",
+          "superstep": 0,
+          "update": {
+            "claim_id": "CLM-0001",
+            "documents": [
+              "estimate"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review",
+          "superstep": 0,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "review",
+          "superstep": 0,
+          "update": {
+            "claim_id": "CLM-0001",
+            "approved": false
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "interrupts": 1,

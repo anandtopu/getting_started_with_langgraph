@@ -1,12 +1,51 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "claim_id": "CLM-0001",
         "question": "Explain the deductible."
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "transfer",
+          "superstep": 1,
+          "update": null,
+          "failed": true,
+          "paused": false,
+          "error_type": "ParentCommand"
+        },
+        {
+          "node": "intake",
+          "superstep": 1,
+          "update": null,
+          "failed": true,
+          "paused": false,
+          "error_type": "ParentCommand"
+        },
+        {
+          "node": "policy",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "The deductible is 100000 cents.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "policy-answer",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "active_agent": "policy",
@@ -27,7 +66,46 @@
         "claim_id": "CLM-0400",
         "question": "What is the water deductible?"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "transfer",
+          "superstep": 1,
+          "update": null,
+          "failed": true,
+          "paused": false,
+          "error_type": "ParentCommand"
+        },
+        {
+          "node": "intake",
+          "superstep": 1,
+          "update": null,
+          "failed": true,
+          "paused": false,
+          "error_type": "ParentCommand"
+        },
+        {
+          "node": "policy",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": "The deductible is 100000 cents.",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "policy-answer",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "active_agent": "policy",

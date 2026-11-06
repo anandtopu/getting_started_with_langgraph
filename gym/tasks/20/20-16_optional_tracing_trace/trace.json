@@ -1,11 +1,142 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "corrected_cents": 50000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "normalize",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 600000,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "audit": [
+              "normalized"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "validate",
+          "superstep": 2,
+          "update": {
+            "missing": [],
+            "findings": [],
+            "audit": [
+              "validated"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_document",
+          "superstep": 3,
+          "update": {
+            "findings": [
+              "reviewed:DOC-001"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 4,
+          "update": {
+            "route": "specialist",
+            "audit": [
+              "routed"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "normalize",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 50000,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "audit": [
+              "normalized"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "validate",
+          "superstep": 3,
+          "update": {
+            "missing": [],
+            "findings": [],
+            "audit": [
+              "validated"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_document",
+          "superstep": 4,
+          "update": {
+            "findings": [
+              "reviewed:DOC-001"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 5,
+          "update": {
+            "route": "fast_track",
+            "audit": [
+              "routed"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "original_route": "specialist",
@@ -22,7 +153,138 @@
       "input": {
         "corrected_cents": 600000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "normalize",
+          "superstep": 1,
+          "update": {
+            "claim": {
+              "amount_cents": 600000,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "audit": [
+              "normalized"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "validate",
+          "superstep": 2,
+          "update": {
+            "missing": [],
+            "findings": [],
+            "audit": [
+              "validated"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_document",
+          "superstep": 3,
+          "update": {
+            "findings": [
+              "reviewed:DOC-001"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 4,
+          "update": {
+            "route": "specialist",
+            "audit": [
+              "routed"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "normalize",
+          "superstep": 2,
+          "update": {
+            "claim": {
+              "amount_cents": 600000,
+              "claim_id": "CLM-0001",
+              "claim_type": "water",
+              "customer_id": "CUS-0001",
+              "description": "A supply pipe burst and damaged the synthetic kitchen floor.",
+              "documents": [
+                "DOC-001"
+              ],
+              "duplicate_of": null,
+              "fraud_indicators": [],
+              "loss_date": "2026-01-01",
+              "policy_id": "POL-0001"
+            },
+            "audit": [
+              "normalized"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "validate",
+          "superstep": 3,
+          "update": {
+            "missing": [],
+            "findings": [],
+            "audit": [
+              "validated"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "review_document",
+          "superstep": 4,
+          "update": {
+            "findings": [
+              "reviewed:DOC-001"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "route",
+          "superstep": 5,
+          "update": {
+            "route": "specialist",
+            "audit": [
+              "routed"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "original_route": "specialist",

@@ -1,12 +1,46 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "policy_id": "POL-0001",
         "amount_cents": 125000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "tools",
+          "superstep": 1,
+          "update": {
+            "messages": [
+              {
+                "content": "limit=25000000; deductible=100000",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "lookup_policy",
+                "id": null,
+                "tool_call_id": "policy-call",
+                "artifact": null,
+                "status": "success"
+              },
+              {
+                "content": "25000",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "proposed_payout",
+                "id": null,
+                "tool_call_id": "payout-call",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "results": [
@@ -29,7 +63,16 @@
         "policy_id": "MISSING",
         "amount_cents": 125000
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "tools",
+          "superstep": 1,
+          "update": null,
+          "failed": true,
+          "paused": false,
+          "error_type": "ValueError"
+        }
+      ],
       "observed_result": {
         "error": "ValueError"
       }

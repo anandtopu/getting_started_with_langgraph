@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -9,7 +9,95 @@
           "police_report"
         ]
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "inspect_document",
+          "superstep": 0,
+          "update": "estimate:ready",
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "inspect_document",
+          "superstep": 0,
+          "update": "receipt:ready",
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "inspect_document",
+          "superstep": 0,
+          "update": "police_report:review",
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "functional",
+          "superstep": 0,
+          "update": [
+            "estimate:ready",
+            "police_report:review",
+            "receipt:ready"
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "__start__",
+          "superstep": 0,
+          "update": {
+            "documents": [
+              "estimate",
+              "receipt",
+              "police_report"
+            ],
+            "findings": []
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "inspect_document",
+          "superstep": 1,
+          "update": {
+            "findings": [
+              "estimate:ready"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "inspect_document",
+          "superstep": 1,
+          "update": {
+            "findings": [
+              "receipt:ready"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "inspect_document",
+          "superstep": 1,
+          "update": {
+            "findings": [
+              "police_report:review"
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "functional": [
@@ -28,7 +116,27 @@
       "input": {
         "documents": []
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "functional",
+          "superstep": 0,
+          "update": [],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "__start__",
+          "superstep": 0,
+          "update": {
+            "documents": [],
+            "findings": []
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "functional": [],

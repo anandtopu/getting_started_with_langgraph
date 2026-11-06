@@ -1,12 +1,160 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "first_status": "in_progress",
         "include_planning": true
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "PatchToolCallsMiddleware.before_agent",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 2,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "write_todos",
+                        "args": {
+                          "todos": [
+                            {
+                              "content": "Read the policy deductible",
+                              "status": "completed"
+                            },
+                            {
+                              "content": "Review the contractor estimate",
+                              "status": "pending"
+                            }
+                          ]
+                        },
+                        "id": "plan-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "TodoListMiddleware.after_model",
+          "superstep": 3,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 4,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "todos": [
+                  {
+                    "content": "Read the policy deductible",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "Review the contractor estimate",
+                    "status": "pending"
+                  }
+                ],
+                "messages": [
+                  {
+                    "content": "Updated todo list to [{'content': 'Read the policy deductible', 'status': 'completed'}, {'content': 'Review the contractor estimate', 'status': 'pending'}]",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "tool",
+                    "name": "write_todos",
+                    "id": null,
+                    "tool_call_id": "plan-1",
+                    "artifact": null,
+                    "status": "success"
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 5,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The policy and document investigation plan is recorded.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "TodoListMiddleware.after_model",
+          "superstep": 6,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "_ParentNotifierMiddleware.after_agent",
+          "superstep": 7,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "todos": [
@@ -31,7 +179,155 @@
         "first_status": "completed",
         "include_planning": true
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "PatchToolCallsMiddleware.before_agent",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 2,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "write_todos",
+                        "args": {
+                          "todos": [
+                            {
+                              "content": "Read the policy deductible",
+                              "status": "completed"
+                            },
+                            {
+                              "content": "Review the contractor estimate",
+                              "status": "pending"
+                            }
+                          ]
+                        },
+                        "id": "plan-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "TodoListMiddleware.after_model",
+          "superstep": 3,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 4,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "todos": [
+                  {
+                    "content": "Read the policy deductible",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "Review the contractor estimate",
+                    "status": "pending"
+                  }
+                ],
+                "messages": [
+                  {
+                    "content": "Updated todo list to [{'content': 'Read the policy deductible', 'status': 'completed'}, {'content': 'Review the contractor estimate', 'status': 'pending'}]",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "tool",
+                    "name": "write_todos",
+                    "id": null,
+                    "tool_call_id": "plan-1",
+                    "artifact": null,
+                    "status": "success"
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 5,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The policy and document investigation plan is recorded.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "TodoListMiddleware.after_model",
+          "superstep": 6,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "_ParentNotifierMiddleware.after_agent",
+          "superstep": 7,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "todos": [

@@ -1,11 +1,107 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "claim_id": "CLM-0001"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "read_claim",
+                        "args": {
+                          "claim_id": "CLM-0001"
+                        },
+                        "id": "mcp-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\n  \"claim_id\": \"CLM-0001\",\n  \"claim_type\": \"water\",\n  \"amount_cents\": 2096759,\n  \"route\": \"specialist\"\n}",
+                    "id": "lc_<runtime-id>"
+                  }
+                ],
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "read_claim",
+                "id": "<runtime-id>",
+                "tool_call_id": "mcp-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Synthetic evidence read; no payment capability was exposed.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "tools": [
@@ -35,7 +131,103 @@
       "input": {
         "claim_id": "CLM-0002"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "model",
+          "superstep": 1,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "read_claim",
+                        "args": {
+                          "claim_id": "CLM-0001"
+                        },
+                        "id": "mcp-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 2,
+          "update": {
+            "messages": [
+              {
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "{\n  \"claim_id\": \"CLM-0001\",\n  \"claim_type\": \"water\",\n  \"amount_cents\": 2096759,\n  \"route\": \"specialist\"\n}",
+                    "id": "lc_<runtime-id>"
+                  }
+                ],
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "tool",
+                "name": "read_claim",
+                "id": "<runtime-id>",
+                "tool_call_id": "mcp-1",
+                "artifact": null,
+                "status": "success"
+              }
+            ]
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "Synthetic evidence read; no payment capability was exposed.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "tools": [

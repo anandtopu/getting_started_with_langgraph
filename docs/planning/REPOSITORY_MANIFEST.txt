@@ -4543,6 +4543,7 @@ scripts/build_data.py
 scripts/build_diagrams.py
 scripts/build_indexes.py
 scripts/build_reference_docs.py
+scripts/build_trace_evidence.py
 scripts/check_capstone.py
 scripts/check_coverage.py
 scripts/check_deployment.py
@@ -4581,6 +4582,7 @@ tests/test_models.py
 tests/test_qa_identity.py
 tests/test_service_security.py
 tests/test_sse.py
+tests/test_trace_evidence.py
 tests/test_typescript_workspace.py
 tsconfig.json
 uv.lock

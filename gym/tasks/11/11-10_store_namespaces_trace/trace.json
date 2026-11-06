@@ -1,12 +1,33 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "customer_id": "CUS-0001",
         "preference": "email"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "remember",
+          "superstep": 1,
+          "update": {
+            "remembered": "email"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "remember",
+          "superstep": 1,
+          "update": {
+            "remembered": "phone"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "found": [
@@ -26,7 +47,28 @@
         "customer_id": "CUS-0033",
         "preference": "sms"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "remember",
+          "superstep": 1,
+          "update": {
+            "remembered": "sms"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "remember",
+          "superstep": 1,
+          "update": {
+            "remembered": "phone"
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "found": [

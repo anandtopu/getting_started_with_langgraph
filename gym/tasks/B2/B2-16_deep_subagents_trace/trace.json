@@ -1,12 +1,258 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
         "decision": "approve",
         "specialist": "policy_expert"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "PatchToolCallsMiddleware.before_agent",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.before_model",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "task",
+                        "args": {
+                          "description": "Explain only the synthetic deductible.",
+                          "subagent_type": "policy_expert"
+                        },
+                        "id": "delegate-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 4,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 4,
+          "update": {
+            "messages": [
+              {
+                "content": "",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-1",
+                "tool_calls": [
+                  {
+                    "name": "task",
+                    "args": {
+                      "description": "Explain only the synthetic deductible.",
+                      "subagent_type": "policy_expert"
+                    },
+                    "id": "delegate-1",
+                    "type": "tool_call"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ],
+            "hitl_edited_tool_calls": {}
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.after_model",
+          "superstep": 5,
+          "update": {
+            "thread_model_call_count": 1,
+            "run_model_call_count": 1
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "PatchToolCallsMiddleware.before_agent",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 2,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The synthetic deductible is 100000 cents.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": "policy_expert",
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 3,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 6,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The synthetic deductible is 100000 cents.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "tool",
+                    "name": "task",
+                    "id": null,
+                    "tool_call_id": "delegate-1",
+                    "artifact": null,
+                    "status": "success"
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.before_model",
+          "superstep": 7,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 8,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The delegation request is complete.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 9,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.after_model",
+          "superstep": 10,
+          "update": {
+            "thread_model_call_count": 2,
+            "run_model_call_count": 2
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "_ParentNotifierMiddleware.after_agent",
+          "superstep": 11,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "paused": 1,
@@ -22,7 +268,253 @@
         "decision": "reject",
         "specialist": "policy_expert"
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "PatchToolCallsMiddleware.before_agent",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.before_model",
+          "superstep": 2,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 3,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-1",
+                    "tool_calls": [
+                      {
+                        "name": "task",
+                        "args": {
+                          "description": "Explain only the synthetic deductible.",
+                          "subagent_type": "policy_expert"
+                        },
+                        "id": "delegate-1",
+                        "type": "tool_call"
+                      }
+                    ],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 4,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 4,
+          "update": {
+            "messages": [
+              {
+                "content": "",
+                "additional_kwargs": {},
+                "response_metadata": {},
+                "type": "ai",
+                "name": null,
+                "id": "scripted-1",
+                "tool_calls": [
+                  {
+                    "name": "task",
+                    "args": {
+                      "description": "Explain only the synthetic deductible.",
+                      "subagent_type": "policy_expert"
+                    },
+                    "id": "delegate-1",
+                    "type": "tool_call"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": null
+              }
+            ],
+            "hitl_edited_tool_calls": {}
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.after_model",
+          "superstep": 5,
+          "update": {
+            "thread_model_call_count": 1,
+            "run_model_call_count": 1
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "PatchToolCallsMiddleware.before_agent",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 2,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The synthetic deductible is 100000 cents.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": "policy_expert",
+                    "id": "scripted-1",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 3,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "tools",
+          "superstep": 6,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The synthetic deductible is 100000 cents.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "tool",
+                    "name": "task",
+                    "id": null,
+                    "tool_call_id": "delegate-1",
+                    "artifact": null,
+                    "status": "success"
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.before_model",
+          "superstep": 7,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "model",
+          "superstep": 8,
+          "update": [
+            {
+              "graph": null,
+              "update": {
+                "messages": [
+                  {
+                    "content": "The delegation request is complete.",
+                    "additional_kwargs": {},
+                    "response_metadata": {},
+                    "type": "ai",
+                    "name": null,
+                    "id": "scripted-2",
+                    "tool_calls": [],
+                    "invalid_tool_calls": [],
+                    "usage_metadata": null
+                  }
+                ]
+              },
+              "resume": null,
+              "goto": []
+            }
+          ],
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "HumanInTheLoopMiddleware.after_model",
+          "superstep": 9,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "ModelCallLimitMiddleware.after_model",
+          "superstep": 10,
+          "update": {
+            "thread_model_call_count": 2,
+            "run_model_call_count": 2
+          },
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        },
+        {
+          "node": "_ParentNotifierMiddleware.after_agent",
+          "superstep": 11,
+          "update": null,
+          "failed": false,
+          "paused": false,
+          "error_type": null
+        }
+      ],
       "observed_result": {
         "value": {
           "paused": 1,

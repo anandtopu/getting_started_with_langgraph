@@ -39,7 +39,7 @@ uv run --no-sync python scripts/validate_gym.py --release
 uv run --no-sync python scripts/validate_capstones.py
 ```
 
-Refactor starters must pass every original behavior case and fail a distinct structural requirement. Extend tasks preserve original fields/list prefixes/errors and add feature tests; the sequential batch exercises additionally keep `run(case)` exactly unchanged. Trace evidence comes from local execution callbacks; parallel siblings have no promised completion order, and child-process/plain-Python observations are labeled explicitly. `collect_runs` is local and does not require hosted tracing ([API reference](https://reference.langchain.com/python/langchain-core/tracers/context/collect_runs)).
+Refactor starters must pass every original behavior case and fail a distinct structural requirement. Extend tasks preserve original fields/list prefixes/errors and add feature tests; the sequential batch exercises additionally keep `run(case)` exactly unchanged. Trace evidence comes from a local `BaseCallbackHandler` attached through `register_configure_hook`; it does not require hosted tracing. Parallel siblings have no promised completion order. Approval pauses are distinct from failures; empty updates explicitly cover plain Python, child processes, and pre-execution rejection. Refresh evidence alone with `uv run --no-sync python -m common.offline scripts/build_trace_evidence.py`.
 
 The gym invalidates a recorded pass after either the attempt or its task grading contract changes. Learner work remains in the ignored workspace; updating the course never overwrites those attempts. Grading executes local Python, so it is a development tool, not an isolation boundary for running strangers' programs.
 

@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Empty updates mean execution is outside this process or uses plain Python.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -8,7 +8,16 @@
           "approved": true
         }
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "review",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        }
+      ],
       "observed_result": {
         "error": "RuntimeError"
       }
@@ -20,7 +29,16 @@
           "approved": false
         }
       },
-      "node_updates": [],
+      "node_updates": [
+        {
+          "node": "review",
+          "superstep": 1,
+          "update": null,
+          "failed": false,
+          "paused": true,
+          "error_type": "GraphInterrupt"
+        }
+      ],
       "observed_result": {
         "error": "RuntimeError"
       }
