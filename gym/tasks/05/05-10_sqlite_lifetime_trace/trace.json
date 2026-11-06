@@ -7,7 +7,7 @@
       },
       "node_updates": [],
       "observed_result": {
-        "error": "JSONDecodeError"
+        "error": "RuntimeError"
       }
     },
     {
@@ -16,7 +16,7 @@
       },
       "node_updates": [],
       "observed_result": {
-        "error": "JSONDecodeError"
+        "error": "RuntimeError"
       }
     }
   ]

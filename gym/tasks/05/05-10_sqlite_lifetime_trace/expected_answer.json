@@ -1,10 +1,10 @@
 {
   "observations": [
     {
-      "error": "JSONDecodeError"
+      "error": "RuntimeError"
     },
     {
-      "error": "JSONDecodeError"
+      "error": "RuntimeError"
     }
   ],
   "cause": "A compiled graph cannot use a saver whose connection has closed."

@@ -65,7 +65,11 @@ def validate(*, release: bool = False, identifier: str | None = None, jobs: int 
             if task.answer_task:
                 oracle = load_module(task.folder / "solution.py").run()
                 if oracle != json.loads(solution.read_text("utf-8")):
-                    errors.append(f"{task.id}: committed answer differs from actual oracle output.")
+                    errors.append(
+                        f"{task.id}: committed answer differs from actual oracle output.\n"
+                        f"Expected: {solution.read_text('utf-8').strip()}\n"
+                        f"Observed: {json.dumps(oracle, ensure_ascii=False, default=str)}"
+                    )
             else:
                 starter = check_task(task, task.folder / "starter.py")
                 if task.type == "refactor":

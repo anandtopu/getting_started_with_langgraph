@@ -62,7 +62,12 @@ def task_source(source: str, title: str) -> str:
     )
     body = source.splitlines()[main.lineno : main.end_lineno]
     replacement = "def main() -> None:\n    try:\n" + "\n".join("    " + line for line in body)
-    replacement += '\n    except Exception as error:\n        print_state({"observed_error": type(error).__name__})\n'
+    replacement += "\n    except Exception as error:\n"
+    if "--worker" in source:
+        # Supervisors need the worker's nonzero exit and traceback. Only the
+        # learner-facing demo may turn an intentional failure into printed output.
+        replacement += '        if "--worker" in sys.argv:\n            raise\n'
+    replacement += '        print_state({"observed_error": type(error).__name__})\n'
     return replace_function(source, "main", replacement)
 
 

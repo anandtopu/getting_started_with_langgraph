@@ -4584,5 +4584,6 @@ tests/test_service_security.py
 tests/test_sse.py
 tests/test_trace_evidence.py
 tests/test_typescript_workspace.py
+tests/test_worker_errors.py
 tsconfig.json
 uv.lock

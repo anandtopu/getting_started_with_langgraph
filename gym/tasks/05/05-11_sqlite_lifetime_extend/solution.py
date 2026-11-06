@@ -104,6 +104,8 @@ def main() -> None:
         else:
             print_state(run())
     except Exception as error:
+        if "--worker" in sys.argv:
+            raise
         print_state({"observed_error": type(error).__name__})
 
 
