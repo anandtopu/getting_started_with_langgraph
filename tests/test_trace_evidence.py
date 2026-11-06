@@ -1,6 +1,7 @@
 """Trace teaching evidence must contain actual node updates, including the failing node."""
 
 import json
+from asyncio import CancelledError
 from types import SimpleNamespace
 from typing import TypedDict
 
@@ -9,7 +10,8 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
 
 from common.config import ROOT
-from scripts.authoring.traces import capture
+from common.loading import load_module
+from scripts.authoring.traces import NodeRecorder, capture
 
 
 def test_trace_captures_node_updates_and_the_first_failed_node():
@@ -61,3 +63,23 @@ def test_published_intake_trace_contains_the_failed_update():
         assert case["node_updates"]
         assert case["node_updates"][-1]["failed"] is True
         assert case["node_updates"][-1]["error_type"] == "InvalidUpdateError"
+
+
+def test_parent_graph_handoff_is_control_flow_not_failure():
+    module = load_module(ROOT / "gym/tasks/14/14-10_handoffs_trace/trace.py")
+    evidence = capture(module, [module.DEFAULT_CASE])["cases"][0]
+    assert "value" in evidence["observed_result"]
+    handoffs = [row for row in evidence["node_updates"] if row["error_type"] == "ParentCommand"]
+    assert handoffs
+    assert all(row["status"] == "handoff" and not row["failed"] for row in handoffs)
+    assert handoffs[0]["update"]["update"]["active_agent"] == "policy"
+
+
+def test_cancelled_callback_is_distinct_from_execution_failure():
+    recorder = NodeRecorder()
+    recorder.on_chain_start(
+        None, {}, run_id="cancelled", name="stream", metadata={"langgraph_node": "stream"}
+    )
+    recorder.on_chain_error(CancelledError(), run_id="cancelled")
+    assert recorder.updates[0]["status"] == "cancelled"
+    assert recorder.updates[0]["failed"] is False

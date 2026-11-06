@@ -1,12 +1,13 @@
 """Capture local node-update evidence for Trace exercises, without hosted tracing."""
 
 import re
+from asyncio import CancelledError
 from contextvars import ContextVar
 from threading import Lock
 
 from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.tracers.context import register_configure_hook
-from langgraph.errors import GraphInterrupt
+from langgraph.errors import GraphInterrupt, ParentCommand
 
 from common.exercises import observe
 from common.pretty import safe_value
@@ -47,13 +48,24 @@ class NodeRecorder(BaseCallbackHandler):
         with self.lock:
             entry = self.pending.pop(run_id, None)
             if entry is not None:
-                paused = isinstance(error, GraphInterrupt)
+                status = (
+                    "completed"
+                    if error is None
+                    else "paused"
+                    if isinstance(error, GraphInterrupt)
+                    else "handoff"
+                    if isinstance(error, ParentCommand)
+                    else "cancelled"
+                    if isinstance(error, CancelledError)
+                    else "failed"
+                )
                 self.updates.append(
                     {
                         **entry,
                         "update": stable(output),
-                        "failed": error is not None and not paused,
-                        "paused": paused,
+                        "status": status,
+                        "failed": status == "failed",
+                        "paused": status == "paused",
                         "error_type": type(error).__name__ if error is not None else None,
                     }
                 )
@@ -62,7 +74,8 @@ class NodeRecorder(BaseCallbackHandler):
         self.finish(run_id, outputs)
 
     def on_chain_error(self, error, *, run_id, **kwargs):
-        self.finish(run_id, None, error)
+        output = error.args[0] if isinstance(error, ParentCommand) else None
+        self.finish(run_id, output, error)
 
 
 _RECORDER = ContextVar("course_node_recorder", default=None)
@@ -82,6 +95,6 @@ def capture(module, cases):
             {"input": case, "node_updates": recorder.updates, "observed_result": result}
         )
     return {
-        "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
+        "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Status distinguishes completion, approval pauses, parent-graph handoffs, cancellation, and failures. An internal control-flow exception does not imply a failed run. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
         "cases": evidence,
     }

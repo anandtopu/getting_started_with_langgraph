@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Status distinguishes completion, approval pauses, parent-graph handoffs, cancellation, and failures. An internal control-flow exception does not imply a failed run. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -16,6 +16,7 @@
             "description": "Pipe burst",
             "amount_cents": 125000
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -24,6 +25,7 @@
           "node": "route",
           "superstep": 0,
           "update": "standard",
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -37,6 +39,7 @@
             "amount_cents": 125000,
             "route": "standard"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -66,6 +69,7 @@
             "description": "Pipe burst",
             "amount_cents": 100000
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -74,6 +78,7 @@
           "node": "route",
           "superstep": 0,
           "update": "standard",
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -87,6 +92,7 @@
             "amount_cents": 100000,
             "route": "standard"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null

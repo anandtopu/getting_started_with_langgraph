@@ -13,14 +13,14 @@ Tasks use stable IDs from [the catalog](docs/GYM_TASK_CATALOG.md). Publish a tas
 For a complete release check, install `uv sync --locked --all-extras --group maintain` and `npm ci`. Use `uv run --no-sync` for the checks below to retain installed extras. A base installation is useful for testing graceful optional-dependency skips, but does not validate the full course.
 
 ```text
-uv run ruff check .
-uv run ruff format --check .
-uv run pytest
-uv run python scripts/validate_gym.py
-uv run python scripts/run_all_examples.py
-uv run python scripts/check_coverage.py
-uv run python scripts/check_links.py
-uv run python scripts/check_legacy_apis.py
+uv run --no-sync ruff check .
+uv run --no-sync ruff format --check .
+uv run --no-sync pytest
+uv run --no-sync python scripts/validate_gym.py
+uv run --no-sync python scripts/run_all_examples.py
+uv run --no-sync python scripts/check_coverage.py
+uv run --no-sync python scripts/check_links.py
+uv run --no-sync python scripts/check_legacy_apis.py
 ```
 
 Use `--release` on gym/coverage validators only when checking the finished course. Until then, a release failure is expected and must not be hidden. Optional provider, Docker, and hosted-service tests are separate from the offline suite.
@@ -39,7 +39,7 @@ uv run --no-sync python scripts/validate_gym.py --release
 uv run --no-sync python scripts/validate_capstones.py
 ```
 
-Refactor starters must pass every original behavior case and fail a distinct structural requirement. Extend tasks preserve original fields/list prefixes/errors and add feature tests; the sequential batch exercises additionally keep `run(case)` exactly unchanged. Trace evidence comes from a local `BaseCallbackHandler` attached through `register_configure_hook`; it does not require hosted tracing. Parallel siblings have no promised completion order. Approval pauses are distinct from failures; empty updates explicitly cover plain Python, child processes, and pre-execution rejection. Refresh evidence alone with `uv run --no-sync python -m common.offline scripts/build_trace_evidence.py`.
+Refactor starters must pass every original behavior case and fail a distinct structural requirement. Extend tasks preserve original fields/list prefixes/errors and add feature tests; the sequential batch exercises additionally keep `run(case)` exactly unchanged. Trace evidence comes from a local `BaseCallbackHandler` attached through `register_configure_hook`; it does not require hosted tracing. Parallel siblings have no promised completion order. Approval pauses, parent-graph handoffs, cancellation, and execution failures have distinct statuses. Handoff records retain the Command payload. Empty updates explicitly cover plain Python, child processes, and pre-execution rejection. Refresh evidence alone with `uv run --no-sync python -m common.offline scripts/build_trace_evidence.py`.
 
 The gym invalidates a recorded pass after either the attempt or its task grading contract changes. Learner work remains in the ignored workspace; updating the course never overwrites those attempts. Grading executes local Python, so it is a development tool, not an isolation boundary for running strangers' programs.
 

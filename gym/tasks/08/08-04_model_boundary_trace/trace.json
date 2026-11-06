@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Status distinguishes completion, approval pauses, parent-graph handoffs, cancellation, and failures. An internal control-flow exception does not imply a failed run. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -19,6 +19,7 @@
               "confidence": 0.9
             }
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -29,6 +30,7 @@
           "update": {
             "route": "standard"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -64,6 +66,7 @@
               "confidence": 0.9
             }
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -74,6 +77,7 @@
           "update": {
             "route": "standard"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null

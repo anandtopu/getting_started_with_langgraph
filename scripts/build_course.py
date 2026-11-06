@@ -324,7 +324,7 @@ def test_original_contract_survives_extension(candidate, case):
         guide += f"## The claim scenario\n\n{spec['idea']}\n\n"
         guide += f"## Your task\n\n{reason if kind not in {'predict', 'design', 'trace'} else task['description']} "
         guide += (
-            "Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Approval pauses are labeled separately from failures. If no node update was observed, use the recorded result and program to locate a pre-execution rejection or a plain-Python/child-process fault. Explain the first broken contract and how it causes the observed result."
+            "Inspect trace.json before reading trace.py. The node updates are captured locally from execution, with superstep labels where available; siblings can finish in either order. Approval pauses, parent-graph handoffs, and cancellation are labeled separately from execution failures. If no node update was observed, use the recorded result and program to locate a pre-execution rejection or a plain-Python/child-process fault. Explain the first broken contract and how it causes the observed result."
             if kind == "trace"
             else "Predict each result before running the example. Keep the observations in the listed input order."
             if kind == "predict"

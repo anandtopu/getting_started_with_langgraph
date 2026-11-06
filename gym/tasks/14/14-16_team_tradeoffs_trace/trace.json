@@ -1,5 +1,5 @@
 {
-  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Paused nodes await a decision rather than failing. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
+  "format": "Local callback node-update trace; sibling order is not a scheduling guarantee. Status distinguishes completion, approval pauses, parent-graph handoffs, cancellation, and failures. An internal control-flow exception does not imply a failed run. Empty updates mean no in-process node callback was observed: plain Python, child processes, or pre-execution rejection can produce this result.",
   "cases": [
     {
       "input": {
@@ -17,6 +17,7 @@
             "reports": [],
             "complete": false
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -37,6 +38,7 @@
             "resume": null,
             "goto": "intake"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -57,6 +59,7 @@
             "resume": null,
             "goto": "intake"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -77,6 +80,7 @@
             "resume": null,
             "goto": "intake"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -97,6 +101,7 @@
             "resume": null,
             "goto": "intake"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -112,6 +117,7 @@
             "resume": null,
             "goto": "__end__"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -148,6 +154,7 @@
             "reports": [],
             "complete": false
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -168,6 +175,7 @@
             "resume": null,
             "goto": "intake"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -188,6 +196,7 @@
             "resume": null,
             "goto": "intake"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
@@ -203,6 +212,7 @@
             "resume": null,
             "goto": "__end__"
           },
+          "status": "completed",
           "failed": false,
           "paused": false,
           "error_type": null
