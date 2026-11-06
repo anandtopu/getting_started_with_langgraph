@@ -572,7 +572,7 @@ These are observed faults in runnable starters. Each entry includes an actual co
 
 ```json
 {
-  "error": "JSONDecodeError"
+  "error": "RuntimeError"
 }
 ```
 

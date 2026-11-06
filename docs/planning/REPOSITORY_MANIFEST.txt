@@ -303,6 +303,7 @@ docs/verification/pypi-metadata.json
 docs/verification/remaining_phases_package_check.json
 docs/verification/requirements-plan.in
 docs/verification/resolved-plan.txt
+docs/verification/review_ci.json
 docs/verification/source-checks.json
 gym/__init__.py
 gym/answers.py

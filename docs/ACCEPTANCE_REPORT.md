@@ -1,6 +1,8 @@
 # Course acceptance report
 
-All seven implementation phases are complete. The [original build acceptance workflow](https://github.com/anandtopu/getting_started_with_langgraph/actions/runs/42185228068) passed **all 14 jobs** on November 6, 2026 for [eabf7f6](https://github.com/anandtopu/getting_started_with_langgraph/commit/eabf7f6ad146c9e7e787cc6e5457f20340eaeed1). The [subsequent repository review](reviews/2026-11-06/README.md) adds runtime, grading, and teaching corrections. Its [current validation evidence](reviews/2026-11-06/ACTION_PLAN.md) supersedes the historical build measurements below.
+All seven implementation phases are complete. The [repository review](reviews/2026-11-06/README.md) fixed 23 runtime, grading, and teaching issues. Its [final acceptance workflow](https://github.com/anandtopu/getting_started_with_langgraph/actions/runs/42259016717) passed **all 14 jobs** on November 6, 2026 for [88332b0](https://github.com/anandtopu/getting_started_with_langgraph/commit/88332b09198cae903bfade24920d1ebd2c246082). The [current validation evidence](reviews/2026-11-06/ACTION_PLAN.md) records 410 passing tests and the investigation of one earlier, unreproduced Windows grading mismatch.
+
+The historical measurements below come from the [original build acceptance workflow](https://github.com/anandtopu/getting_started_with_langgraph/actions/runs/42185228068) for [eabf7f6](https://github.com/anandtopu/getting_started_with_langgraph/commit/eabf7f6ad146c9e7e787cc6e5457f20340eaeed1).
 
 ## Delivered
 
@@ -11,7 +13,7 @@ All seven implementation phases are complete. The [original build acceptance wor
 - Reproducible synthetic claims, customers, policies, documents, emails, and evaluation fixtures.
 - Linked learning schedules and coverage, 30 observed bugs, 88 glossary terms, troubleshooting and migration guides, and five printable single-page PDFs.
 
-## Verified results
+## Original build results
 
 | Check | Observed result |
 | --- | --- |
