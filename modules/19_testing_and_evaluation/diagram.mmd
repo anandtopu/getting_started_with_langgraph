@@ -1,0 +1,52 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	announce(announce)
+	complete_review(complete_review)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> announce;
+	announce --> durable_review\3aawait_estimate;
+	durable_review\3areview_claim\3aconsult_specialists --> complete_review;
+	complete_review --> __end__;
+	subgraph durable_review
+	durable_review\3aawait_estimate(await_estimate)
+	durable_review\3aawait_estimate --> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
+	subgraph review_claim
+	durable_review\3areview_claim\3aconsult_specialists(consult_specialists)
+	durable_review\3areview_claim\3afraud_review\3ainspect_evidence --> durable_review\3areview_claim\3aconsult_specialists;
+	durable_review\3areview_claim\3aintake_policy_memory\3adraft_letter --> durable_review\3areview_claim\3afraud_review\3ainspect_evidence;
+	subgraph intake_policy_memory
+	durable_review\3areview_claim\3aintake_policy_memory\3aremember(remember)
+	durable_review\3areview_claim\3aintake_policy_memory\3adraft_letter(draft_letter)
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent --> durable_review\3areview_claim\3aintake_policy_memory\3aremember;
+	durable_review\3areview_claim\3aintake_policy_memory\3aremember --> durable_review\3areview_claim\3aintake_policy_memory\3adraft_letter;
+	subgraph intake_and_evidence
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent(policy_agent)
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim --> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent;
+	subgraph intake
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract(extract)
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract --> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize;
+	subgraph process_claim
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize(normalize)
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate(validate)
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document(review_document)
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute(route<hr/><small><em>defer = True</em></small>)
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim(approve_claim)
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize --> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate;
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document --> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute;
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute --> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim;
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate -.-> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document;
+	durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate -.-> durable_review\3areview_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute;
+	end
+	end
+	end
+	end
+	end
+	end
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

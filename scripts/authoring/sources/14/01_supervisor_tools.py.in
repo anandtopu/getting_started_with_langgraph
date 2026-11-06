@@ -43,7 +43,7 @@ def run(case: dict | None = None) -> dict:
     seen = []
     # Private notes are intentionally not forwarded to either specialist.
     result = build_graph(seen).invoke({"messages": [HumanMessage(content=case["question"])]}, version="v2").value
-    return {"specialists": sorted(seen, key=lambda item: item["role"]),
+    return {"specialists": sorted(seen, key=lambda item: (item["role"], item["input"])),
             "tool_names": sorted(message.name for message in result["messages"] if message.type == "tool"),
             "reports": sorted(message.content for message in result["messages"] if message.type == "tool"),
             "final": result["messages"][-1].content, "private_note_leaked": any(case["private_note"] in item["input"] for item in seen)}

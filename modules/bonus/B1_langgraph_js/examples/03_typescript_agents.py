@@ -1,6 +1,7 @@
 """Python gym bridge to the adjacent real TypeScript implementation. No live model.
 
-Run with uv run python FILE after npm ci. The .ts file is the learner implementation.
+Run: uv run --no-sync python modules/bonus/B1_langgraph_js/examples/03_typescript_agents.py
+Install Node dependencies with npm ci first. The adjacent .ts file is the learner implementation.
 """
 
 from pathlib import Path

@@ -1,0 +1,46 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	await_estimate(await_estimate)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> await_estimate;
+	await_estimate --> review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
+	review_claim\3aconsult_specialists --> __end__;
+	subgraph review_claim
+	review_claim\3aconsult_specialists(consult_specialists)
+	review_claim\3afraud_review\3ainspect_evidence --> review_claim\3aconsult_specialists;
+	review_claim\3aintake_policy_memory\3adraft_letter --> review_claim\3afraud_review\3ainspect_evidence;
+	subgraph intake_policy_memory
+	review_claim\3aintake_policy_memory\3aremember(remember)
+	review_claim\3aintake_policy_memory\3adraft_letter(draft_letter)
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent --> review_claim\3aintake_policy_memory\3aremember;
+	review_claim\3aintake_policy_memory\3aremember --> review_claim\3aintake_policy_memory\3adraft_letter;
+	subgraph intake_and_evidence
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent(policy_agent)
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim --> review_claim\3aintake_policy_memory\3aintake_and_evidence\3apolicy_agent;
+	subgraph intake
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract(extract)
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aextract --> review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize;
+	subgraph process_claim
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize(normalize)
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate(validate)
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document(review_document)
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute(route<hr/><small><em>defer = True</em></small>)
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim(approve_claim)
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize --> review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate;
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document --> review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute;
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute --> review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim;
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate -.-> review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document;
+	review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate -.-> review_claim\3aintake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute;
+	end
+	end
+	end
+	end
+	end
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

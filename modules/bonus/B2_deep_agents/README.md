@@ -24,6 +24,36 @@ Plan a larger claim investigation using explicit planning and bounded subagents.
 
 ## How it works
 
+Generated from the actual planning agent before invocation.
+
+```mermaid
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	model(model)
+	tools(tools<hr/><small><em>__tools = ls, read_file, write_file, edit_file, delete, glob, grep, execute, task, write_todos</em></small>)
+	_ParentNotifierMiddleware\2eafter_agent(_ParentNotifierMiddleware.after_agent)
+	PatchToolCallsMiddleware\2ebefore_agent(PatchToolCallsMiddleware.before_agent)
+	TodoListMiddleware\2eafter_model(TodoListMiddleware.after_model)
+	__end__([<p>__end__</p>]):::last
+	PatchToolCallsMiddleware\2ebefore_agent --> model;
+	TodoListMiddleware\2eafter_model -.-> _ParentNotifierMiddleware\2eafter_agent;
+	TodoListMiddleware\2eafter_model -.-> model;
+	TodoListMiddleware\2eafter_model -.-> tools;
+	__start__ --> PatchToolCallsMiddleware\2ebefore_agent;
+	model --> TodoListMiddleware\2eafter_model;
+	tools -.-> model;
+	_ParentNotifierMiddleware\2eafter_agent --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
+
+```
+
 ### Deep Agent Planning
 
 create_deep_agent supplies an agent harness, but current defaults should be inspected rather than remembered from older tutorials. This pinned release uses explicit TodoListMiddleware for planning. The write_todos tool updates declared task state; marking an item completed is not evidence that the underlying investigation actually happened.

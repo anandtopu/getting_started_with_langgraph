@@ -24,6 +24,24 @@ Port core claim workflows and the tool loop to TypeScript. Predict the state bef
 
 ## How it works
 
+Generated with drawMermaid() from the actual TypeScript state example before invocation.
+
+```mermaid
+%%{init: {'flowchart': {'curve': 'linear'}}}%%
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	normalize(normalize)
+	assign_route(assign_route)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> normalize;
+	assign_route --> __end__;
+	normalize --> assign_route;
+	classDef default fill:#f2f0ff,line-height:1.2;
+	classDef first fill-opacity:0;
+	classDef last fill:#bfb6fc;
+
+```
+
 ### Typescript State
 
 TypeScript adds static types to JavaScript; StateSchema uses Zod schemas for graph state and ReducedValue declares merges. Nodes return partial objects, await obtains a Promise result, and integer cents preserve Python parity. The JavaScript API returns state directly here; do not assume Python's v2 result wrapper exists in another language.

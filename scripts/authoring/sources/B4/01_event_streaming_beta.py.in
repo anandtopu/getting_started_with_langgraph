@@ -1,4 +1,4 @@
-"""Beta: consume v3 typed projections without confusing them with v2 parts. Two fake calls.
+"""Beta: consume v3 typed projections without confusing them with v2 parts. Three fake calls.
 
 Run: uv run python modules/bonus/B4_whats_new/examples/01_event_streaming_beta.py
 Expected: message text and final state agree; lifecycle protocol events are also available.

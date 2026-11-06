@@ -3905,6 +3905,7 @@ gym/tasks/B4/B4-18_typed_approvals_design/task.md
 gym/tasks/B4/B4-18_typed_approvals_design/test_task.py
 langgraph.json
 modules/00_setup/README.md
+modules/00_setup/diagram.mmd
 modules/00_setup/examples/01_plain_checklist.mmd
 modules/00_setup/examples/01_plain_checklist.py
 modules/00_setup/examples/02_environment.py
@@ -3916,6 +3917,7 @@ modules/00_setup/tests/first_gym.json
 modules/00_setup/tests/test_examples.py
 modules/00_setup/use_case/claims_copilot.py
 modules/01_your_first_graph/README.md
+modules/01_your_first_graph/diagram.mmd
 modules/01_your_first_graph/examples/01_intake_nodes.mmd
 modules/01_your_first_graph/examples/01_intake_nodes.py
 modules/01_your_first_graph/examples/02_wire_pipeline.mmd
@@ -3930,6 +3932,7 @@ modules/01_your_first_graph/tests/test_examples.py
 modules/01_your_first_graph/tests/wire_pipeline.json
 modules/01_your_first_graph/use_case/claims_copilot.py
 modules/02_state_and_reducers/README.md
+modules/02_state_and_reducers/diagram.mmd
 modules/02_state_and_reducers/examples/01_schema_contracts.mmd
 modules/02_state_and_reducers/examples/01_schema_contracts.py
 modules/02_state_and_reducers/examples/02_reducer_findings.mmd
@@ -3944,6 +3947,7 @@ modules/02_state_and_reducers/tests/state_boundaries.json
 modules/02_state_and_reducers/tests/test_examples.py
 modules/02_state_and_reducers/use_case/claims_copilot.py
 modules/03_branching_and_routing/README.md
+modules/03_branching_and_routing/diagram.mmd
 modules/03_branching_and_routing/examples/01_conditional_router.mmd
 modules/03_branching_and_routing/examples/01_conditional_router.py
 modules/03_branching_and_routing/examples/02_command_routes.mmd
@@ -3958,6 +3962,7 @@ modules/03_branching_and_routing/tests/early_exit.json
 modules/03_branching_and_routing/tests/test_examples.py
 modules/03_branching_and_routing/use_case/claims_copilot.py
 modules/04_loops_parallel_map_reduce/README.md
+modules/04_loops_parallel_map_reduce/diagram.mmd
 modules/04_loops_parallel_map_reduce/examples/01_bounded_rechecks.mmd
 modules/04_loops_parallel_map_reduce/examples/01_bounded_rechecks.py
 modules/04_loops_parallel_map_reduce/examples/02_fan_out_fan_in.mmd
@@ -3971,6 +3976,7 @@ modules/04_loops_parallel_map_reduce/tests/retry_and_cache.json
 modules/04_loops_parallel_map_reduce/tests/test_examples.py
 modules/04_loops_parallel_map_reduce/use_case/claims_copilot.py
 modules/05_persistence_and_threads/README.md
+modules/05_persistence_and_threads/diagram.mmd
 modules/05_persistence_and_threads/examples/01_thread_identity.mmd
 modules/05_persistence_and_threads/examples/01_thread_identity.py
 modules/05_persistence_and_threads/examples/02_sqlite_lifetime.py
@@ -3984,6 +3990,7 @@ modules/05_persistence_and_threads/tests/test_examples.py
 modules/05_persistence_and_threads/tests/thread_identity.json
 modules/05_persistence_and_threads/use_case/claims_copilot.py
 modules/06_human_in_the_loop/README.md
+modules/06_human_in_the_loop/diagram.mmd
 modules/06_human_in_the_loop/examples/01_approve_or_reject.mmd
 modules/06_human_in_the_loop/examples/01_approve_or_reject.py
 modules/06_human_in_the_loop/examples/02_collect_and_edit.mmd
@@ -3997,6 +4004,7 @@ modules/06_human_in_the_loop/tests/safe_reentry.json
 modules/06_human_in_the_loop/tests/test_examples.py
 modules/06_human_in_the_loop/use_case/claims_copilot.py
 modules/07_time_travel_and_streaming/README.md
+modules/07_time_travel_and_streaming/diagram.mmd
 modules/07_time_travel_and_streaming/examples/01_replay_and_fork.mmd
 modules/07_time_travel_and_streaming/examples/01_replay_and_fork.py
 modules/07_time_travel_and_streaming/examples/02_v2_stream_parts.mmd
@@ -4011,6 +4019,7 @@ modules/07_time_travel_and_streaming/tests/test_examples.py
 modules/07_time_travel_and_streaming/tests/v2_stream_parts.json
 modules/07_time_travel_and_streaming/use_case/claims_copilot.py
 modules/08_llms_inside_nodes/README.md
+modules/08_llms_inside_nodes/diagram.mmd
 modules/08_llms_inside_nodes/examples/01_model_boundary.mmd
 modules/08_llms_inside_nodes/examples/01_model_boundary.py
 modules/08_llms_inside_nodes/examples/02_message_identity.mmd
@@ -4025,6 +4034,7 @@ modules/08_llms_inside_nodes/tests/test_examples.py
 modules/08_llms_inside_nodes/tests/tokens_and_fakes.json
 modules/08_llms_inside_nodes/use_case/claims_copilot.py
 modules/09_tools_and_agent_loop/README.md
+modules/09_tools_and_agent_loop/diagram.mmd
 modules/09_tools_and_agent_loop/examples/01_tools_and_messages.mmd
 modules/09_tools_and_agent_loop/examples/01_tools_and_messages.py
 modules/09_tools_and_agent_loop/examples/02_manual_react.mmd
@@ -4039,6 +4049,7 @@ modules/09_tools_and_agent_loop/tests/tool_runtime.json
 modules/09_tools_and_agent_loop/tests/tools_and_messages.json
 modules/09_tools_and_agent_loop/use_case/claims_copilot.py
 modules/10_prebuilt_agents/README.md
+modules/10_prebuilt_agents/diagram.mmd
 modules/10_prebuilt_agents/examples/01_create_agent.mmd
 modules/10_prebuilt_agents/examples/01_create_agent.py
 modules/10_prebuilt_agents/examples/02_middleware.py
@@ -4052,6 +4063,7 @@ modules/10_prebuilt_agents/tests/middleware.json
 modules/10_prebuilt_agents/tests/test_examples.py
 modules/10_prebuilt_agents/use_case/claims_copilot.py
 modules/11_memory/README.md
+modules/11_memory/diagram.mmd
 modules/11_memory/examples/01_short_term_memory.py
 modules/11_memory/examples/02_store_namespaces.mmd
 modules/11_memory/examples/02_store_namespaces.py
@@ -4064,6 +4076,7 @@ modules/11_memory/tests/store_namespaces.json
 modules/11_memory/tests/test_examples.py
 modules/11_memory/use_case/claims_copilot.py
 modules/12_workflow_patterns/README.md
+modules/12_workflow_patterns/diagram.mmd
 modules/12_workflow_patterns/examples/01_chains_and_gates.mmd
 modules/12_workflow_patterns/examples/01_chains_and_gates.py
 modules/12_workflow_patterns/examples/02_orchestrator_workers.mmd
@@ -4077,6 +4090,7 @@ modules/12_workflow_patterns/tests/orchestrator_workers.json
 modules/12_workflow_patterns/tests/test_examples.py
 modules/12_workflow_patterns/use_case/claims_copilot.py
 modules/13_subgraphs/README.md
+modules/13_subgraphs/diagram.mmd
 modules/13_subgraphs/examples/01_shared_subgraph.mmd
 modules/13_subgraphs/examples/01_shared_subgraph.py
 modules/13_subgraphs/examples/02_schema_adapters.mmd
@@ -4091,6 +4105,7 @@ modules/13_subgraphs/tests/subgraph_persistence.json
 modules/13_subgraphs/tests/test_examples.py
 modules/13_subgraphs/use_case/claims_copilot.py
 modules/14_multi_agent_systems/README.md
+modules/14_multi_agent_systems/diagram.mmd
 modules/14_multi_agent_systems/examples/01_supervisor_tools.py
 modules/14_multi_agent_systems/examples/02_handoffs.mmd
 modules/14_multi_agent_systems/examples/02_handoffs.py
@@ -4104,6 +4119,7 @@ modules/14_multi_agent_systems/tests/team_tradeoffs.json
 modules/14_multi_agent_systems/tests/test_examples.py
 modules/14_multi_agent_systems/use_case/claims_copilot.py
 modules/15_functional_api/README.md
+modules/15_functional_api/diagram.mmd
 modules/15_functional_api/examples/01_entrypoints_tasks.py
 modules/15_functional_api/examples/02_parallel_futures.mmd
 modules/15_functional_api/examples/02_parallel_futures.py
@@ -4116,6 +4132,7 @@ modules/15_functional_api/tests/parallel_futures.json
 modules/15_functional_api/tests/test_examples.py
 modules/15_functional_api/use_case/claims_copilot.py
 modules/16_external_systems_and_mcp/README.md
+modules/16_external_systems_and_mcp/diagram.mmd
 modules/16_external_systems_and_mcp/examples/01_api_boundaries.py
 modules/16_external_systems_and_mcp/examples/02_mcp_server.py
 modules/16_external_systems_and_mcp/examples/03_mcp_adapter.py
@@ -4127,6 +4144,7 @@ modules/16_external_systems_and_mcp/tests/mcp_server.json
 modules/16_external_systems_and_mcp/tests/test_examples.py
 modules/16_external_systems_and_mcp/use_case/claims_copilot.py
 modules/17_durable_execution/README.md
+modules/17_durable_execution/diagram.mmd
 modules/17_durable_execution/examples/01_durable_side_effects.py
 modules/17_durable_execution/examples/02_recovery_policies.py
 modules/17_durable_execution/examples/03_long_wait_postgres.py
@@ -4138,6 +4156,7 @@ modules/17_durable_execution/tests/recovery_policies.json
 modules/17_durable_execution/tests/test_examples.py
 modules/17_durable_execution/use_case/claims_copilot.py
 modules/18_streaming_user_interfaces/README.md
+modules/18_streaming_user_interfaces/diagram.mmd
 modules/18_streaming_user_interfaces/examples/01_async_streams.mmd
 modules/18_streaming_user_interfaces/examples/01_async_streams.py
 modules/18_streaming_user_interfaces/examples/02_sse_api.py
@@ -4150,6 +4169,7 @@ modules/18_streaming_user_interfaces/tests/sse_api.json
 modules/18_streaming_user_interfaces/tests/test_examples.py
 modules/18_streaming_user_interfaces/use_case/claims_copilot.py
 modules/19_testing_and_evaluation/README.md
+modules/19_testing_and_evaluation/diagram.mmd
 modules/19_testing_and_evaluation/examples/01_test_graph_behavior.py
 modules/19_testing_and_evaluation/examples/02_test_durable_execution.py
 modules/19_testing_and_evaluation/examples/03_trajectory_evals.py
@@ -4161,6 +4181,7 @@ modules/19_testing_and_evaluation/tests/test_graph_behavior.json
 modules/19_testing_and_evaluation/tests/trajectory_evals.json
 modules/19_testing_and_evaluation/use_case/claims_copilot.py
 modules/20_observability_and_debugging/README.md
+modules/20_observability_and_debugging/diagram.mmd
 modules/20_observability_and_debugging/examples/01_local_visual_debugging.mmd
 modules/20_observability_and_debugging/examples/01_local_visual_debugging.py
 modules/20_observability_and_debugging/examples/02_structured_logs.py
@@ -4174,6 +4195,7 @@ modules/20_observability_and_debugging/tests/structured_logs.json
 modules/20_observability_and_debugging/tests/test_examples.py
 modules/20_observability_and_debugging/use_case/claims_copilot.py
 modules/21_security_and_guardrails/README.md
+modules/21_security_and_guardrails/diagram.mmd
 modules/21_security_and_guardrails/examples/01_untrusted_input.py
 modules/21_security_and_guardrails/examples/02_approval_and_limits.py
 modules/21_security_and_guardrails/examples/03_private_checkpoints.py
@@ -4185,6 +4207,7 @@ modules/21_security_and_guardrails/tests/test_examples.py
 modules/21_security_and_guardrails/tests/untrusted_input.json
 modules/21_security_and_guardrails/use_case/claims_copilot.py
 modules/22_deployment/README.md
+modules/22_deployment/diagram.mmd
 modules/22_deployment/examples/01_compose_stack.py
 modules/22_deployment/examples/02_worker_reliability.py
 modules/22_deployment/examples/03_managed_deployment.py
@@ -4196,6 +4219,7 @@ modules/22_deployment/tests/test_examples.py
 modules/22_deployment/tests/worker_reliability.json
 modules/22_deployment/use_case/claims_copilot.py
 modules/bonus/B1_langgraph_js/README.md
+modules/bonus/B1_langgraph_js/diagram.mmd
 modules/bonus/B1_langgraph_js/examples/01_typescript_state.py
 modules/bonus/B1_langgraph_js/examples/01_typescript_state.ts
 modules/bonus/B1_langgraph_js/examples/02_typescript_durable.py
@@ -4210,6 +4234,7 @@ modules/bonus/B1_langgraph_js/tests/typescript_durable.json
 modules/bonus/B1_langgraph_js/tests/typescript_state.json
 modules/bonus/B1_langgraph_js/use_case/claims_copilot.py
 modules/bonus/B2_deep_agents/README.md
+modules/bonus/B2_deep_agents/diagram.mmd
 modules/bonus/B2_deep_agents/examples/01_deep_agent_planning.py
 modules/bonus/B2_deep_agents/examples/02_virtual_filesystem.py
 modules/bonus/B2_deep_agents/examples/03_deep_subagents.py
@@ -4221,6 +4246,7 @@ modules/bonus/B2_deep_agents/tests/test_examples.py
 modules/bonus/B2_deep_agents/tests/virtual_filesystem.json
 modules/bonus/B2_deep_agents/use_case/claims_copilot.py
 modules/bonus/B3_mini_langgraph/README.md
+modules/bonus/B3_mini_langgraph/diagram.mmd
 modules/bonus/B3_mini_langgraph/examples/01_channels_and_steps.py
 modules/bonus/B3_mini_langgraph/examples/02_mini_reducers.py
 modules/bonus/B3_mini_langgraph/examples/03_mini_checkpoints.py
@@ -4232,6 +4258,7 @@ modules/bonus/B3_mini_langgraph/tests/mini_reducers.json
 modules/bonus/B3_mini_langgraph/tests/test_examples.py
 modules/bonus/B3_mini_langgraph/use_case/claims_copilot.py
 modules/bonus/B4_whats_new/README.md
+modules/bonus/B4_whats_new/diagram.mmd
 modules/bonus/B4_whats_new/examples/01_event_streaming_beta.mmd
 modules/bonus/B4_whats_new/examples/01_event_streaming_beta.py
 modules/bonus/B4_whats_new/examples/02_delta_channels_beta.mmd

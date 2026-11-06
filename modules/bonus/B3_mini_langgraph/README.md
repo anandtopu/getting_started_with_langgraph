@@ -24,6 +24,29 @@ Implement a small superstep runner to understand the real runtime. Predict the s
 
 ## How it works
 
+Generated from the real LangGraph side of the mini-runner conformance example. The educational runner executes the same two parallel inspections.
+
+```mermaid
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	policy(policy)
+	estimate(estimate)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> estimate;
+	__start__ --> policy;
+	estimate --> __end__;
+	policy --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
+
+```
+
 ### Channels And Steps
 
 The educational runner snapshots state before a superstep, collects writes from every sibling, then applies them at a barrier. Thus both workers see zero prior findings while the next-step summary sees both. This small runner explains visibility; it deliberately omits production concurrency, async execution, pending-write recovery, and serialization.

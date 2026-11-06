@@ -16,9 +16,9 @@ Measured locally on November 6, 2026, on Windows/Python 3.12.13. The complete im
 | Check | Result |
 | --- | --- |
 | Clean base install and tests | 307 passed, 64 explicitly skipped optional checks |
-| Full regression suite | 377 tests passed; the one link-check failure was repaired and all five content tests then passed |
-| Capstone reference acceptance | 18 passed |
-| Gym release validation | All 486 tasks checked; one TypeScript starter fault was repaired and its complete task validation passed on rerun |
+| Full regression suite | 378 passed; only the two explicitly Beta stream warnings were emitted |
+| Capstone reference acceptance | 18 passed; all five reference/starter/standalone validators passed |
+| Gym release validation | All 486 tasks passed the final local release run; all 18 module-14 tasks additionally passed after the macOS ordering repair |
 | Updated Beta stream exercise | Tool arguments reconstructed from two actual deltas; changed task validation passed |
 | Examples and cumulative use cases | 110 passed offline, none skipped |
 | Notebooks | All 27 executed in real kernels; committed outputs cleared |
@@ -33,8 +33,8 @@ Reproduce the full checks with the commands in [optional dependencies](OPTIONAL_
 
 ## Integration boundaries
 
-The local machine's selected Docker context has no running engine, so container and actual Postgres acceptance are delegated to the public workflow. That workflow starts the real services, pauses a claim, restarts the API, resumes approval, verifies one synthetic payment effect, tests cross-worker leases, and reopens durable customer memory. Configuration alone is not a passing deployment test.
+The public Docker/Postgres job passed: it started the real services, paused a claim, restarted the API, resumed approval, verified one synthetic payment effect, tested cross-worker leases, and reopened durable customer memory. The dashboard controls also passed a local Streamlit AppTest flow using synthetic HTTP responses; the separate deployment check used the actual API and database.
 
 No live model inference, hosted tracing, managed deployment, real payment, or email was performed. Provider constructor probes use synthetic credentials and blocked networking. Beta warnings are expected only for explicitly marked B4 APIs; LangGraph and LangChain deprecations remain test errors. The application uses fixed synthetic identities; production authentication and provider billing accounting require additional integration.
 
-A cached fresh-clone foundation quick start previously completed in 14.57 seconds. That measures command execution, not a beginner's learning time or an uncached download. A final fresh-clone smoke check and public CI results remain to be recorded.
+A fresh clone from the public repository reached a passing first gym task in 21.57 seconds, including a new virtual environment, first graph, intentional starter failure, repair, and progress check. Existing download caches were used and credentials were removed from the environment. This measures command execution, not beginner learning time or an uncached download. The final full-course cross-platform workflow remains in progress.

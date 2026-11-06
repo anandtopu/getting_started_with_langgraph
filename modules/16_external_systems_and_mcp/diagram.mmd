@@ -1,0 +1,45 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	consult_specialists(consult_specialists)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> intake_policy_memory\3aintake_and_evidence\3aintake\3aextract;
+	fraud_review\3ainspect_evidence --> consult_specialists;
+	intake_policy_memory\3adraft_letter --> fraud_review\3ainspect_evidence;
+	consult_specialists --> __end__;
+	subgraph intake_policy_memory
+	intake_policy_memory\3aremember(remember)
+	intake_policy_memory\3adraft_letter(draft_letter)
+	intake_policy_memory\3aintake_and_evidence\3apolicy_agent --> intake_policy_memory\3aremember;
+	intake_policy_memory\3aremember --> intake_policy_memory\3adraft_letter;
+	subgraph intake_and_evidence
+	intake_policy_memory\3aintake_and_evidence\3apolicy_agent(policy_agent)
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim --> intake_policy_memory\3aintake_and_evidence\3apolicy_agent;
+	subgraph intake
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aextract(extract)
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aextract --> intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize;
+	subgraph process_claim
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize(normalize)
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate(validate)
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document(review_document)
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute(route<hr/><small><em>defer = True</em></small>)
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim(approve_claim)
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3anormalize --> intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate;
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document --> intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute;
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute --> intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aapprove_claim;
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate -.-> intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3areview_document;
+	intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3avalidate -.-> intake_policy_memory\3aintake_and_evidence\3aintake\3aprocess_claim\3aroute;
+	end
+	end
+	end
+	end
+	subgraph fraud_review
+	fraud_review\3ainspect_evidence(inspect_evidence)
+	end
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

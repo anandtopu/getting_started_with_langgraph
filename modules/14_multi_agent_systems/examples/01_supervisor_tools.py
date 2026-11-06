@@ -68,7 +68,7 @@ def run(case: dict | None = None) -> dict:
         .value
     )
     return {
-        "specialists": sorted(seen, key=lambda item: item["role"]),
+        "specialists": sorted(seen, key=lambda item: (item["role"], item["input"])),
         "tool_names": sorted(
             message.name for message in result["messages"] if message.type == "tool"
         ),
